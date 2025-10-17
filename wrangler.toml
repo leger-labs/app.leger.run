@@ -10,32 +10,32 @@ not_found_handling = "single-page-application"
 # KV Namespaces for user data and secrets
 [[kv_namespaces]]
 binding = "LEGER_USERS"
-id = "PLACEHOLDER_USERS_KV_ID"  # Replace after: wrangler kv:namespace create "LEGER_USERS"
+id = "f1adc48616bb40c4a969e7401a237f8f"
 
 [[kv_namespaces]]
 binding = "LEGER_USERS"
-id = "PLACEHOLDER_USERS_KV_PREVIEW_ID"  # Replace after: wrangler kv:namespace create "LEGER_USERS" --preview
+id = "78ea717b1397493485e8a0e09c2e8f6d"
 preview = true
 
 [[kv_namespaces]]
 binding = "LEGER_SECRETS"
-id = "PLACEHOLDER_SECRETS_KV_ID"  # Replace after: wrangler kv:namespace create "LEGER_SECRETS"
+id = "deaa082adb664509a6626d84c14fef89"
 
 [[kv_namespaces]]
 binding = "LEGER_SECRETS"
-id = "PLACEHOLDER_SECRETS_KV_PREVIEW_ID"  # Replace after: wrangler kv:namespace create "LEGER_SECRETS" --preview
+id = "f781141e14a24348a7d1f457d0ce3b99"
 preview = true
 
 # R2 Bucket for static sites (infrastructure only in v0.1.0)
 [[r2_buckets]]
 binding = "LEGER_STATIC"
-bucket_name = "leger-static-sites"  # Create with: wrangler r2 bucket create leger-static-sites
+bucket_name = "leger-static-sites" 
 
 # D1 Database
 [[d1_databases]]
 binding = "LEGER_DB"
 database_name = "leger-db"
-database_id = "PLACEHOLDER_DB_ID"  # Replace after: wrangler d1 create leger-db
+database_id = "d5266754-b245-4974-a20d-42eedaecdf1d"
 
 [vars]
 ENVIRONMENT = "production"
