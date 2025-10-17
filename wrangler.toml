@@ -1,0 +1,49 @@
+name = "leger-app"
+compatibility_date = "2025-04-01"
+main = "api/index.ts"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+
+# KV Namespaces for user data and secrets
+[[kv_namespaces]]
+binding = "LEGER_USERS"
+id = "PLACEHOLDER_USERS_KV_ID"  # Replace after: wrangler kv:namespace create "LEGER_USERS"
+
+[[kv_namespaces]]
+binding = "LEGER_USERS"
+id = "PLACEHOLDER_USERS_KV_PREVIEW_ID"  # Replace after: wrangler kv:namespace create "LEGER_USERS" --preview
+preview = true
+
+[[kv_namespaces]]
+binding = "LEGER_SECRETS"
+id = "PLACEHOLDER_SECRETS_KV_ID"  # Replace after: wrangler kv:namespace create "LEGER_SECRETS"
+
+[[kv_namespaces]]
+binding = "LEGER_SECRETS"
+id = "PLACEHOLDER_SECRETS_KV_PREVIEW_ID"  # Replace after: wrangler kv:namespace create "LEGER_SECRETS" --preview
+preview = true
+
+# R2 Bucket for static sites (infrastructure only in v0.1.0)
+[[r2_buckets]]
+binding = "LEGER_STATIC"
+bucket_name = "leger-static-sites"  # Create with: wrangler r2 bucket create leger-static-sites
+
+# D1 Database
+[[d1_databases]]
+binding = "LEGER_DB"
+database_name = "leger-db"
+database_id = "PLACEHOLDER_DB_ID"  # Replace after: wrangler d1 create leger-db
+
+[vars]
+ENVIRONMENT = "production"
+APP_VERSION = "0.1.0"
+
+[placement]
+mode = "smart"
+
+# Secrets (set with wrangler secret put)
+# - ENCRYPTION_KEY: Base64-encoded 256-bit key for AES-256-GCM
+# - JWT_SECRET: Shared secret with CLI for JWT validation
