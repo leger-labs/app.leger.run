@@ -151,14 +151,30 @@ jobs:
       - name: 🏥 Health check
         run: |
           sleep 30
-          response=$(curl -s -o /dev/null -w "%{http_code}" https://app.leger.run/health || echo "0")
-          if [ "$response" = "200" ]; then
+
+          # Try workers.dev URL first (always available immediately)
+          workers_url="https://leger-app.thomasmecattaf.workers.dev/health"
+          echo "🔍 Checking workers.dev endpoint..."
+          workers_response=$(curl -s -o /dev/null -w "%{http_code}" "$workers_url" || echo "0")
+          echo "Workers.dev health: $workers_response"
+
+          # Try custom domain (may take time to propagate)
+          custom_url="https://app.leger.run/health"
+          echo "🔍 Checking custom domain endpoint..."
+          custom_response=$(curl -s -o /dev/null -w "%{http_code}" "$custom_url" || echo "0")
+          echo "Custom domain health: $custom_response"
+
+          # Pass if either endpoint is healthy
+          if [ "$workers_response" = "200" ] || [ "$custom_response" = "200" ]; then
             echo "✅ Health check passed"
+            [ "$workers_response" = "200" ] && echo "  ✅ Workers.dev: healthy"
+            [ "$custom_response" = "200" ] && echo "  ✅ Custom domain: healthy"
+            exit 0
           else
-            echo "⚠️ Health check status: $response"
-            main_response=$(curl -s -o /dev/null -w "%{http_code}" https://app.leger.run || echo "0")
-            echo "Main site status: $main_response"
-            [ "$main_response" = "200" ] && echo "✅ Main site accessible" || exit 1
+            echo "❌ Health check failed - both endpoints unhealthy"
+            echo "  Workers.dev status: $workers_response"
+            echo "  Custom domain status: $custom_response"
+            exit 1
           fi
       
       - name: 📢 Deployment summary
