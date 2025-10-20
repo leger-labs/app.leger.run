@@ -1,4 +1,4 @@
-const brandPreset = require('./brand/dist/tailwind.preset.cjs')
+const brandPreset = require('./brand/dist/tailwind.preset.js')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
