@@ -3,7 +3,7 @@
  * These will be replaced with actual generated schemas
  */
 
-import type { JSONSchema7 } from '@rjsf/core';
+import type { JSONSchema7 } from '@rjsf/utils';
 
 export const configSchema: JSONSchema7 = {
   type: 'object',

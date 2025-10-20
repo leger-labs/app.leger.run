@@ -127,3 +127,63 @@ export interface ReleasesListResponse {
 export interface ConfigData {
   [key: string]: string;
 }
+
+/**
+ * App mode (legacy - for future form/raw editor toggle)
+ */
+export type AppMode = 'form' | 'raw';
+
+/**
+ * Validation error (legacy - for form validation)
+ */
+export interface ValidationError {
+  field: string;
+  message: string;
+}
+
+/**
+ * Import result (legacy - for file import functionality)
+ */
+export interface ImportResult {
+  success: boolean;
+  data?: ConfigData;
+  errors?: ValidationError[];
+}
+
+/**
+ * Environment variable (legacy - for .env editor)
+ */
+export interface EnvVariable {
+  key: string;
+  value: string;
+  comment?: string;
+}
+
+/**
+ * Storage configuration (legacy)
+ */
+export interface StorageConfig {
+  key: string;
+  version?: number;
+  encrypt?: boolean;
+}
+
+/**
+ * Storage history (legacy)
+ */
+export interface StorageHistory {
+  timestamp: string;
+  data: ConfigData;
+  configs?: ConfigData[];
+  maxSize?: number;
+}
+
+/**
+ * Auto-save options (legacy)
+ */
+export interface AutoSaveOptions {
+  debounce?: number;
+  debounceMs?: number;
+  enabled?: boolean;
+  maxHistorySize?: number;
+}
