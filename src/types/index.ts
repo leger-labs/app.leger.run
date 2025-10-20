@@ -119,3 +119,11 @@ export interface SecretsListResponse {
 export interface ReleasesListResponse {
   releases: ReleaseRecord[];
 }
+
+/**
+ * Configuration data (v0.2.0+)
+ * Placeholder for future configuration form support
+ */
+export interface ConfigData {
+  [key: string]: string;
+}

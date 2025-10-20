@@ -30,8 +30,7 @@ jobs:
       
       - name: 📥 Install dependencies
         run: |
-          rm -f package-lock.json
-          npm install
+          npm ci 
       
       - name: 🎨 Build brand kit
         run: |
