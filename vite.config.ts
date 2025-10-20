@@ -1,9 +1,33 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import { copyFileSync, mkdirSync } from 'fs'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    {
+      name: 'copy-brand-assets',
+      writeBundle() {
+        // Copy brand assets to dist after build
+        const brandAssets = [
+          'assets/icon/dark/leger-icon-dark.svg',
+          'assets/icon/light/leger-icon-light.svg',
+          'assets/logotype/dark/leger-logo-dark.svg',
+          'assets/logotype/light/leger-logo-light.svg',
+        ]
+        
+        brandAssets.forEach(asset => {
+          const src = path.resolve(__dirname, 'brand', asset)
+          const dest = path.resolve(__dirname, 'dist/brand', asset)
+          mkdirSync(path.dirname(dest), { recursive: true })
+          copyFileSync(src, dest)
+        })
+        
+        console.log('✅ Copied brand assets to dist/')
+      }
+    }
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
