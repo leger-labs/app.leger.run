@@ -12,13 +12,15 @@ jobs:
   deploy:
     name: Deploy to Cloudflare Workers
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     
     steps:
-      - name: 🏗️ Checkout repository
+      - name: 🏗️ Checkout repository with submodules
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: 📦 Setup Node.js
         uses: actions/setup-node@v4
@@ -30,7 +32,17 @@ jobs:
         run: |
           rm -f package-lock.json
           npm install
-
+      
+      - name: 🎨 Build brand kit
+        run: |
+          echo "Building brand design system..."
+          cd brand
+          npm install
+          npm run build
+          cd ..
+          echo "✅ Brand kit built successfully"
+          ls -la brand/dist/
+      
       - name: 🔍 Run quality checks
         run: |
           npm run typecheck || true
@@ -59,8 +71,12 @@ jobs:
           fi
           
           echo "✅ Build output verified"
+          echo "📦 Main build:"
           du -sh dist/
-          ls -la dist/
+          ls -la dist/ | head -20
+          
+          echo "🎨 Brand assets available:"
+          ls -la brand/dist/
 
       - name: 🚫 Ignore _worker.js in assets
         run: echo "_worker.js" > dist/.assetsignore
@@ -118,3 +134,4 @@ jobs:
           echo "🕐 Deployed at: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
           echo "📦 Commit: ${{ github.sha }}"
           echo "👤 Deployed by: ${{ github.actor }}"
+          echo "🎨 Brand kit: Integrated from submodule"

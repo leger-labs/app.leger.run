@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "description": "Web application for Leger secret management and release tracking",
   "type": "module",
+
   "scripts": {
     "dev": "vite",
     "build": "vite build && npm run build:worker",
     "build:worker": "node scripts/build-worker.js",
     "preview": "vite preview",
-    "deploy": "npm run build && wrangler deploy",
+    "deploy": "echo '⚠️  Use GitHub Actions for deployment. Push to main branch or run workflow manually.'",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 50",
     "lint:fix": "eslint . --ext ts,tsx --fix",
     "typecheck": "tsc --noEmit",
