@@ -36,6 +36,11 @@ APP_VERSION = "0.1.0"
 [placement]
 mode = "smart"
 
+# Custom domain routing
+routes = [
+  { pattern = "app.leger.run/*", zone_name = "leger.run" }
+]
+
 # Secrets (set with wrangler secret put)
 # - ENCRYPTION_KEY: Base64-encoded 256-bit key for AES-256-GCM
 # - JWT_SECRET: Shared secret with CLI for JWT validation
