@@ -96,6 +96,45 @@ class APIClient {
   }
 
   /**
+   * Login with test user (no authentication required)
+   * For development/testing purposes only
+   */
+  async loginTest(): Promise<AuthResponse> {
+    const url = `${this.baseURL}/test/auth/login`;
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      let data: APIResponse<AuthResponse>;
+      try {
+        data = await response.json();
+      } catch {
+        toast.error('Invalid response from server');
+        throw new Error('Invalid JSON response');
+      }
+
+      if (!data.success) {
+        toast.error(data.error?.message || 'Test login failed');
+        throw new Error(data.error?.message || 'Test login failed');
+      }
+
+      return data.data as AuthResponse;
+    } catch (error) {
+      if (error instanceof TypeError) {
+        toast.error('Network error', {
+          description: 'Please check your connection',
+        });
+      }
+      throw error;
+    }
+  }
+
+  /**
    * List all secrets for the current user
    */
   async listSecrets(includeValues = false): Promise<SecretsListResponse> {
