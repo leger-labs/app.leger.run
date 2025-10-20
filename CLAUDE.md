@@ -1,691 +1,1026 @@
-# CLAUDE.md - Leger v0.1.0 Web Application Implementation
+# CLAUDE.md - Leger v0.1.0 Architecture Refinements
 
-**Document Type:** Implementation Handoff for Claude Code Agent  
+**Document Type:** Implementation Refinement for Claude Code Agent  
 **Target:** GitHub Actions Automated Implementation  
-**Status:** Ready for Implementation  
-**Version:** 1.0
+**Status:** Phase 2 - Critical Fixes  
+**Version:** 2.0
 
 ---
 
 ## Executive Summary
 
-This document guides the implementation of Leger v0.1.0's remaining frontend components. The backend API is fully implemented, and a comprehensive UI component library exists. Your task is to connect these pieces with data fetching, routing, and page implementations.
+The base v0.1.0 implementation has been committed to main, including:
+- ✅ API client skeleton (`src/lib/api-client.ts`)
+- ✅ Custom hooks (`src/hooks/`)
+- ✅ Page components (`src/pages/`)
+- ✅ Layout components (`src/components/layout/`)
+- ✅ Router configuration (`src/App.tsx`)
+- ✅ Basic TypeScript types (`src/types/`)
 
-**What Exists:**
-- ✅ Complete backend API (Cloudflare Workers + KV + D1)
-- ✅ 50+ UI components in `src/components/ui/`
-- ✅ Brand kit integration (Catppuccin Mocha + Geist fonts)
-- ✅ Infrastructure configured (wrangler.toml)
-
-**What You'll Build:**
-- ❌ API client (`src/lib/api-client.ts`)
-- ❌ Custom hooks (`src/hooks/`)
-- ❌ Page components (`src/pages/`)
-- ❌ Layout components (`src/components/layout/`)
-- ❌ Router configuration (rewrite `src/App.tsx`)
-- ❌ TypeScript type definitions (`src/types/`)
+**This document addresses critical architectural issues that must be fixed before the implementation is production-ready.**
 
 ---
 
-## Critical Context
+## Critical Fixes Required
 
-### Project Architecture
+### 1. Fix Tailwind Configuration Path ⚠️ BREAKING
 
-```
-┌─────────────────────────────────────────────────────────┐
-│ User's Machine                                           │
-│  ┌──────────────┐         ┌──────────────┐             │
-│  │ Web Browser  │         │  Leger CLI   │             │
-│  │   (React)    │         │   (Go)       │             │
-│  └──────┬───────┘         └──────┬───────┘             │
-└─────────┼─────────────────────────┼─────────────────────┘
-          │                         │
-          │   JWT Auth              │   JWT Auth
-          ▼                         ▼
-┌─────────────────────────────────────────────────────────┐
-│        app.leger.run (Cloudflare Workers)                │
-│  ┌─────────────────────────────────────────────────┐   │
-│  │  API Routes (Implemented):                      │   │
-│  │  • POST /api/auth/validate                      │   │
-│  │  • GET/POST/DELETE /api/secrets/:name           │   │
-│  │  • GET/POST/PUT/DELETE /api/releases/:id        │   │
-│  └─────────────────────────────────────────────────┘   │
-│         │                  │                  │         │
-│         ▼                  ▼                  ▼         │
-│  ┌──────────┐      ┌──────────┐      ┌──────────┐     │
-│  │  KV      │      │  D1      │      │  R2      │     │
-│  │ Secrets  │      │  Users   │      │(unused)  │     │
-│  │  +Users  │      │ Releases │      │          │     │
-│  └──────────┘      └──────────┘      └──────────┘     │
-└─────────────────────────────────────────────────────────┘
+**File:** `tailwind.config.cjs`
+
+**Issue:** Import changed from `.cjs` to `.js` extension, breaking the build.
+
+**Fix Required:**
+```javascript
+// Change line 1 from:
+const brandPreset = require('./brand/dist/tailwind.preset.js')
+
+// Back to:
+const brandPreset = require('./brand/dist/tailwind.preset.cjs')
 ```
 
-### Authentication Flow
-
-```
-1. CLI generates JWT (30-day expiry, HS256, shared secret)
-   ↓
-2. CLI opens browser: /auth?token={jwt}
-   ↓
-3. Browser: POST /api/auth/validate with JWT
-   ↓
-4. Backend validates JWT, creates/updates user
-   ↓
-5. Browser stores JWT + user in localStorage
-   ↓
-6. Redirect to /api-keys (default page)
-   ↓
-7. All subsequent requests include: Authorization: Bearer {jwt}
-```
-
-### Data Models (from Backend)
-
-Reference `api/models/*.ts` for authoritative definitions:
-
-```typescript
-// User (from api/models/user.ts)
-interface User {
-  user_uuid: string;
-  email: string;
-  display_name: string | null;
-  tailnet: string;
-  created_at: string;
-}
-
-// Secret (from api/models/secret.ts)
-interface SecretMetadata {
-  name: string;
-  created_at: string;
-  updated_at: string;
-  version: number;
-}
-
-interface SecretWithValue extends SecretMetadata {
-  value: string; // Decrypted plaintext
-}
-
-// Release (from api/models/release.ts)
-interface Release {
-  id: string;
-  user_uuid: string;
-  name: string;
-  git_url: string;
-  git_branch: string;
-  description: string | null;
-  version: number;
-  created_at: string;
-  updated_at: string;
-}
-```
+**Verification:** Run `npm run build` - should complete without errors.
 
 ---
 
-## Architectural Decisions
+### 2. Complete Type Definitions
 
-### 1. JWT Storage & Session Management
+**File:** `src/types/index.ts`
 
-**Decision:** 30-day JWT with no refresh tokens (v0.1.0 simplicity)
+**Issue:** Type definitions are incomplete. Need to mirror the backend API models exactly.
 
-**Implementation Pattern:**
+**Fix Required:**
+
+Reference the existing backend models in `api/models/*.ts` and create matching frontend types. The types should be:
+
+**From `api/models/user.ts`:**
+- Copy `UserProfile` interface exactly as it appears in the backend
+- This is what the `/api/auth/validate` endpoint returns
+
+**From `api/models/secret.ts`:**
+- Copy `SecretMetadata` interface (for web UI listing)
+- Copy `SecretWithValue` interface (for CLI sync, not used in web UI)
+
+**From `api/models/release.ts`:**
+- Copy `ReleaseRecord` interface (what API returns)
+- Create `CreateReleaseInput` interface (what POST /api/releases expects)
+- Create `UpdateReleaseInput` interface (what PUT /api/releases/:id expects)
+
+**Additional Types Needed:**
+
+Add API response wrapper types:
 ```typescript
-// On successful auth
+export interface APIResponse<T> {
+  success: boolean;
+  data?: T;
+  error?: {
+    code: string;
+    message: string;
+    action?: string;
+    docs?: string;
+  };
+}
+```
+
+Add Session type:
+```typescript
+export interface Session {
+  jwt: string;
+  user: UserProfile;
+  expiresAt: string;
+}
+```
+
+**Verification:** Run `npm run typecheck` - no errors related to missing types.
+
+---
+
+### 3. Fix JWT Storage Race Condition 🔴 CRITICAL
+
+**File:** `src/hooks/use-auth.ts` and anywhere JWT is stored
+
+**Issue:** Current implementation uses separate localStorage keys for JWT and user, creating race conditions and inconsistent state.
+
+**Fix Required:**
+
+Replace all instances of:
+```typescript
 localStorage.setItem('jwt', token);
 localStorage.setItem('user', JSON.stringify(userData));
-
-// On 401 response
-localStorage.removeItem('jwt');
-localStorage.removeItem('user');
-window.location.href = '/auth?token=expired';
 ```
 
-### 2. API Error Handling
+With atomic session management:
+```typescript
+const session: Session = {
+  jwt: token,
+  user: userData,
+  expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
+};
+localStorage.setItem('session', JSON.stringify(session));
+```
 
-**Decision:** Centralized error handling with toast notifications
+Create a session utility module at `src/lib/session.ts`:
+
+**Functions needed:**
+1. `getSession(): Session | null` - Safely reads and validates session, returns null if expired or invalid
+2. `setSession(jwt: string, user: UserProfile): void` - Atomically stores session
+3. `clearSession(): void` - Removes session
+4. `isSessionValid(): boolean` - Checks if session exists and not expired
+
+**Where to update:**
+- `src/hooks/use-auth.ts` - Use session utilities instead of direct localStorage
+- `src/lib/api-client.ts` - Get JWT from session, not directly from localStorage
+- `src/pages/AuthPage.tsx` - Call `setSession()` on successful auth
+- `src/App.tsx` - ProtectedRoute should use `isSessionValid()`
+
+**Verification:** 
+- Auth flow works end-to-end
+- Page refresh maintains authentication
+- Expired sessions redirect correctly
+
+---
+
+### 4. Complete API Client Error Handling 🔴 CRITICAL
+
+**File:** `src/lib/api-client.ts`
+
+**Issue:** Error handling is incomplete - doesn't handle network errors, non-JSON responses, or have proper retry logic.
+
+**Fix Required:**
+
+The `request()` method needs:
+
+1. **Network error handling:**
+   - Catch `TypeError` (network failures)
+   - Show appropriate toast: "Network error - Please check your connection"
+
+2. **Response parsing safety:**
+   - Try/catch around `response.json()`
+   - Handle case where response is not JSON
+   - Show toast: "Invalid response from server"
+
+3. **401 handling (already specified but ensure complete):**
+   - Call `clearSession()` from session utilities
+   - Redirect to `/auth?error=session_expired`
+   - Do NOT show toast for 401 (redirect is feedback enough)
+
+4. **All other errors:**
+   - Extract error message from response body
+   - Show toast with `error.message` and optional `error.action`
+   - Throw error to allow caller to handle if needed
 
 **Pattern:**
 ```typescript
-class APIClient {
-  private async request<T>(endpoint: string, options: RequestInit): Promise<T> {
-    const response = await fetch(endpoint, options);
-    const data = await response.json();
+private async request<T>(endpoint: string, options?: RequestInit): Promise<T> {
+  try {
+    // Make request
+    const response = await fetch(...);
     
+    // Handle 401 specially (don't toast, just redirect)
+    if (response.status === 401) {
+      clearSession();
+      window.location.href = '/auth?error=session_expired';
+      throw new Error('Unauthorized');
+    }
+    
+    // Try to parse JSON
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      toast.error('Invalid response from server');
+      throw new Error('Invalid JSON response');
+    }
+    
+    // Handle API errors
     if (!data.success) {
-      // Handle 401 specially
-      if (response.status === 401) {
-        // Clear session and redirect
-      }
-      
-      // Show toast for all errors
       toast.error(data.error.message, {
         description: data.error.action,
       });
-      
       throw new Error(data.error.message);
     }
     
     return data.data;
+    
+  } catch (error) {
+    // Network errors
+    if (error instanceof TypeError) {
+      toast.error('Network error', {
+        description: 'Please check your connection',
+      });
+    }
+    throw error;
   }
 }
 ```
 
-### 3. Loading States
+**Verification:**
+- Test with network offline - shows appropriate error
+- Test with 401 response - redirects without toast
+- Test with invalid JSON - shows appropriate error
+- Test with API error - shows error message from backend
 
-**Decision:** Dual-layer loading (global + local)
+---
 
-**Implementation:**
-- **Global:** Full-page spinner during route transitions (in AppLayout)
-- **Local:** Per-component loading (buttons, forms, sections)
+### 5. Define Auth Error Route
 
-**Pattern:**
+**File:** `src/App.tsx` and create `src/pages/AuthErrorPage.tsx`
+
+**Issue:** AuthPage redirects to `/auth-error` but this route doesn't exist.
+
+**Fix Required:**
+
+Create `src/pages/AuthErrorPage.tsx`:
+
+**Component should:**
+1. Extract `error` query param from URL
+2. Display error-specific message based on query param:
+   - `session_expired` → "Your session has expired. Please authenticate again."
+   - `invalid_token` → "Authentication failed. The token is invalid or expired."
+   - `network_error` → "Could not connect to authentication server."
+   - Default → "Authentication failed. Please try again."
+3. Show a "Try Again" button that navigates to `/auth`
+4. Show contact support link for persistent issues
+
+**Add route in `src/App.tsx`:**
 ```typescript
-// Local loading in save button
-<Button disabled={isSaving}>
-  {isSaving ? (
-    <>
-      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-      Saving...
-    </>
-  ) : 'Save Changes'}
-</Button>
+<Route path="/auth-error" element={<AuthErrorPage />} />
 ```
 
-### 4. Form Validation
+**Update AuthPage.tsx:**
+- On validation failure, navigate to `/auth-error?error=invalid_token`
+- On network failure, navigate to `/auth-error?error=network_error`
 
-**Decision:** Real-time validation on field change
+**Verification:**
+- Visit `/auth-error?error=session_expired` - shows appropriate message
+- "Try Again" button navigates back to `/auth`
 
-**Pattern:**
+---
+
+### 6. Add Loading States to Hook Mutations 🔴 CRITICAL
+
+**Files:** `src/hooks/use-secrets.ts` and `src/hooks/use-releases.ts`
+
+**Issue:** Mutation operations (create, update, delete) don't expose loading states.
+
+**Fix Required:**
+
+Both hooks need additional state:
 ```typescript
-const handleFieldChange = (field: string, value: string) => {
-  setFormData(prev => ({ ...prev, [field]: value }));
-  
-  // Validate immediately
+const [isSaving, setIsSaving] = useState(false);
+const [isDeleting, setIsDeleting] = useState(false);
+```
+
+**Pattern for all mutation operations:**
+```typescript
+const upsertSecret = async (name: string, value: string) => {
+  setIsSaving(true);
+  try {
+    await apiClient.upsertSecret(name, value);
+    toast.success('Secret saved');
+    await refetch();
+  } catch (error) {
+    // Error already toasted by apiClient
+  } finally {
+    setIsSaving(false);
+  }
+};
+
+const deleteSecret = async (name: string) => {
+  setIsDeleting(true);
+  try {
+    await apiClient.deleteSecret(name);
+    toast.success('Secret deleted');
+    await refetch();
+  } catch (error) {
+    // Error already toasted by apiClient
+  } finally {
+    setIsDeleting(false);
+  }
+};
+```
+
+**Return values must include:**
+```typescript
+return { 
+  secrets, 
+  isLoading,
+  isSaving,
+  isDeleting,
+  upsertSecret, 
+  deleteSecret, 
+  refetch 
+};
+```
+
+**Same pattern for use-releases.ts** with appropriate state variables.
+
+**Verification:**
+- Buttons show loading spinners during mutations
+- Multiple rapid clicks don't cause race conditions
+- Loading states reset properly after success/failure
+
+---
+
+### 7. Add Complete Form Validation 🔴 CRITICAL
+
+**File:** `src/pages/ReleaseFormPage.tsx`
+
+**Issue:** Document mentions "real-time validation" but provides no validation rules.
+
+**Fix Required:**
+
+Create validation function within the component:
+
+```typescript
+const validateField = (field: string, value: string): string | null => {
+  switch (field) {
+    case 'name':
+      if (!value) return 'Name is required';
+      if (!/^[a-zA-Z0-9_-]+$/.test(value)) {
+        return 'Name must contain only letters, numbers, underscores, and hyphens';
+      }
+      if (value.length > 64) return 'Name must be 64 characters or less';
+      return null;
+    
+    case 'git_url':
+      if (!value) return 'Git URL is required';
+      try {
+        const url = new URL(value);
+        if (!['http:', 'https:'].includes(url.protocol)) {
+          return 'URL must use http or https';
+        }
+        // Validate it looks like a git repo URL
+        if (!url.hostname.includes('github.com') && 
+            !url.hostname.includes('gitlab.com') &&
+            !url.pathname.endsWith('.git')) {
+          return 'URL should be a valid git repository';
+        }
+      } catch {
+        return 'Invalid URL format';
+      }
+      return null;
+    
+    case 'git_branch':
+      if (!value) return null; // Optional, defaults to 'main'
+      if (!/^[a-zA-Z0-9/_-]+$/.test(value)) {
+        return 'Invalid branch name';
+      }
+      if (value.length > 255) return 'Branch name too long';
+      return null;
+    
+    case 'description':
+      // Optional field, no validation needed
+      return null;
+    
+    default:
+      return null;
+  }
+};
+```
+
+**Wire up to form fields:**
+```typescript
+const handleFieldChange = (field: keyof typeof form, value: string) => {
+  setForm(prev => ({ ...prev, [field]: value }));
   const error = validateField(field, value);
   setErrors(prev => ({ ...prev, [field]: error }));
   setIsDirty(true);
 };
 ```
 
-### 5. Data Fetching
-
-**Decision:** Simple `useState` + `useEffect` (no external libraries)
-
-**Pattern:**
+**Validate all fields before save:**
 ```typescript
-function useSecrets() {
-  const [data, setData] = useState<Secret[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+const validateAllFields = (): boolean => {
+  const newErrors: Record<string, string | null> = {
+    name: validateField('name', form.name),
+    git_url: validateField('git_url', form.git_url),
+    git_branch: validateField('git_branch', form.git_branch),
+    description: validateField('description', form.description),
+  };
+  
+  setErrors(newErrors);
+  
+  // Return true if no errors
+  return !Object.values(newErrors).some(error => error !== null);
+};
 
-  useEffect(() => {
-    async function fetch() {
-      try {
-        const result = await apiClient.listSecrets();
-        setData(result.secrets);
-      } catch (error) {
-        // Error already toasted
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetch();
-  }, []);
-
-  return { data, isLoading };
-}
-```
-
-### 6. Navigation Structure
-
-**CRITICAL:** Two-row header, NO account dropdown
-
-```
-Row 1 (Global Context):
-[Logo] [flex-spacer] [GitHub Star] [Changelog] [Docs] [Theme Toggle] [Avatar]
-
-Row 2 (Primary Navigation):
-[API Keys] [Releases] [Models (disabled)] [Marketplace (disabled)] [Settings]
-```
-
-**Settings lives in Row 2, NOT in Avatar dropdown**
-
-### 7. Release Form Complexity
-
-**Decision:** v0.1.0 uses simple form (GitHub URL only)
-
-Fields: `name`, `git_url`, `git_branch`, `description`
-
-NO React JSON Schema Forms (RJSF) in this release. That's v0.2.0+.
-
----
-
-## URL Structure & Routing
-
-```typescript
-const routes = {
-  '/': 'Redirect to /api-keys',
-  '/auth': 'JWT validation landing page',
-  '/api-keys': 'Secret management (DEFAULT PAGE)',
-  '/releases': 'List all releases',
-  '/releases/new': 'Create release form',
-  '/releases/:id': 'Edit release form',
-  '/settings': 'Account settings',
+const handleSave = async () => {
+  if (!validateAllFields()) {
+    toast.error('Please fix validation errors');
+    return;
+  }
+  
+  // Proceed with save...
 };
 ```
 
-**Protected Routes:** All except `/auth` require valid JWT
+**Verification:**
+- Empty name shows error
+- Invalid URL shows error
+- Special characters in name show error
+- Valid form allows save
+- Errors show in real-time as user types
 
 ---
 
-## File Structure to Implement
-
-```
-src/
-├── lib/
-│   └── api-client.ts          # Centralized API wrapper
-│
-├── types/
-│   └── index.ts               # TypeScript interfaces
-│
-├── hooks/
-│   ├── use-auth.ts            # Auth state & logout
-│   ├── use-secrets.ts         # Secret CRUD operations
-│   └── use-releases.ts        # Release CRUD operations
-│
-├── components/layout/
-│   ├── AppLayout.tsx          # Two-row header + outlet
-│   ├── PageLayout.tsx         # Max-width wrapper
-│   └── PageHeader.tsx         # Title + description + actions
-│
-├── pages/
-│   ├── AuthPage.tsx           # JWT validation (loading state)
-│   ├── ApiKeysPage.tsx        # Secret management (DEFAULT)
-│   ├── ReleasesPage.tsx       # Release grid/cards
-│   ├── ReleaseFormPage.tsx    # Create/edit release
-│   └── SettingsPage.tsx       # Account info (read-only)
-│
-└── App.tsx                    # Router + protected routes
-```
-
----
-
-## Implementation Guidance
-
-### API Client Structure
-
-**File:** `src/lib/api-client.ts`
-
-**Requirements:**
-- Export singleton instance: `export const apiClient = new APIClient()`
-- Methods: `validateAuth()`, `listSecrets()`, `upsertSecret()`, `deleteSecret()`, `listReleases()`, `createRelease()`, `updateRelease()`, `deleteRelease()`
-- Auto-inject JWT from localStorage in all requests
-- Handle 401 by clearing session and redirecting to `/auth?token=expired`
-- Show toast for all errors using sonner
-- Return typed data (unwrap `data.data` from API response)
-
-**Pattern:**
-```typescript
-class APIClient {
-  private baseURL = '/api';
-  
-  private getHeaders(): HeadersInit {
-    const jwt = localStorage.getItem('jwt');
-    return {
-      'Content-Type': 'application/json',
-      ...(jwt && { Authorization: `Bearer ${jwt}` }),
-    };
-  }
-  
-  private async request<T>(endpoint: string, options?: RequestInit): Promise<T> {
-    // Fetch, parse response
-    // If !data.success, handle error (toast + redirect on 401)
-    // Return data.data
-  }
-  
-  // Public methods
-  async listSecrets(includeValues = false): Promise<{ secrets: Secret[] }> { }
-  async upsertSecret(name: string, value: string): Promise<SecretMetadata> { }
-  // ... etc
-}
-```
-
-### Custom Hooks Structure
-
-**File:** `src/hooks/use-auth.ts`
-
-**Requirements:**
-- Read initial state from localStorage
-- Provide: `{ user, isAuthenticated, logout }`
-- `logout()` clears localStorage and navigates to `/auth?token=expired`
-
-**File:** `src/hooks/use-secrets.ts`
-
-**Requirements:**
-- Fetch secrets on mount
-- Provide: `{ secrets, isLoading, upsertSecret, deleteSecret, refetch }`
-- Show success toast on successful mutations
-- Auto-refetch after mutations
-
-**File:** `src/hooks/use-releases.ts`
-
-**Requirements:**
-- Fetch releases on mount
-- Provide: `{ releases, isLoading, createRelease, updateRelease, deleteRelease, refetch }`
-- Show success toast on successful mutations
-- Auto-refetch after mutations
-
-### Layout Components
-
-**File:** `src/components/layout/AppLayout.tsx`
-
-**Requirements:**
-- Two-row header structure (see Navigation Structure above)
-- Avatar dropdown contains ONLY: user info, Settings link, Logout
-- Theme toggle in Row 1
-- Navigation links in Row 2
-- Outlet for child routes
-- Import and use components from `src/components/ui/`
-
-**File:** `src/components/layout/PageLayout.tsx`
-
-Simple max-width wrapper:
-```typescript
-export function PageLayout({ children }: { children: React.ReactNode }) {
-  return <div className="max-w-6xl mx-auto space-y-8">{children}</div>;
-}
-```
-
-**File:** `src/components/layout/PageHeader.tsx`
-
-```typescript
-interface PageHeaderProps {
-  title: string;
-  description?: string;
-  action?: React.ReactNode;
-}
-
-export function PageHeader({ title, description, action }: PageHeaderProps) {
-  return (
-    <div className="flex items-start justify-between">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
-        {description && <p className="text-muted-foreground mt-2">{description}</p>}
-      </div>
-      {action && <div>{action}</div>}
-    </div>
-  );
-}
-```
-
-### Page Implementations
-
-**File:** `src/pages/AuthPage.tsx`
-
-**Requirements:**
-- Extract `token` from URL query params
-- Call `apiClient.validateAuth(token)` on mount
-- On success: store JWT + user, navigate to `/api-keys`
-- On failure: navigate to `/auth-error`
-- Show loading spinner while validating
+### 8. Standardize API Keys Provider Display
 
 **File:** `src/pages/ApiKeysPage.tsx`
 
-**Requirements:**
-- Use `CategorySection` from `src/components/ui/form/layout/category-section`
-- One section per provider (OpenAI, Anthropic, etc.)
-- Each section has independent save button
-- Use `SecretField` from `src/components/ui/form/fields/secret-field`
-- Track dirty state per section
-- Call `useSecrets().upsertSecret()` on save
+**Issue:** Document shows hardcoded providers (OpenAI, Anthropic) as CategorySections, but "Custom API Endpoints" uses a table. Inconsistent pattern.
 
-**File:** `src/pages/ReleasesPage.tsx`
+**Fix Required:**
 
-**Requirements:**
-- Use `useReleases()` hook
-- Display releases in grid of `Card` components
-- Each card shows: name, version, git_url, git_branch, updated_at
-- "Create Release" button navigates to `/releases/new`
-- "Edit" button navigates to `/releases/:id`
-- Empty state when no releases exist
+**Decision:** Use CategorySection pattern for ALL providers, including custom ones.
 
-**File:** `src/pages/ReleaseFormPage.tsx`
+Remove the separate "Custom API Endpoints" table. Instead:
 
-**Requirements:**
-- Determine mode: `isNew = !useParams().id`
-- If editing, fetch existing release and populate form
-- Form fields: TextField (name), URLInput (git_url), TextField (git_branch), TextArea (description)
-- Real-time validation on field change
-- Use `CategorySection` with save button
-- Show deploy command preview in Card below form
-- On save: call `createRelease()` or `updateRelease()`, then navigate to `/releases`
+1. Create a `providers.config.ts` file with provider definitions:
 
-**File:** `src/pages/SettingsPage.tsx`
-
-**Requirements:**
-- Read-only display of user info
-- Use `CategorySection` for organization
-- Show: email, tailnet, user_uuid (with copy button)
-- No editing functionality in v0.1.0
-
-### Router Configuration
-
-**File:** `src/App.tsx` (rewrite completely)
-
-**Requirements:**
-- Use React Router v6
-- Public route: `/auth`
-- Protected routes (require JWT): all others
-- Create `ProtectedRoute` wrapper component
-- Default route `/` redirects to `/api-keys`
-- Include `<Toaster />` from sonner
-
-**Skeleton:**
 ```typescript
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-
-function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const isAuthenticated = !!localStorage.getItem('jwt');
-  return isAuthenticated ? <>{children}</> : <Navigate to="/auth?token=expired" />;
+export interface Provider {
+  id: string;
+  name: string;
+  description: string;
+  fields: {
+    key: string;
+    label: string;
+    type: 'secret' | 'text';
+    required: boolean;
+    description?: string;
+  }[];
+  docLink?: string;
 }
 
+export const PROVIDERS: Provider[] = [
+  {
+    id: 'openai',
+    name: 'OpenAI',
+    description: 'Configure OpenAI API access for GPT models',
+    fields: [
+      {
+        key: 'openai_api_key',
+        label: 'API Key',
+        type: 'secret',
+        required: true,
+        description: 'Your OpenAI API key (sk-...)'
+      },
+      {
+        key: 'openai_org_id',
+        label: 'Organization ID',
+        type: 'text',
+        required: false,
+        description: 'Optional: Your OpenAI organization ID'
+      }
+    ],
+    docLink: 'https://platform.openai.com/docs'
+  },
+  {
+    id: 'anthropic',
+    name: 'Anthropic',
+    description: 'Configure Anthropic API access for Claude models',
+    fields: [
+      {
+        key: 'anthropic_api_key',
+        label: 'API Key',
+        type: 'secret',
+        required: true,
+        description: 'Your Anthropic API key (sk-ant-...)'
+      }
+    ],
+    docLink: 'https://docs.anthropic.com'
+  },
+  // Add more providers as needed
+];
+```
+
+2. Render each provider as a CategorySection:
+
+```typescript
+{PROVIDERS.map(provider => (
+  <CategorySection
+    key={provider.id}
+    title={provider.name}
+    description={provider.description}
+    isDirty={dirtyStates[provider.id]}
+    onSave={() => saveProvider(provider.id)}
+    documentationLink={provider.docLink ? {
+      text: `${provider.name} API Documentation`,
+      href: provider.docLink
+    } : undefined}
+  >
+    <FieldGroup>
+      {provider.fields.map(field => (
+        field.type === 'secret' ? (
+          <SecretField
+            key={field.key}
+            label={field.label}
+            description={field.description}
+            value={secrets[field.key] || ''}
+            onChange={v => handleFieldChange(provider.id, field.key, v)}
+            error={errors[field.key]}
+          />
+        ) : (
+          <TextField
+            key={field.key}
+            label={field.label}
+            description={field.description}
+            value={secrets[field.key] || ''}
+            onChange={v => handleFieldChange(provider.id, field.key, v)}
+            optional={!field.required}
+          />
+        )
+      ))}
+    </FieldGroup>
+  </CategorySection>
+))}
+```
+
+This makes adding new providers trivial - just add to the config array.
+
+**Verification:**
+- All providers display consistently
+- Adding a new provider to config immediately shows in UI
+- Each provider has independent save functionality
+
+---
+
+### 9. Add Error Boundary 🔴 CRITICAL
+
+**File:** `src/App.tsx`
+
+**Issue:** No error boundary exists. If any component throws during render, entire app crashes with white screen.
+
+**Fix Required:**
+
+Create error boundary class component at top of `src/App.tsx`:
+
+```typescript
+class ErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean; error: Error | null }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error('App error boundary caught:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen flex items-center justify-center p-4">
+          <Card className="max-w-md w-full">
+            <CardHeader>
+              <CardTitle>Something went wrong</CardTitle>
+              <CardDescription>
+                The application encountered an unexpected error
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Alert variant="destructive">
+                <AlertTitle>Error Details</AlertTitle>
+                <AlertDescription className="font-mono text-xs mt-2">
+                  {this.state.error?.message || 'Unknown error'}
+                </AlertDescription>
+              </Alert>
+            </CardContent>
+            <CardFooter>
+              <Button 
+                onClick={() => window.location.reload()}
+                className="w-full"
+              >
+                Reload Page
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+```
+
+Wrap the entire app in ErrorBoundary:
+
+```typescript
 export default function App() {
   return (
-    <BrowserRouter>
-      <Toaster />
-      <Routes>
-        <Route path="/auth" element={<AuthPage />} />
-        <Route path="/" element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
-          <Route index element={<Navigate to="/api-keys" />} />
-          {/* Add other routes */}
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <Toaster />
+        <Routes>
+          {/* routes */}
+        </Routes>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 ```
 
+**Verification:**
+- Force an error in a component - shows error boundary UI
+- Reload button works
+- Console shows error details for debugging
+
 ---
 
-## Available UI Components
+### 10. Clarify Two-Row Header Structure
 
-**Location:** `src/components/ui/`
+**File:** `src/components/layout/AppLayout.tsx`
 
-You have access to a complete component library. Key components for this implementation:
+**Issue:** Document says "two-row header" but doesn't specify HTML structure or scroll behavior.
 
-### Form Components
-- `TextField` - Text input with validation
-- `SecretField` - Password input with show/hide toggle
-- `URLInput` - URL input with optional prefix
-- `TextArea` - Multi-line text input
-- `SelectField` - Dropdown selection
-- `ToggleField` - Boolean switch
-- `ConditionalField` - Conditional rendering wrapper
+**Fix Required:**
 
-### Form Layout
-- `CategorySection` - Section with title, description, save button, dirty tracking
-- `FieldGroup` - Consistent spacing for related fields
-- `FormDescription` - Helper text
+**Structure:**
+- Single `<header>` element containing two `<div>` rows
+- Row 1: Global context (logo, links, theme, avatar)
+- Row 2: Primary navigation (API Keys, Releases, Models, Marketplace, Settings)
 
-### UI Primitives
-- `Button` (variants: default, outline, ghost, destructive, link)
-- `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`
-- `Badge` - Status indicators
-- `Input` - Basic input (used internally by TextField)
-- `Alert`, `AlertTitle`, `AlertDescription`
+**Scroll behavior:**
+- Row 1: Scrolls away normally
+- Row 2: `sticky top-0` - stays at top when scrolling
 
-### Data Display
-- `Table`, `TableHeader`, `TableBody`, `TableRow`, `TableHead`, `TableCell`
-- `Avatar` - User profile images
-- `Separator` - Visual dividers
-
-### Navigation
-- `DropdownMenu` - Context menus
-- `Tabs` - Tabbed content
-
-### Feedback
-- `toast` from sonner - Success/error notifications
-- `Dialog` - Modal dialogs
-- `Tooltip` - Hover information
-
-**Import pattern:**
+**HTML pattern:**
 ```typescript
-import { TextField } from '@/components/ui/form/fields/text-field';
-import { CategorySection } from '@/components/ui/form/layout/category-section';
-import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardTitle } from '@/components/ui/card';
+<header className="border-b">
+  {/* Row 1: Global Context (scrolls away) */}
+  <div className="border-b px-4 py-3 flex items-center justify-between">
+    <div className="flex items-center gap-4">
+      {/* Logo */}
+      <Link to="/" className="flex items-center gap-2">
+        <img src="/brand/assets/icon/dark/leger-icon-dark.svg" className="h-6 w-6" />
+        <span className="font-semibold">Leger</span>
+      </Link>
+    </div>
+    
+    <div className="flex items-center gap-4">
+      {/* GitHub Star */}
+      <Button variant="outline" size="sm" asChild>
+        <a href="https://github.com/leger-labs/leger" target="_blank">
+          <Star className="h-4 w-4 mr-2" />
+          Star
+        </a>
+      </Button>
+      
+      {/* Changelog */}
+      <Button variant="ghost" size="sm" asChild>
+        <a href="https://www.leger.run/changelog" target="_blank">
+          Changelog
+        </a>
+      </Button>
+      
+      {/* Docs */}
+      <Button variant="ghost" size="sm" asChild>
+        <a href="https://docs.leger.run" target="_blank">
+          Docs
+        </a>
+      </Button>
+      
+      {/* Theme Toggle */}
+      <ThemeToggle />
+      
+      {/* Avatar with Dropdown */}
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" size="icon" className="rounded-full">
+            <Avatar>
+              <AvatarFallback>
+                {user?.email?.[0].toUpperCase() || 'U'}
+              </AvatarFallback>
+            </Avatar>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuLabel>
+            <div className="flex flex-col space-y-1">
+              <p className="text-sm font-medium">{user?.email}</p>
+              <p className="text-xs text-muted-foreground">{user?.tailnet}</p>
+            </div>
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem onClick={logout}>
+            <LogOut className="mr-2 h-4 w-4" />
+            Logout
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  </div>
+  
+  {/* Row 2: Primary Navigation (sticky) */}
+  <div className="sticky top-0 bg-background z-10 px-4 py-2 border-b">
+    <nav className="flex items-center gap-6">
+      <NavLink to="/api-keys">API Keys</NavLink>
+      <NavLink to="/releases">Releases</NavLink>
+      <NavLink to="/models" disabled>
+        Models
+        <Badge variant="secondary" className="ml-2 text-xs">Soon</Badge>
+      </NavLink>
+      <NavLink to="/marketplace" disabled>
+        Marketplace
+        <Badge variant="secondary" className="ml-2 text-xs">Soon</Badge>
+      </NavLink>
+      <NavLink to="/settings">Settings</NavLink>
+    </nav>
+  </div>
+</header>
 ```
 
-## Implementation Scrutiny Checklist
+**NavLink component pattern:**
+```typescript
+function NavLink({ to, disabled, children }: { 
+  to: string; 
+  disabled?: boolean; 
+  children: React.ReactNode 
+}) {
+  const location = useLocation();
+  const isActive = location.pathname === to;
+  
+  if (disabled) {
+    return (
+      <span className="text-muted-foreground cursor-not-allowed flex items-center">
+        {children}
+      </span>
+    );
+  }
+  
+  return (
+    <Link
+      to={to}
+      className={cn(
+        "text-sm font-medium transition-colors hover:text-primary",
+        isActive 
+          ? "text-foreground border-b-2 border-primary pb-2" 
+          : "text-muted-foreground"
+      )}
+    >
+      {children}
+    </Link>
+  );
+}
+```
 
-Before considering the implementation complete, verify:
+**Verification:**
+- Scroll page - Row 1 scrolls away, Row 2 stays at top
+- Active page shows underline in Row 2
+- Disabled links (Models, Marketplace) show "Soon" badge
+- Avatar dropdown works
 
-### Code Quality
-- [ ] No TypeScript errors (`npm run typecheck`)
-- [ ] No ESLint errors (`npm run lint`)
-- [ ] All imports use `@/*` alias
-- [ ] No hardcoded API URLs (use `/api` prefix)
-- [ ] Proper error boundaries
+---
 
-### Architecture Compliance
-- [ ] API client is singleton instance
-- [ ] JWT stored in localStorage
-- [ ] 401 responses trigger redirect to `/auth?token=expired`
-- [ ] All errors show toast notifications
-- [ ] Protected routes require authentication
-- [ ] No account dropdown in Row 1
-- [ ] Settings accessible from Row 2
+### 11. Standardize Domain Usage
 
-### Component Usage
-- [ ] All form fields use components from `src/components/ui/form/`
-- [ ] CategorySection used for all major form sections
-- [ ] FieldGroup used for field spacing
-- [ ] SecretField used for API keys
-- [ ] URLInput used for Git URLs
-- [ ] Loading states use Loader2 icon from lucide-react
+**Files:** All files containing URLs
 
-### Data Flow
-- [ ] Hooks fetch data on mount
-- [ ] Mutations trigger refetch
-- [ ] Success toasts on successful mutations
-- [ ] Error handling doesn't break UI
-- [ ] Dirty state tracking works correctly
+**Issue:** Mix of `leger.run` and `app.leger.run` throughout codebase.
 
-### UX Requirements
-- [ ] Real-time validation on field change
-- [ ] Loading spinners during async operations
-- [ ] Empty states for lists
-- [ ] Confirmation for destructive actions
-- [ ] Copy buttons for IDs/commands
-- [ ] Deploy command preview on release form
+**Fix Required:**
+
+**Decision:** Use `app.leger.run` for the application everywhere.
+
+Search and replace:
+- `https://leger.run` → `https://app.leger.run`
+- Keep external links to marketing site as `https://www.leger.run`
+- Keep docs as `https://docs.leger.run`
+
+**Specific locations to check:**
+- `api/index.ts` - health check messages
+- `src/lib/api-client.ts` - any hardcoded URLs
+- All toast messages mentioning URLs
+- README files
+- Comments
+
+**Verification:**
+- Search codebase for `leger.run` - only external references remain
+- All internal references use `app.leger.run`
+
+---
+
+### 12. Implement Minimal Loading States
+
+**Files:** All pages
+
+**Issue:** No guidance on initial page load states.
+
+**Fix Required:**
+
+**Decision:** Use minimal, low-effort approach:
+
+**Pattern for all list pages (ReleasesPage, ApiKeysPage):**
+```typescript
+if (isLoading) {
+  return (
+    <PageLayout>
+      <PageHeader title="Page Title" description="Loading..." />
+      <div className="flex items-center justify-center py-12">
+        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+      </div>
+    </PageLayout>
+  );
+}
+```
+
+**Pattern for form pages (ReleaseFormPage, SettingsPage):**
+- If loading existing data: Show skeleton CategorySections
+- Use same spinner approach as list pages
+
+**AppLayout does NOT need global loading** - let individual pages handle their own loading.
+
+**Verification:**
+- Fast network: loading state barely visible (good!)
+- Slow network (throttled): shows spinner
+
+---
+
+### 13. Add Breadcrumbs to Detail Pages
+
+**Files:** `src/pages/ReleaseFormPage.tsx`, `src/pages/SettingsPage.tsx`
+
+**Issue:** Navigation context missing on detail pages.
+
+**Fix Required:**
+
+Create breadcrumb component at `src/components/ui/breadcrumb.tsx`:
+
+```typescript
+export function Breadcrumb({ children }: { children: React.ReactNode }) {
+  return (
+    <nav className="flex items-center space-x-2 text-sm mb-6">
+      {children}
+    </nav>
+  );
+}
+
+export function BreadcrumbItem({ children, current }: { 
+  children: React.ReactNode; 
+  current?: boolean 
+}) {
+  return (
+    <span className={cn(
+      current ? "text-foreground font-medium" : "text-muted-foreground"
+    )}>
+      {children}
+    </span>
+  );
+}
+
+export function BreadcrumbSeparator() {
+  return <ChevronRight className="h-4 w-4 text-muted-foreground" />;
+}
+```
+
+**Add to ReleaseFormPage:**
+```typescript
+<PageLayout>
+  <Breadcrumb>
+    <BreadcrumbItem>
+      <Link to="/releases">Releases</Link>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem current>
+      {isNew ? 'Create Release' : release?.name || 'Edit Release'}
+    </BreadcrumbItem>
+  </Breadcrumb>
+  
+  <PageHeader title={...} />
+  {/* rest of page */}
+</PageLayout>
+```
+
+**Add to SettingsPage:**
+```typescript
+<PageLayout>
+  <Breadcrumb>
+    <BreadcrumbItem>
+      <Link to="/">Home</Link>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem current>Settings</BreadcrumbItem>
+  </Breadcrumb>
+  
+  <PageHeader title="Settings" />
+  {/* rest of page */}
+</PageLayout>
+```
+
+**Verification:**
+- Breadcrumbs show on detail pages
+- Links work correctly
+- Current page not clickable
+
+---
+
+## Deferred Items (Not in Scope)
+
+The following items are explicitly **out of scope** for this phase:
+
+1. ❌ Copy button component - Use inline copy functionality where needed
+2. ❌ Confirmation dialogs for destructive actions - Add in future phase
+3. ❌ Shared utility components beyond breadcrumbs - Add as needed later
+4. ❌ Mobile responsive behavior refinements - Basic responsiveness OK for v0.1.0
+5. ❌ Unit tests - Add in testing phase
+
+---
+
+## Verification Checklist
+
+Before considering these fixes complete, verify:
+
+### Build & Type Safety
+- [ ] `npm run typecheck` - no errors
+- [ ] `npm run build` - completes successfully
+- [ ] `npm run lint` - no new errors (existing warnings OK)
+
+### Critical Functionality
+- [ ] JWT storage uses atomic session object
+- [ ] Session expiry properly detected
+- [ ] 401 responses redirect without toast
+- [ ] Network errors show appropriate toast
+- [ ] All form fields validate in real-time
+- [ ] Mutation loading states work correctly
+- [ ] Error boundary catches render errors
+
+### User Experience
+- [ ] Two-row header with sticky navigation works
+- [ ] Breadcrumbs appear on detail pages
+- [ ] All providers use CategorySection pattern
+- [ ] Loading states show on slow connections
+- [ ] Auth error page handles all error types
 
 ### Security
 - [ ] JWT never logged to console
-- [ ] Secrets masked by default
-- [ ] No sensitive data in URL params
-- [ ] CORS headers handled by backend
-
-### Documentation
-- [ ] Types exported from `src/types/`
-- [ ] Complex logic has comments
-- [ ] API client methods have TSDoc
-- [ ] Component props have interfaces
-
----
-
-## Common Pitfalls to Avoid
-
-1. ❌ Don't create account dropdown in Row 1 → Settings is in Row 2
-2. ❌ Don't use RJSF → Simple forms only for v0.1.0
-3. ❌ Don't implement refresh tokens → 30-day JWT, re-auth on expiry
-4. ❌ Don't forget JWT in API requests → Check localStorage
-5. ❌ Don't skip validation → Real-time validation required
-6. ❌ Don't use external data fetching libraries → useState + useEffect
-7. ❌ Don't forget loading states → Both global and local needed
-8. ❌ Don't skip toast notifications → Use for all user feedback
-9. ❌ Don't hardcode URLs → Use `/api` prefix for all endpoints
-10. ❌ Don't mutate state directly → Always use setState functions
+- [ ] Session validation prevents race conditions
+- [ ] Expired sessions handled gracefully
 
 ---
 
 ## Success Criteria
 
-**v0.1.0 is complete when:**
+**Phase 2 is complete when:**
 
-### Functional Requirements
-1. ✅ User authenticates via CLI → Browser validates JWT
-2. ✅ Web session established with JWT in localStorage
-3. ✅ User can create/update/delete secrets via web UI
-4. ✅ Secrets encrypted at rest in backend KV
-5. ✅ CLI can sync secrets from backend
-6. ✅ User can create/edit/delete releases (GitHub URLs)
-7. ✅ Releases stored in backend D1
-8. ✅ CLI can deploy using release metadata
-9. ✅ All navigation works correctly
-10. ✅ Settings page displays user information
+1. ✅ Tailwind config imports correct file
+2. ✅ All types mirror backend models exactly
+3. ✅ JWT storage is atomic and race-condition-free
+4. ✅ API client handles all error scenarios
+5. ✅ Auth error route exists and works
+6. ✅ All mutations expose loading states
+7. ✅ Form validation works in real-time
+8. ✅ All providers use consistent pattern
+9. ✅ Error boundary catches all render errors
+10. ✅ Header structure is clear and functional
+11. ✅ All URLs use correct domain
+12. ✅ Loading states work on all pages
+13. ✅ Breadcrumbs show on detail pages
 
-### Quality Requirements
-1. ✅ No TypeScript errors
-2. ✅ No ESLint warnings (max 50 allowed)
-3. ✅ All forms have real-time validation
-4. ✅ All async operations show loading states
-5. ✅ All errors display user-friendly toasts
-6. ✅ All protected routes check authentication
-7. ✅ 401 responses redirect to auth page
-8. ✅ Empty states for all lists
-9. ✅ Responsive layout works on mobile
-10. ✅ Theme toggle persists across sessions
+**And most importantly:**
+- ✅ Application is production-ready for v0.1.0 release
+- ✅ No critical architectural issues remain
+- ✅ Code quality meets professional standards
 
-### Build Requirements
-1. ✅ `npm run build` completes successfully
-2. ✅ `npm run typecheck` passes
-3. ✅ `npm run lint` passes (max 50 warnings)
-4. ✅ Built assets load from `/dist`
-5. ✅ Brand assets load from `/brand`
+---
+
+## Notes for Implementation
+
+**This is a refinement pass, not a rewrite.** 
+
+The existing implementation is good. These fixes address:
+- Type safety gaps
+- Race conditions
+- Error handling completeness  
+- User experience consistency
+- Code organization improvements
+
+**Implementation approach:**
+1. Start with critical fixes (marked 🔴)
+2. Then fix breaking issues (marked ⚠️)
+3. Then complete remaining fixes
+4. Run verification checklist
+5. Deploy to production
+
+**Estimated effort:** 4-6 hours of focused work.
 
 ---
 
 ## Reference Documentation
 
 **Backend API Specification:** `docs/v0.1.0-scope.md`  
-**Backend Implementation:** `api/` directory  
+**Backend Models:** `api/models/*.ts` (authoritative type definitions)  
 **Component Catalogue:** `src/components/ui/` directory  
-**Sitemap & Information Architecture:** `docs/sitemap-v2.md`  
-**Remaining Work:** `docs/v0.1.0-remaining.md`
+**Previous Implementation:** Git history (already committed)
 
 ---
 
-## Final Notes for Claude Code Agent
-
-This is a **connection layer** implementation. You are connecting:
-- **Existing backend API** → API client wrapper
-- **Existing UI components** → Page implementations  
-- **User interactions** → Data mutations
-
-Focus on:
-1. **Correctness** - Follow patterns exactly
-2. **Completeness** - Implement all files listed
-3. **Quality** - Pass all linters and type checks
-4. **Testing** - Verify all flows work end-to-end
-
-The backend is production-ready. The components are battle-tested. Your job is to wire them together cleanly and correctly.
-
-**Scrutinize your implementation against the checklist before marking as complete.**
-
+**Version:** 2.0 - Architecture Refinements  
+**Date:** October 2025  
+**Status:** Ready for Implementation
