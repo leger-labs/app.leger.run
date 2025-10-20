@@ -3,7 +3,15 @@
  * These will be replaced with actual generated schemas
  */
 
-import type { JSONSchema7 } from '@rjsf/utils';
+// Local JSONSchema7 type definition
+/* eslint-disable @typescript-eslint/no-explicit-any */
+type JSONSchema7 = {
+  type?: string | string[];
+  properties?: Record<string, any>;
+  additionalProperties?: boolean | object;
+  [key: string]: any;
+};
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 export const configSchema: JSONSchema7 = {
   type: 'object',

@@ -164,18 +164,17 @@ export interface EnvVariable {
  */
 export interface StorageConfig {
   key: string;
-  version?: number;
-  encrypt?: boolean;
+  value: ConfigData | string;
+  timestamp: number;
+  version: string;
 }
 
 /**
  * Storage history (legacy)
  */
 export interface StorageHistory {
-  timestamp: string;
-  data: ConfigData;
-  configs?: ConfigData[];
-  maxSize?: number;
+  configs: StorageConfig[];
+  maxSize: number;
 }
 
 /**
