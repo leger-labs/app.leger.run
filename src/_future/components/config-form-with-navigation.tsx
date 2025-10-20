@@ -6,7 +6,7 @@
  */
 
 import React, { useState, useMemo } from 'react';
-import { ConfigFormRJSF } from '@/components/config-form-rjsf';
+import { ConfigFormRJSF } from '@/_future/components/config-form-rjsf';
 import { HierarchicalNavigation } from '@/components/ui/navigation/hierarchical-navigation';
 import type { ConfigData } from '@/types';
 import configSchema from '@/schemas/config-schema.json';

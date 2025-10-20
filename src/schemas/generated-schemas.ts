@@ -3,7 +3,9 @@
  * These will be replaced with actual generated schemas
  */
 
-export const configSchema = {
+import type { JSONSchema7 } from '@rjsf/core';
+
+export const configSchema: JSONSchema7 = {
   type: 'object',
   properties: {},
   additionalProperties: true,
@@ -16,6 +18,9 @@ export const uiSchema = {
 export const schemaMetadata = {
   version: '0.2.0-placeholder',
   fields: [],
+  categoryCount: 0,
+  fieldCount: 0,
+  generatedAt: new Date().toISOString(),
 };
 
 export function getAllFieldNames(): string[] {

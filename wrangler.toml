@@ -11,20 +11,12 @@ not_found_handling = "single-page-application"
 [[kv_namespaces]]
 binding = "LEGER_USERS"
 id = "f1adc48616bb40c4a969e7401a237f8f"
-
-[[kv_namespaces]]
-binding = "LEGER_USERS"
-id = "78ea717b1397493485e8a0e09c2e8f6d"
-preview = true
+preview_id = "78ea717b1397493485e8a0e09c2e8f6d"
 
 [[kv_namespaces]]
 binding = "LEGER_SECRETS"
 id = "deaa082adb664509a6626d84c14fef89"
-
-[[kv_namespaces]]
-binding = "LEGER_SECRETS"
-id = "f781141e14a24348a7d1f457d0ce3b99"
-preview = true
+preview_id = "f781141e14a24348a7d1f457d0ce3b99"
 
 # R2 Bucket for static sites (infrastructure only in v0.1.0)
 [[r2_buckets]]
