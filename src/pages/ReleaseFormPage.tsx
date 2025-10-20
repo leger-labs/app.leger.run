@@ -4,8 +4,9 @@
  */
 
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { Loader2, Copy, Check } from 'lucide-react';
+import { toast } from 'sonner';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { CategorySection } from '@/components/ui/form/layouts/category-section';
@@ -15,6 +16,14 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
 import { useReleases } from '@/hooks/use-releases';
 import { apiClient } from '@/lib/api-client';
 
@@ -61,34 +70,52 @@ export function ReleaseFormPage() {
     }
   }, [isNew, id]);
 
-  // Validation
-  const validateField = (field: string, value: string): string | undefined => {
+  // Validation - matches backend validation rules
+  const validateField = (field: string, value: string): string | null => {
     switch (field) {
       case 'name':
-        if (!value) return 'Release name is required';
-        if (!/^[a-zA-Z0-9_-]{1,64}$/.test(value)) {
-          return 'Name must be alphanumeric with hyphens/underscores (1-64 chars)';
+        if (!value) return 'Name is required';
+        if (!/^[a-zA-Z0-9_-]+$/.test(value)) {
+          return 'Name must contain only letters, numbers, underscores, and hyphens';
         }
-        break;
+        if (value.length > 64) return 'Name must be 64 characters or less';
+        return null;
+
       case 'git_url':
         if (!value) return 'Git URL is required';
         try {
           const url = new URL(value);
-          if (!url.protocol.startsWith('http')) {
-            return 'URL must use http or https protocol';
+          if (!['http:', 'https:'].includes(url.protocol)) {
+            return 'URL must use http or https';
+          }
+          // Validate it looks like a git repo URL
+          if (
+            !url.hostname.includes('github.com') &&
+            !url.hostname.includes('gitlab.com') &&
+            !url.pathname.endsWith('.git')
+          ) {
+            return 'URL should be a valid git repository';
           }
         } catch {
           return 'Invalid URL format';
         }
-        break;
+        return null;
+
       case 'git_branch':
-        if (!value) return 'Branch name is required';
-        if (!/^[a-zA-Z0-9_/-]{1,255}$/.test(value)) {
-          return 'Invalid branch name format';
+        if (!value) return null; // Optional, defaults to 'main'
+        if (!/^[a-zA-Z0-9/_-]+$/.test(value)) {
+          return 'Invalid branch name';
         }
-        break;
+        if (value.length > 255) return 'Branch name too long';
+        return null;
+
+      case 'description':
+        // Optional field, no validation needed
+        return null;
+
+      default:
+        return null;
     }
-    return undefined;
   };
 
   const handleFieldChange = (field: string, value: string) => {
@@ -98,18 +125,27 @@ export function ReleaseFormPage() {
     setIsDirty(true);
   };
 
-  const handleSave = async () => {
-    // Validate all fields
+  const validateAllFields = (): boolean => {
     const newErrors: Record<string, string> = {};
-    Object.keys(formData).forEach((field) => {
-      const error = validateField(field, formData[field as keyof typeof formData]);
-      if (error) {
-        newErrors[field] = error;
-      }
-    });
+    const nameError = validateField('name', formData.name);
+    const urlError = validateField('git_url', formData.git_url);
+    const branchError = validateField('git_branch', formData.git_branch);
+    const descError = validateField('description', formData.description);
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+    if (nameError) newErrors.name = nameError;
+    if (urlError) newErrors.git_url = urlError;
+    if (branchError) newErrors.git_branch = branchError;
+    if (descError) newErrors.description = descError;
+
+    setErrors(newErrors);
+
+    // Return true if no errors
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSave = async () => {
+    if (!validateAllFields()) {
+      toast.error('Please fix validation errors');
       return;
     }
 
@@ -151,6 +187,22 @@ export function ReleaseFormPage() {
 
   return (
     <PageLayout>
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link to="/releases">Releases</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>
+              {isNew ? 'Create Release' : formData.name || 'Edit Release'}
+            </BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+
       <PageHeader
         title={isNew ? 'Create Release' : 'Edit Release'}
         description={

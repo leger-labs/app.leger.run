@@ -4,14 +4,17 @@
  */
 
 import { toast } from 'sonner';
+import { getSession, clearSession } from './session';
 import type {
   SecretMetadata,
   SecretWithValue,
-  Release,
+  ReleaseRecord,
   APIResponse,
   AuthResponse,
   SecretsListResponse,
   ReleasesListResponse,
+  CreateReleaseInput,
+  UpdateReleaseInput,
 } from '@/types';
 
 class APIClient {
@@ -21,10 +24,10 @@ class APIClient {
    * Get request headers with JWT authentication
    */
   private getHeaders(): HeadersInit {
-    const jwt = localStorage.getItem('jwt');
+    const session = getSession();
     return {
       'Content-Type': 'application/json',
-      ...(jwt && { Authorization: `Bearer ${jwt}` }),
+      ...(session && { Authorization: `Bearer ${session.jwt}` }),
     };
   }
 
@@ -46,42 +49,38 @@ class APIClient {
         },
       });
 
-      const data: APIResponse<T> = await response.json();
+      // Handle 401 specially (don't toast, just redirect)
+      if (response.status === 401) {
+        clearSession();
+        window.location.href = '/auth?error=session_expired';
+        throw new Error('Unauthorized');
+      }
 
-      // Handle errors
+      // Try to parse JSON
+      let data: APIResponse<T>;
+      try {
+        data = await response.json();
+      } catch {
+        toast.error('Invalid response from server');
+        throw new Error('Invalid JSON response');
+      }
+
+      // Handle API errors
       if (!data.success) {
-        // Special handling for 401 - clear session and redirect
-        if (response.status === 401) {
-          localStorage.removeItem('jwt');
-          localStorage.removeItem('user');
-          window.location.href = '/auth?token=expired';
-          throw new Error('Authentication expired');
-        }
-
-        // Show error toast
-        if (data.error) {
-          toast.error(data.error.message, {
-            description: data.error.action,
-          });
-        }
-
+        toast.error(data.error?.message || 'Request failed', {
+          description: data.error?.action,
+        });
         throw new Error(data.error?.message || 'Request failed');
       }
 
       return data.data as T;
     } catch (error) {
-      // If it's already been handled, rethrow
-      if (error instanceof Error && error.message === 'Authentication expired') {
-        throw error;
-      }
-
-      // Network errors or other unexpected issues
+      // Network errors
       if (error instanceof TypeError) {
         toast.error('Network error', {
-          description: 'Unable to connect to the server. Please check your connection.',
+          description: 'Please check your connection',
         });
       }
-
       throw error;
     }
   }
@@ -140,20 +139,15 @@ class APIClient {
   /**
    * Get a specific release by ID
    */
-  async getRelease(id: string): Promise<Release> {
-    return this.request<Release>(`/releases/${id}`);
+  async getRelease(id: string): Promise<ReleaseRecord> {
+    return this.request<ReleaseRecord>(`/releases/${id}`);
   }
 
   /**
    * Create a new release
    */
-  async createRelease(data: {
-    name: string;
-    git_url: string;
-    git_branch?: string;
-    description?: string;
-  }): Promise<Release> {
-    return this.request<Release>('/releases', {
+  async createRelease(data: CreateReleaseInput): Promise<ReleaseRecord> {
+    return this.request<ReleaseRecord>('/releases', {
       method: 'POST',
       body: JSON.stringify(data),
     });
@@ -164,14 +158,9 @@ class APIClient {
    */
   async updateRelease(
     id: string,
-    data: {
-      name?: string;
-      git_url?: string;
-      git_branch?: string;
-      description?: string;
-    }
-  ): Promise<Release> {
-    return this.request<Release>(`/releases/${id}`, {
+    data: UpdateReleaseInput
+  ): Promise<ReleaseRecord> {
+    return this.request<ReleaseRecord>(`/releases/${id}`, {
       method: 'PUT',
       body: JSON.stringify(data),
     });

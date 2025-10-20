@@ -1,13 +1,16 @@
 /**
  * App Layout Component
  * Two-row header navigation with outlet for child routes
+ * Row 1: Global context (scrolls away)
+ * Row 2: Primary navigation (sticky)
  */
 
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Github, FileText, BookOpen } from 'lucide-react';
+import { Github, FileText, BookOpen, LogOut, Star } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,6 +20,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { ThemeToggle } from '@/components/theme-toggle';
+import { cn } from '@/lib/utils';
 
 export function AppLayout() {
   const { user, logout } = useAuth();
@@ -32,143 +36,145 @@ export function AppLayout() {
     return email[0].toUpperCase();
   };
 
+  // Navigation link component
+  const NavLink = ({
+    to,
+    disabled,
+    children,
+  }: {
+    to: string;
+    disabled?: boolean;
+    children: React.ReactNode;
+  }) => {
+    const active = location.pathname === to || location.pathname.startsWith(`${to}/`);
+
+    if (disabled) {
+      return (
+        <span className="text-muted-foreground cursor-not-allowed flex items-center">
+          {children}
+        </span>
+      );
+    }
+
+    return (
+      <Link
+        to={to}
+        className={cn(
+          'text-sm font-medium transition-colors hover:text-primary',
+          active
+            ? 'text-foreground border-b-2 border-primary pb-2'
+            : 'text-muted-foreground'
+        )}
+      >
+        {children}
+      </Link>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-background">
-      {/* Row 1: Global Context */}
       <header className="border-b">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <img
-              src="/brand/assets/logotype/light/leger-logo-light.svg"
-              alt="Leger"
-              className="h-8 dark:hidden"
-            />
-            <img
-              src="/brand/assets/logotype/dark/leger-logo-dark.svg"
-              alt="Leger"
-              className="h-8 hidden dark:block"
-            />
-          </Link>
+        {/* Row 1: Global Context (scrolls away) */}
+        <div className="border-b px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-2">
+              <img
+                src="/brand/assets/icon/dark/leger-icon-dark.svg"
+                alt="Leger"
+                className="h-6 w-6"
+              />
+              <span className="font-semibold">Leger</span>
+            </Link>
+          </div>
 
-          {/* Right side actions */}
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="sm" asChild>
+          <div className="flex items-center gap-4">
+            {/* GitHub Star */}
+            <Button variant="outline" size="sm" asChild>
               <a
                 href="https://github.com/leger-labs/leger"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github className="h-4 w-4 mr-2" />
+                <Star className="h-4 w-4 mr-2" />
                 Star
               </a>
             </Button>
 
+            {/* Changelog */}
             <Button variant="ghost" size="sm" asChild>
               <a
-                href="https://github.com/leger-labs/leger/blob/main/CHANGELOG.md"
+                href="https://www.leger.run/changelog"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FileText className="h-4 w-4 mr-2" />
                 Changelog
               </a>
             </Button>
 
+            {/* Docs */}
             <Button variant="ghost" size="sm" asChild>
               <a
                 href="https://docs.leger.run"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <BookOpen className="h-4 w-4 mr-2" />
                 Docs
               </a>
             </Button>
 
+            {/* Theme Toggle */}
             <ThemeToggle />
 
-            {/* User Avatar with Dropdown */}
+            {/* Avatar with Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="rounded-full">
-                  <Avatar className="h-8 w-8">
+                  <Avatar>
                     <AvatarFallback>
-                      {user ? getInitials(user.email) : 'U'}
+                      {user?.email?.[0].toUpperCase() || 'U'}
                     </AvatarFallback>
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuContent align="end">
                 <DropdownMenuLabel>
                   <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">
-                      {user?.display_name || 'User'}
-                    </p>
-                    <p className="text-xs leading-none text-muted-foreground">
-                      {user?.email}
+                    <p className="text-sm font-medium">{user?.email}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {user?.tailnet}
                     </p>
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link to="/settings">Settings</Link>
+                <DropdownMenuItem onClick={logout}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Logout
                 </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
         </div>
 
-        {/* Row 2: Primary Navigation */}
-        <div className="border-t bg-muted/30">
-          <div className="max-w-7xl mx-auto px-6">
-            <nav className="flex items-center h-12 gap-6">
-              <Link
-                to="/api-keys"
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  isActive('/api-keys')
-                    ? 'text-foreground'
-                    : 'text-muted-foreground'
-                }`}
-              >
-                API Keys
-              </Link>
-              <Link
-                to="/releases"
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  isActive('/releases') || location.pathname.startsWith('/releases/')
-                    ? 'text-foreground'
-                    : 'text-muted-foreground'
-                }`}
-              >
-                Releases
-              </Link>
-              <button
-                disabled
-                className="text-sm font-medium text-muted-foreground/50 cursor-not-allowed"
-              >
-                Models
-              </button>
-              <button
-                disabled
-                className="text-sm font-medium text-muted-foreground/50 cursor-not-allowed"
-              >
-                Marketplace
-              </button>
-              <Link
-                to="/settings"
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  isActive('/settings')
-                    ? 'text-foreground'
-                    : 'text-muted-foreground'
-                }`}
-              >
-                Settings
-              </Link>
-            </nav>
-          </div>
+        {/* Row 2: Primary Navigation (sticky) */}
+        <div className="sticky top-0 bg-background z-10 px-4 py-2 border-b">
+          <nav className="flex items-center gap-6">
+            <NavLink to="/api-keys">API Keys</NavLink>
+            <NavLink to="/releases">Releases</NavLink>
+            <NavLink to="/models" disabled>
+              Models
+              <Badge variant="secondary" className="ml-2 text-xs">
+                Soon
+              </Badge>
+            </NavLink>
+            <NavLink to="/marketplace" disabled>
+              Marketplace
+              <Badge variant="secondary" className="ml-2 text-xs">
+                Soon
+              </Badge>
+            </NavLink>
+            <NavLink to="/settings">Settings</NavLink>
+          </nav>
         </div>
       </header>
 

@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { apiClient } from '@/lib/api-client';
+import { setSession } from '@/lib/session';
 
 export function AuthPage() {
   const [searchParams] = useSearchParams();
@@ -16,29 +17,35 @@ export function AuthPage() {
   useEffect(() => {
     const validateToken = async () => {
       const token = searchParams.get('token');
+      const errorParam = searchParams.get('error');
+
+      // If error parameter exists, redirect to error page
+      if (errorParam) {
+        navigate(`/auth-error?error=${errorParam}`);
+        return;
+      }
 
       if (!token) {
         setError('No authentication token provided');
         return;
       }
 
-      if (token === 'expired') {
-        setError('Your session has expired. Please authenticate again using the CLI.');
-        return;
-      }
-
       try {
         const response = await apiClient.validateAuth(token);
 
-        // Store JWT and user data
-        localStorage.setItem('jwt', response.token);
-        localStorage.setItem('user', JSON.stringify(response.user));
+        // Store JWT and user data atomically
+        setSession(response.token, response.user);
 
         // Navigate to default page
         navigate('/api-keys');
       } catch (error) {
         console.error('Authentication failed:', error);
-        setError('Authentication failed. Please try again.');
+        // Check if it's a network error
+        if (error instanceof TypeError) {
+          navigate('/auth-error?error=network_error');
+        } else {
+          navigate('/auth-error?error=invalid_token');
+        }
       }
     };
 
