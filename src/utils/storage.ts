@@ -142,11 +142,12 @@ export function addToHistory(key: string, value: ConfigData | string): void {
 
     // Limit history size
     const options = loadAutoSaveOptions()
-    if (history.configs.length > options.maxHistorySize) {
-      history.configs = history.configs.slice(0, options.maxHistorySize)
+    const maxSize: number = options.maxHistorySize ?? DEFAULT_AUTO_SAVE_OPTIONS.maxHistorySize ?? 10
+    if (history.configs.length > maxSize) {
+      history.configs = history.configs.slice(0, maxSize)
     }
 
-    history.maxSize = options.maxHistorySize
+    history.maxSize = maxSize
     saveConfigHistory(history)
   } catch (error) {
     console.warn('Failed to add to history:', error)
@@ -160,10 +161,10 @@ export function loadConfigHistory(): StorageHistory {
       const history = JSON.parse(stored) as StorageHistory
       return history
     }
-    return { configs: [], maxSize: DEFAULT_AUTO_SAVE_OPTIONS.maxHistorySize }
+    return { configs: [], maxSize: DEFAULT_AUTO_SAVE_OPTIONS.maxHistorySize ?? 10 }
   } catch (error) {
     console.warn('Failed to load config history:', error)
-    return { configs: [], maxSize: DEFAULT_AUTO_SAVE_OPTIONS.maxHistorySize }
+    return { configs: [], maxSize: DEFAULT_AUTO_SAVE_OPTIONS.maxHistorySize ?? 10 }
   }
 }
 

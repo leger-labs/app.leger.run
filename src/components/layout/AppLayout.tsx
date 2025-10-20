@@ -6,7 +6,7 @@
  */
 
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Github, FileText, BookOpen, LogOut, Star } from 'lucide-react';
+import { LogOut, Star } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -25,16 +25,6 @@ import { cn } from '@/lib/utils';
 export function AppLayout() {
   const { user, logout } = useAuth();
   const location = useLocation();
-
-  const isActive = (path: string) => location.pathname === path;
-
-  const getInitials = (email: string) => {
-    const parts = email.split('@')[0].split('.');
-    if (parts.length >= 2) {
-      return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
-    }
-    return email[0].toUpperCase();
-  };
 
   // Navigation link component
   const NavLink = ({
