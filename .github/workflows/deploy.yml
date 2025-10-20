@@ -38,10 +38,12 @@ jobs:
           echo "Building brand design system..."
           cd brand
           npm install
-          npm run build
           cd ..
           echo "✅ Brand kit built successfully"
+          echo "📦 Brand dist contents:"
           ls -la brand/dist/
+          echo "📁 Brand fonts:"
+          ls -la brand/dist/fonts/
       
       - name: 🔍 Run quality checks
         run: |
@@ -70,13 +72,47 @@ jobs:
             exit 1
           fi
           
+          # Verify brand assets were copied
+          if [ ! -f "dist/brand/assets/logotype/dark/leger-logo-dark.svg" ]; then
+            echo "❌ Build failed: brand logo missing"
+            exit 1
+          fi
+          
+          if [ ! -f "dist/brand/assets/icon/dark/leger-icon-dark.svg" ]; then
+            echo "❌ Build failed: brand icon missing"
+            exit 1
+          fi
+          
+          if [ ! -f "dist/brand/dist/fonts/geist-sans/GeistVF.woff2" ]; then
+            echo "❌ Build failed: Geist Sans font missing"
+            exit 1
+          fi
+          
+          if [ ! -f "dist/brand/dist/fonts/geist-sans/GeistMonoVF.woff2" ]; then
+            echo "❌ Build failed: Geist Mono font missing"
+            exit 1
+          fi
+          
+          if [ ! -f "dist/brand/dist/fonts.css" ]; then
+            echo "❌ Build failed: fonts.css missing"
+            exit 1
+          fi
+          
+          if [ ! -f "dist/brand/dist/tokens.css" ]; then
+            echo "❌ Build failed: tokens.css missing"
+            exit 1
+          fi
+          
           echo "✅ Build output verified"
           echo "📦 Main build:"
           du -sh dist/
           ls -la dist/ | head -20
           
-          echo "🎨 Brand assets available:"
-          ls -la brand/dist/
+          echo "🎨 Brand assets verified:"
+          ls -la dist/brand/assets/
+          
+          echo "🔤 Brand fonts verified:"
+          ls -la dist/brand/dist/fonts/
 
       - name: 🚫 Ignore _worker.js in assets
         run: echo "_worker.js" > dist/.assetsignore

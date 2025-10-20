@@ -1,30 +1,46 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
-import { copyFileSync, mkdirSync } from 'fs'
+import { copyFileSync, mkdirSync, readdirSync } from 'fs'
+
+// Helper to recursively copy directory
+function copyDirRecursive(src: string, dest: string) {
+  mkdirSync(dest, { recursive: true })
+  const entries = readdirSync(src, { withFileTypes: true })
+  
+  for (const entry of entries) {
+    const srcPath = path.join(src, entry.name)
+    const destPath = path.join(dest, entry.name)
+    
+    if (entry.isDirectory()) {
+      copyDirRecursive(srcPath, destPath)
+    } else {
+      copyFileSync(srcPath, destPath)
+    }
+  }
+}
 
 export default defineConfig({
   plugins: [
     react(),
     {
-      name: 'copy-brand-assets',
+      name: 'copy-brand-distribution',
       writeBundle() {
-        // Copy brand assets to dist after build
-        const brandAssets = [
-          'assets/icon/dark/leger-icon-dark.svg',
-          'assets/icon/light/leger-icon-light.svg',
-          'assets/logotype/dark/leger-logo-dark.svg',
-          'assets/logotype/light/leger-logo-light.svg',
-        ]
+        console.log('📦 Copying brand distribution to dist...')
         
-        brandAssets.forEach(asset => {
-          const src = path.resolve(__dirname, 'brand', asset)
-          const dest = path.resolve(__dirname, 'dist/brand', asset)
-          mkdirSync(path.dirname(dest), { recursive: true })
-          copyFileSync(src, dest)
-        })
+        // Copy the entire self-contained dist folder (includes fonts)
+        copyDirRecursive(
+          path.resolve(__dirname, 'brand/dist'),
+          path.resolve(__dirname, 'dist/brand/dist')
+        )
         
-        console.log('✅ Copied brand assets to dist/')
+        // Copy assets separately (logos, icons)
+        copyDirRecursive(
+          path.resolve(__dirname, 'brand/assets'),
+          path.resolve(__dirname, 'dist/brand/assets')
+        )
+        
+        console.log('✅ Brand distribution copied successfully')
       }
     }
   ],
