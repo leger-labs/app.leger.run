@@ -1,41 +1,32 @@
 /**
  * Authentication hook
- * Manages user session state
+ * Manages user session state using atomic session storage
  */
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import type { User } from '@/types';
+import { getSession, clearSession } from '@/lib/session';
+import type { UserProfile } from '@/types';
 
 export function useAuth() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<UserProfile | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
 
-  // Load user from localStorage on mount
+  // Load user from session on mount
   useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    const userStr = localStorage.getItem('user');
-
-    if (jwt && userStr) {
-      try {
-        const userData = JSON.parse(userStr);
-        setUser(userData);
-        setIsAuthenticated(true);
-      } catch (error) {
-        // Invalid user data, clear storage
-        localStorage.removeItem('jwt');
-        localStorage.removeItem('user');
-      }
+    const session = getSession();
+    if (session) {
+      setUser(session.user);
+      setIsAuthenticated(true);
     }
   }, []);
 
   const logout = () => {
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('user');
+    clearSession();
     setUser(null);
     setIsAuthenticated(false);
-    navigate('/auth?token=expired');
+    navigate('/auth?error=session_expired');
   };
 
   return {
