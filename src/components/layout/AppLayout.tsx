@@ -6,8 +6,9 @@
  */
 
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { LogOut, Star } from 'lucide-react';
+import { LogOut, Star, AlertCircle } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
+import { isTestMode } from '@/lib/session';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -63,6 +64,19 @@ export function AppLayout() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Test Mode Banner */}
+      {isTestMode() && (
+        <div className="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2">
+          <div className="flex items-center justify-center gap-2 text-sm text-amber-600 dark:text-amber-400">
+            <AlertCircle className="h-4 w-4" />
+            <span className="font-medium">Test Mode Active</span>
+            <span className="text-muted-foreground">
+              - You are logged in as a test user for development/testing
+            </span>
+          </div>
+        </div>
+      )}
+
       <header className="border-b">
         {/* Row 1: Global Context (scrolls away) */}
         <div className="border-b px-4 py-3 flex items-center justify-between">

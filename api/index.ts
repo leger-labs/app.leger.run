@@ -18,6 +18,7 @@ import {
   handleDeleteRelease,
 } from './routes/releases'
 import {
+  handleTestAuthLogin,
   handleTestListSecrets,
   handleTestGetSecret,
   handleTestUpsertSecret,
@@ -152,7 +153,12 @@ export default {
           }
         }
 
-        // Test routes (NO AUTHENTICATION) - for CLI development
+        // Test routes (NO AUTHENTICATION) - for development
+        // Test auth endpoint for web UI testing
+        if (url.pathname === '/api/test/auth/login' && request.method === 'POST') {
+          return addCorsHeaders(await handleTestAuthLogin(request, env))
+        }
+
         if (url.pathname === '/api/test/secrets' && request.method === 'GET') {
           return addCorsHeaders(await handleTestListSecrets(request, env))
         }

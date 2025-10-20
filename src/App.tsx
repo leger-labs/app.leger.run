@@ -10,6 +10,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { AuthPage } from '@/pages/AuthPage';
 import { AuthErrorPage } from '@/pages/AuthErrorPage';
+import { TestAuthPage } from '@/pages/TestAuthPage';
 import { ApiKeysPage } from '@/pages/ApiKeysPage';
 import { ReleasesPage } from '@/pages/ReleasesPage';
 import { ReleaseFormPage } from '@/pages/ReleaseFormPage';
@@ -98,6 +99,7 @@ export default function App() {
             {/* Public routes: Authentication */}
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/auth-error" element={<AuthErrorPage />} />
+            <Route path="/auth/test" element={<TestAuthPage />} />
 
             {/* Protected routes */}
             <Route

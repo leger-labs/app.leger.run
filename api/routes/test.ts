@@ -4,6 +4,7 @@
  * Use a hardcoded test user ID for all operations
  *
  * Routes:
+ * POST /api/test/auth/login - Get test JWT token (for web UI testing)
  * GET /api/test/secrets - List all secrets
  * GET /api/test/secrets/:name - Get single secret
  * POST /api/test/secrets/:name - Create or update secret
@@ -17,6 +18,9 @@
 
 import type { Env } from '../middleware/auth'
 import { successResponse, errorResponse, handleError } from '../middleware/auth'
+import { createJWT } from '../utils/jwt'
+import type { JWTPayload } from '../utils/jwt'
+import { getUserByTailscaleId, createUser, toUserProfile } from '../services/user'
 import {
   listSecrets,
   getSecret,
@@ -33,6 +37,52 @@ import {
 
 // Hardcoded test user ID for all test operations
 const TEST_USER_ID = 'test-user@leger.test'
+const TEST_TAILSCALE_USER_ID = 'u999999999'
+const TEST_EMAIL = 'test@leger.test'
+const TEST_TAILNET = 'test.ts.net'
+
+/**
+ * POST /api/test/auth/login
+ * Generate test JWT token for web UI development (no auth required)
+ */
+export async function handleTestAuthLogin(request: Request, env: Env): Promise<Response> {
+  try {
+    // Check if test user exists, create if not
+    let user = await getUserByTailscaleId(env, TEST_TAILSCALE_USER_ID)
+
+    if (!user) {
+      user = await createUser(env, {
+        tailscale_user_id: TEST_TAILSCALE_USER_ID,
+        tailscale_email: TEST_EMAIL,
+        tailnet: TEST_TAILNET,
+        device_id: 'web-test',
+        cli_version: undefined,
+      })
+    }
+
+    // Create JWT payload
+    const now = Math.floor(Date.now() / 1000)
+    const payload: JWTPayload = {
+      sub: user.user_uuid,
+      tailscale_user_id: TEST_TAILSCALE_USER_ID,
+      email: TEST_EMAIL,
+      tailnet: TEST_TAILNET,
+      iat: now,
+      exp: now + 30 * 24 * 60 * 60, // 30 days
+    }
+
+    // Generate JWT
+    const token = await createJWT(payload, env.JWT_SECRET)
+
+    // Return same format as normal auth
+    return successResponse({
+      token,
+      user: toUserProfile(user),
+    })
+  } catch (error) {
+    return handleError(error)
+  }
+}
 
 /**
  * GET /api/test/secrets

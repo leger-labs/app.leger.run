@@ -73,3 +73,14 @@ export function clearSession(): void {
 export function isSessionValid(): boolean {
   return getSession() !== null;
 }
+
+/**
+ * Checks if current session is using the test user
+ */
+export function isTestMode(): boolean {
+  const session = getSession();
+  if (!session) return false;
+
+  // Check if user email matches test user
+  return session.user.email === 'test@leger.test';
+}
