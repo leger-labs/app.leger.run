@@ -3,7 +3,7 @@
  * Uses Web Crypto API for secure encryption
  */
 
-import { base64Encode, base64Decode } from './encoding'
+import { base64UrlEncode, base64UrlDecode } from './encoding'
 
 export interface EncryptedData {
   encrypted_value: string // Base64-encoded ciphertext
@@ -22,7 +22,7 @@ export async function encryptSecret(
   masterKey: string
 ): Promise<EncryptedData> {
   // Import master key
-  const keyData = base64Decode(masterKey)
+  const keyData = base64UrlDecode(masterKey)
   const key = await crypto.subtle.importKey(
     'raw',
     keyData,
@@ -46,8 +46,8 @@ export async function encryptSecret(
   )
 
   return {
-    encrypted_value: base64Encode(encrypted),
-    nonce: base64Encode(nonce.buffer),
+    encrypted_value: base64UrlEncode(encrypted),
+    nonce: base64UrlEncode(nonce.buffer),
     encryption_version: 1,
   }
 }
@@ -63,7 +63,7 @@ export async function decryptSecret(
   masterKey: string
 ): Promise<string> {
   // Import master key
-  const keyData = base64Decode(masterKey)
+  const keyData = base64UrlDecode(masterKey)
   const key = await crypto.subtle.importKey(
     'raw',
     keyData,
@@ -73,8 +73,8 @@ export async function decryptSecret(
   )
 
   // Decrypt data
-  const nonce = base64Decode(encryptedData.nonce)
-  const ciphertext = base64Decode(encryptedData.encrypted_value)
+  const nonce = base64UrlDecode(encryptedData.nonce)
+  const ciphertext = base64UrlDecode(encryptedData.encrypted_value)
 
   const decrypted = await crypto.subtle.decrypt(
     {
@@ -103,5 +103,5 @@ export async function generateMasterKey(): Promise<string> {
   )
 
   const exported = await crypto.subtle.exportKey('raw', key)
-  return base64Encode(exported)
+  return base64UrlEncode(exported)
 }
