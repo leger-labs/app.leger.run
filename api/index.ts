@@ -17,6 +17,17 @@ import {
   handleUpdateRelease,
   handleDeleteRelease,
 } from './routes/releases'
+import {
+  handleTestListSecrets,
+  handleTestGetSecret,
+  handleTestUpsertSecret,
+  handleTestDeleteSecret,
+  handleTestListReleases,
+  handleTestGetRelease,
+  handleTestCreateRelease,
+  handleTestUpdateRelease,
+  handleTestDeleteRelease,
+} from './routes/test'
 import { errorResponse } from './middleware/auth'
 
 export interface Env {
@@ -138,6 +149,53 @@ export default {
 
           if (request.method === 'DELETE') {
             return addCorsHeaders(await handleDeleteRelease(request, env, releaseId))
+          }
+        }
+
+        // Test routes (NO AUTHENTICATION) - for CLI development
+        if (url.pathname === '/api/test/secrets' && request.method === 'GET') {
+          return addCorsHeaders(await handleTestListSecrets(request, env))
+        }
+
+        if (url.pathname.startsWith('/api/test/secrets/')) {
+          const secretName = url.pathname.substring('/api/test/secrets/'.length)
+
+          if (request.method === 'GET') {
+            return addCorsHeaders(await handleTestGetSecret(request, env, secretName))
+          }
+
+          if (request.method === 'POST') {
+            return addCorsHeaders(await handleTestUpsertSecret(request, env, secretName))
+          }
+
+          if (request.method === 'DELETE') {
+            return addCorsHeaders(await handleTestDeleteSecret(request, env, secretName))
+          }
+        }
+
+        if (url.pathname === '/api/test/releases') {
+          if (request.method === 'GET') {
+            return addCorsHeaders(await handleTestListReleases(request, env))
+          }
+
+          if (request.method === 'POST') {
+            return addCorsHeaders(await handleTestCreateRelease(request, env))
+          }
+        }
+
+        if (url.pathname.startsWith('/api/test/releases/')) {
+          const releaseId = url.pathname.substring('/api/test/releases/'.length)
+
+          if (request.method === 'GET') {
+            return addCorsHeaders(await handleTestGetRelease(request, env, releaseId))
+          }
+
+          if (request.method === 'PUT') {
+            return addCorsHeaders(await handleTestUpdateRelease(request, env, releaseId))
+          }
+
+          if (request.method === 'DELETE') {
+            return addCorsHeaders(await handleTestDeleteRelease(request, env, releaseId))
           }
         }
 
