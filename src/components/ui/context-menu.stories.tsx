@@ -18,8 +18,8 @@ import {
 import { Card } from "./card";
 import {
   Copy,
-  Cut,
-  Paste,
+  Scissors,
+  ClipboardPaste,
   Download,
   Share,
   Trash,
@@ -47,11 +47,11 @@ export const Basic: Story = () => {
               Copy
             </ContextMenuItem>
             <ContextMenuItem>
-              <Cut className="mr-2 h-4 w-4" />
+              <Scissors className="mr-2 h-4 w-4" />
               Cut
             </ContextMenuItem>
             <ContextMenuItem>
-              <Paste className="mr-2 h-4 w-4" />
+              <ClipboardPaste className="mr-2 h-4 w-4" />
               Paste
             </ContextMenuItem>
           </ContextMenuContent>
@@ -259,11 +259,11 @@ export const WithDisabledItems: Story = () => {
               Copy
             </ContextMenuItem>
             <ContextMenuItem disabled>
-              <Cut className="mr-2 h-4 w-4" />
+              <Scissors className="mr-2 h-4 w-4" />
               Cut (disabled)
             </ContextMenuItem>
             <ContextMenuItem disabled>
-              <Paste className="mr-2 h-4 w-4" />
+              <ClipboardPaste className="mr-2 h-4 w-4" />
               Paste (nothing to paste)
             </ContextMenuItem>
             <ContextMenuSeparator />
