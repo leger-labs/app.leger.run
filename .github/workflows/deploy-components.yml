@@ -7,6 +7,7 @@ on:
       - 'src/components/**/*.tsx'
       - 'src/components/**/*.stories.tsx'
       - '.ladle/**/*'
+      - 'brand/**/*'
       - 'package.json'
       - 'package-lock.json'
   workflow_dispatch:
@@ -50,6 +51,18 @@ jobs:
       - name: 📥 Install dependencies
         run: npm ci
 
+      - name: 🎨 Build brand kit
+        run: |
+          echo "Building brand design system..."
+          cd brand
+          npm install
+          npm run build
+          cd ..
+          echo "✅ Brand kit built"
+          echo "📦 Brand dist contents:"
+          ls -la brand/dist/ || echo "No dist directory"
+          ls -la brand/dist/fonts/ || echo "No fonts directory"
+
       - name: 🎨 Build component library
         run: npm run ladle:build
         env:
@@ -67,10 +80,26 @@ jobs:
             exit 1
           fi
 
+          if [ ! -d "dist-storybook/brand/dist/fonts" ]; then
+            echo "❌ Build failed: brand fonts not copied to dist-storybook"
+            exit 1
+          fi
+
+          if [ ! -f "dist-storybook/brand/dist/tokens.css" ]; then
+            echo "❌ Build failed: tokens.css not copied to dist-storybook"
+            exit 1
+          fi
+
           echo "✅ Build output verified"
           echo "📦 Storybook build:"
           du -sh dist-storybook/
           ls -la dist-storybook/ | head -20
+
+          echo "🎨 Brand assets verified:"
+          ls -la dist-storybook/brand/dist/
+
+          echo "🔤 Brand fonts verified:"
+          ls -la dist-storybook/brand/dist/fonts/geist-sans/
 
       - name: 🔧 Setup GitHub Pages
         uses: actions/configure-pages@v4
