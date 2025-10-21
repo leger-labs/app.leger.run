@@ -18,7 +18,10 @@
     "db:migrate": "wrangler d1 execute leger-db --file=./db/migrations/0001_initial.sql",
     "db:create": "wrangler d1 create leger-db",
     "kv:create": "wrangler kv:namespace create LEGER_USERS && wrangler kv:namespace create LEGER_USERS --preview && wrangler kv:namespace create LEGER_SECRETS && wrangler kv:namespace create LEGER_SECRETS --preview",
-    "r2:create": "wrangler r2 bucket create leger-static-sites"
+    "r2:create": "wrangler r2 bucket create leger-static-sites",
+    "ladle:dev": "ladle serve",
+    "ladle:build": "ladle build",
+    "ladle:preview": "ladle preview"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.1.2",
@@ -52,6 +55,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
+    "@ladle/react": "^5.1.0",
     "@radix-ui/react-aspect-ratio": "^1.1.7",
     "@radix-ui/react-context-menu": "^2.2.16",
     "@radix-ui/react-hover-card": "^1.1.15",
