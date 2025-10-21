@@ -14,11 +14,25 @@ on:
 env:
   NODE_VERSION: '20'
 
+# Sets permissions for GitHub Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   deploy:
     name: Build and Deploy Component Library
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: 🏗️ Checkout repository
@@ -58,20 +72,23 @@ jobs:
           du -sh dist-storybook/
           ls -la dist-storybook/ | head -20
 
-      - name: 🚀 Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+      - name: 🔧 Setup GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: 📦 Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: leger-components
-          directory: dist-storybook
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          path: dist-storybook
+
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
       - name: 📢 Deployment summary
         if: success()
         run: |
           echo "🎉 Component library deployment successful!"
-          echo "📍 URL: https://leger-components.pages.dev"
+          echo "📍 URL: ${{ steps.deployment.outputs.page_url }}"
           echo "🕐 Deployed at: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
           echo "📦 Commit: ${{ github.sha }}"
           echo "👤 Deployed by: ${{ github.actor }}"
