@@ -2,7 +2,7 @@
 export default {
   stories: 'src/**/*.stories.{tsx,jsx}',
   outDir: 'dist-storybook',
-  base: '/',
+  base: '/app.leger.run/',
 
   // Default to dark theme (Catppuccin Mocha)
   defaultStory: '',
