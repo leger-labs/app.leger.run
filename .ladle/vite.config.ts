@@ -55,6 +55,11 @@ export default defineConfig({
           copyFileSync(tokensSrc, tokensDest)
           console.log('✅ tokens.css copied')
         }
+
+        // Create .nojekyll file for GitHub Pages
+        const nojekyllPath = path.resolve(__dirname, '../dist-storybook/.nojekyll')
+        copyFileSync(path.resolve(__dirname, '.nojekyll'), nojekyllPath)
+        console.log('✅ .nojekyll file created for GitHub Pages')
       }
     }
   ],
