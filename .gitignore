@@ -55,3 +55,4 @@ src/_future/
 
 # Future features not in v0.1.0
 src/_future/
+dist-storybook/
