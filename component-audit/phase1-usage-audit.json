@@ -1,0 +1,2811 @@
+{
+  "metadata": {
+    "timestamp": "2025-10-23T13:23:36.888Z",
+    "execution_time_ms": 678,
+    "root_directory": "/home/user/app.leger.run"
+  },
+  "summary": {
+    "total_components_analyzed": 48,
+    "components_in_use": 21,
+    "components_not_used": 27,
+    "total_usages": 137,
+    "files_affected": 50,
+    "rjsf_components": 3,
+    "domain_components_count": 13,
+    "generic_components_count": 79
+  },
+  "component_catalog": [
+    {
+      "name": "accordion",
+      "path": "accordion.tsx",
+      "fullPath": "src/components/ui/accordion.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "alert-dialog",
+      "path": "alert-dialog.tsx",
+      "fullPath": "src/components/ui/alert-dialog.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "alert",
+      "path": "alert.tsx",
+      "fullPath": "src/components/ui/alert.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "permission-scope-row",
+      "path": "api/permission-scope-row.tsx",
+      "fullPath": "src/components/ui/api/permission-scope-row.tsx",
+      "isDomain": true,
+      "category": "domain-specific"
+    },
+    {
+      "name": "aspect-ratio",
+      "path": "aspect-ratio.tsx",
+      "fullPath": "src/components/ui/aspect-ratio.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "avatar",
+      "path": "avatar.tsx",
+      "fullPath": "src/components/ui/avatar.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "badge",
+      "path": "badge.tsx",
+      "fullPath": "src/components/ui/badge.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "breadcrumb",
+      "path": "breadcrumb.tsx",
+      "fullPath": "src/components/ui/breadcrumb.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "button",
+      "path": "button.tsx",
+      "fullPath": "src/components/ui/button.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "calendar",
+      "path": "calendar.tsx",
+      "fullPath": "src/components/ui/calendar.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "card",
+      "path": "card.tsx",
+      "fullPath": "src/components/ui/card.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "carousel",
+      "path": "carousel.tsx",
+      "fullPath": "src/components/ui/carousel.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "chart",
+      "path": "chart.tsx",
+      "fullPath": "src/components/ui/chart.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "checkbox",
+      "path": "checkbox.tsx",
+      "fullPath": "src/components/ui/checkbox.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "collapsible",
+      "path": "collapsible.tsx",
+      "fullPath": "src/components/ui/collapsible.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "command",
+      "path": "command.tsx",
+      "fullPath": "src/components/ui/command.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "context-menu",
+      "path": "context-menu.tsx",
+      "fullPath": "src/components/ui/context-menu.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "dialog",
+      "path": "dialog.tsx",
+      "fullPath": "src/components/ui/dialog.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "code-reference",
+      "path": "docs/code-reference.tsx",
+      "fullPath": "src/components/ui/docs/code-reference.tsx",
+      "isDomain": true,
+      "category": "domain-specific"
+    },
+    {
+      "name": "documentation-link",
+      "path": "docs/documentation-link.tsx",
+      "fullPath": "src/components/ui/docs/documentation-link.tsx",
+      "isDomain": true,
+      "category": "domain-specific"
+    },
+    {
+      "name": "drawer",
+      "path": "drawer.tsx",
+      "fullPath": "src/components/ui/drawer.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "dropdown-menu",
+      "path": "dropdown-menu.tsx",
+      "fullPath": "src/components/ui/dropdown-menu.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "environment-variable-form",
+      "path": "env-vars/environment-variable-form.tsx",
+      "fullPath": "src/components/ui/env-vars/environment-variable-form.tsx",
+      "isDomain": true,
+      "category": "domain-specific"
+    },
+    {
+      "name": "environment-variable-import",
+      "path": "env-vars/environment-variable-import.tsx",
+      "fullPath": "src/components/ui/env-vars/environment-variable-import.tsx",
+      "isDomain": true,
+      "category": "domain-specific"
+    },
+    {
+      "name": "environment-variable-table",
+      "path": "env-vars/environment-variable-table.tsx",
+      "fullPath": "src/components/ui/env-vars/environment-variable-table.tsx",
+      "isDomain": true,
+      "category": "domain-specific"
+    },
+    {
+      "name": "environment-breadcrumb",
+      "path": "environments/environment-breadcrumb.tsx",
+      "fullPath": "src/components/ui/environments/environment-breadcrumb.tsx",
+      "isDomain": true,
+      "category": "domain-specific"
+    },
+    {
+      "name": "environment-card",
+      "path": "environments/environment-card.tsx",
+      "fullPath": "src/components/ui/environments/environment-card.tsx",
+      "isDomain": true,
+      "category": "domain-specific"
+    },
+    {
+      "name": "character-counter",
+      "path": "form/feedback/character-counter.tsx",
+      "fullPath": "src/components/ui/form/feedback/character-counter.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "dangerous-action-button",
+      "path": "form/feedback/dangerous-action-button.tsx",
+      "fullPath": "src/components/ui/form/feedback/dangerous-action-button.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "enhanced-validation-message",
+      "path": "form/feedback/enhanced-validation-message.tsx",
+      "fullPath": "src/components/ui/form/feedback/enhanced-validation-message.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "export-readiness-indicator",
+      "path": "form/feedback/export-readiness-indicator.tsx",
+      "fullPath": "src/components/ui/form/feedback/export-readiness-indicator.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "field-status-indicator",
+      "path": "form/feedback/field-status-indicator.tsx",
+      "fullPath": "src/components/ui/form/feedback/field-status-indicator.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "save-button",
+      "path": "form/feedback/save-button.tsx",
+      "fullPath": "src/components/ui/form/feedback/save-button.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "toast-error",
+      "path": "form/feedback/toast-error.tsx",
+      "fullPath": "src/components/ui/form/feedback/toast-error.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "validation-message",
+      "path": "form/feedback/validation-message.tsx",
+      "fullPath": "src/components/ui/form/feedback/validation-message.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "validation-summary",
+      "path": "form/feedback/validation-summary.tsx",
+      "fullPath": "src/components/ui/form/feedback/validation-summary.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "visibility-notice",
+      "path": "form/feedback/visibility-notice.tsx",
+      "fullPath": "src/components/ui/form/feedback/visibility-notice.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "array-field",
+      "path": "form/fields/array-field.tsx",
+      "fullPath": "src/components/ui/form/fields/array-field.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "date-field",
+      "path": "form/fields/date-field.tsx",
+      "fullPath": "src/components/ui/form/fields/date-field.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "integer-field",
+      "path": "form/fields/integer-field.tsx",
+      "fullPath": "src/components/ui/form/fields/integer-field.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "markdown-text-area",
+      "path": "form/fields/markdown-text-area.tsx",
+      "fullPath": "src/components/ui/form/fields/markdown-text-area.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "number-field",
+      "path": "form/fields/number-field.tsx",
+      "fullPath": "src/components/ui/form/fields/number-field.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "object-field",
+      "path": "form/fields/object-field.tsx",
+      "fullPath": "src/components/ui/form/fields/object-field.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "same-information-checkbox",
+      "path": "form/fields/same-information-checkbox.tsx",
+      "fullPath": "src/components/ui/form/fields/same-information-checkbox.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "secret-field",
+      "path": "form/fields/secret-field.tsx",
+      "fullPath": "src/components/ui/form/fields/secret-field.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "select-field",
+      "path": "form/fields/select-field.tsx",
+      "fullPath": "src/components/ui/form/fields/select-field.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "text-field",
+      "path": "form/fields/text-field.tsx",
+      "fullPath": "src/components/ui/form/fields/text-field.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "toggle-field",
+      "path": "form/fields/toggle-field.tsx",
+      "fullPath": "src/components/ui/form/fields/toggle-field.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "url-input",
+      "path": "form/fields/url-input.tsx",
+      "fullPath": "src/components/ui/form/fields/url-input.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "category-section",
+      "path": "form/layouts/category-section.tsx",
+      "fullPath": "src/components/ui/form/layouts/category-section.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "field-group",
+      "path": "form/layouts/field-group.tsx",
+      "fullPath": "src/components/ui/form/layouts/field-group.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "form-section",
+      "path": "form/layouts/form-section.tsx",
+      "fullPath": "src/components/ui/form/layouts/form-section.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "conditional-field",
+      "path": "form/wrappers/conditional-field.tsx",
+      "fullPath": "src/components/ui/form/wrappers/conditional-field.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "overrideable-field",
+      "path": "form/wrappers/overrideable-field.tsx",
+      "fullPath": "src/components/ui/form/wrappers/overrideable-field.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "plan-restricted-feature",
+      "path": "form/wrappers/plan-restricted-feature.tsx",
+      "fullPath": "src/components/ui/form/wrappers/plan-restricted-feature.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "form",
+      "path": "form.tsx",
+      "fullPath": "src/components/ui/form.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "command-field-group",
+      "path": "framework/command-field-group.tsx",
+      "fullPath": "src/components/ui/framework/command-field-group.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "framework-icon",
+      "path": "framework/framework-icon.tsx",
+      "fullPath": "src/components/ui/framework/framework-icon.tsx",
+      "isDomain": true,
+      "category": "domain-specific"
+    },
+    {
+      "name": "framework-preset-selector",
+      "path": "framework/framework-preset-selector.tsx",
+      "fullPath": "src/components/ui/framework/framework-preset-selector.tsx",
+      "isDomain": true,
+      "category": "domain-specific"
+    },
+    {
+      "name": "hover-card",
+      "path": "hover-card.tsx",
+      "fullPath": "src/components/ui/hover-card.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "input-otp",
+      "path": "input-otp.tsx",
+      "fullPath": "src/components/ui/input-otp.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "input",
+      "path": "input.tsx",
+      "fullPath": "src/components/ui/input.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "label",
+      "path": "label.tsx",
+      "fullPath": "src/components/ui/label.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "menubar",
+      "path": "menubar.tsx",
+      "fullPath": "src/components/ui/menubar.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "hierarchical-navigation",
+      "path": "navigation/hierarchical-navigation.tsx",
+      "fullPath": "src/components/ui/navigation/hierarchical-navigation.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "section-accordion",
+      "path": "navigation/section-accordion.tsx",
+      "fullPath": "src/components/ui/navigation/section-accordion.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "navigation-menu",
+      "path": "navigation-menu.tsx",
+      "fullPath": "src/components/ui/navigation-menu.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "pagination",
+      "path": "pagination.tsx",
+      "fullPath": "src/components/ui/pagination.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "path-management-list",
+      "path": "path-management/path-management-list.tsx",
+      "fullPath": "src/components/ui/path-management/path-management-list.tsx",
+      "isDomain": true,
+      "category": "domain-specific"
+    },
+    {
+      "name": "popover",
+      "path": "popover.tsx",
+      "fullPath": "src/components/ui/popover.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "progress",
+      "path": "progress.tsx",
+      "fullPath": "src/components/ui/progress.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "protection-mode-selector",
+      "path": "protection/protection-mode-selector.tsx",
+      "fullPath": "src/components/ui/protection/protection-mode-selector.tsx",
+      "isDomain": true,
+      "category": "domain-specific"
+    },
+    {
+      "name": "radio-group",
+      "path": "radio-group.tsx",
+      "fullPath": "src/components/ui/radio-group.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "resizable",
+      "path": "resizable.tsx",
+      "fullPath": "src/components/ui/resizable.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "scroll-area",
+      "path": "scroll-area.tsx",
+      "fullPath": "src/components/ui/scroll-area.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "select",
+      "path": "select.tsx",
+      "fullPath": "src/components/ui/select.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "separator",
+      "path": "separator.tsx",
+      "fullPath": "src/components/ui/separator.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "sheet",
+      "path": "sheet.tsx",
+      "fullPath": "src/components/ui/sheet.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "sidebar",
+      "path": "sidebar.tsx",
+      "fullPath": "src/components/ui/sidebar.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "skeleton",
+      "path": "skeleton.tsx",
+      "fullPath": "src/components/ui/skeleton.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "slider",
+      "path": "slider.tsx",
+      "fullPath": "src/components/ui/slider.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "sonner",
+      "path": "sonner.tsx",
+      "fullPath": "src/components/ui/sonner.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "switch",
+      "path": "switch.tsx",
+      "fullPath": "src/components/ui/switch.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "table",
+      "path": "table.tsx",
+      "fullPath": "src/components/ui/table.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "tabs",
+      "path": "tabs.tsx",
+      "fullPath": "src/components/ui/tabs.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "team-selector-chip",
+      "path": "team/team-selector-chip.tsx",
+      "fullPath": "src/components/ui/team/team-selector-chip.tsx",
+      "isDomain": true,
+      "category": "domain-specific"
+    },
+    {
+      "name": "textarea",
+      "path": "textarea.tsx",
+      "fullPath": "src/components/ui/textarea.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "toast",
+      "path": "toast.tsx",
+      "fullPath": "src/components/ui/toast.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "toaster",
+      "path": "toaster.tsx",
+      "fullPath": "src/components/ui/toaster.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "toggle-group",
+      "path": "toggle-group.tsx",
+      "fullPath": "src/components/ui/toggle-group.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "toggle",
+      "path": "toggle.tsx",
+      "fullPath": "src/components/ui/toggle.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    },
+    {
+      "name": "tooltip",
+      "path": "tooltip.tsx",
+      "fullPath": "src/components/ui/tooltip.tsx",
+      "isDomain": false,
+      "category": "generic-ui"
+    }
+  ],
+  "component_analyses": [
+    {
+      "component": "Label",
+      "total_usages": 35,
+      "files_affected": 21,
+      "locations": [
+        {
+          "file": "src/components/ui/env-vars/environment-variable-form.tsx",
+          "line": 75,
+          "usage": "<Label htmlFor=\"key\">Name</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "        <CardContent className=\"space-y-4\">\n          <div className=\"space-y-2\">\n            <Label htmlFor=\"key\">Name</Label>\n            <Input\n              id=\"key\"",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-form.tsx",
+          "line": 92,
+          "usage": "<Label htmlFor=\"value\">Value</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "\n          <div className=\"space-y-2\">\n            <Label htmlFor=\"value\">Value</Label>\n            <div className=\"relative\">\n              <Input",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-form.tsx",
+          "line": 126,
+          "usage": "<Label htmlFor=\"isSensitive\">Sensitive</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "              onCheckedChange={(checked) => handleSwitchChange(\"isSensitive\", checked)}\n            />\n            <Label htmlFor=\"isSensitive\">Sensitive</Label>\n          </div>\n          <FormDescription>Sensitive values are encrypted and cannot be viewed after creation.</FormDescription>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-form.tsx",
+          "line": 131,
+          "usage": "<Label htmlFor=\"environment\">Environment</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "\n          <div className=\"space-y-2\">\n            <Label htmlFor=\"environment\">Environment</Label>\n            <Select\n              name=\"environment\"",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-form.tsx",
+          "line": 151,
+          "usage": "<Label htmlFor=\"branch\">Branch</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "          <ConditionalField show={formData.environment === \"preview\"}>\n            <div className=\"space-y-2 pt-2\">\n              <Label htmlFor=\"branch\">Branch</Label>\n              <Select\n                name=\"branch\"",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-form.tsx",
+          "line": 182,
+          "usage": "<Label htmlFor=\"note\">Note</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "            <div className=\"space-y-2\">\n              <div className=\"flex items-center justify-between\">\n                <Label htmlFor=\"note\">Note</Label>\n                <Button\n                  type=\"button\"",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-import.tsx",
+          "line": 89,
+          "usage": "<Label htmlFor=\"env-content\">Paste .env file content</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "          <TabsContent value=\"paste\" className=\"space-y-4\">\n            <div className=\"space-y-2\">\n              <Label htmlFor=\"env-content\">Paste .env file content</Label>\n              <Textarea\n                id=\"env-content\"",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-import.tsx",
+          "line": 101,
+          "usage": "<Label htmlFor=\"env-file\">Upload .env file</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "          <TabsContent value=\"upload\" className=\"space-y-4\">\n            <div className=\"space-y-2\">\n              <Label htmlFor=\"env-file\">Upload .env file</Label>\n              <div className=\"border-2 border-dashed rounded-md p-6 text-center\">\n                <FileUp className=\"h-8 w-8 mx-auto mb-2 text-muted-foreground\" />",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-import.tsx",
+          "line": 124,
+          "usage": "<Label>Preview ({parsedVariables.length} variables)</Label>",
+          "props": [],
+          "context": "        {parsedVariables.length > 0 && (\n          <div className=\"space-y-2\">\n            <Label>Preview ({parsedVariables.length} variables)</Label>\n            <div className=\"max-h-[200px] overflow-y-auto rounded-md border p-2\">\n              {parsedVariables.map((variable, index) => (",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-import.tsx",
+          "line": 138,
+          "usage": "<Label htmlFor=\"environment\">Target Environment</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "\n        <div className=\"space-y-2\">\n          <Label htmlFor=\"environment\">Target Environment</Label>\n          <Select value={environment} onValueChange={setEnvironment}>\n            <SelectTrigger id=\"environment\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/fields/array-field.tsx",
+          "line": 54,
+          "usage": "<Label htmlFor={fieldId}>{label}</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "  return (\n    <div className=\"space-y-2\">\n      <Label htmlFor={fieldId}>{label}</Label>\n      {description && <FormDescription>{description}</FormDescription>}\n",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/fields/date-field.tsx",
+          "line": 78,
+          "usage": "<Label htmlFor={fieldId} className={error ? \"text-destructive\" : \"\"}>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "  return (\n    <div className=\"space-y-2\">\n      <Label htmlFor={fieldId} className={error ? \"text-destructive\" : \"\"}>\n        {label}\n      </Label>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/fields/integer-field.tsx",
+          "line": 60,
+          "usage": "<Label htmlFor={fieldId} className={error ? \"text-destructive\" : \"\"}>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "  return (\n    <div className=\"space-y-2\">\n      <Label htmlFor={fieldId} className={error ? \"text-destructive\" : \"\"}>\n        {label}\n      </Label>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/fields/markdown-text-area.tsx",
+          "line": 39,
+          "usage": "<Label htmlFor={fieldId} className={error ? \"text-destructive\" : \"\"}>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "    <div className=\"space-y-2\">\n      <div className=\"flex justify-between items-center\">\n        <Label htmlFor={fieldId} className={error ? \"text-destructive\" : \"\"}>\n          {label}\n        </Label>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/fields/number-field.tsx",
+          "line": 50,
+          "usage": "<Label htmlFor={fieldId} className={error ? \"text-destructive\" : \"\"}>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "  return (\n    <div className=\"space-y-2\">\n      <Label htmlFor={fieldId} className={error ? \"text-destructive\" : \"\"}>\n        {label}\n      </Label>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/fields/object-field.tsx",
+          "line": 183,
+          "usage": "<Label className={error ? \"text-destructive\" : \"\"}>",
+          "props": [],
+          "context": "      <Collapsible open={isOpen} onOpenChange={setIsOpen}>\n        <div className=\"flex items-center justify-between\">\n          <Label className={error ? \"text-destructive\" : \"\"}>\n            {label}\n          </Label>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/fields/object-field.tsx",
+          "line": 199,
+          "usage": "<Label className=\"text-sm font-medium\">{key}</Label>",
+          "props": [],
+          "context": "              <div key={key} className=\"space-y-2\">\n                <div className=\"flex items-center justify-between\">\n                  <Label className=\"text-sm font-medium\">{key}</Label>\n                  <Button\n                    variant=\"ghost\"",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/fields/same-information-checkbox.tsx",
+          "line": 24,
+          "usage": "<Label htmlFor={id} className=\"text-sm font-normal\">",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "      <Checkbox id={id} checked={checked} onCheckedChange={onCheckedChange} className=\"mt-1\" />\n      <div className=\"space-y-1 leading-none\">\n        <Label htmlFor={id} className=\"text-sm font-normal\">\n          {label}\n        </Label>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/fields/secret-field.tsx",
+          "line": 22,
+          "usage": "<Label htmlFor={fieldId} className={error ? \"text-destructive\" : \"\"}>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "  return (\n    <div className=\"space-y-2\">\n      <Label htmlFor={fieldId} className={error ? \"text-destructive\" : \"\"}>\n        {label}\n      </Label>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/fields/select-field.tsx",
+          "line": 37,
+          "usage": "<Label htmlFor={fieldId} className={error ? \"text-destructive\" : \"\"}>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "  return (\n    <div className=\"space-y-2\">\n      <Label htmlFor={fieldId} className={error ? \"text-destructive\" : \"\"}>\n        {label}\n      </Label>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/fields/text-field.tsx",
+          "line": 36,
+          "usage": "<Label htmlFor={fieldId} className={error ? \"text-destructive\" : \"\"}>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "    <div className=\"space-y-2\">\n      <div className=\"flex justify-between items-center\">\n        <Label htmlFor={fieldId} className={error ? \"text-destructive\" : \"\"}>\n          {label}\n        </Label>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/fields/toggle-field.tsx",
+          "line": 21,
+          "usage": "<Label htmlFor={fieldId}>{label}</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "      <div className=\"flex items-center justify-between\">\n        <div className=\"space-y-0.5\">\n          <Label htmlFor={fieldId}>{label}</Label>\n          {description && <FormDescription>{description}</FormDescription>}\n        </div>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/fields/url-input.tsx",
+          "line": 20,
+          "usage": "<Label htmlFor={fieldId} className={error ? \"text-destructive\" : \"\"}>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "  return (\n    <div className=\"space-y-2\">\n      <Label htmlFor={fieldId} className={error ? \"text-destructive\" : \"\"}>\n        {label}\n      </Label>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/wrappers/overrideable-field.tsx",
+          "line": 40,
+          "usage": "<Label htmlFor={fieldId}>{label}</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "    <div className=\"space-y-2\">\n      <div className=\"flex items-center justify-between\">\n        <Label htmlFor={fieldId}>{label}</Label>\n        <div className=\"flex items-center gap-2\">\n          <span className=\"text-sm text-muted-foreground\">Override</span>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/framework/command-field-group.tsx",
+          "line": 42,
+          "usage": "<Label htmlFor={fieldId}>{label}</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "      <div className=\"flex items-center justify-between\">\n        <div className=\"flex items-center gap-1.5\">\n          <Label htmlFor={fieldId}>{label}</Label>\n          {helpText && (\n            <TooltipProvider>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/framework/framework-preset-selector.tsx",
+          "line": 29,
+          "usage": "<Label htmlFor=\"framework-preset\">{label}</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "  return (\n    <div className=\"space-y-2\">\n      <Label htmlFor=\"framework-preset\">{label}</Label>\n      <Select value={value} onValueChange={onChange}>\n        <SelectTrigger id=\"framework-preset\" className=\"w-full\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/path-management/path-management-list.tsx",
+          "line": 51,
+          "usage": "{label && <Label>{label}</Label>}",
+          "props": [],
+          "context": "  return (\n    <div className=\"space-y-2\">\n      {label && <Label>{label}</Label>}\n      {description && <FormDescription>{description}</FormDescription>}\n",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/protection/protection-mode-selector.tsx",
+          "line": 31,
+          "usage": "<Label htmlFor=\"protection-toggle\">Authentication</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "        <div className=\"space-y-0.5\">\n          <div className=\"flex items-center gap-2\">\n            <Label htmlFor=\"protection-toggle\">Authentication</Label>\n            <TooltipProvider>\n              <Tooltip>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/protection/protection-mode-selector.tsx",
+          "line": 54,
+          "usage": "<Label htmlFor=\"protection-mode\">Protection Mode</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "      <ConditionalField show={enabled}>\n        <div className=\"space-y-2\">\n          <Label htmlFor=\"protection-mode\">Protection Mode</Label>\n          <Select value={mode} onValueChange={onModeChange}>\n            <SelectTrigger id=\"protection-mode\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/pages/ReleaseFormPage.tsx",
+          "line": 253,
+          "usage": "<Label htmlFor=\"description\">Description (Optional)</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "\n        <div className=\"space-y-2\">\n          <Label htmlFor=\"description\">Description (Optional)</Label>\n          <Textarea\n            id=\"description\"",
+          "type": "direct"
+        },
+        {
+          "file": "src/pages/SettingsPage.tsx",
+          "line": 61,
+          "usage": "<Label htmlFor=\"email\">Email</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "      >\n        <div className=\"space-y-2\">\n          <Label htmlFor=\"email\">Email</Label>\n          <Input\n            id=\"email\"",
+          "type": "direct"
+        },
+        {
+          "file": "src/pages/SettingsPage.tsx",
+          "line": 71,
+          "usage": "<Label htmlFor=\"tailnet\">Tailnet</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "\n        <div className=\"space-y-2\">\n          <Label htmlFor=\"tailnet\">Tailnet</Label>\n          <Input\n            id=\"tailnet\"",
+          "type": "direct"
+        },
+        {
+          "file": "src/pages/SettingsPage.tsx",
+          "line": 81,
+          "usage": "<Label htmlFor=\"display_name\">Display Name</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "\n        <div className=\"space-y-2\">\n          <Label htmlFor=\"display_name\">Display Name</Label>\n          <Input\n            id=\"display_name\"",
+          "type": "direct"
+        },
+        {
+          "file": "src/pages/SettingsPage.tsx",
+          "line": 91,
+          "usage": "<Label htmlFor=\"user_uuid\">User UUID</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "\n        <div className=\"space-y-2\">\n          <Label htmlFor=\"user_uuid\">User UUID</Label>\n          <div className=\"flex items-center gap-2\">\n            <Input",
+          "type": "direct"
+        },
+        {
+          "file": "src/pages/SettingsPage.tsx",
+          "line": 115,
+          "usage": "<Label htmlFor=\"created_at\">Member Since</Label>",
+          "props": [
+            "htmlFor"
+          ],
+          "context": "\n        <div className=\"space-y-2\">\n          <Label htmlFor=\"created_at\">Member Since</Label>\n          <Input\n            id=\"created_at\"",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [
+        "htmlFor"
+      ],
+      "prop_combinations": {
+        "htmlFor": 31
+      },
+      "rjsf_usages": [],
+      "import_sources": [
+        "@/components/ui/label"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": false
+    },
+    {
+      "component": "Button",
+      "total_usages": 27,
+      "files_affected": 16,
+      "locations": [
+        {
+          "file": "src/components/ErrorBoundary.tsx",
+          "line": 54,
+          "usage": "<Button onClick={this.handleReset} className=\"mt-4\">",
+          "props": [
+            "onClick"
+          ],
+          "context": "              </AlertDescription>\n            </Alert>\n            <Button onClick={this.handleReset} className=\"mt-4\">\n              Reload Application\n            </Button>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/layout/AppLayout.tsx",
+          "line": 97,
+          "usage": "<Button variant=\"outline\" size=\"sm\" asChild>",
+          "props": [
+            "asChild",
+            "size",
+            "variant"
+          ],
+          "context": "          <div className=\"flex items-center gap-4\">\n            {/* GitHub Star */}\n            <Button variant=\"outline\" size=\"sm\" asChild>\n              <a\n                href=\"https://github.com/leger-labs/leger\"",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/layout/AppLayout.tsx",
+          "line": 109,
+          "usage": "<Button variant=\"ghost\" size=\"sm\" asChild>",
+          "props": [
+            "asChild",
+            "size",
+            "variant"
+          ],
+          "context": "\n            {/* Changelog */}\n            <Button variant=\"ghost\" size=\"sm\" asChild>\n              <a\n                href=\"https://www.leger.run/changelog\"",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/layout/AppLayout.tsx",
+          "line": 120,
+          "usage": "<Button variant=\"ghost\" size=\"sm\" asChild>",
+          "props": [
+            "asChild",
+            "size",
+            "variant"
+          ],
+          "context": "\n            {/* Docs */}\n            <Button variant=\"ghost\" size=\"sm\" asChild>\n              <a\n                href=\"https://docs.leger.run\"",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/layout/AppLayout.tsx",
+          "line": 136,
+          "usage": "<Button variant=\"ghost\" size=\"icon\" className=\"rounded-full\">",
+          "props": [
+            "size",
+            "variant"
+          ],
+          "context": "            <DropdownMenu>\n              <DropdownMenuTrigger asChild>\n                <Button variant=\"ghost\" size=\"icon\" className=\"rounded-full\">\n                  <Avatar>\n                    <AvatarFallback>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/theme-toggle.tsx",
+          "line": 22,
+          "usage": "<Button variant=\"ghost\" size=\"icon\">",
+          "props": [
+            "size",
+            "variant"
+          ],
+          "context": "    <DropdownMenu>\n      <DropdownMenuTrigger asChild>\n        <Button variant=\"ghost\" size=\"icon\">\n          <Sun className=\"h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0\" />\n          <Moon className=\"absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100\" />",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-form.tsx",
+          "line": 211,
+          "usage": "<Button type=\"button\" variant=\"outline\" onClick={onCancel}>",
+          "props": [
+            "onClick",
+            "type",
+            "variant"
+          ],
+          "context": "        </CardContent>\n        <CardFooter className=\"flex justify-between\">\n          <Button type=\"button\" variant=\"outline\" onClick={onCancel}>\n            Cancel\n          </Button>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-form.tsx",
+          "line": 214,
+          "usage": "<Button type=\"submit\">{isEditing ? \"Update\" : \"Create\"}</Button>",
+          "props": [
+            "type"
+          ],
+          "context": "            Cancel\n          </Button>\n          <Button type=\"submit\">{isEditing ? \"Update\" : \"Create\"}</Button>\n        </CardFooter>\n      </form>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-import.tsx",
+          "line": 108,
+          "usage": "<Button type=\"button\" variant=\"outline\" onClick={() => document.getElementById(\"env-file\")?.click()}>",
+          "props": [
+            "onClick",
+            "type",
+            "variant"
+          ],
+          "context": "                </p>\n                <Input id=\"env-file\" type=\"file\" accept=\".env,.txt\" className=\"hidden\" onChange={handleFileUpload} />\n                <Button type=\"button\" variant=\"outline\" onClick={() => document.getElementById(\"env-file\")?.click()}>\n                  Select File\n                </Button>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-import.tsx",
+          "line": 161,
+          "usage": "<Button variant=\"outline\" onClick={onCancel}>",
+          "props": [
+            "onClick",
+            "variant"
+          ],
+          "context": "      </CardContent>\n      <CardFooter className=\"flex justify-between\">\n        <Button variant=\"outline\" onClick={onCancel}>\n          Cancel\n        </Button>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-import.tsx",
+          "line": 164,
+          "usage": "<Button onClick={handleImport} disabled={parsedVariables.length === 0}>",
+          "props": [
+            "disabled",
+            "onClick"
+          ],
+          "context": "          Cancel\n        </Button>\n        <Button onClick={handleImport} disabled={parsedVariables.length === 0}>\n          Import {parsedVariables.length} Variables\n        </Button>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-table.tsx",
+          "line": 93,
+          "usage": "<Button variant=\"ghost\" size=\"icon\" className=\"h-8 w-8\">",
+          "props": [
+            "size",
+            "variant"
+          ],
+          "context": "                  <DropdownMenu>\n                    <DropdownMenuTrigger asChild>\n                      <Button variant=\"ghost\" size=\"icon\" className=\"h-8 w-8\">\n                        <MoreHorizontal className=\"h-4 w-4\" />\n                        <span className=\"sr-only\">Open menu</span>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/environments/environment-breadcrumb.tsx",
+          "line": 43,
+          "usage": "<Button variant=\"ghost\" className=\"h-auto p-0 font-semibold\">",
+          "props": [
+            "variant"
+          ],
+          "context": "        <DropdownMenu>\n          <DropdownMenuTrigger asChild>\n            <Button variant=\"ghost\" className=\"h-auto p-0 font-semibold\">\n              <span>{currentEnvironment.name}</span>\n              <Badge variant={getBadgeVariant(currentEnvironment.type)} className=\"ml-2\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/environments/environment-breadcrumb.tsx",
+          "line": 65,
+          "usage": "<Button variant=\"outline\" size=\"sm\" onClick={onSettingsClick}>",
+          "props": [
+            "onClick",
+            "size",
+            "variant"
+          ],
+          "context": "        </DropdownMenu>\n      </div>\n      <Button variant=\"outline\" size=\"sm\" onClick={onSettingsClick}>\n        <Settings className=\"mr-2 h-4 w-4\" />\n        Settings",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/environments/environment-card.tsx",
+          "line": 65,
+          "usage": "<Button variant=\"ghost\" size=\"icon\">",
+          "props": [
+            "size",
+            "variant"
+          ],
+          "context": "          <DropdownMenu>\n            <DropdownMenuTrigger asChild>\n              <Button variant=\"ghost\" size=\"icon\">\n                <MoreHorizontal className=\"h-4 w-4\" />\n                <span className=\"sr-only\">Open menu</span>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/environments/environment-card.tsx",
+          "line": 101,
+          "usage": "<Button variant=\"outline\" size=\"sm\" className=\"w-full\" onClick={onSettings}>",
+          "props": [
+            "onClick",
+            "size",
+            "variant"
+          ],
+          "context": "      </CardContent>\n      <CardFooter>\n        <Button variant=\"outline\" size=\"sm\" className=\"w-full\" onClick={onSettings}>\n          Manage Environment\n        </Button>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/feedback/dangerous-action-button.tsx",
+          "line": 11,
+          "usage": "<Button variant=\"destructive\" className={cn(\"bg-destructive/90 hover:bg-destructive\", className)} {...props}>",
+          "props": [
+            "props",
+            "variant"
+          ],
+          "context": "export function DangerousActionButton({ children, className, ...props }: DangerousActionButtonProps) {\n  return (\n    <Button variant=\"destructive\" className={cn(\"bg-destructive/90 hover:bg-destructive\", className)} {...props}>\n      {children}\n    </Button>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/feedback/save-button.tsx",
+          "line": 12,
+          "usage": "<Button disabled={!isDirty || isLoading || props.disabled} {...props}>",
+          "props": [
+            "disabled",
+            "props"
+          ],
+          "context": "export function SaveButton({ isDirty = false, isLoading = false, saveText = \"Save\", ...props }: SaveButtonProps) {\n  return (\n    <Button disabled={!isDirty || isLoading || props.disabled} {...props}>\n      {isLoading && <Loader2 className=\"mr-2 h-4 w-4 animate-spin\" />}\n      {saveText}",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/fields/object-field.tsx",
+          "line": 187,
+          "usage": "<Button variant=\"ghost\" size=\"sm\">",
+          "props": [
+            "size",
+            "variant"
+          ],
+          "context": "          </Label>\n          <CollapsibleTrigger asChild>\n            <Button variant=\"ghost\" size=\"sm\">\n              {isOpen ? <ChevronDown className=\"h-4 w-4\" /> : <ChevronRight className=\"h-4 w-4\" />}\n            </Button>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/layouts/category-section.tsx",
+          "line": 58,
+          "usage": "<Button onClick={onSave} disabled={!isDirty || isLoading}>",
+          "props": [
+            "disabled",
+            "onClick"
+          ],
+          "context": "\n        {onSave && (\n          <Button onClick={onSave} disabled={!isDirty || isLoading}>\n            {isLoading && <Loader2 className=\"mr-2 h-4 w-4 animate-spin\" />}\n            {saveText}",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/wrappers/plan-restricted-feature.tsx",
+          "line": 42,
+          "usage": "<Button onClick={onUpgradeClick}>{callToAction}</Button>",
+          "props": [
+            "onClick"
+          ],
+          "context": "          Available on the <strong>{requiredPlan}</strong> plan or higher\n        </p>\n        <Button onClick={onUpgradeClick}>{callToAction}</Button>\n      </CardFooter>\n    </Card>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/path-management/path-management-list.tsx",
+          "line": 92,
+          "usage": "<Button type=\"button\" variant=\"outline\" size=\"icon\" onClick={handleAddPath} disabled={!newPath.trim()}>",
+          "props": [
+            "disabled",
+            "onClick",
+            "size",
+            "type",
+            "variant"
+          ],
+          "context": "            />\n          </div>\n          <Button type=\"button\" variant=\"outline\" size=\"icon\" onClick={handleAddPath} disabled={!newPath.trim()}>\n            <Plus className=\"h-4 w-4\" />\n          </Button>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/protection/protection-mode-selector.tsx",
+          "line": 35,
+          "usage": "<Button variant=\"ghost\" size=\"icon\" className=\"h-6 w-6\">",
+          "props": [
+            "size",
+            "variant"
+          ],
+          "context": "              <Tooltip>\n                <TooltipTrigger asChild>\n                  <Button variant=\"ghost\" size=\"icon\" className=\"h-6 w-6\">\n                    <HelpCircle className=\"h-4 w-4 text-muted-foreground\" />\n                  </Button>",
+          "type": "direct"
+        },
+        {
+          "file": "src/pages/ReleasesPage.tsx",
+          "line": 40,
+          "usage": "<Button asChild>",
+          "props": [
+            "asChild"
+          ],
+          "context": "        description=\"Manage your application releases and deployments\"\n        action={\n          <Button asChild>\n            <Link to=\"/releases/new\">\n              <Plus className=\"h-4 w-4 mr-2\" />",
+          "type": "direct"
+        },
+        {
+          "file": "src/pages/ReleasesPage.tsx",
+          "line": 60,
+          "usage": "<Button asChild>",
+          "props": [
+            "asChild"
+          ],
+          "context": "              Releases track your application configurations and git repositories.\n            </p>\n            <Button asChild>\n              <Link to=\"/releases/new\">\n                <Plus className=\"h-4 w-4 mr-2\" />",
+          "type": "direct"
+        },
+        {
+          "file": "src/pages/ReleasesPage.tsx",
+          "line": 107,
+          "usage": "<Button variant=\"outline\" size=\"sm\" asChild className=\"flex-1\">",
+          "props": [
+            "asChild",
+            "size",
+            "variant"
+          ],
+          "context": "\n                <div className=\"flex gap-2\">\n                  <Button variant=\"outline\" size=\"sm\" asChild className=\"flex-1\">\n                    <Link to={`/releases/${release.id}`}>Edit</Link>\n                  </Button>",
+          "type": "direct"
+        },
+        {
+          "file": "src/pages/ReleasesPage.tsx",
+          "line": 110,
+          "usage": "<Button variant=\"outline\" size=\"sm\" className=\"flex-1\" disabled>",
+          "props": [
+            "disabled",
+            "size",
+            "variant"
+          ],
+          "context": "                    <Link to={`/releases/${release.id}`}>Edit</Link>\n                  </Button>\n                  <Button variant=\"outline\" size=\"sm\" className=\"flex-1\" disabled>\n                    Deploy\n                  </Button>",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [
+        "onClick",
+        "variant",
+        "size",
+        "asChild",
+        "type",
+        "disabled",
+        "props"
+      ],
+      "prop_combinations": {
+        "onClick": 2,
+        "asChild,size,variant": 4,
+        "size,variant": 6,
+        "onClick,type,variant": 2,
+        "type": 1,
+        "onClick,variant": 1,
+        "disabled,onClick": 2,
+        "variant": 1,
+        "onClick,size,variant": 2,
+        "props,variant": 1,
+        "disabled,props": 1,
+        "disabled,onClick,size,type,variant": 1,
+        "asChild": 2,
+        "disabled,size,variant": 1
+      },
+      "rjsf_usages": [],
+      "import_sources": [
+        "@/components/ui/button"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": false
+    },
+    {
+      "component": "Card",
+      "total_usages": 20,
+      "files_affected": 16,
+      "locations": [
+        {
+          "file": "src/App.tsx",
+          "line": 48,
+          "usage": "<Card className=\"max-w-md w-full\">",
+          "props": [],
+          "context": "      return (\n        <div className=\"min-h-screen flex items-center justify-center p-4\">\n          <Card className=\"max-w-md w-full\">\n            <CardHeader>\n              <CardTitle>Something went wrong</CardTitle>",
+          "type": "direct"
+        },
+        {
+          "file": "src/_future/components/config-form-rjsf.tsx",
+          "line": 98,
+          "usage": "<Card>",
+          "props": [],
+          "context": "    <div className={cn(\"space-y-6\", className)}>\n      {/* Schema Info */}\n      <Card>\n        <CardContent className=\"pt-6\">\n          <div className=\"flex items-center justify-between text-sm text-muted-foreground\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/_future/components/config-form-rjsf.tsx",
+          "line": 112,
+          "usage": "<Card>",
+          "props": [],
+          "context": "\n      {/* Quick Navigation */}\n      <Card>\n        <CardHeader>\n          <CardTitle className=\"text-lg\">Quick Navigation</CardTitle>",
+          "type": "direct"
+        },
+        {
+          "file": "src/_future/components/config-form-rjsf.tsx",
+          "line": 176,
+          "usage": "<Card>",
+          "props": [],
+          "context": "\n      {/* Main Form */}\n      <Card>\n        <CardContent className=\"pt-6\">\n          <Form",
+          "type": "direct"
+        },
+        {
+          "file": "src/_future/components/config-form-rjsf.tsx",
+          "line": 202,
+          "usage": "<Card>",
+          "props": [],
+          "context": "      {/* Debug Information (only in development) */}\n      {import.meta.env.DEV && (\n        <Card>\n          <CardContent className=\"pt-6\">\n            <details>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/config-form.tsx",
+          "line": 163,
+          "usage": "<Card>",
+          "props": [],
+          "context": "          return (\n            <Collapsible key={category.name} defaultOpen={category.order <= 5}>\n              <Card>\n                <CollapsibleTrigger className=\"w-full\">\n                  <CardHeader className=\"hover:bg-muted/50 transition-colors\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/enhanced-export-controls.tsx",
+          "line": 44,
+          "usage": "<Card className={className}>",
+          "props": [],
+          "context": "  \n  return (\n    <Card className={className}>\n      <CardHeader>\n        <CardTitle>Export Configuration</CardTitle>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/export-controls.tsx",
+          "line": 70,
+          "usage": "<Card className=\"mb-6\">",
+          "props": [],
+          "context": "  \n  return (\n    <Card className=\"mb-6\">\n      <CardContent className=\"pt-6\">\n        <div className=\"space-y-4\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/import-controls.tsx",
+          "line": 123,
+          "usage": "<Card className=\"mb-6\">",
+          "props": [],
+          "context": "  \n  return (\n    <Card className=\"mb-6\">\n      <CardContent className=\"pt-6\">\n        <div className=\"space-y-4\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/mode-toggle.tsx",
+          "line": 14,
+          "usage": "<Card className=\"mb-6\">",
+          "props": [],
+          "context": "export function ModeToggle({ mode, onModeChange, disabled }: ModeToggleProps) {\n  return (\n    <Card className=\"mb-6\">\n      <CardContent className=\"pt-6\">\n        <div className=\"flex items-center justify-center space-x-1\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/raw-editor.tsx",
+          "line": 46,
+          "usage": "<Card>",
+          "props": [],
+          "context": "  return (\n    <div className={className}>\n      <Card>\n        <CardHeader className=\"pb-4\">\n          <div className=\"flex items-center justify-between\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-form.tsx",
+          "line": 68,
+          "usage": "<Card>",
+          "props": [],
+          "context": "\n  return (\n    <Card>\n      <CardHeader>\n        <CardTitle>{isEditing ? \"Edit Environment Variable\" : \"Add Environment Variable\"}</CardTitle>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-import.tsx",
+          "line": 77,
+          "usage": "<Card className=\"w-full\">",
+          "props": [],
+          "context": "\n  return (\n    <Card className=\"w-full\">\n      <CardHeader>\n        <CardTitle>Import Environment Variables</CardTitle>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/environments/environment-card.tsx",
+          "line": 48,
+          "usage": "<Card>",
+          "props": [],
+          "context": "\n  return (\n    <Card>\n      <CardHeader className=\"pb-2\">\n        <div className=\"flex items-start justify-between\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/feedback/validation-summary.tsx",
+          "line": 39,
+          "usage": "<Card className={cn(\"w-full\", className)}>",
+          "props": [],
+          "context": "\n  return (\n    <Card className={cn(\"w-full\", className)}>\n      <CardHeader className=\"pb-3\">\n        <CardTitle className=\"text-lg font-medium\">Validation Summary</CardTitle>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/layouts/category-section.tsx",
+          "line": 33,
+          "usage": "<Card className=\"mb-6\">",
+          "props": [],
+          "context": "}: CategorySectionProps) {\n  return (\n    <Card className=\"mb-6\">\n      <CardHeader>\n        <CardTitle>{title}</CardTitle>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/wrappers/plan-restricted-feature.tsx",
+          "line": 24,
+          "usage": "<Card className=\"relative border-dashed opacity-75\">",
+          "props": [],
+          "context": "}: PlanRestrictedFeatureProps) {\n  return (\n    <Card className=\"relative border-dashed opacity-75\">\n      <div className=\"absolute inset-0 bg-background/50 backdrop-blur-[1px] z-10 pointer-events-none\" />\n",
+          "type": "direct"
+        },
+        {
+          "file": "src/pages/ReleaseFormPage.tsx",
+          "line": 265,
+          "usage": "<Card>",
+          "props": [],
+          "context": "\n      {formData.name && (\n        <Card>\n          <CardHeader>\n            <CardTitle>Deploy Command</CardTitle>",
+          "type": "direct"
+        },
+        {
+          "file": "src/pages/ReleasesPage.tsx",
+          "line": 50,
+          "usage": "<Card>",
+          "props": [],
+          "context": "\n      {releases.length === 0 ? (\n        <Card>\n          <CardContent className=\"flex flex-col items-center justify-center py-12\">\n            <div className=\"rounded-full bg-muted p-3 mb-4\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/pages/ReleasesPage.tsx",
+          "line": 71,
+          "usage": "<Card key={release.id} className=\"hover:shadow-md transition-shadow\">",
+          "props": [
+            "key"
+          ],
+          "context": "        <div className=\"grid gap-6 md:grid-cols-2 lg:grid-cols-3\">\n          {releases.map((release) => (\n            <Card key={release.id} className=\"hover:shadow-md transition-shadow\">\n              <CardHeader>\n                <div className=\"flex items-start justify-between\">",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [
+        "key"
+      ],
+      "prop_combinations": {
+        "key": 1
+      },
+      "rjsf_usages": [
+        {
+          "file": "src/_future/components/config-form-rjsf.tsx",
+          "line": 98,
+          "usage": "<Card>",
+          "props": [],
+          "context": "    <div className={cn(\"space-y-6\", className)}>\n      {/* Schema Info */}\n      <Card>\n        <CardContent className=\"pt-6\">\n          <div className=\"flex items-center justify-between text-sm text-muted-foreground\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/_future/components/config-form-rjsf.tsx",
+          "line": 112,
+          "usage": "<Card>",
+          "props": [],
+          "context": "\n      {/* Quick Navigation */}\n      <Card>\n        <CardHeader>\n          <CardTitle className=\"text-lg\">Quick Navigation</CardTitle>",
+          "type": "direct"
+        },
+        {
+          "file": "src/_future/components/config-form-rjsf.tsx",
+          "line": 176,
+          "usage": "<Card>",
+          "props": [],
+          "context": "\n      {/* Main Form */}\n      <Card>\n        <CardContent className=\"pt-6\">\n          <Form",
+          "type": "direct"
+        },
+        {
+          "file": "src/_future/components/config-form-rjsf.tsx",
+          "line": 202,
+          "usage": "<Card>",
+          "props": [],
+          "context": "      {/* Debug Information (only in development) */}\n      {import.meta.env.DEV && (\n        <Card>\n          <CardContent className=\"pt-6\">\n            <details>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/config-form.tsx",
+          "line": 163,
+          "usage": "<Card>",
+          "props": [],
+          "context": "          return (\n            <Collapsible key={category.name} defaultOpen={category.order <= 5}>\n              <Card>\n                <CollapsibleTrigger className=\"w-full\">\n                  <CardHeader className=\"hover:bg-muted/50 transition-colors\">",
+          "type": "direct"
+        }
+      ],
+      "import_sources": [
+        "@/components/ui/card"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": true
+    },
+    {
+      "component": "Alert",
+      "total_usages": 12,
+      "files_affected": 8,
+      "locations": [
+        {
+          "file": "src/App.tsx",
+          "line": 56,
+          "usage": "<Alert variant=\"destructive\">",
+          "props": [
+            "variant"
+          ],
+          "context": "            </CardHeader>\n            <CardContent>\n              <Alert variant=\"destructive\">\n                <AlertTitle>Error Details</AlertTitle>\n                <AlertDescription className=\"font-mono text-xs mt-2\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/_future/components/config-form-rjsf.tsx",
+          "line": 158,
+          "usage": "<Alert variant=\"destructive\">",
+          "props": [
+            "variant"
+          ],
+          "context": "      {/* Validation Status */}\n      {!isValid && errors.length > 0 && (\n        <Alert variant=\"destructive\">\n          <AlertCircle className=\"h-4 w-4\" />\n          <AlertDescription>",
+          "type": "direct"
+        },
+        {
+          "file": "src/_future/components/config-form-rjsf.tsx",
+          "line": 167,
+          "usage": "<Alert>",
+          "props": [],
+          "context": "      \n      {isValid && formData && Object.keys(formData).length > 0 && (\n        <Alert>\n          <CheckCircle className=\"h-4 w-4\" />\n          <AlertDescription>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ErrorBoundary.tsx",
+          "line": 39,
+          "usage": "<Alert variant=\"destructive\">",
+          "props": [
+            "variant"
+          ],
+          "context": "        <div className=\"min-h-screen bg-background p-8\">\n          <div className=\"max-w-2xl mx-auto\">\n            <Alert variant=\"destructive\">\n              <AlertTitle>Something went wrong</AlertTitle>\n              <AlertDescription className=\"mt-2\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-import.tsx",
+          "line": 117,
+          "usage": "<Alert variant=\"destructive\">",
+          "props": [
+            "variant"
+          ],
+          "context": "\n        {parseError && (\n          <Alert variant=\"destructive\">\n            <AlertDescription>{parseError}</AlertDescription>\n          </Alert>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-import.tsx",
+          "line": 153,
+          "usage": "<Alert>",
+          "props": [],
+          "context": "        </div>\n\n        <Alert>\n          <Info className=\"h-4 w-4\" />\n          <AlertDescription>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/feedback/enhanced-validation-message.tsx",
+          "line": 34,
+          "usage": "<Alert",
+          "props": [],
+          "context": "    <div className={cn(\"space-y-2\", className)}>\n      {errors.map((error, index) => (\n        <Alert \n          key={`error-${index}`} \n          variant=\"destructive\"",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/feedback/enhanced-validation-message.tsx",
+          "line": 47,
+          "usage": "<Alert",
+          "props": [],
+          "context": "      \n      {warnings.map((warning, index) => (\n        <Alert \n          key={`warning-${index}`}\n          className={cn(",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/feedback/enhanced-validation-message.tsx",
+          "line": 62,
+          "usage": "<Alert",
+          "props": [],
+          "context": "      \n      {suggestions.map((suggestion, index) => (\n        <Alert \n          key={`suggestion-${index}`}\n          className={cn(",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/feedback/export-readiness-indicator.tsx",
+          "line": 62,
+          "usage": "<Alert",
+          "props": [],
+          "context": "  return (\n    <div className={cn('space-y-3', className)}>\n      <Alert \n        variant={status.variant}\n        className={cn(",
+          "type": "direct"
+        },
+        {
+          "file": "src/pages/AuthErrorPage.tsx",
+          "line": 59,
+          "usage": "<Alert variant=\"destructive\">",
+          "props": [
+            "variant"
+          ],
+          "context": "        </div>\n\n        <Alert variant=\"destructive\">\n          <AlertCircle className=\"h-4 w-4\" />\n          <AlertTitle>{errorInfo.title}</AlertTitle>",
+          "type": "direct"
+        },
+        {
+          "file": "src/pages/TestAuthPage.tsx",
+          "line": 53,
+          "usage": "<Alert variant=\"destructive\">",
+          "props": [
+            "variant"
+          ],
+          "context": "          />\n\n          <Alert variant=\"destructive\">\n            <AlertCircle className=\"h-4 w-4\" />\n            <AlertTitle>Test Authentication Failed</AlertTitle>",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [
+        "variant"
+      ],
+      "prop_combinations": {
+        "variant": 6
+      },
+      "rjsf_usages": [
+        {
+          "file": "src/_future/components/config-form-rjsf.tsx",
+          "line": 158,
+          "usage": "<Alert variant=\"destructive\">",
+          "props": [
+            "variant"
+          ],
+          "context": "      {/* Validation Status */}\n      {!isValid && errors.length > 0 && (\n        <Alert variant=\"destructive\">\n          <AlertCircle className=\"h-4 w-4\" />\n          <AlertDescription>",
+          "type": "direct"
+        },
+        {
+          "file": "src/_future/components/config-form-rjsf.tsx",
+          "line": 167,
+          "usage": "<Alert>",
+          "props": [],
+          "context": "      \n      {isValid && formData && Object.keys(formData).length > 0 && (\n        <Alert>\n          <CheckCircle className=\"h-4 w-4\" />\n          <AlertDescription>",
+          "type": "direct"
+        }
+      ],
+      "import_sources": [
+        "@/components/ui/alert"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": true
+    },
+    {
+      "component": "Badge",
+      "total_usages": 7,
+      "files_affected": 5,
+      "locations": [
+        {
+          "file": "src/components/layout/AppLayout.tsx",
+          "line": 170,
+          "usage": "<Badge variant=\"secondary\" className=\"ml-2 text-xs\">",
+          "props": [
+            "variant"
+          ],
+          "context": "            <NavLink to=\"/models\" disabled>\n              Models\n              <Badge variant=\"secondary\" className=\"ml-2 text-xs\">\n                Soon\n              </Badge>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/layout/AppLayout.tsx",
+          "line": 176,
+          "usage": "<Badge variant=\"secondary\" className=\"ml-2 text-xs\">",
+          "props": [
+            "variant"
+          ],
+          "context": "            <NavLink to=\"/marketplace\" disabled>\n              Marketplace\n              <Badge variant=\"secondary\" className=\"ml-2 text-xs\">\n                Soon\n              </Badge>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-table.tsx",
+          "line": 84,
+          "usage": "<Badge key={env} variant=\"outline\" className=\"text-xs\">",
+          "props": [
+            "key",
+            "variant"
+          ],
+          "context": "                  <div className=\"flex flex-wrap gap-1\">\n                    {variable.environments.map((env) => (\n                      <Badge key={env} variant=\"outline\" className=\"text-xs\">\n                        {env}\n                      </Badge>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/environments/environment-breadcrumb.tsx",
+          "line": 45,
+          "usage": "<Badge variant={getBadgeVariant(currentEnvironment.type)} className=\"ml-2\">",
+          "props": [
+            "variant"
+          ],
+          "context": "            <Button variant=\"ghost\" className=\"h-auto p-0 font-semibold\">\n              <span>{currentEnvironment.name}</span>\n              <Badge variant={getBadgeVariant(currentEnvironment.type)} className=\"ml-2\">\n                {currentEnvironment.type}\n              </Badge>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/environments/environment-breadcrumb.tsx",
+          "line": 56,
+          "usage": "<Badge variant={getBadgeVariant(env.type)} className=\"ml-2\">",
+          "props": [
+            "variant"
+          ],
+          "context": "                <div className=\"flex items-center gap-2\">\n                  <span>{env.name}</span>\n                  <Badge variant={getBadgeVariant(env.type)} className=\"ml-2\">\n                    {env.type}\n                  </Badge>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/environments/environment-card.tsx",
+          "line": 52,
+          "usage": "<Badge variant={getBadgeVariant()} className=\"mb-2\">",
+          "props": [
+            "variant"
+          ],
+          "context": "        <div className=\"flex items-start justify-between\">\n          <div>\n            <Badge variant={getBadgeVariant()} className=\"mb-2\">\n              {type.charAt(0).toUpperCase() + type.slice(1)}\n            </Badge>",
+          "type": "direct"
+        },
+        {
+          "file": "src/pages/ReleasesPage.tsx",
+          "line": 75,
+          "usage": "<Badge variant=\"outline\">v{release.version}</Badge>",
+          "props": [
+            "variant"
+          ],
+          "context": "                <div className=\"flex items-start justify-between\">\n                  <CardTitle className=\"text-xl\">{release.name}</CardTitle>\n                  <Badge variant=\"outline\">v{release.version}</Badge>\n                </div>\n                {release.description && (",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [
+        "variant",
+        "key"
+      ],
+      "prop_combinations": {
+        "variant": 6,
+        "key,variant": 1
+      },
+      "rjsf_usages": [],
+      "import_sources": [
+        "@/components/ui/badge"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": false
+    },
+    {
+      "component": "Select",
+      "total_usages": 6,
+      "files_affected": 6,
+      "locations": [
+        {
+          "file": "src/components/ui/api/permission-scope-row.tsx",
+          "line": 45,
+          "usage": "<Select value={value} onValueChange={onChange} disabled={disabled}>",
+          "props": [
+            "disabled",
+            "onValueChange",
+            "value"
+          ],
+          "context": "      </div>\n      <div className=\"w-full sm:w-[180px]\">\n        <Select value={value} onValueChange={onChange} disabled={disabled}>\n          <SelectTrigger>\n            <SelectValue placeholder=\"Select permission\" />",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-import.tsx",
+          "line": 139,
+          "usage": "<Select value={environment} onValueChange={setEnvironment}>",
+          "props": [
+            "onValueChange",
+            "value"
+          ],
+          "context": "        <div className=\"space-y-2\">\n          <Label htmlFor=\"environment\">Target Environment</Label>\n          <Select value={environment} onValueChange={setEnvironment}>\n            <SelectTrigger id=\"environment\">\n              <SelectValue placeholder=\"Select environment\" />",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/fields/object-field.tsx",
+          "line": 223,
+          "usage": "<Select value={newPropertyType} onValueChange={(value: PropertyType) => setNewPropertyType(value)}>",
+          "props": [
+            "PropertyType",
+            "onValueChange",
+            "value",
+            "value"
+          ],
+          "context": "                    className=\"flex-1\"\n                  />\n                  <Select value={newPropertyType} onValueChange={(value: PropertyType) => setNewPropertyType(value)}>\n                    <SelectTrigger className=\"w-32\">\n                      <SelectValue />",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/fields/select-field.tsx",
+          "line": 40,
+          "usage": "<Select value={value} onValueChange={onChange} disabled={disabled}>",
+          "props": [
+            "disabled",
+            "onValueChange",
+            "value"
+          ],
+          "context": "        {label}\n      </Label>\n      <Select value={value} onValueChange={onChange} disabled={disabled}>\n        <SelectTrigger id={fieldId} className={error ? \"border-destructive\" : \"\"}>\n          <SelectValue placeholder={placeholder} />",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/framework/framework-preset-selector.tsx",
+          "line": 30,
+          "usage": "<Select value={value} onValueChange={onChange}>",
+          "props": [
+            "onValueChange",
+            "value"
+          ],
+          "context": "    <div className=\"space-y-2\">\n      <Label htmlFor=\"framework-preset\">{label}</Label>\n      <Select value={value} onValueChange={onChange}>\n        <SelectTrigger id=\"framework-preset\" className=\"w-full\">\n          <SelectValue placeholder=\"Select framework\" />",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/protection/protection-mode-selector.tsx",
+          "line": 55,
+          "usage": "<Select value={mode} onValueChange={onModeChange}>",
+          "props": [
+            "onValueChange",
+            "value"
+          ],
+          "context": "        <div className=\"space-y-2\">\n          <Label htmlFor=\"protection-mode\">Protection Mode</Label>\n          <Select value={mode} onValueChange={onModeChange}>\n            <SelectTrigger id=\"protection-mode\">\n              <SelectValue placeholder=\"Select protection mode\" />",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [
+        "value",
+        "onValueChange",
+        "disabled",
+        "PropertyType"
+      ],
+      "prop_combinations": {
+        "disabled,onValueChange,value": 2,
+        "onValueChange,value": 3,
+        "PropertyType,onValueChange,value,value": 1
+      },
+      "rjsf_usages": [],
+      "import_sources": [
+        "@/components/ui/select"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": false
+    },
+    {
+      "component": "DropdownMenu",
+      "total_usages": 5,
+      "files_affected": 5,
+      "locations": [
+        {
+          "file": "src/components/layout/AppLayout.tsx",
+          "line": 134,
+          "usage": "<DropdownMenu>",
+          "props": [],
+          "context": "\n            {/* Avatar with Dropdown */}\n            <DropdownMenu>\n              <DropdownMenuTrigger asChild>\n                <Button variant=\"ghost\" size=\"icon\" className=\"rounded-full\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/theme-toggle.tsx",
+          "line": 20,
+          "usage": "<DropdownMenu>",
+          "props": [],
+          "context": "\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger asChild>\n        <Button variant=\"ghost\" size=\"icon\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/env-vars/environment-variable-table.tsx",
+          "line": 91,
+          "usage": "<DropdownMenu>",
+          "props": [],
+          "context": "                </TableCell>\n                <TableCell className=\"text-right\">\n                  <DropdownMenu>\n                    <DropdownMenuTrigger asChild>\n                      <Button variant=\"ghost\" size=\"icon\" className=\"h-8 w-8\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/environments/environment-breadcrumb.tsx",
+          "line": 41,
+          "usage": "<DropdownMenu>",
+          "props": [],
+          "context": "        <span>Environments</span>\n        <ChevronRight className=\"h-4 w-4 text-muted-foreground\" />\n        <DropdownMenu>\n          <DropdownMenuTrigger asChild>\n            <Button variant=\"ghost\" className=\"h-auto p-0 font-semibold\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/environments/environment-card.tsx",
+          "line": 63,
+          "usage": "<DropdownMenu>",
+          "props": [],
+          "context": "            )}\n          </div>\n          <DropdownMenu>\n            <DropdownMenuTrigger asChild>\n              <Button variant=\"ghost\" size=\"icon\">",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [],
+      "prop_combinations": {},
+      "rjsf_usages": [],
+      "import_sources": [
+        "@/components/ui/dropdown-menu"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": false
+    },
+    {
+      "component": "Switch",
+      "total_usages": 4,
+      "files_affected": 4,
+      "locations": [
+        {
+          "file": "src/components/ui/form/fields/toggle-field.tsx",
+          "line": 24,
+          "usage": "<Switch id={fieldId} checked={checked} onCheckedChange={onCheckedChange} disabled={disabled} />",
+          "props": [
+            "checked",
+            "disabled",
+            "id",
+            "onCheckedChange"
+          ],
+          "context": "          {description && <FormDescription>{description}</FormDescription>}\n        </div>\n        <Switch id={fieldId} checked={checked} onCheckedChange={onCheckedChange} disabled={disabled} />\n      </div>\n    </div>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/wrappers/overrideable-field.tsx",
+          "line": 43,
+          "usage": "<Switch checked={overridden} onCheckedChange={onOverrideChange} />",
+          "props": [
+            "checked",
+            "onCheckedChange"
+          ],
+          "context": "        <div className=\"flex items-center gap-2\">\n          <span className=\"text-sm text-muted-foreground\">Override</span>\n          <Switch checked={overridden} onCheckedChange={onOverrideChange} />\n        </div>\n      </div>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/framework/command-field-group.tsx",
+          "line": 58,
+          "usage": "<Switch checked={isOverridden} onCheckedChange={handleOverrideChange} />",
+          "props": [
+            "checked",
+            "onCheckedChange"
+          ],
+          "context": "        <div className=\"flex items-center gap-2\">\n          <span className=\"text-sm text-muted-foreground\">Override</span>\n          <Switch checked={isOverridden} onCheckedChange={handleOverrideChange} />\n        </div>\n      </div>",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/protection/protection-mode-selector.tsx",
+          "line": 49,
+          "usage": "<Switch id=\"protection-toggle\" checked={enabled} onCheckedChange={onEnabledChange} />",
+          "props": [
+            "checked",
+            "id",
+            "onCheckedChange"
+          ],
+          "context": "          {description && <FormDescription>{description}</FormDescription>}\n        </div>\n        <Switch id=\"protection-toggle\" checked={enabled} onCheckedChange={onEnabledChange} />\n      </div>\n",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [
+        "id",
+        "checked",
+        "onCheckedChange",
+        "disabled"
+      ],
+      "prop_combinations": {
+        "checked,disabled,id,onCheckedChange": 1,
+        "checked,onCheckedChange": 2,
+        "checked,id,onCheckedChange": 1
+      },
+      "rjsf_usages": [],
+      "import_sources": [
+        "@/components/ui/switch"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": false
+    },
+    {
+      "component": "Tooltip",
+      "total_usages": 4,
+      "files_affected": 4,
+      "locations": [
+        {
+          "file": "src/components/ui/api/permission-scope-row.tsx",
+          "line": 31,
+          "usage": "<Tooltip>",
+          "props": [],
+          "context": "          {helpText && (\n            <TooltipProvider>\n              <Tooltip>\n                <TooltipTrigger asChild>\n                  <HelpCircle className=\"h-4 w-4 text-muted-foreground\" />",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/framework/command-field-group.tsx",
+          "line": 45,
+          "usage": "<Tooltip>",
+          "props": [],
+          "context": "          {helpText && (\n            <TooltipProvider>\n              <Tooltip>\n                <TooltipTrigger asChild>\n                  <HelpCircle className=\"h-4 w-4 text-muted-foreground\" />",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/protection/protection-mode-selector.tsx",
+          "line": 33,
+          "usage": "<Tooltip>",
+          "props": [],
+          "context": "            <Label htmlFor=\"protection-toggle\">Authentication</Label>\n            <TooltipProvider>\n              <Tooltip>\n                <TooltipTrigger asChild>\n                  <Button variant=\"ghost\" size=\"icon\" className=\"h-6 w-6\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/sidebar.tsx",
+          "line": 579,
+          "usage": "<Tooltip>",
+          "props": [],
+          "context": "\n    return (\n      <Tooltip>\n        <TooltipTrigger asChild>{button}</TooltipTrigger>\n        <TooltipContent",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [],
+      "prop_combinations": {},
+      "rjsf_usages": [],
+      "import_sources": [
+        "@/components/ui/tooltip"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": false
+    },
+    {
+      "component": "Input",
+      "total_usages": 3,
+      "files_affected": 3,
+      "locations": [
+        {
+          "file": "src/components/ui/env-vars/environment-variable-import.tsx",
+          "line": 107,
+          "usage": "<Input id=\"env-file\" type=\"file\" accept=\".env,.txt\" className=\"hidden\" onChange={handleFileUpload} />",
+          "props": [
+            "accept",
+            "id",
+            "onChange",
+            "type"
+          ],
+          "context": "                  Drag and drop your .env file here, or click to browse\n                </p>\n                <Input id=\"env-file\" type=\"file\" accept=\".env,.txt\" className=\"hidden\" onChange={handleFileUpload} />\n                <Button type=\"button\" variant=\"outline\" onClick={() => document.getElementById(\"env-file\")?.click()}>\n                  Select File",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/fields/array-field.tsx",
+          "line": 60,
+          "usage": "<Input value={value} readOnly className=\"flex-1\" />",
+          "props": [
+            "readOnly",
+            "value"
+          ],
+          "context": "        {values.map((value, index) => (\n          <div key={index} className=\"flex items-center gap-2\">\n            <Input value={value} readOnly className=\"flex-1\" />\n            <Button\n              type=\"button\"",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/path-management/path-management-list.tsx",
+          "line": 63,
+          "usage": "<Input value={path} readOnly className={pathPrefix ? \"pl-12\" : \"\"} />",
+          "props": [
+            "readOnly",
+            "value"
+          ],
+          "context": "                </div>\n              )}\n              <Input value={path} readOnly className={pathPrefix ? \"pl-12\" : \"\"} />\n            </div>\n            <Button",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [
+        "id",
+        "type",
+        "accept",
+        "onChange",
+        "value",
+        "readOnly"
+      ],
+      "prop_combinations": {
+        "accept,id,onChange,type": 1,
+        "readOnly,value": 2
+      },
+      "rjsf_usages": [],
+      "import_sources": [
+        "@/components/ui/input"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": false
+    },
+    {
+      "component": "Avatar",
+      "total_usages": 2,
+      "files_affected": 2,
+      "locations": [
+        {
+          "file": "src/components/layout/AppLayout.tsx",
+          "line": 137,
+          "usage": "<Avatar>",
+          "props": [],
+          "context": "              <DropdownMenuTrigger asChild>\n                <Button variant=\"ghost\" size=\"icon\" className=\"rounded-full\">\n                  <Avatar>\n                    <AvatarFallback>\n                      {user?.email?.[0].toUpperCase() || 'U'}",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/team/team-selector-chip.tsx",
+          "line": 27,
+          "usage": "<Avatar className=\"h-5 w-5\">",
+          "props": [],
+          "context": "      style={{ borderColor: team.color ? `${team.color}50` : undefined }}\n    >\n      <Avatar className=\"h-5 w-5\">\n        <AvatarImage src={team.avatar || \"/placeholder.svg\"} alt={team.name} />\n        <AvatarFallback style={{ backgroundColor: team.color || \"#e2e8f0\" }} className=\"text-[10px] text-white\">",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [],
+      "prop_combinations": {},
+      "rjsf_usages": [],
+      "import_sources": [
+        "@/components/ui/avatar"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": false
+    },
+    {
+      "component": "Breadcrumb",
+      "total_usages": 2,
+      "files_affected": 2,
+      "locations": [
+        {
+          "file": "src/pages/ReleaseFormPage.tsx",
+          "line": 190,
+          "usage": "<Breadcrumb>",
+          "props": [],
+          "context": "  return (\n    <PageLayout>\n      <Breadcrumb>\n        <BreadcrumbList>\n          <BreadcrumbItem>",
+          "type": "direct"
+        },
+        {
+          "file": "src/pages/SettingsPage.tsx",
+          "line": 37,
+          "usage": "<Breadcrumb>",
+          "props": [],
+          "context": "  return (\n    <PageLayout>\n      <Breadcrumb>\n        <BreadcrumbList>\n          <BreadcrumbItem>",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [],
+      "prop_combinations": {},
+      "rjsf_usages": [],
+      "import_sources": [
+        "@/components/ui/breadcrumb"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": false
+    },
+    {
+      "component": "Collapsible",
+      "total_usages": 2,
+      "files_affected": 2,
+      "locations": [
+        {
+          "file": "src/components/config-form.tsx",
+          "line": 162,
+          "usage": "<Collapsible key={category.name} defaultOpen={category.order <= 5}>",
+          "props": [
+            "defaultOpen",
+            "key"
+          ],
+          "context": "          \n          return (\n            <Collapsible key={category.name} defaultOpen={category.order <= 5}>\n              <Card>\n                <CollapsibleTrigger className=\"w-full\">",
+          "type": "direct"
+        },
+        {
+          "file": "src/components/ui/form/fields/object-field.tsx",
+          "line": 181,
+          "usage": "<Collapsible open={isOpen} onOpenChange={setIsOpen}>",
+          "props": [
+            "onOpenChange",
+            "open"
+          ],
+          "context": "  return (\n    <div className=\"space-y-2\">\n      <Collapsible open={isOpen} onOpenChange={setIsOpen}>\n        <div className=\"flex items-center justify-between\">\n          <Label className={error ? \"text-destructive\" : \"\"}>",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [
+        "key",
+        "defaultOpen",
+        "open",
+        "onOpenChange"
+      ],
+      "prop_combinations": {
+        "defaultOpen,key": 1,
+        "onOpenChange,open": 1
+      },
+      "rjsf_usages": [
+        {
+          "file": "src/components/config-form.tsx",
+          "line": 162,
+          "usage": "<Collapsible key={category.name} defaultOpen={category.order <= 5}>",
+          "props": [
+            "defaultOpen",
+            "key"
+          ],
+          "context": "          \n          return (\n            <Collapsible key={category.name} defaultOpen={category.order <= 5}>\n              <Card>\n                <CollapsibleTrigger className=\"w-full\">",
+          "type": "direct"
+        }
+      ],
+      "import_sources": [
+        "@/components/ui/collapsible"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": true
+    },
+    {
+      "component": "Checkbox",
+      "total_usages": 1,
+      "files_affected": 1,
+      "locations": [
+        {
+          "file": "src/components/ui/form/fields/same-information-checkbox.tsx",
+          "line": 22,
+          "usage": "<Checkbox id={id} checked={checked} onCheckedChange={onCheckedChange} className=\"mt-1\" />",
+          "props": [
+            "checked",
+            "id",
+            "onCheckedChange"
+          ],
+          "context": "  return (\n    <div className=\"flex items-start space-x-2 mt-1\">\n      <Checkbox id={id} checked={checked} onCheckedChange={onCheckedChange} className=\"mt-1\" />\n      <div className=\"space-y-1 leading-none\">\n        <Label htmlFor={id} className=\"text-sm font-normal\">",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [
+        "id",
+        "checked",
+        "onCheckedChange"
+      ],
+      "prop_combinations": {
+        "checked,id,onCheckedChange": 1
+      },
+      "rjsf_usages": [],
+      "import_sources": [
+        "@/components/ui/checkbox"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": false
+    },
+    {
+      "component": "Tabs",
+      "total_usages": 1,
+      "files_affected": 1,
+      "locations": [
+        {
+          "file": "src/components/ui/env-vars/environment-variable-import.tsx",
+          "line": 82,
+          "usage": "<Tabs defaultValue=\"paste\">",
+          "props": [
+            "defaultValue"
+          ],
+          "context": "      </CardHeader>\n      <CardContent className=\"space-y-4\">\n        <Tabs defaultValue=\"paste\">\n          <TabsList className=\"grid w-full grid-cols-2\">\n            <TabsTrigger value=\"paste\">Paste .env</TabsTrigger>",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [
+        "defaultValue"
+      ],
+      "prop_combinations": {
+        "defaultValue": 1
+      },
+      "rjsf_usages": [],
+      "import_sources": [
+        "@/components/ui/tabs"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": false
+    },
+    {
+      "component": "Dialog",
+      "total_usages": 1,
+      "files_affected": 1,
+      "locations": [
+        {
+          "file": "src/components/ui/command.tsx",
+          "line": 26,
+          "usage": "<Dialog {...props}>",
+          "props": [
+            "props"
+          ],
+          "context": "const CommandDialog = ({ children, ...props }: DialogProps) => {\n  return (\n    <Dialog {...props}>\n      <DialogContent className=\"overflow-hidden p-0 shadow-lg\">\n        <Command className=\"[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5\">",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [
+        "props"
+      ],
+      "prop_combinations": {
+        "props": 1
+      },
+      "rjsf_usages": [],
+      "import_sources": [
+        "@/components/ui/dialog"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": false
+    },
+    {
+      "component": "Sheet",
+      "total_usages": 1,
+      "files_affected": 1,
+      "locations": [
+        {
+          "file": "src/components/ui/sidebar.tsx",
+          "line": 195,
+          "usage": "<Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>",
+          "props": [
+            "onOpenChange",
+            "open",
+            "props"
+          ],
+          "context": "    if (isMobile) {\n      return (\n        <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>\n          <SheetContent\n            data-sidebar=\"sidebar\"",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [
+        "open",
+        "onOpenChange",
+        "props"
+      ],
+      "prop_combinations": {
+        "onOpenChange,open,props": 1
+      },
+      "rjsf_usages": [],
+      "import_sources": [
+        "@/components/ui/sheet"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": false
+    },
+    {
+      "component": "Popover",
+      "total_usages": 1,
+      "files_affected": 1,
+      "locations": [
+        {
+          "file": "src/components/ui/form/fields/date-field.tsx",
+          "line": 81,
+          "usage": "<Popover open={open} onOpenChange={setOpen}>",
+          "props": [
+            "onOpenChange",
+            "open"
+          ],
+          "context": "        {label}\n      </Label>\n      <Popover open={open} onOpenChange={setOpen}>\n        <PopoverTrigger asChild>\n          <Button",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [
+        "open",
+        "onOpenChange"
+      ],
+      "prop_combinations": {
+        "onOpenChange,open": 1
+      },
+      "rjsf_usages": [],
+      "import_sources": [
+        "@/components/ui/popover"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": false
+    },
+    {
+      "component": "Table",
+      "total_usages": 1,
+      "files_affected": 1,
+      "locations": [
+        {
+          "file": "src/components/ui/env-vars/environment-variable-table.tsx",
+          "line": 42,
+          "usage": "<Table>",
+          "props": [],
+          "context": "  return (\n    <div className=\"rounded-md border\">\n      <Table>\n        <TableHeader>\n          <TableRow>",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [],
+      "prop_combinations": {},
+      "rjsf_usages": [],
+      "import_sources": [
+        "@/components/ui/table"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": false
+    },
+    {
+      "component": "Progress",
+      "total_usages": 1,
+      "files_affected": 1,
+      "locations": [
+        {
+          "file": "src/components/ui/form/feedback/validation-summary.tsx",
+          "line": 53,
+          "usage": "<Progress",
+          "props": [],
+          "context": "        </div>\n        \n        <Progress \n          value={completionPercentage} \n          className={cn(\"h-2\", getProgressClassName())}",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [],
+      "prop_combinations": {},
+      "rjsf_usages": [],
+      "import_sources": [
+        "@/components/ui/progress"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": false
+    },
+    {
+      "component": "Toast",
+      "total_usages": 1,
+      "files_affected": 1,
+      "locations": [
+        {
+          "file": "src/components/ui/toaster.tsx",
+          "line": 18,
+          "usage": "<Toast key={id} {...props}>",
+          "props": [
+            "key",
+            "props"
+          ],
+          "context": "      {toasts.map(function ({ id, title, description, action, ...props }) {\n        return (\n          <Toast key={id} {...props}>\n            <div className=\"grid gap-1\">\n              {title && <ToastTitle>{title}</ToastTitle>}",
+          "type": "direct"
+        }
+      ],
+      "unique_props": [
+        "key",
+        "props"
+      ],
+      "prop_combinations": {
+        "key,props": 1
+      },
+      "rjsf_usages": [],
+      "import_sources": [
+        "@/components/ui/toast"
+      ],
+      "dependencies": {},
+      "is_used_in_rjsf": false
+    }
+  ],
+  "recommendations": {
+    "safe_to_remove": [
+      {
+        "component": "Textarea",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "RadioGroup",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "Form",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "Accordion",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "AlertDialog",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "HoverCard",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "Drawer",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "Calendar",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "Skeleton",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "Separator",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "ScrollArea",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "ContextMenu",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "NavigationMenu",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "Menubar",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "Pagination",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "Slider",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "Toggle",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "ToggleGroup",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "Command",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "InputOTP",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "Carousel",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "Chart",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "Sonner",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "Toaster",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "Resizable",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "AspectRatio",
+        "reason": "No usages found in codebase"
+      },
+      {
+        "component": "Sidebar",
+        "reason": "No usages found in codebase"
+      }
+    ],
+    "requires_migration": [
+      {
+        "component": "Label",
+        "usages": 35,
+        "files": 21,
+        "priority": "medium"
+      },
+      {
+        "component": "Button",
+        "usages": 27,
+        "files": 16,
+        "priority": "medium"
+      },
+      {
+        "component": "Badge",
+        "usages": 7,
+        "files": 5,
+        "priority": "low"
+      },
+      {
+        "component": "Select",
+        "usages": 6,
+        "files": 6,
+        "priority": "low"
+      },
+      {
+        "component": "DropdownMenu",
+        "usages": 5,
+        "files": 5,
+        "priority": "low"
+      },
+      {
+        "component": "Switch",
+        "usages": 4,
+        "files": 4,
+        "priority": "low"
+      },
+      {
+        "component": "Tooltip",
+        "usages": 4,
+        "files": 4,
+        "priority": "low"
+      },
+      {
+        "component": "Input",
+        "usages": 3,
+        "files": 3,
+        "priority": "low"
+      },
+      {
+        "component": "Avatar",
+        "usages": 2,
+        "files": 2,
+        "priority": "low"
+      },
+      {
+        "component": "Breadcrumb",
+        "usages": 2,
+        "files": 2,
+        "priority": "low"
+      },
+      {
+        "component": "Checkbox",
+        "usages": 1,
+        "files": 1,
+        "priority": "low"
+      },
+      {
+        "component": "Tabs",
+        "usages": 1,
+        "files": 1,
+        "priority": "low"
+      },
+      {
+        "component": "Dialog",
+        "usages": 1,
+        "files": 1,
+        "priority": "low"
+      },
+      {
+        "component": "Sheet",
+        "usages": 1,
+        "files": 1,
+        "priority": "low"
+      },
+      {
+        "component": "Popover",
+        "usages": 1,
+        "files": 1,
+        "priority": "low"
+      },
+      {
+        "component": "Table",
+        "usages": 1,
+        "files": 1,
+        "priority": "low"
+      },
+      {
+        "component": "Progress",
+        "usages": 1,
+        "files": 1,
+        "priority": "low"
+      },
+      {
+        "component": "Toast",
+        "usages": 1,
+        "files": 1,
+        "priority": "low"
+      }
+    ],
+    "domain_specific_keep": [
+      {
+        "component": "permission-scope-row",
+        "path": "api/permission-scope-row.tsx",
+        "reason": "Contains domain-specific business logic"
+      },
+      {
+        "component": "code-reference",
+        "path": "docs/code-reference.tsx",
+        "reason": "Contains domain-specific business logic"
+      },
+      {
+        "component": "documentation-link",
+        "path": "docs/documentation-link.tsx",
+        "reason": "Contains domain-specific business logic"
+      },
+      {
+        "component": "environment-variable-form",
+        "path": "env-vars/environment-variable-form.tsx",
+        "reason": "Contains domain-specific business logic"
+      },
+      {
+        "component": "environment-variable-import",
+        "path": "env-vars/environment-variable-import.tsx",
+        "reason": "Contains domain-specific business logic"
+      },
+      {
+        "component": "environment-variable-table",
+        "path": "env-vars/environment-variable-table.tsx",
+        "reason": "Contains domain-specific business logic"
+      },
+      {
+        "component": "environment-breadcrumb",
+        "path": "environments/environment-breadcrumb.tsx",
+        "reason": "Contains domain-specific business logic"
+      },
+      {
+        "component": "environment-card",
+        "path": "environments/environment-card.tsx",
+        "reason": "Contains domain-specific business logic"
+      },
+      {
+        "component": "framework-icon",
+        "path": "framework/framework-icon.tsx",
+        "reason": "Contains domain-specific business logic"
+      },
+      {
+        "component": "framework-preset-selector",
+        "path": "framework/framework-preset-selector.tsx",
+        "reason": "Contains domain-specific business logic"
+      },
+      {
+        "component": "path-management-list",
+        "path": "path-management/path-management-list.tsx",
+        "reason": "Contains domain-specific business logic"
+      },
+      {
+        "component": "protection-mode-selector",
+        "path": "protection/protection-mode-selector.tsx",
+        "reason": "Contains domain-specific business logic"
+      },
+      {
+        "component": "team-selector-chip",
+        "path": "team/team-selector-chip.tsx",
+        "reason": "Contains domain-specific business logic"
+      }
+    ],
+    "rjsf_critical": [
+      {
+        "component": "Card",
+        "rjsf_usages": 5,
+        "warning": "Requires careful RJSF widget migration"
+      },
+      {
+        "component": "Alert",
+        "rjsf_usages": 2,
+        "warning": "Requires careful RJSF widget migration"
+      },
+      {
+        "component": "Collapsible",
+        "rjsf_usages": 1,
+        "warning": "Requires careful RJSF widget migration"
+      }
+    ]
+  }
+}

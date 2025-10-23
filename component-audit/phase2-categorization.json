@@ -1,0 +1,3821 @@
+{
+  "metadata": {
+    "timestamp": "2025-10-23T13:27:20.034Z",
+    "total_components": 92
+  },
+  "components": [
+    {
+      "name": "accordion",
+      "path": "accordion.tsx",
+      "fullPath": "src/components/ui/accordion.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 57,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "alert-dialog",
+      "path": "alert-dialog.tsx",
+      "fullPath": "src/components/ui/alert-dialog.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 140,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "alert",
+      "path": "alert.tsx",
+      "fullPath": "src/components/ui/alert.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 60,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 12,
+      "filesAffected": 8,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "permission-scope-row",
+      "path": "api/permission-scope-row.tsx",
+      "fullPath": "src/components/ui/api/permission-scope-row.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "API Management",
+      "complexity": {
+        "lines": 61,
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "aspect-ratio",
+      "path": "aspect-ratio.tsx",
+      "fullPath": "src/components/ui/aspect-ratio.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 6,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "avatar",
+      "path": "avatar.tsx",
+      "fullPath": "src/components/ui/avatar.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 49,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 2,
+      "filesAffected": 2,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "badge",
+      "path": "badge.tsx",
+      "fullPath": "src/components/ui/badge.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 37,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 7,
+      "filesAffected": 5,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "breadcrumb",
+      "path": "breadcrumb.tsx",
+      "fullPath": "src/components/ui/breadcrumb.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 116,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 2,
+      "filesAffected": 2,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "button",
+      "path": "button.tsx",
+      "fullPath": "src/components/ui/button.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 57,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 27,
+      "filesAffected": 16,
+      "isRJSFCritical": true
+    },
+    {
+      "name": "calendar",
+      "path": "calendar.tsx",
+      "fullPath": "src/components/ui/calendar.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 67,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "card",
+      "path": "card.tsx",
+      "fullPath": "src/components/ui/card.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 80,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 20,
+      "filesAffected": 16,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "carousel",
+      "path": "carousel.tsx",
+      "fullPath": "src/components/ui/carousel.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 261,
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "chart",
+      "path": "chart.tsx",
+      "fullPath": "src/components/ui/chart.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 373,
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "checkbox",
+      "path": "checkbox.tsx",
+      "fullPath": "src/components/ui/checkbox.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 29,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 1,
+      "filesAffected": 1,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "collapsible",
+      "path": "collapsible.tsx",
+      "fullPath": "src/components/ui/collapsible.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 10,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 2,
+      "filesAffected": 2,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "command",
+      "path": "command.tsx",
+      "fullPath": "src/components/ui/command.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 152,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "context-menu",
+      "path": "context-menu.tsx",
+      "fullPath": "src/components/ui/context-menu.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 199,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "dialog",
+      "path": "dialog.tsx",
+      "fullPath": "src/components/ui/dialog.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 121,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 1,
+      "filesAffected": 1,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "code-reference",
+      "path": "docs/code-reference.tsx",
+      "fullPath": "src/components/ui/docs/code-reference.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Documentation",
+      "complexity": {
+        "lines": 10,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "documentation-link",
+      "path": "docs/documentation-link.tsx",
+      "fullPath": "src/components/ui/docs/documentation-link.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Documentation",
+      "complexity": {
+        "lines": 23,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "drawer",
+      "path": "drawer.tsx",
+      "fullPath": "src/components/ui/drawer.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 117,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "dropdown-menu",
+      "path": "dropdown-menu.tsx",
+      "fullPath": "src/components/ui/dropdown-menu.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 199,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "environment-variable-form",
+      "path": "env-vars/environment-variable-form.tsx",
+      "fullPath": "src/components/ui/env-vars/environment-variable-form.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Environment Management",
+      "complexity": {
+        "lines": 220,
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "environment-variable-import",
+      "path": "env-vars/environment-variable-import.tsx",
+      "fullPath": "src/components/ui/env-vars/environment-variable-import.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Environment Management",
+      "complexity": {
+        "lines": 171,
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "environment-variable-table",
+      "path": "env-vars/environment-variable-table.tsx",
+      "fullPath": "src/components/ui/env-vars/environment-variable-table.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Environment Management",
+      "complexity": {
+        "lines": 128,
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "environment-breadcrumb",
+      "path": "environments/environment-breadcrumb.tsx",
+      "fullPath": "src/components/ui/environments/environment-breadcrumb.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Environment Management",
+      "complexity": {
+        "lines": 72,
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "environment-card",
+      "path": "environments/environment-card.tsx",
+      "fullPath": "src/components/ui/environments/environment-card.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Environment Management",
+      "complexity": {
+        "lines": 108,
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "character-counter",
+      "path": "form/feedback/character-counter.tsx",
+      "fullPath": "src/components/ui/form/feedback/character-counter.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Form Feedback",
+      "complexity": {
+        "lines": 26,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "dangerous-action-button",
+      "path": "form/feedback/dangerous-action-button.tsx",
+      "fullPath": "src/components/ui/form/feedback/dangerous-action-button.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Form Feedback",
+      "complexity": {
+        "lines": 16,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "enhanced-validation-message",
+      "path": "form/feedback/enhanced-validation-message.tsx",
+      "fullPath": "src/components/ui/form/feedback/enhanced-validation-message.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Form Feedback",
+      "complexity": {
+        "lines": 78,
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "export-readiness-indicator",
+      "path": "form/feedback/export-readiness-indicator.tsx",
+      "fullPath": "src/components/ui/form/feedback/export-readiness-indicator.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Form Feedback",
+      "complexity": {
+        "lines": 149,
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "field-status-indicator",
+      "path": "form/feedback/field-status-indicator.tsx",
+      "fullPath": "src/components/ui/form/feedback/field-status-indicator.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Form Feedback",
+      "complexity": {
+        "lines": 76,
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "save-button",
+      "path": "form/feedback/save-button.tsx",
+      "fullPath": "src/components/ui/form/feedback/save-button.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Form Feedback",
+      "complexity": {
+        "lines": 18,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "toast-error",
+      "path": "form/feedback/toast-error.tsx",
+      "fullPath": "src/components/ui/form/feedback/toast-error.tsx",
+      "category": "REVIEW",
+      "reason": "Needs manual review to determine if domain-specific or generic",
+      "subcategory": "Unknown",
+      "complexity": {
+        "lines": 42,
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "validation-message",
+      "path": "form/feedback/validation-message.tsx",
+      "fullPath": "src/components/ui/form/feedback/validation-message.tsx",
+      "category": "REVIEW",
+      "reason": "Needs manual review to determine if domain-specific or generic",
+      "subcategory": "Unknown",
+      "complexity": {
+        "lines": 17,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "validation-summary",
+      "path": "form/feedback/validation-summary.tsx",
+      "fullPath": "src/components/ui/form/feedback/validation-summary.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Form Feedback",
+      "complexity": {
+        "lines": 92,
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "visibility-notice",
+      "path": "form/feedback/visibility-notice.tsx",
+      "fullPath": "src/components/ui/form/feedback/visibility-notice.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Form Feedback",
+      "complexity": {
+        "lines": 34,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "array-field",
+      "path": "form/fields/array-field.tsx",
+      "fullPath": "src/components/ui/form/fields/array-field.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "RJSF Fields",
+      "complexity": {
+        "lines": 103,
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "date-field",
+      "path": "form/fields/date-field.tsx",
+      "fullPath": "src/components/ui/form/fields/date-field.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "RJSF Fields",
+      "complexity": {
+        "lines": 115,
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "integer-field",
+      "path": "form/fields/integer-field.tsx",
+      "fullPath": "src/components/ui/form/fields/integer-field.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "RJSF Fields",
+      "complexity": {
+        "lines": 78,
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "markdown-text-area",
+      "path": "form/fields/markdown-text-area.tsx",
+      "fullPath": "src/components/ui/form/fields/markdown-text-area.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "RJSF Fields",
+      "complexity": {
+        "lines": 81,
+        "hasBusinessLogic": false,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "number-field",
+      "path": "form/fields/number-field.tsx",
+      "fullPath": "src/components/ui/form/fields/number-field.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "RJSF Fields",
+      "complexity": {
+        "lines": 68,
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "object-field",
+      "path": "form/fields/object-field.tsx",
+      "fullPath": "src/components/ui/form/fields/object-field.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "RJSF Fields",
+      "complexity": {
+        "lines": 253,
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "same-information-checkbox",
+      "path": "form/fields/same-information-checkbox.tsx",
+      "fullPath": "src/components/ui/form/fields/same-information-checkbox.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "RJSF Fields",
+      "complexity": {
+        "lines": 32,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "secret-field",
+      "path": "form/fields/secret-field.tsx",
+      "fullPath": "src/components/ui/form/fields/secret-field.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "RJSF Fields",
+      "complexity": {
+        "lines": 52,
+        "hasBusinessLogic": false,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "select-field",
+      "path": "form/fields/select-field.tsx",
+      "fullPath": "src/components/ui/form/fields/select-field.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "RJSF Fields",
+      "complexity": {
+        "lines": 57,
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "text-field",
+      "path": "form/fields/text-field.tsx",
+      "fullPath": "src/components/ui/form/fields/text-field.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "RJSF Fields",
+      "complexity": {
+        "lines": 63,
+        "hasBusinessLogic": false,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "toggle-field",
+      "path": "form/fields/toggle-field.tsx",
+      "fullPath": "src/components/ui/form/fields/toggle-field.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "RJSF Fields",
+      "complexity": {
+        "lines": 29,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "url-input",
+      "path": "form/fields/url-input.tsx",
+      "fullPath": "src/components/ui/form/fields/url-input.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "RJSF Fields",
+      "complexity": {
+        "lines": 42,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "category-section",
+      "path": "form/layouts/category-section.tsx",
+      "fullPath": "src/components/ui/form/layouts/category-section.tsx",
+      "category": "REVIEW",
+      "reason": "Needs manual review to determine if domain-specific or generic",
+      "subcategory": "Unknown",
+      "complexity": {
+        "lines": 69,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "field-group",
+      "path": "form/layouts/field-group.tsx",
+      "fullPath": "src/components/ui/form/layouts/field-group.tsx",
+      "category": "REVIEW",
+      "reason": "Needs manual review to determine if domain-specific or generic",
+      "subcategory": "Unknown",
+      "complexity": {
+        "lines": 12,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "form-section",
+      "path": "form/layouts/form-section.tsx",
+      "fullPath": "src/components/ui/form/layouts/form-section.tsx",
+      "category": "REVIEW",
+      "reason": "Needs manual review to determine if domain-specific or generic",
+      "subcategory": "Unknown",
+      "complexity": {
+        "lines": 21,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "conditional-field",
+      "path": "form/wrappers/conditional-field.tsx",
+      "fullPath": "src/components/ui/form/wrappers/conditional-field.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Form Logic",
+      "complexity": {
+        "lines": 29,
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "overrideable-field",
+      "path": "form/wrappers/overrideable-field.tsx",
+      "fullPath": "src/components/ui/form/wrappers/overrideable-field.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Form Logic",
+      "complexity": {
+        "lines": 58,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "plan-restricted-feature",
+      "path": "form/wrappers/plan-restricted-feature.tsx",
+      "fullPath": "src/components/ui/form/wrappers/plan-restricted-feature.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Security",
+      "complexity": {
+        "lines": 47,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "form",
+      "path": "form.tsx",
+      "fullPath": "src/components/ui/form.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 177,
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "command-field-group",
+      "path": "framework/command-field-group.tsx",
+      "fullPath": "src/components/ui/framework/command-field-group.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Framework Configuration",
+      "complexity": {
+        "lines": 72,
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "framework-icon",
+      "path": "framework/framework-icon.tsx",
+      "fullPath": "src/components/ui/framework/framework-icon.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Framework Configuration",
+      "complexity": {
+        "lines": 33,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "framework-preset-selector",
+      "path": "framework/framework-preset-selector.tsx",
+      "fullPath": "src/components/ui/framework/framework-preset-selector.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Framework Configuration",
+      "complexity": {
+        "lines": 49,
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "hover-card",
+      "path": "hover-card.tsx",
+      "fullPath": "src/components/ui/hover-card.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 28,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "input-otp",
+      "path": "input-otp.tsx",
+      "fullPath": "src/components/ui/input-otp.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 70,
+        "hasBusinessLogic": false,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "input",
+      "path": "input.tsx",
+      "fullPath": "src/components/ui/input.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 23,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 3,
+      "filesAffected": 3,
+      "isRJSFCritical": true
+    },
+    {
+      "name": "label",
+      "path": "label.tsx",
+      "fullPath": "src/components/ui/label.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 25,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 35,
+      "filesAffected": 21,
+      "isRJSFCritical": true
+    },
+    {
+      "name": "menubar",
+      "path": "menubar.tsx",
+      "fullPath": "src/components/ui/menubar.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 235,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "hierarchical-navigation",
+      "path": "navigation/hierarchical-navigation.tsx",
+      "fullPath": "src/components/ui/navigation/hierarchical-navigation.tsx",
+      "category": "REVIEW",
+      "reason": "Needs manual review to determine if domain-specific or generic",
+      "subcategory": "Unknown",
+      "complexity": {
+        "lines": 116,
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "section-accordion",
+      "path": "navigation/section-accordion.tsx",
+      "fullPath": "src/components/ui/navigation/section-accordion.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 43,
+        "hasBusinessLogic": false,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "navigation-menu",
+      "path": "navigation-menu.tsx",
+      "fullPath": "src/components/ui/navigation-menu.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 129,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "pagination",
+      "path": "pagination.tsx",
+      "fullPath": "src/components/ui/pagination.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 118,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "path-management-list",
+      "path": "path-management/path-management-list.tsx",
+      "fullPath": "src/components/ui/path-management/path-management-list.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Path Management",
+      "complexity": {
+        "lines": 100,
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "popover",
+      "path": "popover.tsx",
+      "fullPath": "src/components/ui/popover.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 30,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 1,
+      "filesAffected": 1,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "progress",
+      "path": "progress.tsx",
+      "fullPath": "src/components/ui/progress.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 27,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 1,
+      "filesAffected": 1,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "protection-mode-selector",
+      "path": "protection/protection-mode-selector.tsx",
+      "fullPath": "src/components/ui/protection/protection-mode-selector.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Security",
+      "complexity": {
+        "lines": 71,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "radio-group",
+      "path": "radio-group.tsx",
+      "fullPath": "src/components/ui/radio-group.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 43,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "resizable",
+      "path": "resizable.tsx",
+      "fullPath": "src/components/ui/resizable.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 44,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "scroll-area",
+      "path": "scroll-area.tsx",
+      "fullPath": "src/components/ui/scroll-area.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 47,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "select",
+      "path": "select.tsx",
+      "fullPath": "src/components/ui/select.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 159,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 6,
+      "filesAffected": 6,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "separator",
+      "path": "separator.tsx",
+      "fullPath": "src/components/ui/separator.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 30,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "sheet",
+      "path": "sheet.tsx",
+      "fullPath": "src/components/ui/sheet.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 139,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 1,
+      "filesAffected": 1,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "sidebar",
+      "path": "sidebar.tsx",
+      "fullPath": "src/components/ui/sidebar.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 762,
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "skeleton",
+      "path": "skeleton.tsx",
+      "fullPath": "src/components/ui/skeleton.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 16,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "slider",
+      "path": "slider.tsx",
+      "fullPath": "src/components/ui/slider.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 27,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "sonner",
+      "path": "sonner.tsx",
+      "fullPath": "src/components/ui/sonner.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 30,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "switch",
+      "path": "switch.tsx",
+      "fullPath": "src/components/ui/switch.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 28,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 4,
+      "filesAffected": 4,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "table",
+      "path": "table.tsx",
+      "fullPath": "src/components/ui/table.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 118,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 1,
+      "filesAffected": 1,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "tabs",
+      "path": "tabs.tsx",
+      "fullPath": "src/components/ui/tabs.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 54,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 1,
+      "filesAffected": 1,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "team-selector-chip",
+      "path": "team/team-selector-chip.tsx",
+      "fullPath": "src/components/ui/team/team-selector-chip.tsx",
+      "category": "KEEP",
+      "reason": "Domain-specific component with business logic",
+      "subcategory": "Team Management",
+      "complexity": {
+        "lines": 53,
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "textarea",
+      "path": "textarea.tsx",
+      "fullPath": "src/components/ui/textarea.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 23,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "toast",
+      "path": "toast.tsx",
+      "fullPath": "src/components/ui/toast.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 128,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 1,
+      "filesAffected": 1,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "toaster",
+      "path": "toaster.tsx",
+      "fullPath": "src/components/ui/toaster.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 34,
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "toggle-group",
+      "path": "toggle-group.tsx",
+      "fullPath": "src/components/ui/toggle-group.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 60,
+        "hasBusinessLogic": false,
+        "hasStateManagement": true
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "toggle",
+      "path": "toggle.tsx",
+      "fullPath": "src/components/ui/toggle.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 44,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": false,
+      "usageCount": 0,
+      "filesAffected": 0,
+      "isRJSFCritical": false
+    },
+    {
+      "name": "tooltip",
+      "path": "tooltip.tsx",
+      "fullPath": "src/components/ui/tooltip.tsx",
+      "category": "DELETE",
+      "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+      "subcategory": "Generic UI Primitive",
+      "complexity": {
+        "lines": 29,
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      "hasUsages": true,
+      "usageCount": 4,
+      "filesAffected": 4,
+      "isRJSFCritical": false
+    }
+  ],
+  "summary": {
+    "keep": 37,
+    "delete": 49,
+    "review": 6,
+    "exclude": 0
+  },
+  "by_category": {
+    "Generic UI Primitive": [
+      {
+        "name": "accordion",
+        "path": "accordion.tsx",
+        "fullPath": "src/components/ui/accordion.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 57,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "alert-dialog",
+        "path": "alert-dialog.tsx",
+        "fullPath": "src/components/ui/alert-dialog.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 140,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "alert",
+        "path": "alert.tsx",
+        "fullPath": "src/components/ui/alert.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 60,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 12,
+        "filesAffected": 8,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "aspect-ratio",
+        "path": "aspect-ratio.tsx",
+        "fullPath": "src/components/ui/aspect-ratio.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 6,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "avatar",
+        "path": "avatar.tsx",
+        "fullPath": "src/components/ui/avatar.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 49,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 2,
+        "filesAffected": 2,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "badge",
+        "path": "badge.tsx",
+        "fullPath": "src/components/ui/badge.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 37,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 7,
+        "filesAffected": 5,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "breadcrumb",
+        "path": "breadcrumb.tsx",
+        "fullPath": "src/components/ui/breadcrumb.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 116,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 2,
+        "filesAffected": 2,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "button",
+        "path": "button.tsx",
+        "fullPath": "src/components/ui/button.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 57,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 27,
+        "filesAffected": 16,
+        "isRJSFCritical": true
+      },
+      {
+        "name": "calendar",
+        "path": "calendar.tsx",
+        "fullPath": "src/components/ui/calendar.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 67,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "card",
+        "path": "card.tsx",
+        "fullPath": "src/components/ui/card.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 80,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 20,
+        "filesAffected": 16,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "carousel",
+        "path": "carousel.tsx",
+        "fullPath": "src/components/ui/carousel.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 261,
+          "hasBusinessLogic": true,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "chart",
+        "path": "chart.tsx",
+        "fullPath": "src/components/ui/chart.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 373,
+          "hasBusinessLogic": true,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "checkbox",
+        "path": "checkbox.tsx",
+        "fullPath": "src/components/ui/checkbox.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 29,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 1,
+        "filesAffected": 1,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "collapsible",
+        "path": "collapsible.tsx",
+        "fullPath": "src/components/ui/collapsible.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 10,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 2,
+        "filesAffected": 2,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "command",
+        "path": "command.tsx",
+        "fullPath": "src/components/ui/command.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 152,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "context-menu",
+        "path": "context-menu.tsx",
+        "fullPath": "src/components/ui/context-menu.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 199,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "dialog",
+        "path": "dialog.tsx",
+        "fullPath": "src/components/ui/dialog.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 121,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 1,
+        "filesAffected": 1,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "drawer",
+        "path": "drawer.tsx",
+        "fullPath": "src/components/ui/drawer.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 117,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "dropdown-menu",
+        "path": "dropdown-menu.tsx",
+        "fullPath": "src/components/ui/dropdown-menu.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 199,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "form",
+        "path": "form.tsx",
+        "fullPath": "src/components/ui/form.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 177,
+          "hasBusinessLogic": true,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "hover-card",
+        "path": "hover-card.tsx",
+        "fullPath": "src/components/ui/hover-card.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 28,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "input-otp",
+        "path": "input-otp.tsx",
+        "fullPath": "src/components/ui/input-otp.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 70,
+          "hasBusinessLogic": false,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "input",
+        "path": "input.tsx",
+        "fullPath": "src/components/ui/input.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 23,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 3,
+        "filesAffected": 3,
+        "isRJSFCritical": true
+      },
+      {
+        "name": "label",
+        "path": "label.tsx",
+        "fullPath": "src/components/ui/label.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 25,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 35,
+        "filesAffected": 21,
+        "isRJSFCritical": true
+      },
+      {
+        "name": "menubar",
+        "path": "menubar.tsx",
+        "fullPath": "src/components/ui/menubar.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 235,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "section-accordion",
+        "path": "navigation/section-accordion.tsx",
+        "fullPath": "src/components/ui/navigation/section-accordion.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 43,
+          "hasBusinessLogic": false,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "navigation-menu",
+        "path": "navigation-menu.tsx",
+        "fullPath": "src/components/ui/navigation-menu.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 129,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "pagination",
+        "path": "pagination.tsx",
+        "fullPath": "src/components/ui/pagination.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 118,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "popover",
+        "path": "popover.tsx",
+        "fullPath": "src/components/ui/popover.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 30,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 1,
+        "filesAffected": 1,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "progress",
+        "path": "progress.tsx",
+        "fullPath": "src/components/ui/progress.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 27,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 1,
+        "filesAffected": 1,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "radio-group",
+        "path": "radio-group.tsx",
+        "fullPath": "src/components/ui/radio-group.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 43,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "resizable",
+        "path": "resizable.tsx",
+        "fullPath": "src/components/ui/resizable.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 44,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "scroll-area",
+        "path": "scroll-area.tsx",
+        "fullPath": "src/components/ui/scroll-area.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 47,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "select",
+        "path": "select.tsx",
+        "fullPath": "src/components/ui/select.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 159,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 6,
+        "filesAffected": 6,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "separator",
+        "path": "separator.tsx",
+        "fullPath": "src/components/ui/separator.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 30,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "sheet",
+        "path": "sheet.tsx",
+        "fullPath": "src/components/ui/sheet.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 139,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 1,
+        "filesAffected": 1,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "sidebar",
+        "path": "sidebar.tsx",
+        "fullPath": "src/components/ui/sidebar.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 762,
+          "hasBusinessLogic": true,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "skeleton",
+        "path": "skeleton.tsx",
+        "fullPath": "src/components/ui/skeleton.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 16,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "slider",
+        "path": "slider.tsx",
+        "fullPath": "src/components/ui/slider.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 27,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "sonner",
+        "path": "sonner.tsx",
+        "fullPath": "src/components/ui/sonner.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 30,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "switch",
+        "path": "switch.tsx",
+        "fullPath": "src/components/ui/switch.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 28,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 4,
+        "filesAffected": 4,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "table",
+        "path": "table.tsx",
+        "fullPath": "src/components/ui/table.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 118,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 1,
+        "filesAffected": 1,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "tabs",
+        "path": "tabs.tsx",
+        "fullPath": "src/components/ui/tabs.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 54,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 1,
+        "filesAffected": 1,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "textarea",
+        "path": "textarea.tsx",
+        "fullPath": "src/components/ui/textarea.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 23,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "toast",
+        "path": "toast.tsx",
+        "fullPath": "src/components/ui/toast.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 128,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 1,
+        "filesAffected": 1,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "toaster",
+        "path": "toaster.tsx",
+        "fullPath": "src/components/ui/toaster.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 34,
+          "hasBusinessLogic": true,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "toggle-group",
+        "path": "toggle-group.tsx",
+        "fullPath": "src/components/ui/toggle-group.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 60,
+          "hasBusinessLogic": false,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "toggle",
+        "path": "toggle.tsx",
+        "fullPath": "src/components/ui/toggle.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 44,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "tooltip",
+        "path": "tooltip.tsx",
+        "fullPath": "src/components/ui/tooltip.tsx",
+        "category": "DELETE",
+        "reason": "Generic UI wrapper - replace with direct Radix + Tailwind",
+        "subcategory": "Generic UI Primitive",
+        "complexity": {
+          "lines": 29,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": true,
+        "usageCount": 4,
+        "filesAffected": 4,
+        "isRJSFCritical": false
+      }
+    ],
+    "API Management": [
+      {
+        "name": "permission-scope-row",
+        "path": "api/permission-scope-row.tsx",
+        "fullPath": "src/components/ui/api/permission-scope-row.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "API Management",
+        "complexity": {
+          "lines": 61,
+          "hasBusinessLogic": true,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      }
+    ],
+    "Documentation": [
+      {
+        "name": "code-reference",
+        "path": "docs/code-reference.tsx",
+        "fullPath": "src/components/ui/docs/code-reference.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Documentation",
+        "complexity": {
+          "lines": 10,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "documentation-link",
+        "path": "docs/documentation-link.tsx",
+        "fullPath": "src/components/ui/docs/documentation-link.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Documentation",
+        "complexity": {
+          "lines": 23,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      }
+    ],
+    "Environment Management": [
+      {
+        "name": "environment-variable-form",
+        "path": "env-vars/environment-variable-form.tsx",
+        "fullPath": "src/components/ui/env-vars/environment-variable-form.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Environment Management",
+        "complexity": {
+          "lines": 220,
+          "hasBusinessLogic": true,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "environment-variable-import",
+        "path": "env-vars/environment-variable-import.tsx",
+        "fullPath": "src/components/ui/env-vars/environment-variable-import.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Environment Management",
+        "complexity": {
+          "lines": 171,
+          "hasBusinessLogic": true,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "environment-variable-table",
+        "path": "env-vars/environment-variable-table.tsx",
+        "fullPath": "src/components/ui/env-vars/environment-variable-table.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Environment Management",
+        "complexity": {
+          "lines": 128,
+          "hasBusinessLogic": true,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "environment-breadcrumb",
+        "path": "environments/environment-breadcrumb.tsx",
+        "fullPath": "src/components/ui/environments/environment-breadcrumb.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Environment Management",
+        "complexity": {
+          "lines": 72,
+          "hasBusinessLogic": true,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "environment-card",
+        "path": "environments/environment-card.tsx",
+        "fullPath": "src/components/ui/environments/environment-card.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Environment Management",
+        "complexity": {
+          "lines": 108,
+          "hasBusinessLogic": true,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      }
+    ],
+    "Form Feedback": [
+      {
+        "name": "character-counter",
+        "path": "form/feedback/character-counter.tsx",
+        "fullPath": "src/components/ui/form/feedback/character-counter.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Form Feedback",
+        "complexity": {
+          "lines": 26,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "dangerous-action-button",
+        "path": "form/feedback/dangerous-action-button.tsx",
+        "fullPath": "src/components/ui/form/feedback/dangerous-action-button.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Form Feedback",
+        "complexity": {
+          "lines": 16,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "enhanced-validation-message",
+        "path": "form/feedback/enhanced-validation-message.tsx",
+        "fullPath": "src/components/ui/form/feedback/enhanced-validation-message.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Form Feedback",
+        "complexity": {
+          "lines": 78,
+          "hasBusinessLogic": true,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "export-readiness-indicator",
+        "path": "form/feedback/export-readiness-indicator.tsx",
+        "fullPath": "src/components/ui/form/feedback/export-readiness-indicator.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Form Feedback",
+        "complexity": {
+          "lines": 149,
+          "hasBusinessLogic": true,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "field-status-indicator",
+        "path": "form/feedback/field-status-indicator.tsx",
+        "fullPath": "src/components/ui/form/feedback/field-status-indicator.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Form Feedback",
+        "complexity": {
+          "lines": 76,
+          "hasBusinessLogic": true,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "save-button",
+        "path": "form/feedback/save-button.tsx",
+        "fullPath": "src/components/ui/form/feedback/save-button.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Form Feedback",
+        "complexity": {
+          "lines": 18,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "validation-summary",
+        "path": "form/feedback/validation-summary.tsx",
+        "fullPath": "src/components/ui/form/feedback/validation-summary.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Form Feedback",
+        "complexity": {
+          "lines": 92,
+          "hasBusinessLogic": true,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "visibility-notice",
+        "path": "form/feedback/visibility-notice.tsx",
+        "fullPath": "src/components/ui/form/feedback/visibility-notice.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Form Feedback",
+        "complexity": {
+          "lines": 34,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      }
+    ],
+    "Unknown": [
+      {
+        "name": "toast-error",
+        "path": "form/feedback/toast-error.tsx",
+        "fullPath": "src/components/ui/form/feedback/toast-error.tsx",
+        "category": "REVIEW",
+        "reason": "Needs manual review to determine if domain-specific or generic",
+        "subcategory": "Unknown",
+        "complexity": {
+          "lines": 42,
+          "hasBusinessLogic": true,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "validation-message",
+        "path": "form/feedback/validation-message.tsx",
+        "fullPath": "src/components/ui/form/feedback/validation-message.tsx",
+        "category": "REVIEW",
+        "reason": "Needs manual review to determine if domain-specific or generic",
+        "subcategory": "Unknown",
+        "complexity": {
+          "lines": 17,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "category-section",
+        "path": "form/layouts/category-section.tsx",
+        "fullPath": "src/components/ui/form/layouts/category-section.tsx",
+        "category": "REVIEW",
+        "reason": "Needs manual review to determine if domain-specific or generic",
+        "subcategory": "Unknown",
+        "complexity": {
+          "lines": 69,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "field-group",
+        "path": "form/layouts/field-group.tsx",
+        "fullPath": "src/components/ui/form/layouts/field-group.tsx",
+        "category": "REVIEW",
+        "reason": "Needs manual review to determine if domain-specific or generic",
+        "subcategory": "Unknown",
+        "complexity": {
+          "lines": 12,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "form-section",
+        "path": "form/layouts/form-section.tsx",
+        "fullPath": "src/components/ui/form/layouts/form-section.tsx",
+        "category": "REVIEW",
+        "reason": "Needs manual review to determine if domain-specific or generic",
+        "subcategory": "Unknown",
+        "complexity": {
+          "lines": 21,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "hierarchical-navigation",
+        "path": "navigation/hierarchical-navigation.tsx",
+        "fullPath": "src/components/ui/navigation/hierarchical-navigation.tsx",
+        "category": "REVIEW",
+        "reason": "Needs manual review to determine if domain-specific or generic",
+        "subcategory": "Unknown",
+        "complexity": {
+          "lines": 116,
+          "hasBusinessLogic": true,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      }
+    ],
+    "RJSF Fields": [
+      {
+        "name": "array-field",
+        "path": "form/fields/array-field.tsx",
+        "fullPath": "src/components/ui/form/fields/array-field.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "RJSF Fields",
+        "complexity": {
+          "lines": 103,
+          "hasBusinessLogic": true,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "date-field",
+        "path": "form/fields/date-field.tsx",
+        "fullPath": "src/components/ui/form/fields/date-field.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "RJSF Fields",
+        "complexity": {
+          "lines": 115,
+          "hasBusinessLogic": true,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "integer-field",
+        "path": "form/fields/integer-field.tsx",
+        "fullPath": "src/components/ui/form/fields/integer-field.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "RJSF Fields",
+        "complexity": {
+          "lines": 78,
+          "hasBusinessLogic": true,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "markdown-text-area",
+        "path": "form/fields/markdown-text-area.tsx",
+        "fullPath": "src/components/ui/form/fields/markdown-text-area.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "RJSF Fields",
+        "complexity": {
+          "lines": 81,
+          "hasBusinessLogic": false,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "number-field",
+        "path": "form/fields/number-field.tsx",
+        "fullPath": "src/components/ui/form/fields/number-field.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "RJSF Fields",
+        "complexity": {
+          "lines": 68,
+          "hasBusinessLogic": true,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "object-field",
+        "path": "form/fields/object-field.tsx",
+        "fullPath": "src/components/ui/form/fields/object-field.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "RJSF Fields",
+        "complexity": {
+          "lines": 253,
+          "hasBusinessLogic": true,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "same-information-checkbox",
+        "path": "form/fields/same-information-checkbox.tsx",
+        "fullPath": "src/components/ui/form/fields/same-information-checkbox.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "RJSF Fields",
+        "complexity": {
+          "lines": 32,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "secret-field",
+        "path": "form/fields/secret-field.tsx",
+        "fullPath": "src/components/ui/form/fields/secret-field.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "RJSF Fields",
+        "complexity": {
+          "lines": 52,
+          "hasBusinessLogic": false,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "select-field",
+        "path": "form/fields/select-field.tsx",
+        "fullPath": "src/components/ui/form/fields/select-field.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "RJSF Fields",
+        "complexity": {
+          "lines": 57,
+          "hasBusinessLogic": true,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "text-field",
+        "path": "form/fields/text-field.tsx",
+        "fullPath": "src/components/ui/form/fields/text-field.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "RJSF Fields",
+        "complexity": {
+          "lines": 63,
+          "hasBusinessLogic": false,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "toggle-field",
+        "path": "form/fields/toggle-field.tsx",
+        "fullPath": "src/components/ui/form/fields/toggle-field.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "RJSF Fields",
+        "complexity": {
+          "lines": 29,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "url-input",
+        "path": "form/fields/url-input.tsx",
+        "fullPath": "src/components/ui/form/fields/url-input.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "RJSF Fields",
+        "complexity": {
+          "lines": 42,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      }
+    ],
+    "Form Logic": [
+      {
+        "name": "conditional-field",
+        "path": "form/wrappers/conditional-field.tsx",
+        "fullPath": "src/components/ui/form/wrappers/conditional-field.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Form Logic",
+        "complexity": {
+          "lines": 29,
+          "hasBusinessLogic": true,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "overrideable-field",
+        "path": "form/wrappers/overrideable-field.tsx",
+        "fullPath": "src/components/ui/form/wrappers/overrideable-field.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Form Logic",
+        "complexity": {
+          "lines": 58,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      }
+    ],
+    "Security": [
+      {
+        "name": "plan-restricted-feature",
+        "path": "form/wrappers/plan-restricted-feature.tsx",
+        "fullPath": "src/components/ui/form/wrappers/plan-restricted-feature.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Security",
+        "complexity": {
+          "lines": 47,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "protection-mode-selector",
+        "path": "protection/protection-mode-selector.tsx",
+        "fullPath": "src/components/ui/protection/protection-mode-selector.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Security",
+        "complexity": {
+          "lines": 71,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      }
+    ],
+    "Framework Configuration": [
+      {
+        "name": "command-field-group",
+        "path": "framework/command-field-group.tsx",
+        "fullPath": "src/components/ui/framework/command-field-group.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Framework Configuration",
+        "complexity": {
+          "lines": 72,
+          "hasBusinessLogic": true,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "framework-icon",
+        "path": "framework/framework-icon.tsx",
+        "fullPath": "src/components/ui/framework/framework-icon.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Framework Configuration",
+        "complexity": {
+          "lines": 33,
+          "hasBusinessLogic": false,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      },
+      {
+        "name": "framework-preset-selector",
+        "path": "framework/framework-preset-selector.tsx",
+        "fullPath": "src/components/ui/framework/framework-preset-selector.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Framework Configuration",
+        "complexity": {
+          "lines": 49,
+          "hasBusinessLogic": true,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      }
+    ],
+    "Path Management": [
+      {
+        "name": "path-management-list",
+        "path": "path-management/path-management-list.tsx",
+        "fullPath": "src/components/ui/path-management/path-management-list.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Path Management",
+        "complexity": {
+          "lines": 100,
+          "hasBusinessLogic": true,
+          "hasStateManagement": true
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      }
+    ],
+    "Team Management": [
+      {
+        "name": "team-selector-chip",
+        "path": "team/team-selector-chip.tsx",
+        "fullPath": "src/components/ui/team/team-selector-chip.tsx",
+        "category": "KEEP",
+        "reason": "Domain-specific component with business logic",
+        "subcategory": "Team Management",
+        "complexity": {
+          "lines": 53,
+          "hasBusinessLogic": true,
+          "hasStateManagement": false
+        },
+        "hasUsages": false,
+        "usageCount": 0,
+        "filesAffected": 0,
+        "isRJSFCritical": false
+      }
+    ]
+  },
+  "recommendations": {
+    "immediate_deletion": [
+      {
+        "component": "accordion",
+        "path": "accordion.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "alert-dialog",
+        "path": "alert-dialog.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "aspect-ratio",
+        "path": "aspect-ratio.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "calendar",
+        "path": "calendar.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "carousel",
+        "path": "carousel.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "chart",
+        "path": "chart.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "command",
+        "path": "command.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "context-menu",
+        "path": "context-menu.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "drawer",
+        "path": "drawer.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "dropdown-menu",
+        "path": "dropdown-menu.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "form",
+        "path": "form.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "hover-card",
+        "path": "hover-card.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "input-otp",
+        "path": "input-otp.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "menubar",
+        "path": "menubar.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "section-accordion",
+        "path": "navigation/section-accordion.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "navigation-menu",
+        "path": "navigation-menu.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "pagination",
+        "path": "pagination.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "radio-group",
+        "path": "radio-group.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "resizable",
+        "path": "resizable.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "scroll-area",
+        "path": "scroll-area.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "separator",
+        "path": "separator.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "sidebar",
+        "path": "sidebar.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "skeleton",
+        "path": "skeleton.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "slider",
+        "path": "slider.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "sonner",
+        "path": "sonner.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "textarea",
+        "path": "textarea.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "toaster",
+        "path": "toaster.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "toggle-group",
+        "path": "toggle-group.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      },
+      {
+        "component": "toggle",
+        "path": "toggle.tsx",
+        "reason": "No usages found - safe to delete immediately"
+      }
+    ],
+    "requires_migration": [
+      {
+        "component": "alert",
+        "path": "alert.tsx",
+        "usages": 12,
+        "files": 8,
+        "isRJSFCritical": false,
+        "priority": "MEDIUM"
+      },
+      {
+        "component": "avatar",
+        "path": "avatar.tsx",
+        "usages": 2,
+        "files": 2,
+        "isRJSFCritical": false,
+        "priority": "LOW"
+      },
+      {
+        "component": "badge",
+        "path": "badge.tsx",
+        "usages": 7,
+        "files": 5,
+        "isRJSFCritical": false,
+        "priority": "MEDIUM"
+      },
+      {
+        "component": "breadcrumb",
+        "path": "breadcrumb.tsx",
+        "usages": 2,
+        "files": 2,
+        "isRJSFCritical": false,
+        "priority": "LOW"
+      },
+      {
+        "component": "button",
+        "path": "button.tsx",
+        "usages": 27,
+        "files": 16,
+        "isRJSFCritical": true,
+        "priority": "HIGH - RJSF Critical"
+      },
+      {
+        "component": "card",
+        "path": "card.tsx",
+        "usages": 20,
+        "files": 16,
+        "isRJSFCritical": false,
+        "priority": "MEDIUM"
+      },
+      {
+        "component": "checkbox",
+        "path": "checkbox.tsx",
+        "usages": 1,
+        "files": 1,
+        "isRJSFCritical": false,
+        "priority": "LOW"
+      },
+      {
+        "component": "collapsible",
+        "path": "collapsible.tsx",
+        "usages": 2,
+        "files": 2,
+        "isRJSFCritical": false,
+        "priority": "LOW"
+      },
+      {
+        "component": "dialog",
+        "path": "dialog.tsx",
+        "usages": 1,
+        "files": 1,
+        "isRJSFCritical": false,
+        "priority": "LOW"
+      },
+      {
+        "component": "input",
+        "path": "input.tsx",
+        "usages": 3,
+        "files": 3,
+        "isRJSFCritical": true,
+        "priority": "HIGH - RJSF Critical"
+      },
+      {
+        "component": "label",
+        "path": "label.tsx",
+        "usages": 35,
+        "files": 21,
+        "isRJSFCritical": true,
+        "priority": "HIGH - RJSF Critical"
+      },
+      {
+        "component": "popover",
+        "path": "popover.tsx",
+        "usages": 1,
+        "files": 1,
+        "isRJSFCritical": false,
+        "priority": "LOW"
+      },
+      {
+        "component": "progress",
+        "path": "progress.tsx",
+        "usages": 1,
+        "files": 1,
+        "isRJSFCritical": false,
+        "priority": "LOW"
+      },
+      {
+        "component": "select",
+        "path": "select.tsx",
+        "usages": 6,
+        "files": 6,
+        "isRJSFCritical": false,
+        "priority": "MEDIUM"
+      },
+      {
+        "component": "sheet",
+        "path": "sheet.tsx",
+        "usages": 1,
+        "files": 1,
+        "isRJSFCritical": false,
+        "priority": "LOW"
+      },
+      {
+        "component": "switch",
+        "path": "switch.tsx",
+        "usages": 4,
+        "files": 4,
+        "isRJSFCritical": false,
+        "priority": "LOW"
+      },
+      {
+        "component": "table",
+        "path": "table.tsx",
+        "usages": 1,
+        "files": 1,
+        "isRJSFCritical": false,
+        "priority": "LOW"
+      },
+      {
+        "component": "tabs",
+        "path": "tabs.tsx",
+        "usages": 1,
+        "files": 1,
+        "isRJSFCritical": false,
+        "priority": "LOW"
+      },
+      {
+        "component": "toast",
+        "path": "toast.tsx",
+        "usages": 1,
+        "files": 1,
+        "isRJSFCritical": false,
+        "priority": "LOW"
+      },
+      {
+        "component": "tooltip",
+        "path": "tooltip.tsx",
+        "usages": 4,
+        "files": 4,
+        "isRJSFCritical": false,
+        "priority": "LOW"
+      }
+    ],
+    "keep_components": [
+      {
+        "component": "permission-scope-row",
+        "path": "api/permission-scope-row.tsx",
+        "category": "API Management",
+        "complexity": "61 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      {
+        "component": "code-reference",
+        "path": "docs/code-reference.tsx",
+        "category": "Documentation",
+        "complexity": "10 lines",
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      {
+        "component": "documentation-link",
+        "path": "docs/documentation-link.tsx",
+        "category": "Documentation",
+        "complexity": "23 lines",
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      {
+        "component": "environment-variable-form",
+        "path": "env-vars/environment-variable-form.tsx",
+        "category": "Environment Management",
+        "complexity": "220 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      {
+        "component": "environment-variable-import",
+        "path": "env-vars/environment-variable-import.tsx",
+        "category": "Environment Management",
+        "complexity": "171 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      {
+        "component": "environment-variable-table",
+        "path": "env-vars/environment-variable-table.tsx",
+        "category": "Environment Management",
+        "complexity": "128 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      {
+        "component": "environment-breadcrumb",
+        "path": "environments/environment-breadcrumb.tsx",
+        "category": "Environment Management",
+        "complexity": "72 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      {
+        "component": "environment-card",
+        "path": "environments/environment-card.tsx",
+        "category": "Environment Management",
+        "complexity": "108 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      {
+        "component": "character-counter",
+        "path": "form/feedback/character-counter.tsx",
+        "category": "Form Feedback",
+        "complexity": "26 lines",
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      {
+        "component": "dangerous-action-button",
+        "path": "form/feedback/dangerous-action-button.tsx",
+        "category": "Form Feedback",
+        "complexity": "16 lines",
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      {
+        "component": "enhanced-validation-message",
+        "path": "form/feedback/enhanced-validation-message.tsx",
+        "category": "Form Feedback",
+        "complexity": "78 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      {
+        "component": "export-readiness-indicator",
+        "path": "form/feedback/export-readiness-indicator.tsx",
+        "category": "Form Feedback",
+        "complexity": "149 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      {
+        "component": "field-status-indicator",
+        "path": "form/feedback/field-status-indicator.tsx",
+        "category": "Form Feedback",
+        "complexity": "76 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      {
+        "component": "save-button",
+        "path": "form/feedback/save-button.tsx",
+        "category": "Form Feedback",
+        "complexity": "18 lines",
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      {
+        "component": "validation-summary",
+        "path": "form/feedback/validation-summary.tsx",
+        "category": "Form Feedback",
+        "complexity": "92 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      {
+        "component": "visibility-notice",
+        "path": "form/feedback/visibility-notice.tsx",
+        "category": "Form Feedback",
+        "complexity": "34 lines",
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      {
+        "component": "array-field",
+        "path": "form/fields/array-field.tsx",
+        "category": "RJSF Fields",
+        "complexity": "103 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      {
+        "component": "date-field",
+        "path": "form/fields/date-field.tsx",
+        "category": "RJSF Fields",
+        "complexity": "115 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      {
+        "component": "integer-field",
+        "path": "form/fields/integer-field.tsx",
+        "category": "RJSF Fields",
+        "complexity": "78 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      {
+        "component": "markdown-text-area",
+        "path": "form/fields/markdown-text-area.tsx",
+        "category": "RJSF Fields",
+        "complexity": "81 lines",
+        "hasBusinessLogic": false,
+        "hasStateManagement": true
+      },
+      {
+        "component": "number-field",
+        "path": "form/fields/number-field.tsx",
+        "category": "RJSF Fields",
+        "complexity": "68 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      {
+        "component": "object-field",
+        "path": "form/fields/object-field.tsx",
+        "category": "RJSF Fields",
+        "complexity": "253 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      {
+        "component": "same-information-checkbox",
+        "path": "form/fields/same-information-checkbox.tsx",
+        "category": "RJSF Fields",
+        "complexity": "32 lines",
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      {
+        "component": "secret-field",
+        "path": "form/fields/secret-field.tsx",
+        "category": "RJSF Fields",
+        "complexity": "52 lines",
+        "hasBusinessLogic": false,
+        "hasStateManagement": true
+      },
+      {
+        "component": "select-field",
+        "path": "form/fields/select-field.tsx",
+        "category": "RJSF Fields",
+        "complexity": "57 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      {
+        "component": "text-field",
+        "path": "form/fields/text-field.tsx",
+        "category": "RJSF Fields",
+        "complexity": "63 lines",
+        "hasBusinessLogic": false,
+        "hasStateManagement": true
+      },
+      {
+        "component": "toggle-field",
+        "path": "form/fields/toggle-field.tsx",
+        "category": "RJSF Fields",
+        "complexity": "29 lines",
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      {
+        "component": "url-input",
+        "path": "form/fields/url-input.tsx",
+        "category": "RJSF Fields",
+        "complexity": "42 lines",
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      {
+        "component": "conditional-field",
+        "path": "form/wrappers/conditional-field.tsx",
+        "category": "Form Logic",
+        "complexity": "29 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      {
+        "component": "overrideable-field",
+        "path": "form/wrappers/overrideable-field.tsx",
+        "category": "Form Logic",
+        "complexity": "58 lines",
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      {
+        "component": "plan-restricted-feature",
+        "path": "form/wrappers/plan-restricted-feature.tsx",
+        "category": "Security",
+        "complexity": "47 lines",
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      {
+        "component": "command-field-group",
+        "path": "framework/command-field-group.tsx",
+        "category": "Framework Configuration",
+        "complexity": "72 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      {
+        "component": "framework-icon",
+        "path": "framework/framework-icon.tsx",
+        "category": "Framework Configuration",
+        "complexity": "33 lines",
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      {
+        "component": "framework-preset-selector",
+        "path": "framework/framework-preset-selector.tsx",
+        "category": "Framework Configuration",
+        "complexity": "49 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      },
+      {
+        "component": "path-management-list",
+        "path": "path-management/path-management-list.tsx",
+        "category": "Path Management",
+        "complexity": "100 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": true
+      },
+      {
+        "component": "protection-mode-selector",
+        "path": "protection/protection-mode-selector.tsx",
+        "category": "Security",
+        "complexity": "71 lines",
+        "hasBusinessLogic": false,
+        "hasStateManagement": false
+      },
+      {
+        "component": "team-selector-chip",
+        "path": "team/team-selector-chip.tsx",
+        "category": "Team Management",
+        "complexity": "53 lines",
+        "hasBusinessLogic": true,
+        "hasStateManagement": false
+      }
+    ],
+    "needs_review": [
+      {
+        "component": "toast-error",
+        "path": "form/feedback/toast-error.tsx",
+        "complexity": "42 lines",
+        "hasUsages": false,
+        "usageCount": 0
+      },
+      {
+        "component": "validation-message",
+        "path": "form/feedback/validation-message.tsx",
+        "complexity": "17 lines",
+        "hasUsages": false,
+        "usageCount": 0
+      },
+      {
+        "component": "category-section",
+        "path": "form/layouts/category-section.tsx",
+        "complexity": "69 lines",
+        "hasUsages": false,
+        "usageCount": 0
+      },
+      {
+        "component": "field-group",
+        "path": "form/layouts/field-group.tsx",
+        "complexity": "12 lines",
+        "hasUsages": false,
+        "usageCount": 0
+      },
+      {
+        "component": "form-section",
+        "path": "form/layouts/form-section.tsx",
+        "complexity": "21 lines",
+        "hasUsages": false,
+        "usageCount": 0
+      },
+      {
+        "component": "hierarchical-navigation",
+        "path": "navigation/hierarchical-navigation.tsx",
+        "complexity": "116 lines",
+        "hasUsages": false,
+        "usageCount": 0
+      }
+    ]
+  }
+}

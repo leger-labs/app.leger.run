@@ -1,0 +1,6394 @@
+{
+  "metadata": {
+    "timestamp": "2025-10-23T13:25:05.908Z",
+    "source_audit": "phase1-usage-audit.json"
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "accordion",
+        "path": "src/components/ui/accordion.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "AccordionPrimitive",
+            "source": "@radix-ui/react-accordion",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "alert-dialog",
+        "path": "src/components/ui/alert-dialog.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "buttonVariants",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "AlertDialogPrimitive",
+            "source": "@radix-ui/react-alert-dialog",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "alert",
+        "path": "src/components/ui/alert.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "permission-scope-row",
+        "path": "src/components/ui/api/permission-scope-row.tsx",
+        "type": "domain-specific",
+        "dependencies": [
+          {
+            "name": "Select",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectContent",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectItem",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectTrigger",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectValue",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Tooltip",
+            "source": "@/components/ui/tooltip",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TooltipContent",
+            "source": "@/components/ui/tooltip",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TooltipProvider",
+            "source": "@/components/ui/tooltip",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TooltipTrigger",
+            "source": "@/components/ui/tooltip",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": []
+      },
+      {
+        "id": "aspect-ratio",
+        "path": "src/components/ui/aspect-ratio.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "AspectRatioPrimitive",
+            "source": "@radix-ui/react-aspect-ratio",
+            "type": "radix"
+          }
+        ]
+      },
+      {
+        "id": "avatar",
+        "path": "src/components/ui/avatar.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "AvatarPrimitive",
+            "source": "@radix-ui/react-avatar",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "badge",
+        "path": "src/components/ui/badge.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "breadcrumb",
+        "path": "src/components/ui/breadcrumb.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "Slot",
+            "source": "@radix-ui/react-slot",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "button",
+        "path": "src/components/ui/button.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "Slot",
+            "source": "@radix-ui/react-slot",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "calendar",
+        "path": "src/components/ui/calendar.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "buttonVariants",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "DayPicker",
+            "source": "react-day-picker",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "card",
+        "path": "src/components/ui/card.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "carousel",
+        "path": "src/components/ui/carousel.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "chart",
+        "path": "src/components/ui/chart.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "checkbox",
+        "path": "src/components/ui/checkbox.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "CheckboxPrimitive",
+            "source": "@radix-ui/react-checkbox",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "collapsible",
+        "path": "src/components/ui/collapsible.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "CollapsiblePrimitive",
+            "source": "@radix-ui/react-collapsible",
+            "type": "radix"
+          }
+        ]
+      },
+      {
+        "id": "command",
+        "path": "src/components/ui/command.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Dialog",
+            "source": "@/components/ui/dialog",
+            "type": "internal-ui"
+          },
+          {
+            "name": "DialogContent",
+            "source": "@/components/ui/dialog",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "type DialogProps",
+            "source": "@radix-ui/react-dialog",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "context-menu",
+        "path": "src/components/ui/context-menu.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "ContextMenuPrimitive",
+            "source": "@radix-ui/react-context-menu",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "dialog",
+        "path": "src/components/ui/dialog.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "DialogPrimitive",
+            "source": "@radix-ui/react-dialog",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "code-reference",
+        "path": "src/components/ui/docs/code-reference.tsx",
+        "type": "domain-specific",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": []
+      },
+      {
+        "id": "documentation-link",
+        "path": "src/components/ui/docs/documentation-link.tsx",
+        "type": "domain-specific",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": []
+      },
+      {
+        "id": "drawer",
+        "path": "src/components/ui/drawer.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "dropdown-menu",
+        "path": "src/components/ui/dropdown-menu.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "DropdownMenuPrimitive",
+            "source": "@radix-ui/react-dropdown-menu",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "environment-variable-form",
+        "path": "src/components/ui/env-vars/environment-variable-form.tsx",
+        "type": "domain-specific",
+        "dependencies": [
+          {
+            "name": "Card",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardContent",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardFooter",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardHeader",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardTitle",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Input",
+            "source": "@/components/ui/input",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Textarea",
+            "source": "@/components/ui/textarea",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Switch",
+            "source": "@/components/ui/switch",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Select",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectContent",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectItem",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectTrigger",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectValue",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          }
+        ]
+      },
+      {
+        "id": "environment-variable-import",
+        "path": "src/components/ui/env-vars/environment-variable-import.tsx",
+        "type": "domain-specific",
+        "dependencies": [
+          {
+            "name": "Card",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardContent",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardFooter",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardHeader",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardTitle",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Tabs",
+            "source": "@/components/ui/tabs",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TabsContent",
+            "source": "@/components/ui/tabs",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TabsList",
+            "source": "@/components/ui/tabs",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TabsTrigger",
+            "source": "@/components/ui/tabs",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Textarea",
+            "source": "@/components/ui/textarea",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Input",
+            "source": "@/components/ui/input",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Select",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectContent",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectItem",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectTrigger",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectValue",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Alert",
+            "source": "@/components/ui/alert",
+            "type": "internal-ui"
+          },
+          {
+            "name": "AlertDescription",
+            "source": "@/components/ui/alert",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          }
+        ]
+      },
+      {
+        "id": "environment-variable-table",
+        "path": "src/components/ui/env-vars/environment-variable-table.tsx",
+        "type": "domain-specific",
+        "dependencies": [
+          {
+            "name": "Table",
+            "source": "@/components/ui/table",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TableBody",
+            "source": "@/components/ui/table",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TableCell",
+            "source": "@/components/ui/table",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TableHead",
+            "source": "@/components/ui/table",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TableHeader",
+            "source": "@/components/ui/table",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TableRow",
+            "source": "@/components/ui/table",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          },
+          {
+            "name": "DropdownMenu",
+            "source": "@/components/ui/dropdown-menu",
+            "type": "internal-ui"
+          },
+          {
+            "name": "DropdownMenuContent",
+            "source": "@/components/ui/dropdown-menu",
+            "type": "internal-ui"
+          },
+          {
+            "name": "DropdownMenuItem",
+            "source": "@/components/ui/dropdown-menu",
+            "type": "internal-ui"
+          },
+          {
+            "name": "DropdownMenuSeparator",
+            "source": "@/components/ui/dropdown-menu",
+            "type": "internal-ui"
+          },
+          {
+            "name": "DropdownMenuTrigger",
+            "source": "@/components/ui/dropdown-menu",
+            "type": "internal-ui"
+          },
+          {
+            "name": "",
+            "source": "@/components/ui/dropdown-menu",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Badge",
+            "source": "@/components/ui/badge",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          }
+        ]
+      },
+      {
+        "id": "environment-breadcrumb",
+        "path": "src/components/ui/environments/environment-breadcrumb.tsx",
+        "type": "domain-specific",
+        "dependencies": [
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          },
+          {
+            "name": "DropdownMenu",
+            "source": "@/components/ui/dropdown-menu",
+            "type": "internal-ui"
+          },
+          {
+            "name": "DropdownMenuContent",
+            "source": "@/components/ui/dropdown-menu",
+            "type": "internal-ui"
+          },
+          {
+            "name": "DropdownMenuItem",
+            "source": "@/components/ui/dropdown-menu",
+            "type": "internal-ui"
+          },
+          {
+            "name": "DropdownMenuTrigger",
+            "source": "@/components/ui/dropdown-menu",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Badge",
+            "source": "@/components/ui/badge",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": []
+      },
+      {
+        "id": "environment-card",
+        "path": "src/components/ui/environments/environment-card.tsx",
+        "type": "domain-specific",
+        "dependencies": [
+          {
+            "name": "Card",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardContent",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardDescription",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardFooter",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardHeader",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardTitle",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Badge",
+            "source": "@/components/ui/badge",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          },
+          {
+            "name": "DropdownMenu",
+            "source": "@/components/ui/dropdown-menu",
+            "type": "internal-ui"
+          },
+          {
+            "name": "DropdownMenuContent",
+            "source": "@/components/ui/dropdown-menu",
+            "type": "internal-ui"
+          },
+          {
+            "name": "DropdownMenuItem",
+            "source": "@/components/ui/dropdown-menu",
+            "type": "internal-ui"
+          },
+          {
+            "name": "DropdownMenuSeparator",
+            "source": "@/components/ui/dropdown-menu",
+            "type": "internal-ui"
+          },
+          {
+            "name": "DropdownMenuTrigger",
+            "source": "@/components/ui/dropdown-menu",
+            "type": "internal-ui"
+          },
+          {
+            "name": "",
+            "source": "@/components/ui/dropdown-menu",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": []
+      },
+      {
+        "id": "character-counter",
+        "path": "src/components/ui/form/feedback/character-counter.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "dangerous-action-button",
+        "path": "src/components/ui/form/feedback/dangerous-action-button.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          },
+          {
+            "name": "type ButtonProps",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "enhanced-validation-message",
+        "path": "src/components/ui/form/feedback/enhanced-validation-message.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Alert",
+            "source": "@/components/ui/alert",
+            "type": "internal-ui"
+          },
+          {
+            "name": "AlertDescription",
+            "source": "@/components/ui/alert",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "export-readiness-indicator",
+        "path": "src/components/ui/form/feedback/export-readiness-indicator.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Alert",
+            "source": "@/components/ui/alert",
+            "type": "internal-ui"
+          },
+          {
+            "name": "AlertDescription",
+            "source": "@/components/ui/alert",
+            "type": "internal-ui"
+          },
+          {
+            "name": "AlertTitle",
+            "source": "@/components/ui/alert",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "field-status-indicator",
+        "path": "src/components/ui/form/feedback/field-status-indicator.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "save-button",
+        "path": "src/components/ui/form/feedback/save-button.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          },
+          {
+            "name": "type ButtonProps",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": []
+      },
+      {
+        "id": "toast-error",
+        "path": "src/components/ui/form/feedback/toast-error.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "ToastAction",
+            "source": "@/components/ui/toast",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "useToast",
+            "source": "@/hooks/use-toast",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "validation-message",
+        "path": "src/components/ui/form/feedback/validation-message.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "validation-summary",
+        "path": "src/components/ui/form/feedback/validation-summary.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Card",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardContent",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardHeader",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardTitle",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Progress",
+            "source": "@/components/ui/progress",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "visibility-notice",
+        "path": "src/components/ui/form/feedback/visibility-notice.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "array-field",
+        "path": "src/components/ui/form/fields/array-field.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Input",
+            "source": "@/components/ui/input",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          }
+        ]
+      },
+      {
+        "id": "date-field",
+        "path": "src/components/ui/form/fields/date-field.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Calendar",
+            "source": "@/components/ui/calendar",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Popover",
+            "source": "@/components/ui/popover",
+            "type": "internal-ui"
+          },
+          {
+            "name": "PopoverContent",
+            "source": "@/components/ui/popover",
+            "type": "internal-ui"
+          },
+          {
+            "name": "PopoverTrigger",
+            "source": "@/components/ui/popover",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "integer-field",
+        "path": "src/components/ui/form/fields/integer-field.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Input",
+            "source": "@/components/ui/input",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "markdown-text-area",
+        "path": "src/components/ui/form/fields/markdown-text-area.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Textarea",
+            "source": "@/components/ui/textarea",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "number-field",
+        "path": "src/components/ui/form/fields/number-field.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Input",
+            "source": "@/components/ui/input",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "object-field",
+        "path": "src/components/ui/form/fields/object-field.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Input",
+            "source": "@/components/ui/input",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Select",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectContent",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectItem",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectTrigger",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectValue",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Collapsible",
+            "source": "@/components/ui/collapsible",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CollapsibleContent",
+            "source": "@/components/ui/collapsible",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CollapsibleTrigger",
+            "source": "@/components/ui/collapsible",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ]
+      },
+      {
+        "id": "same-information-checkbox",
+        "path": "src/components/ui/form/fields/same-information-checkbox.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Checkbox",
+            "source": "@/components/ui/checkbox",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": []
+      },
+      {
+        "id": "secret-field",
+        "path": "src/components/ui/form/fields/secret-field.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Input",
+            "source": "@/components/ui/input",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "select-field",
+        "path": "src/components/ui/form/fields/select-field.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Select",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectContent",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectItem",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectTrigger",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectValue",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": []
+      },
+      {
+        "id": "text-field",
+        "path": "src/components/ui/form/fields/text-field.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Input",
+            "source": "@/components/ui/input",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "toggle-field",
+        "path": "src/components/ui/form/fields/toggle-field.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Switch",
+            "source": "@/components/ui/switch",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": []
+      },
+      {
+        "id": "url-input",
+        "path": "src/components/ui/form/fields/url-input.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Input",
+            "source": "@/components/ui/input",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "category-section",
+        "path": "src/components/ui/form/layouts/category-section.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Card",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardContent",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardDescription",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardFooter",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardHeader",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardTitle",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": []
+      },
+      {
+        "id": "field-group",
+        "path": "src/components/ui/form/layouts/field-group.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "form-section",
+        "path": "src/components/ui/form/layouts/form-section.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": []
+      },
+      {
+        "id": "conditional-field",
+        "path": "src/components/ui/form/wrappers/conditional-field.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "overrideable-field",
+        "path": "src/components/ui/form/wrappers/overrideable-field.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Input",
+            "source": "@/components/ui/input",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Switch",
+            "source": "@/components/ui/switch",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "plan-restricted-feature",
+        "path": "src/components/ui/form/wrappers/plan-restricted-feature.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Card",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardContent",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardFooter",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardHeader",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          },
+          {
+            "name": "CardTitle",
+            "source": "@/components/ui/card",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": []
+      },
+      {
+        "id": "form",
+        "path": "src/components/ui/form.tsx",
+        "type": "domain-specific",
+        "dependencies": [
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "LabelPrimitive",
+            "source": "@radix-ui/react-label",
+            "type": "radix"
+          },
+          {
+            "name": "Slot",
+            "source": "@radix-ui/react-slot",
+            "type": "radix"
+          },
+          {
+            "name": "Controller",
+            "source": "react-hook-form",
+            "type": "react-hook-form"
+          },
+          {
+            "name": "ControllerProps",
+            "source": "react-hook-form",
+            "type": "react-hook-form"
+          },
+          {
+            "name": "FieldPath",
+            "source": "react-hook-form",
+            "type": "react-hook-form"
+          },
+          {
+            "name": "FieldValues",
+            "source": "react-hook-form",
+            "type": "react-hook-form"
+          },
+          {
+            "name": "FormProvider",
+            "source": "react-hook-form",
+            "type": "react-hook-form"
+          },
+          {
+            "name": "useFormContext",
+            "source": "react-hook-form",
+            "type": "react-hook-form"
+          },
+          {
+            "name": "",
+            "source": "react-hook-form",
+            "type": "react-hook-form"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "command-field-group",
+        "path": "src/components/ui/framework/command-field-group.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Switch",
+            "source": "@/components/ui/switch",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Input",
+            "source": "@/components/ui/input",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Tooltip",
+            "source": "@/components/ui/tooltip",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TooltipContent",
+            "source": "@/components/ui/tooltip",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TooltipProvider",
+            "source": "@/components/ui/tooltip",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TooltipTrigger",
+            "source": "@/components/ui/tooltip",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          }
+        ]
+      },
+      {
+        "id": "framework-icon",
+        "path": "src/components/ui/framework/framework-icon.tsx",
+        "type": "domain-specific",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "framework-preset-selector",
+        "path": "src/components/ui/framework/framework-preset-selector.tsx",
+        "type": "domain-specific",
+        "dependencies": [
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Select",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectContent",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectItem",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectTrigger",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectValue",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": []
+      },
+      {
+        "id": "hover-card",
+        "path": "src/components/ui/hover-card.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "HoverCardPrimitive",
+            "source": "@radix-ui/react-hover-card",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "input-otp",
+        "path": "src/components/ui/input-otp.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "input",
+        "path": "src/components/ui/input.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "label",
+        "path": "src/components/ui/label.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "LabelPrimitive",
+            "source": "@radix-ui/react-label",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "menubar",
+        "path": "src/components/ui/menubar.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "MenubarPrimitive",
+            "source": "@radix-ui/react-menubar",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "hierarchical-navigation",
+        "path": "src/components/ui/navigation/hierarchical-navigation.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "section-accordion",
+        "path": "src/components/ui/navigation/section-accordion.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "navigation-menu",
+        "path": "src/components/ui/navigation-menu.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "NavigationMenuPrimitive",
+            "source": "@radix-ui/react-navigation-menu",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "pagination",
+        "path": "src/components/ui/pagination.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "ButtonProps",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          },
+          {
+            "name": "buttonVariants",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "path-management-list",
+        "path": "src/components/ui/path-management/path-management-list.tsx",
+        "type": "domain-specific",
+        "dependencies": [
+          {
+            "name": "Input",
+            "source": "@/components/ui/input",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          }
+        ]
+      },
+      {
+        "id": "popover",
+        "path": "src/components/ui/popover.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "PopoverPrimitive",
+            "source": "@radix-ui/react-popover",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "progress",
+        "path": "src/components/ui/progress.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "ProgressPrimitive",
+            "source": "@radix-ui/react-progress",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "protection-mode-selector",
+        "path": "src/components/ui/protection/protection-mode-selector.tsx",
+        "type": "domain-specific",
+        "dependencies": [
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Label",
+            "source": "@/components/ui/label",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Switch",
+            "source": "@/components/ui/switch",
+            "type": "internal-ui"
+          },
+          {
+            "name": "FormDescription",
+            "source": "@/components/ui/form",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Select",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectContent",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectItem",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectTrigger",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SelectValue",
+            "source": "@/components/ui/select",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Tooltip",
+            "source": "@/components/ui/tooltip",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TooltipContent",
+            "source": "@/components/ui/tooltip",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TooltipProvider",
+            "source": "@/components/ui/tooltip",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TooltipTrigger",
+            "source": "@/components/ui/tooltip",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": []
+      },
+      {
+        "id": "radio-group",
+        "path": "src/components/ui/radio-group.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "RadioGroupPrimitive",
+            "source": "@radix-ui/react-radio-group",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "resizable",
+        "path": "src/components/ui/resizable.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "ResizablePrimitive",
+            "source": "react-resizable-panels",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "scroll-area",
+        "path": "src/components/ui/scroll-area.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "ScrollAreaPrimitive",
+            "source": "@radix-ui/react-scroll-area",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "select",
+        "path": "src/components/ui/select.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "SelectPrimitive",
+            "source": "@radix-ui/react-select",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "separator",
+        "path": "src/components/ui/separator.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "SeparatorPrimitive",
+            "source": "@radix-ui/react-separator",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "sheet",
+        "path": "src/components/ui/sheet.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "SheetPrimitive",
+            "source": "@radix-ui/react-dialog",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "sidebar",
+        "path": "src/components/ui/sidebar.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Input",
+            "source": "@/components/ui/input",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Separator",
+            "source": "@/components/ui/separator",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Sheet",
+            "source": "@/components/ui/sheet",
+            "type": "internal-ui"
+          },
+          {
+            "name": "SheetContent",
+            "source": "@/components/ui/sheet",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Skeleton",
+            "source": "@/components/ui/skeleton",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Tooltip",
+            "source": "@/components/ui/tooltip",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TooltipContent",
+            "source": "@/components/ui/tooltip",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TooltipProvider",
+            "source": "@/components/ui/tooltip",
+            "type": "internal-ui"
+          },
+          {
+            "name": "TooltipTrigger",
+            "source": "@/components/ui/tooltip",
+            "type": "internal-ui"
+          },
+          {
+            "name": "",
+            "source": "@/components/ui/tooltip",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "Slot",
+            "source": "@radix-ui/react-slot",
+            "type": "radix"
+          },
+          {
+            "name": "useIsMobile",
+            "source": "@/hooks/use-mobile",
+            "type": "internal-other"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "skeleton",
+        "path": "src/components/ui/skeleton.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "slider",
+        "path": "src/components/ui/slider.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "SliderPrimitive",
+            "source": "@radix-ui/react-slider",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "sonner",
+        "path": "src/components/ui/sonner.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "useTheme",
+            "source": "@/hooks/use-theme",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "switch",
+        "path": "src/components/ui/switch.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "SwitchPrimitives",
+            "source": "@radix-ui/react-switch",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "table",
+        "path": "src/components/ui/table.tsx",
+        "type": "domain-specific",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "tabs",
+        "path": "src/components/ui/tabs.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "TabsPrimitive",
+            "source": "@radix-ui/react-tabs",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "team-selector-chip",
+        "path": "src/components/ui/team/team-selector-chip.tsx",
+        "type": "domain-specific",
+        "dependencies": [
+          {
+            "name": "Button",
+            "source": "@/components/ui/button",
+            "type": "internal-ui"
+          },
+          {
+            "name": "Avatar",
+            "source": "@/components/ui/avatar",
+            "type": "internal-ui"
+          },
+          {
+            "name": "AvatarFallback",
+            "source": "@/components/ui/avatar",
+            "type": "internal-ui"
+          },
+          {
+            "name": "AvatarImage",
+            "source": "@/components/ui/avatar",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": []
+      },
+      {
+        "id": "textarea",
+        "path": "src/components/ui/textarea.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "toast",
+        "path": "src/components/ui/toast.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "ToastPrimitives",
+            "source": "@radix-ui/react-toast",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "toaster",
+        "path": "src/components/ui/toaster.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "Toast",
+            "source": "@/components/ui/toast",
+            "type": "internal-ui"
+          },
+          {
+            "name": "ToastClose",
+            "source": "@/components/ui/toast",
+            "type": "internal-ui"
+          },
+          {
+            "name": "ToastDescription",
+            "source": "@/components/ui/toast",
+            "type": "internal-ui"
+          },
+          {
+            "name": "ToastProvider",
+            "source": "@/components/ui/toast",
+            "type": "internal-ui"
+          },
+          {
+            "name": "ToastTitle",
+            "source": "@/components/ui/toast",
+            "type": "internal-ui"
+          },
+          {
+            "name": "ToastViewport",
+            "source": "@/components/ui/toast",
+            "type": "internal-ui"
+          },
+          {
+            "name": "",
+            "source": "@/components/ui/toast",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "useToast",
+            "source": "@/hooks/use-toast",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "toggle-group",
+        "path": "src/components/ui/toggle-group.tsx",
+        "type": "generic-ui",
+        "dependencies": [
+          {
+            "name": "toggleVariants",
+            "source": "@/components/ui/toggle",
+            "type": "internal-ui"
+          }
+        ],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "ToggleGroupPrimitive",
+            "source": "@radix-ui/react-toggle-group",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "toggle",
+        "path": "src/components/ui/toggle.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "TogglePrimitive",
+            "source": "@radix-ui/react-toggle",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      {
+        "id": "tooltip",
+        "path": "src/components/ui/tooltip.tsx",
+        "type": "generic-ui",
+        "dependencies": [],
+        "dependents": [],
+        "externalDeps": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "TooltipPrimitive",
+            "source": "@radix-ui/react-tooltip",
+            "type": "radix"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "alert-dialog",
+        "to": "buttonVariants",
+        "type": "internal-ui"
+      },
+      {
+        "from": "permission-scope-row",
+        "to": "Select",
+        "type": "internal-ui"
+      },
+      {
+        "from": "permission-scope-row",
+        "to": "SelectContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "permission-scope-row",
+        "to": "SelectItem",
+        "type": "internal-ui"
+      },
+      {
+        "from": "permission-scope-row",
+        "to": "SelectTrigger",
+        "type": "internal-ui"
+      },
+      {
+        "from": "permission-scope-row",
+        "to": "SelectValue",
+        "type": "internal-ui"
+      },
+      {
+        "from": "permission-scope-row",
+        "to": "Tooltip",
+        "type": "internal-ui"
+      },
+      {
+        "from": "permission-scope-row",
+        "to": "TooltipContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "permission-scope-row",
+        "to": "TooltipProvider",
+        "type": "internal-ui"
+      },
+      {
+        "from": "permission-scope-row",
+        "to": "TooltipTrigger",
+        "type": "internal-ui"
+      },
+      {
+        "from": "calendar",
+        "to": "buttonVariants",
+        "type": "internal-ui"
+      },
+      {
+        "from": "carousel",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "command",
+        "to": "Dialog",
+        "type": "internal-ui"
+      },
+      {
+        "from": "command",
+        "to": "DialogContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-form",
+        "to": "Card",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-form",
+        "to": "CardContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-form",
+        "to": "CardFooter",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-form",
+        "to": "CardHeader",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-form",
+        "to": "CardTitle",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-form",
+        "to": "Input",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-form",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-form",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-form",
+        "to": "Textarea",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-form",
+        "to": "Switch",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-form",
+        "to": "Select",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-form",
+        "to": "SelectContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-form",
+        "to": "SelectItem",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-form",
+        "to": "SelectTrigger",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-form",
+        "to": "SelectValue",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-form",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "Card",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "CardContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "CardFooter",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "CardHeader",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "CardTitle",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "Tabs",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "TabsContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "TabsList",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "TabsTrigger",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "Textarea",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "Input",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "Select",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "SelectContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "SelectItem",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "SelectTrigger",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "SelectValue",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "Alert",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-import",
+        "to": "AlertDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-table",
+        "to": "Table",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-table",
+        "to": "TableBody",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-table",
+        "to": "TableCell",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-table",
+        "to": "TableHead",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-table",
+        "to": "TableHeader",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-table",
+        "to": "TableRow",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-table",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-table",
+        "to": "DropdownMenu",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-table",
+        "to": "DropdownMenuContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-table",
+        "to": "DropdownMenuItem",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-table",
+        "to": "DropdownMenuSeparator",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-table",
+        "to": "DropdownMenuTrigger",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-table",
+        "to": "",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-variable-table",
+        "to": "Badge",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-breadcrumb",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-breadcrumb",
+        "to": "DropdownMenu",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-breadcrumb",
+        "to": "DropdownMenuContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-breadcrumb",
+        "to": "DropdownMenuItem",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-breadcrumb",
+        "to": "DropdownMenuTrigger",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-breadcrumb",
+        "to": "Badge",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-card",
+        "to": "Card",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-card",
+        "to": "CardContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-card",
+        "to": "CardDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-card",
+        "to": "CardFooter",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-card",
+        "to": "CardHeader",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-card",
+        "to": "CardTitle",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-card",
+        "to": "Badge",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-card",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-card",
+        "to": "DropdownMenu",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-card",
+        "to": "DropdownMenuContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-card",
+        "to": "DropdownMenuItem",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-card",
+        "to": "DropdownMenuSeparator",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-card",
+        "to": "DropdownMenuTrigger",
+        "type": "internal-ui"
+      },
+      {
+        "from": "environment-card",
+        "to": "",
+        "type": "internal-ui"
+      },
+      {
+        "from": "dangerous-action-button",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "dangerous-action-button",
+        "to": "type ButtonProps",
+        "type": "internal-ui"
+      },
+      {
+        "from": "enhanced-validation-message",
+        "to": "Alert",
+        "type": "internal-ui"
+      },
+      {
+        "from": "enhanced-validation-message",
+        "to": "AlertDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "export-readiness-indicator",
+        "to": "Alert",
+        "type": "internal-ui"
+      },
+      {
+        "from": "export-readiness-indicator",
+        "to": "AlertDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "export-readiness-indicator",
+        "to": "AlertTitle",
+        "type": "internal-ui"
+      },
+      {
+        "from": "export-readiness-indicator",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "save-button",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "save-button",
+        "to": "type ButtonProps",
+        "type": "internal-ui"
+      },
+      {
+        "from": "toast-error",
+        "to": "ToastAction",
+        "type": "internal-ui"
+      },
+      {
+        "from": "validation-summary",
+        "to": "Card",
+        "type": "internal-ui"
+      },
+      {
+        "from": "validation-summary",
+        "to": "CardContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "validation-summary",
+        "to": "CardHeader",
+        "type": "internal-ui"
+      },
+      {
+        "from": "validation-summary",
+        "to": "CardTitle",
+        "type": "internal-ui"
+      },
+      {
+        "from": "validation-summary",
+        "to": "Progress",
+        "type": "internal-ui"
+      },
+      {
+        "from": "array-field",
+        "to": "Input",
+        "type": "internal-ui"
+      },
+      {
+        "from": "array-field",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "array-field",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "array-field",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "date-field",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "date-field",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "date-field",
+        "to": "Calendar",
+        "type": "internal-ui"
+      },
+      {
+        "from": "date-field",
+        "to": "Popover",
+        "type": "internal-ui"
+      },
+      {
+        "from": "date-field",
+        "to": "PopoverContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "date-field",
+        "to": "PopoverTrigger",
+        "type": "internal-ui"
+      },
+      {
+        "from": "date-field",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "integer-field",
+        "to": "Input",
+        "type": "internal-ui"
+      },
+      {
+        "from": "integer-field",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "integer-field",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "markdown-text-area",
+        "to": "Textarea",
+        "type": "internal-ui"
+      },
+      {
+        "from": "markdown-text-area",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "markdown-text-area",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "number-field",
+        "to": "Input",
+        "type": "internal-ui"
+      },
+      {
+        "from": "number-field",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "number-field",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "object-field",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "object-field",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "object-field",
+        "to": "Input",
+        "type": "internal-ui"
+      },
+      {
+        "from": "object-field",
+        "to": "Select",
+        "type": "internal-ui"
+      },
+      {
+        "from": "object-field",
+        "to": "SelectContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "object-field",
+        "to": "SelectItem",
+        "type": "internal-ui"
+      },
+      {
+        "from": "object-field",
+        "to": "SelectTrigger",
+        "type": "internal-ui"
+      },
+      {
+        "from": "object-field",
+        "to": "SelectValue",
+        "type": "internal-ui"
+      },
+      {
+        "from": "object-field",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "object-field",
+        "to": "Collapsible",
+        "type": "internal-ui"
+      },
+      {
+        "from": "object-field",
+        "to": "CollapsibleContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "object-field",
+        "to": "CollapsibleTrigger",
+        "type": "internal-ui"
+      },
+      {
+        "from": "same-information-checkbox",
+        "to": "Checkbox",
+        "type": "internal-ui"
+      },
+      {
+        "from": "same-information-checkbox",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "same-information-checkbox",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "secret-field",
+        "to": "Input",
+        "type": "internal-ui"
+      },
+      {
+        "from": "secret-field",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "secret-field",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "secret-field",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "select-field",
+        "to": "Select",
+        "type": "internal-ui"
+      },
+      {
+        "from": "select-field",
+        "to": "SelectContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "select-field",
+        "to": "SelectItem",
+        "type": "internal-ui"
+      },
+      {
+        "from": "select-field",
+        "to": "SelectTrigger",
+        "type": "internal-ui"
+      },
+      {
+        "from": "select-field",
+        "to": "SelectValue",
+        "type": "internal-ui"
+      },
+      {
+        "from": "select-field",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "select-field",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "text-field",
+        "to": "Input",
+        "type": "internal-ui"
+      },
+      {
+        "from": "text-field",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "text-field",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "toggle-field",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "toggle-field",
+        "to": "Switch",
+        "type": "internal-ui"
+      },
+      {
+        "from": "toggle-field",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "url-input",
+        "to": "Input",
+        "type": "internal-ui"
+      },
+      {
+        "from": "url-input",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "url-input",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "category-section",
+        "to": "Card",
+        "type": "internal-ui"
+      },
+      {
+        "from": "category-section",
+        "to": "CardContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "category-section",
+        "to": "CardDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "category-section",
+        "to": "CardFooter",
+        "type": "internal-ui"
+      },
+      {
+        "from": "category-section",
+        "to": "CardHeader",
+        "type": "internal-ui"
+      },
+      {
+        "from": "category-section",
+        "to": "CardTitle",
+        "type": "internal-ui"
+      },
+      {
+        "from": "category-section",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "overrideable-field",
+        "to": "Input",
+        "type": "internal-ui"
+      },
+      {
+        "from": "overrideable-field",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "overrideable-field",
+        "to": "Switch",
+        "type": "internal-ui"
+      },
+      {
+        "from": "overrideable-field",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "plan-restricted-feature",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "plan-restricted-feature",
+        "to": "Card",
+        "type": "internal-ui"
+      },
+      {
+        "from": "plan-restricted-feature",
+        "to": "CardContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "plan-restricted-feature",
+        "to": "CardFooter",
+        "type": "internal-ui"
+      },
+      {
+        "from": "plan-restricted-feature",
+        "to": "CardHeader",
+        "type": "internal-ui"
+      },
+      {
+        "from": "plan-restricted-feature",
+        "to": "CardTitle",
+        "type": "internal-ui"
+      },
+      {
+        "from": "form",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "command-field-group",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "command-field-group",
+        "to": "Switch",
+        "type": "internal-ui"
+      },
+      {
+        "from": "command-field-group",
+        "to": "Input",
+        "type": "internal-ui"
+      },
+      {
+        "from": "command-field-group",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "command-field-group",
+        "to": "Tooltip",
+        "type": "internal-ui"
+      },
+      {
+        "from": "command-field-group",
+        "to": "TooltipContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "command-field-group",
+        "to": "TooltipProvider",
+        "type": "internal-ui"
+      },
+      {
+        "from": "command-field-group",
+        "to": "TooltipTrigger",
+        "type": "internal-ui"
+      },
+      {
+        "from": "framework-preset-selector",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "framework-preset-selector",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "framework-preset-selector",
+        "to": "Select",
+        "type": "internal-ui"
+      },
+      {
+        "from": "framework-preset-selector",
+        "to": "SelectContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "framework-preset-selector",
+        "to": "SelectItem",
+        "type": "internal-ui"
+      },
+      {
+        "from": "framework-preset-selector",
+        "to": "SelectTrigger",
+        "type": "internal-ui"
+      },
+      {
+        "from": "framework-preset-selector",
+        "to": "SelectValue",
+        "type": "internal-ui"
+      },
+      {
+        "from": "pagination",
+        "to": "ButtonProps",
+        "type": "internal-ui"
+      },
+      {
+        "from": "pagination",
+        "to": "buttonVariants",
+        "type": "internal-ui"
+      },
+      {
+        "from": "path-management-list",
+        "to": "Input",
+        "type": "internal-ui"
+      },
+      {
+        "from": "path-management-list",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "path-management-list",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "path-management-list",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "protection-mode-selector",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "protection-mode-selector",
+        "to": "Label",
+        "type": "internal-ui"
+      },
+      {
+        "from": "protection-mode-selector",
+        "to": "Switch",
+        "type": "internal-ui"
+      },
+      {
+        "from": "protection-mode-selector",
+        "to": "FormDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "protection-mode-selector",
+        "to": "Select",
+        "type": "internal-ui"
+      },
+      {
+        "from": "protection-mode-selector",
+        "to": "SelectContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "protection-mode-selector",
+        "to": "SelectItem",
+        "type": "internal-ui"
+      },
+      {
+        "from": "protection-mode-selector",
+        "to": "SelectTrigger",
+        "type": "internal-ui"
+      },
+      {
+        "from": "protection-mode-selector",
+        "to": "SelectValue",
+        "type": "internal-ui"
+      },
+      {
+        "from": "protection-mode-selector",
+        "to": "Tooltip",
+        "type": "internal-ui"
+      },
+      {
+        "from": "protection-mode-selector",
+        "to": "TooltipContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "protection-mode-selector",
+        "to": "TooltipProvider",
+        "type": "internal-ui"
+      },
+      {
+        "from": "protection-mode-selector",
+        "to": "TooltipTrigger",
+        "type": "internal-ui"
+      },
+      {
+        "from": "sidebar",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "sidebar",
+        "to": "Input",
+        "type": "internal-ui"
+      },
+      {
+        "from": "sidebar",
+        "to": "Separator",
+        "type": "internal-ui"
+      },
+      {
+        "from": "sidebar",
+        "to": "Sheet",
+        "type": "internal-ui"
+      },
+      {
+        "from": "sidebar",
+        "to": "SheetContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "sidebar",
+        "to": "Skeleton",
+        "type": "internal-ui"
+      },
+      {
+        "from": "sidebar",
+        "to": "Tooltip",
+        "type": "internal-ui"
+      },
+      {
+        "from": "sidebar",
+        "to": "TooltipContent",
+        "type": "internal-ui"
+      },
+      {
+        "from": "sidebar",
+        "to": "TooltipProvider",
+        "type": "internal-ui"
+      },
+      {
+        "from": "sidebar",
+        "to": "TooltipTrigger",
+        "type": "internal-ui"
+      },
+      {
+        "from": "sidebar",
+        "to": "",
+        "type": "internal-ui"
+      },
+      {
+        "from": "team-selector-chip",
+        "to": "Button",
+        "type": "internal-ui"
+      },
+      {
+        "from": "team-selector-chip",
+        "to": "Avatar",
+        "type": "internal-ui"
+      },
+      {
+        "from": "team-selector-chip",
+        "to": "AvatarFallback",
+        "type": "internal-ui"
+      },
+      {
+        "from": "team-selector-chip",
+        "to": "AvatarImage",
+        "type": "internal-ui"
+      },
+      {
+        "from": "toaster",
+        "to": "Toast",
+        "type": "internal-ui"
+      },
+      {
+        "from": "toaster",
+        "to": "ToastClose",
+        "type": "internal-ui"
+      },
+      {
+        "from": "toaster",
+        "to": "ToastDescription",
+        "type": "internal-ui"
+      },
+      {
+        "from": "toaster",
+        "to": "ToastProvider",
+        "type": "internal-ui"
+      },
+      {
+        "from": "toaster",
+        "to": "ToastTitle",
+        "type": "internal-ui"
+      },
+      {
+        "from": "toaster",
+        "to": "ToastViewport",
+        "type": "internal-ui"
+      },
+      {
+        "from": "toaster",
+        "to": "",
+        "type": "internal-ui"
+      },
+      {
+        "from": "toggle-group",
+        "to": "toggleVariants",
+        "type": "internal-ui"
+      }
+    ],
+    "statistics": {
+      "total_nodes": 92,
+      "total_edges": 231,
+      "domain_components": 15,
+      "generic_components": 77
+    }
+  },
+  "circular_dependencies": [],
+  "dependency_depths": {
+    "accordion": 0,
+    "buttonVariants": 0,
+    "alert-dialog": 1,
+    "alert": 0,
+    "Select": 0,
+    "SelectContent": 0,
+    "SelectItem": 0,
+    "SelectTrigger": 0,
+    "SelectValue": 0,
+    "Tooltip": 0,
+    "TooltipContent": 0,
+    "TooltipProvider": 0,
+    "TooltipTrigger": 0,
+    "permission-scope-row": 1,
+    "aspect-ratio": 0,
+    "avatar": 0,
+    "badge": 0,
+    "breadcrumb": 0,
+    "button": 0,
+    "calendar": 1,
+    "card": 0,
+    "Button": 0,
+    "carousel": 1,
+    "chart": 0,
+    "checkbox": 0,
+    "collapsible": 0,
+    "Dialog": 0,
+    "DialogContent": 0,
+    "command": 1,
+    "context-menu": 0,
+    "dialog": 0,
+    "code-reference": 0,
+    "documentation-link": 0,
+    "drawer": 0,
+    "dropdown-menu": 0,
+    "Card": 0,
+    "CardContent": 0,
+    "CardFooter": 0,
+    "CardHeader": 0,
+    "CardTitle": 0,
+    "Input": 0,
+    "Label": 0,
+    "Textarea": 0,
+    "Switch": 0,
+    "FormDescription": 0,
+    "environment-variable-form": 1,
+    "Tabs": 0,
+    "TabsContent": 0,
+    "TabsList": 0,
+    "TabsTrigger": 0,
+    "Alert": 0,
+    "AlertDescription": 0,
+    "environment-variable-import": 1,
+    "Table": 0,
+    "TableBody": 0,
+    "TableCell": 0,
+    "TableHead": 0,
+    "TableHeader": 0,
+    "TableRow": 0,
+    "DropdownMenu": 0,
+    "DropdownMenuContent": 0,
+    "DropdownMenuItem": 0,
+    "DropdownMenuSeparator": 0,
+    "DropdownMenuTrigger": 0,
+    "": 0,
+    "Badge": 0,
+    "environment-variable-table": 1,
+    "environment-breadcrumb": 1,
+    "CardDescription": 0,
+    "environment-card": 1,
+    "character-counter": 0,
+    "type ButtonProps": 0,
+    "dangerous-action-button": 1,
+    "enhanced-validation-message": 1,
+    "AlertTitle": 0,
+    "export-readiness-indicator": 1,
+    "field-status-indicator": 0,
+    "save-button": 1,
+    "ToastAction": 0,
+    "toast-error": 1,
+    "validation-message": 0,
+    "Progress": 0,
+    "validation-summary": 1,
+    "visibility-notice": 0,
+    "array-field": 1,
+    "Calendar": 0,
+    "Popover": 0,
+    "PopoverContent": 0,
+    "PopoverTrigger": 0,
+    "date-field": 1,
+    "integer-field": 1,
+    "markdown-text-area": 1,
+    "number-field": 1,
+    "Collapsible": 0,
+    "CollapsibleContent": 0,
+    "CollapsibleTrigger": 0,
+    "object-field": 1,
+    "Checkbox": 0,
+    "same-information-checkbox": 1,
+    "secret-field": 1,
+    "select-field": 1,
+    "text-field": 1,
+    "toggle-field": 1,
+    "url-input": 1,
+    "category-section": 1,
+    "field-group": 0,
+    "form-section": 0,
+    "conditional-field": 0,
+    "overrideable-field": 1,
+    "plan-restricted-feature": 1,
+    "form": 1,
+    "command-field-group": 1,
+    "framework-icon": 0,
+    "framework-preset-selector": 1,
+    "hover-card": 0,
+    "input-otp": 0,
+    "input": 0,
+    "label": 0,
+    "menubar": 0,
+    "hierarchical-navigation": 0,
+    "section-accordion": 0,
+    "navigation-menu": 0,
+    "ButtonProps": 0,
+    "pagination": 1,
+    "path-management-list": 1,
+    "popover": 0,
+    "progress": 0,
+    "protection-mode-selector": 1,
+    "radio-group": 0,
+    "resizable": 0,
+    "scroll-area": 0,
+    "select": 0,
+    "separator": 0,
+    "sheet": 0,
+    "Separator": 0,
+    "Sheet": 0,
+    "SheetContent": 0,
+    "Skeleton": 0,
+    "sidebar": 1,
+    "skeleton": 0,
+    "slider": 0,
+    "sonner": 0,
+    "switch": 0,
+    "table": 0,
+    "tabs": 0,
+    "Avatar": 0,
+    "AvatarFallback": 0,
+    "AvatarImage": 0,
+    "team-selector-chip": 1,
+    "textarea": 0,
+    "toast": 0,
+    "Toast": 0,
+    "ToastClose": 0,
+    "ToastDescription": 0,
+    "ToastProvider": 0,
+    "ToastTitle": 0,
+    "ToastViewport": 0,
+    "toaster": 1,
+    "toggleVariants": 0,
+    "toggle-group": 1,
+    "toggle": 0,
+    "tooltip": 0
+  },
+  "migration_order": [
+    {
+      "depth": 0,
+      "components": [
+        "accordion",
+        "buttonVariants",
+        "alert",
+        "Select",
+        "SelectContent",
+        "SelectItem",
+        "SelectTrigger",
+        "SelectValue",
+        "Tooltip",
+        "TooltipContent",
+        "TooltipProvider",
+        "TooltipTrigger",
+        "aspect-ratio",
+        "avatar",
+        "badge",
+        "breadcrumb",
+        "button",
+        "card",
+        "Button",
+        "chart",
+        "checkbox",
+        "collapsible",
+        "Dialog",
+        "DialogContent",
+        "context-menu",
+        "dialog",
+        "code-reference",
+        "documentation-link",
+        "drawer",
+        "dropdown-menu",
+        "Card",
+        "CardContent",
+        "CardFooter",
+        "CardHeader",
+        "CardTitle",
+        "Input",
+        "Label",
+        "Textarea",
+        "Switch",
+        "FormDescription",
+        "Tabs",
+        "TabsContent",
+        "TabsList",
+        "TabsTrigger",
+        "Alert",
+        "AlertDescription",
+        "Table",
+        "TableBody",
+        "TableCell",
+        "TableHead",
+        "TableHeader",
+        "TableRow",
+        "DropdownMenu",
+        "DropdownMenuContent",
+        "DropdownMenuItem",
+        "DropdownMenuSeparator",
+        "DropdownMenuTrigger",
+        "",
+        "Badge",
+        "CardDescription",
+        "character-counter",
+        "type ButtonProps",
+        "AlertTitle",
+        "field-status-indicator",
+        "ToastAction",
+        "validation-message",
+        "Progress",
+        "visibility-notice",
+        "Calendar",
+        "Popover",
+        "PopoverContent",
+        "PopoverTrigger",
+        "Collapsible",
+        "CollapsibleContent",
+        "CollapsibleTrigger",
+        "Checkbox",
+        "field-group",
+        "form-section",
+        "conditional-field",
+        "framework-icon",
+        "hover-card",
+        "input-otp",
+        "input",
+        "label",
+        "menubar",
+        "hierarchical-navigation",
+        "section-accordion",
+        "navigation-menu",
+        "ButtonProps",
+        "popover",
+        "progress",
+        "radio-group",
+        "resizable",
+        "scroll-area",
+        "select",
+        "separator",
+        "sheet",
+        "Separator",
+        "Sheet",
+        "SheetContent",
+        "Skeleton",
+        "skeleton",
+        "slider",
+        "sonner",
+        "switch",
+        "table",
+        "tabs",
+        "Avatar",
+        "AvatarFallback",
+        "AvatarImage",
+        "textarea",
+        "toast",
+        "Toast",
+        "ToastClose",
+        "ToastDescription",
+        "ToastProvider",
+        "ToastTitle",
+        "ToastViewport",
+        "toggleVariants",
+        "toggle",
+        "tooltip"
+      ],
+      "description": "Leaf components (no dependencies)"
+    },
+    {
+      "depth": 1,
+      "components": [
+        "alert-dialog",
+        "permission-scope-row",
+        "calendar",
+        "carousel",
+        "command",
+        "environment-variable-form",
+        "environment-variable-import",
+        "environment-variable-table",
+        "environment-breadcrumb",
+        "environment-card",
+        "dangerous-action-button",
+        "enhanced-validation-message",
+        "export-readiness-indicator",
+        "save-button",
+        "toast-error",
+        "validation-summary",
+        "array-field",
+        "date-field",
+        "integer-field",
+        "markdown-text-area",
+        "number-field",
+        "object-field",
+        "same-information-checkbox",
+        "secret-field",
+        "select-field",
+        "text-field",
+        "toggle-field",
+        "url-input",
+        "category-section",
+        "overrideable-field",
+        "plan-restricted-feature",
+        "form",
+        "command-field-group",
+        "framework-preset-selector",
+        "pagination",
+        "path-management-list",
+        "protection-mode-selector",
+        "sidebar",
+        "team-selector-chip",
+        "toaster",
+        "toggle-group"
+      ],
+      "description": "Depth 1 (depends on lower layers)"
+    }
+  ],
+  "external_dependencies": {
+    "summary": {
+      "radixPackages": [
+        "@radix-ui/react-accordion",
+        "@radix-ui/react-alert-dialog",
+        "@radix-ui/react-aspect-ratio",
+        "@radix-ui/react-avatar",
+        "@radix-ui/react-slot",
+        "@radix-ui/react-checkbox",
+        "@radix-ui/react-collapsible",
+        "@radix-ui/react-dialog",
+        "@radix-ui/react-context-menu",
+        "@radix-ui/react-dropdown-menu",
+        "@radix-ui/react-label",
+        "@radix-ui/react-hover-card",
+        "@radix-ui/react-menubar",
+        "@radix-ui/react-navigation-menu",
+        "@radix-ui/react-popover",
+        "@radix-ui/react-progress",
+        "@radix-ui/react-radio-group",
+        "@radix-ui/react-scroll-area",
+        "@radix-ui/react-select",
+        "@radix-ui/react-separator",
+        "@radix-ui/react-slider",
+        "@radix-ui/react-switch",
+        "@radix-ui/react-tabs",
+        "@radix-ui/react-toast",
+        "@radix-ui/react-toggle-group",
+        "@radix-ui/react-toggle",
+        "@radix-ui/react-tooltip"
+      ],
+      "reactHookFormPackages": [
+        "react-hook-form"
+      ],
+      "reactPackages": [
+        "react",
+        "react-day-picker",
+        "react-resizable-panels"
+      ],
+      "otherPackages": [
+        "@/lib/utils",
+        "@/hooks/use-toast",
+        "@/hooks/use-mobile",
+        "@/hooks/use-theme"
+      ]
+    },
+    "byComponent": {
+      "accordion": {
+        "radix": [
+          {
+            "name": "AccordionPrimitive",
+            "source": "@radix-ui/react-accordion",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "alert-dialog": {
+        "radix": [
+          {
+            "name": "AlertDialogPrimitive",
+            "source": "@radix-ui/react-alert-dialog",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "alert": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "permission-scope-row": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": []
+      },
+      "aspect-ratio": {
+        "radix": [
+          {
+            "name": "AspectRatioPrimitive",
+            "source": "@radix-ui/react-aspect-ratio",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [],
+        "other": []
+      },
+      "avatar": {
+        "radix": [
+          {
+            "name": "AvatarPrimitive",
+            "source": "@radix-ui/react-avatar",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "badge": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "breadcrumb": {
+        "radix": [
+          {
+            "name": "Slot",
+            "source": "@radix-ui/react-slot",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "button": {
+        "radix": [
+          {
+            "name": "Slot",
+            "source": "@radix-ui/react-slot",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "calendar": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          },
+          {
+            "name": "DayPicker",
+            "source": "react-day-picker",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "card": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "carousel": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "chart": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "checkbox": {
+        "radix": [
+          {
+            "name": "CheckboxPrimitive",
+            "source": "@radix-ui/react-checkbox",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "collapsible": {
+        "radix": [
+          {
+            "name": "CollapsiblePrimitive",
+            "source": "@radix-ui/react-collapsible",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [],
+        "other": []
+      },
+      "command": {
+        "radix": [
+          {
+            "name": "type DialogProps",
+            "source": "@radix-ui/react-dialog",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "context-menu": {
+        "radix": [
+          {
+            "name": "ContextMenuPrimitive",
+            "source": "@radix-ui/react-context-menu",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "dialog": {
+        "radix": [
+          {
+            "name": "DialogPrimitive",
+            "source": "@radix-ui/react-dialog",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "code-reference": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": []
+      },
+      "documentation-link": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": []
+      },
+      "drawer": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "dropdown-menu": {
+        "radix": [
+          {
+            "name": "DropdownMenuPrimitive",
+            "source": "@radix-ui/react-dropdown-menu",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "environment-variable-form": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": []
+      },
+      "environment-variable-import": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": []
+      },
+      "environment-variable-table": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": []
+      },
+      "environment-breadcrumb": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": []
+      },
+      "environment-card": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": []
+      },
+      "character-counter": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "dangerous-action-button": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "enhanced-validation-message": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "export-readiness-indicator": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "field-status-indicator": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "save-button": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": []
+      },
+      "toast-error": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": [
+          {
+            "name": "useToast",
+            "source": "@/hooks/use-toast",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "validation-message": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "validation-summary": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "visibility-notice": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "array-field": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": []
+      },
+      "date-field": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "integer-field": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "markdown-text-area": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "number-field": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "object-field": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": []
+      },
+      "same-information-checkbox": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": []
+      },
+      "secret-field": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "select-field": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": []
+      },
+      "text-field": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "toggle-field": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": []
+      },
+      "url-input": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "category-section": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": []
+      },
+      "field-group": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "form-section": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": []
+      },
+      "conditional-field": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "overrideable-field": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "plan-restricted-feature": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": []
+      },
+      "form": {
+        "radix": [
+          {
+            "name": "LabelPrimitive",
+            "source": "@radix-ui/react-label",
+            "type": "radix"
+          },
+          {
+            "name": "Slot",
+            "source": "@radix-ui/react-slot",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [
+          {
+            "name": "Controller",
+            "source": "react-hook-form",
+            "type": "react-hook-form"
+          },
+          {
+            "name": "ControllerProps",
+            "source": "react-hook-form",
+            "type": "react-hook-form"
+          },
+          {
+            "name": "FieldPath",
+            "source": "react-hook-form",
+            "type": "react-hook-form"
+          },
+          {
+            "name": "FieldValues",
+            "source": "react-hook-form",
+            "type": "react-hook-form"
+          },
+          {
+            "name": "FormProvider",
+            "source": "react-hook-form",
+            "type": "react-hook-form"
+          },
+          {
+            "name": "useFormContext",
+            "source": "react-hook-form",
+            "type": "react-hook-form"
+          },
+          {
+            "name": "",
+            "source": "react-hook-form",
+            "type": "react-hook-form"
+          }
+        ],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "command-field-group": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": []
+      },
+      "framework-icon": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "framework-preset-selector": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": []
+      },
+      "hover-card": {
+        "radix": [
+          {
+            "name": "HoverCardPrimitive",
+            "source": "@radix-ui/react-hover-card",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "input-otp": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "input": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "label": {
+        "radix": [
+          {
+            "name": "LabelPrimitive",
+            "source": "@radix-ui/react-label",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "menubar": {
+        "radix": [
+          {
+            "name": "MenubarPrimitive",
+            "source": "@radix-ui/react-menubar",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "hierarchical-navigation": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "section-accordion": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "navigation-menu": {
+        "radix": [
+          {
+            "name": "NavigationMenuPrimitive",
+            "source": "@radix-ui/react-navigation-menu",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "pagination": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "path-management-list": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "useState",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": []
+      },
+      "popover": {
+        "radix": [
+          {
+            "name": "PopoverPrimitive",
+            "source": "@radix-ui/react-popover",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "progress": {
+        "radix": [
+          {
+            "name": "ProgressPrimitive",
+            "source": "@radix-ui/react-progress",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "protection-mode-selector": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": []
+      },
+      "radio-group": {
+        "radix": [
+          {
+            "name": "RadioGroupPrimitive",
+            "source": "@radix-ui/react-radio-group",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "resizable": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "ResizablePrimitive",
+            "source": "react-resizable-panels",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "scroll-area": {
+        "radix": [
+          {
+            "name": "ScrollAreaPrimitive",
+            "source": "@radix-ui/react-scroll-area",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "select": {
+        "radix": [
+          {
+            "name": "SelectPrimitive",
+            "source": "@radix-ui/react-select",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "separator": {
+        "radix": [
+          {
+            "name": "SeparatorPrimitive",
+            "source": "@radix-ui/react-separator",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "sheet": {
+        "radix": [
+          {
+            "name": "SheetPrimitive",
+            "source": "@radix-ui/react-dialog",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "sidebar": {
+        "radix": [
+          {
+            "name": "Slot",
+            "source": "@radix-ui/react-slot",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "useIsMobile",
+            "source": "@/hooks/use-mobile",
+            "type": "internal-other"
+          },
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "skeleton": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "slider": {
+        "radix": [
+          {
+            "name": "SliderPrimitive",
+            "source": "@radix-ui/react-slider",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "sonner": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": [
+          {
+            "name": "useTheme",
+            "source": "@/hooks/use-theme",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "switch": {
+        "radix": [
+          {
+            "name": "SwitchPrimitives",
+            "source": "@radix-ui/react-switch",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "table": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "tabs": {
+        "radix": [
+          {
+            "name": "TabsPrimitive",
+            "source": "@radix-ui/react-tabs",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "team-selector-chip": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": []
+      },
+      "textarea": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "toast": {
+        "radix": [
+          {
+            "name": "ToastPrimitives",
+            "source": "@radix-ui/react-toast",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "toaster": {
+        "radix": [],
+        "reactHookForm": [],
+        "react": [],
+        "other": [
+          {
+            "name": "useToast",
+            "source": "@/hooks/use-toast",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "toggle-group": {
+        "radix": [
+          {
+            "name": "ToggleGroupPrimitive",
+            "source": "@radix-ui/react-toggle-group",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "toggle": {
+        "radix": [
+          {
+            "name": "TogglePrimitive",
+            "source": "@radix-ui/react-toggle",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      },
+      "tooltip": {
+        "radix": [
+          {
+            "name": "TooltipPrimitive",
+            "source": "@radix-ui/react-tooltip",
+            "type": "radix"
+          }
+        ],
+        "reactHookForm": [],
+        "react": [
+          {
+            "name": "React",
+            "source": "react",
+            "type": "react"
+          }
+        ],
+        "other": [
+          {
+            "name": "cn",
+            "source": "@/lib/utils",
+            "type": "internal-other"
+          }
+        ]
+      }
+    }
+  },
+  "recommendations": {
+    "migration_sequence": [
+      {
+        "order": 1,
+        "depth": 0,
+        "components": [
+          "accordion",
+          "buttonVariants",
+          "alert",
+          "Select",
+          "SelectContent",
+          "SelectItem",
+          "SelectTrigger",
+          "SelectValue",
+          "Tooltip",
+          "TooltipContent",
+          "TooltipProvider",
+          "TooltipTrigger",
+          "aspect-ratio",
+          "avatar",
+          "badge",
+          "breadcrumb",
+          "button",
+          "card",
+          "Button",
+          "chart",
+          "checkbox",
+          "collapsible",
+          "Dialog",
+          "DialogContent",
+          "context-menu",
+          "dialog",
+          "code-reference",
+          "documentation-link",
+          "drawer",
+          "dropdown-menu",
+          "Card",
+          "CardContent",
+          "CardFooter",
+          "CardHeader",
+          "CardTitle",
+          "Input",
+          "Label",
+          "Textarea",
+          "Switch",
+          "FormDescription",
+          "Tabs",
+          "TabsContent",
+          "TabsList",
+          "TabsTrigger",
+          "Alert",
+          "AlertDescription",
+          "Table",
+          "TableBody",
+          "TableCell",
+          "TableHead",
+          "TableHeader",
+          "TableRow",
+          "DropdownMenu",
+          "DropdownMenuContent",
+          "DropdownMenuItem",
+          "DropdownMenuSeparator",
+          "DropdownMenuTrigger",
+          "",
+          "Badge",
+          "CardDescription",
+          "character-counter",
+          "type ButtonProps",
+          "AlertTitle",
+          "field-status-indicator",
+          "ToastAction",
+          "validation-message",
+          "Progress",
+          "visibility-notice",
+          "Calendar",
+          "Popover",
+          "PopoverContent",
+          "PopoverTrigger",
+          "Collapsible",
+          "CollapsibleContent",
+          "CollapsibleTrigger",
+          "Checkbox",
+          "field-group",
+          "form-section",
+          "conditional-field",
+          "framework-icon",
+          "hover-card",
+          "input-otp",
+          "input",
+          "label",
+          "menubar",
+          "hierarchical-navigation",
+          "section-accordion",
+          "navigation-menu",
+          "ButtonProps",
+          "popover",
+          "progress",
+          "radio-group",
+          "resizable",
+          "scroll-area",
+          "select",
+          "separator",
+          "sheet",
+          "Separator",
+          "Sheet",
+          "SheetContent",
+          "Skeleton",
+          "skeleton",
+          "slider",
+          "sonner",
+          "switch",
+          "table",
+          "tabs",
+          "Avatar",
+          "AvatarFallback",
+          "AvatarImage",
+          "textarea",
+          "toast",
+          "Toast",
+          "ToastClose",
+          "ToastDescription",
+          "ToastProvider",
+          "ToastTitle",
+          "ToastViewport",
+          "toggleVariants",
+          "toggle",
+          "tooltip"
+        ],
+        "rationale": "Start with leaf components - they have no internal dependencies"
+      },
+      {
+        "order": 2,
+        "depth": 1,
+        "components": [
+          "alert-dialog",
+          "permission-scope-row",
+          "calendar",
+          "carousel",
+          "command",
+          "environment-variable-form",
+          "environment-variable-import",
+          "environment-variable-table",
+          "environment-breadcrumb",
+          "environment-card",
+          "dangerous-action-button",
+          "enhanced-validation-message",
+          "export-readiness-indicator",
+          "save-button",
+          "toast-error",
+          "validation-summary",
+          "array-field",
+          "date-field",
+          "integer-field",
+          "markdown-text-area",
+          "number-field",
+          "object-field",
+          "same-information-checkbox",
+          "secret-field",
+          "select-field",
+          "text-field",
+          "toggle-field",
+          "url-input",
+          "category-section",
+          "overrideable-field",
+          "plan-restricted-feature",
+          "form",
+          "command-field-group",
+          "framework-preset-selector",
+          "pagination",
+          "path-management-list",
+          "protection-mode-selector",
+          "sidebar",
+          "team-selector-chip",
+          "toaster",
+          "toggle-group"
+        ],
+        "rationale": "Layer 1 - depends only on already-migrated layers"
+      }
+    ],
+    "high_risk_components": [],
+    "isolated_components": [
+      {
+        "component": "accordion",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "alert",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "aspect-ratio",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "avatar",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "badge",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "breadcrumb",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "button",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "card",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "chart",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "checkbox",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "collapsible",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "context-menu",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "dialog",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "code-reference",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "documentation-link",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "drawer",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "dropdown-menu",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "character-counter",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "field-status-indicator",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "validation-message",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "visibility-notice",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "field-group",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "form-section",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "conditional-field",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "framework-icon",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "hover-card",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "input-otp",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "input",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "label",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "menubar",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "hierarchical-navigation",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "section-accordion",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "navigation-menu",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "popover",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "progress",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "radio-group",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "resizable",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "scroll-area",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "select",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "separator",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "sheet",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "skeleton",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "slider",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "sonner",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "switch",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "table",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "tabs",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "textarea",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "toast",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "toggle",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      },
+      {
+        "component": "tooltip",
+        "recommendation": "Can be migrated or removed independently without affecting other components"
+      }
+    ]
+  }
+}
