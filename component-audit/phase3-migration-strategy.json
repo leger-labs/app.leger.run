@@ -1,0 +1,1090 @@
+{
+  "metadata": {
+    "timestamp": "2025-10-23T13:29:02.829Z",
+    "total_components_to_migrate": 49
+  },
+  "migration_batches": {
+    "batch_1_low_risk": {
+      "description": "Start with these - low usage, not in RJSF",
+      "components": [
+        {
+          "component": "checkbox",
+          "priority": "LOW",
+          "usages": 1,
+          "files_affected": 1,
+          "is_rjsf_critical": false,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from checkbox.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 1 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "N/A - not used in RJSF",
+              "verification": "N/A"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/checkbox.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore checkbox.tsx"
+        },
+        {
+          "component": "dialog",
+          "priority": "LOW",
+          "usages": 1,
+          "files_affected": 1,
+          "is_rjsf_critical": false,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from dialog.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 1 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "N/A - not used in RJSF",
+              "verification": "N/A"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/dialog.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore dialog.tsx"
+        },
+        {
+          "component": "popover",
+          "priority": "LOW",
+          "usages": 1,
+          "files_affected": 1,
+          "is_rjsf_critical": false,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from popover.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 1 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "N/A - not used in RJSF",
+              "verification": "N/A"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/popover.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore popover.tsx"
+        },
+        {
+          "component": "progress",
+          "priority": "LOW",
+          "usages": 1,
+          "files_affected": 1,
+          "is_rjsf_critical": false,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from progress.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 1 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "N/A - not used in RJSF",
+              "verification": "N/A"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/progress.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore progress.tsx"
+        },
+        {
+          "component": "sheet",
+          "priority": "LOW",
+          "usages": 1,
+          "files_affected": 1,
+          "is_rjsf_critical": false,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from sheet.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 1 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "N/A - not used in RJSF",
+              "verification": "N/A"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/sheet.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore sheet.tsx"
+        },
+        {
+          "component": "table",
+          "priority": "LOW",
+          "usages": 1,
+          "files_affected": 1,
+          "is_rjsf_critical": false,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from table.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 1 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "N/A - not used in RJSF",
+              "verification": "N/A"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/table.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore table.tsx"
+        },
+        {
+          "component": "tabs",
+          "priority": "LOW",
+          "usages": 1,
+          "files_affected": 1,
+          "is_rjsf_critical": false,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from tabs.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 1 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "N/A - not used in RJSF",
+              "verification": "N/A"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/tabs.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore tabs.tsx"
+        },
+        {
+          "component": "toast",
+          "priority": "LOW",
+          "usages": 1,
+          "files_affected": 1,
+          "is_rjsf_critical": false,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from toast.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 1 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "N/A - not used in RJSF",
+              "verification": "N/A"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/toast.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore toast.tsx"
+        },
+        {
+          "component": "avatar",
+          "priority": "LOW",
+          "usages": 2,
+          "files_affected": 2,
+          "is_rjsf_critical": false,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from avatar.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 2 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "N/A - not used in RJSF",
+              "verification": "N/A"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/avatar.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore avatar.tsx"
+        },
+        {
+          "component": "breadcrumb",
+          "priority": "LOW",
+          "usages": 2,
+          "files_affected": 2,
+          "is_rjsf_critical": false,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from breadcrumb.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 2 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "N/A - not used in RJSF",
+              "verification": "N/A"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/breadcrumb.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore breadcrumb.tsx"
+        },
+        {
+          "component": "collapsible",
+          "priority": "LOW",
+          "usages": 2,
+          "files_affected": 2,
+          "is_rjsf_critical": false,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from collapsible.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 2 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "N/A - not used in RJSF",
+              "verification": "N/A"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/collapsible.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore collapsible.tsx"
+        },
+        {
+          "component": "switch",
+          "priority": "LOW",
+          "usages": 4,
+          "files_affected": 4,
+          "is_rjsf_critical": false,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from switch.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 4 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "N/A - not used in RJSF",
+              "verification": "N/A"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/switch.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore switch.tsx"
+        },
+        {
+          "component": "tooltip",
+          "priority": "LOW",
+          "usages": 4,
+          "files_affected": 4,
+          "is_rjsf_critical": false,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from tooltip.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 4 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "N/A - not used in RJSF",
+              "verification": "N/A"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/tooltip.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore tooltip.tsx"
+        }
+      ],
+      "estimated_effort": "13 × 30min = 6.5h"
+    },
+    "batch_2_medium_risk": {
+      "description": "Medium usage, not in RJSF",
+      "components": [
+        {
+          "component": "select",
+          "priority": "MEDIUM",
+          "usages": 6,
+          "files_affected": 6,
+          "is_rjsf_critical": false,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from select.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 6 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "N/A - not used in RJSF",
+              "verification": "N/A"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/select.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore select.tsx"
+        },
+        {
+          "component": "badge",
+          "priority": "MEDIUM",
+          "usages": 7,
+          "files_affected": 5,
+          "is_rjsf_critical": false,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from badge.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 5 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "N/A - not used in RJSF",
+              "verification": "N/A"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/badge.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore badge.tsx"
+        },
+        {
+          "component": "alert",
+          "priority": "MEDIUM",
+          "usages": 12,
+          "files_affected": 8,
+          "is_rjsf_critical": false,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from alert.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 8 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "N/A - not used in RJSF",
+              "verification": "N/A"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/alert.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore alert.tsx"
+        },
+        {
+          "component": "card",
+          "priority": "MEDIUM",
+          "usages": 20,
+          "files_affected": 16,
+          "is_rjsf_critical": false,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from card.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 16 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "N/A - not used in RJSF",
+              "verification": "N/A"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/card.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore card.tsx"
+        }
+      ],
+      "estimated_effort": "4 × 1h = 4h"
+    },
+    "batch_3_high_usage": {
+      "description": "High usage, not in RJSF - requires careful testing",
+      "components": [],
+      "estimated_effort": "0 × 2h = 0h"
+    },
+    "batch_4_rjsf_critical": {
+      "description": "CRITICAL: Used in RJSF forms - migrate last, test thoroughly",
+      "components": [
+        {
+          "component": "input",
+          "priority": "CRITICAL",
+          "usages": 3,
+          "files_affected": 3,
+          "is_rjsf_critical": true,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from input.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 3 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "Test all forms that use this component - especially validation and submission",
+              "verification": "All forms work identically to before"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/input.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "HIGH: Used in RJSF - form breakage risk",
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore input.tsx"
+        },
+        {
+          "component": "button",
+          "priority": "CRITICAL",
+          "usages": 27,
+          "files_affected": 16,
+          "is_rjsf_critical": true,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from button.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 16 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "Test all forms that use this component - especially validation and submission",
+              "verification": "All forms work identically to before"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/button.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "HIGH: Used in RJSF - form breakage risk",
+            "MEDIUM: High usage count - many files to update",
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore button.tsx"
+        },
+        {
+          "component": "label",
+          "priority": "CRITICAL",
+          "usages": 35,
+          "files_affected": 21,
+          "is_rjsf_critical": true,
+          "rjsf_files": [],
+          "migration_pattern": {
+            "notes": [
+              "No predefined pattern - needs custom migration strategy"
+            ]
+          },
+          "steps": [
+            {
+              "step": 1,
+              "action": "Create style pattern",
+              "description": "Extract styles/variants from label.tsx to @/lib/ui-patterns.ts",
+              "verification": "Pattern is reusable across multiple files"
+            },
+            {
+              "step": 2,
+              "action": "Update first usage file",
+              "description": "Replace component import with direct Radix + pattern",
+              "verification": "File compiles without errors, UI looks identical"
+            },
+            {
+              "step": 3,
+              "action": "Update all usage files",
+              "description": "Apply same transformation to all 21 files",
+              "verification": "All files compile, visual regression tests pass"
+            },
+            {
+              "step": 4,
+              "action": "Test RJSF forms",
+              "description": "Test all forms that use this component - especially validation and submission",
+              "verification": "All forms work identically to before"
+            },
+            {
+              "step": 5,
+              "action": "Delete component file",
+              "description": "Remove src/components/ui/label.tsx",
+              "verification": "Build succeeds, no import errors"
+            }
+          ],
+          "risks": [
+            "HIGH: Used in RJSF - form breakage risk",
+            "MEDIUM: High usage count - many files to update",
+            "TypeScript prop types may differ - check all usages"
+          ],
+          "rollback_plan": "git revert <commit-hash> to restore label.tsx"
+        }
+      ],
+      "estimated_effort": "3 × 3h = 9h"
+    }
+  },
+  "global_migration_steps": [
+    {
+      "phase": "Preparation",
+      "tasks": [
+        "Create @/lib/ui-patterns.ts file",
+        "Set up visual regression testing (Percy/Chromatic)",
+        "Create backup branch",
+        "Document current test coverage"
+      ]
+    },
+    {
+      "phase": "Batch 1 - Low Risk",
+      "tasks": [
+        "Migrate components with ≤5 usages",
+        "Create PR per component or small groups",
+        "Get visual regression baseline",
+        "Merge when tests pass"
+      ]
+    },
+    {
+      "phase": "Batch 2 - Medium Risk",
+      "tasks": [
+        "Migrate components with 6-20 usages",
+        "Run full test suite after each",
+        "Check bundle size impact",
+        "Merge when verified"
+      ]
+    },
+    {
+      "phase": "Batch 3 - High Usage",
+      "tasks": [
+        "Migrate components with >20 usages",
+        "Extra careful with Button, Label",
+        "Run smoke tests on all pages",
+        "Merge with caution"
+      ]
+    },
+    {
+      "phase": "Batch 4 - RJSF Critical",
+      "tasks": [
+        "Test all forms in isolation first",
+        "Migrate Input, Label, Select, etc.",
+        "Test form submission, validation",
+        "Test all custom widgets",
+        "Only merge after ALL forms verified"
+      ]
+    },
+    {
+      "phase": "Cleanup",
+      "tasks": [
+        "Remove all unused component files",
+        "Update documentation",
+        "Remove related imports from package.json if any",
+        "Run final bundle analysis"
+      ]
+    }
+  ],
+  "pre_migration_checklist": [
+    "✓ All tests passing",
+    "✓ Visual regression baseline captured",
+    "✓ Backup branch created",
+    "✓ @/lib/ui-patterns.ts created",
+    "✓ Team notified of migration",
+    "✓ Rollback plan documented"
+  ],
+  "post_migration_validation": [
+    "✓ All TypeScript errors resolved",
+    "✓ All tests passing",
+    "✓ Visual regression tests pass",
+    "✓ All RJSF forms tested manually",
+    "✓ Bundle size reduced",
+    "✓ No console errors",
+    "✓ Accessibility audit passes"
+  ]
+}

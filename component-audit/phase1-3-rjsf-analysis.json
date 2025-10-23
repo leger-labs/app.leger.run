@@ -1,0 +1,652 @@
+{
+  "metadata": {
+    "timestamp": "2025-10-23T13:25:55.571Z",
+    "files_analyzed": 20
+  },
+  "files": [
+    "src/_future/components/config-form-rjsf.tsx",
+    "src/_future/form/SimpleArrayFieldTemplate.tsx",
+    "src/_future/form/SimpleFieldTemplate.tsx",
+    "src/_future/form/SimpleObjectFieldTemplate.tsx",
+    "src/_future/form/custom-fields/OverrideableField.tsx",
+    "src/_future/form/custom-fields/PlanRestrictedField.tsx",
+    "src/_future/form/widgets.tsx",
+    "src/components/config-form.tsx",
+    "src/components/ui/form/fields/array-field.tsx",
+    "src/components/ui/form/fields/date-field.tsx",
+    "src/components/ui/form/fields/integer-field.tsx",
+    "src/components/ui/form/fields/number-field.tsx",
+    "src/components/ui/form/fields/object-field.tsx",
+    "src/components/ui/form/fields/secret-field.tsx",
+    "src/components/ui/form/fields/select-field.tsx",
+    "src/components/ui/form/fields/text-field.tsx",
+    "src/components/ui/form/fields/toggle-field.tsx",
+    "src/components/ui/form/wrappers/conditional-field.tsx",
+    "src/components/ui/form/wrappers/overrideable-field.tsx",
+    "src/schemas/generated-schemas.ts"
+  ],
+  "widgets": [
+    {
+      "file": "src/_future/form/widgets.tsx",
+      "objectName": "widgets",
+      "widgetKey": "BaseInput",
+      "widgetValue": "TextWidget",
+      "context": "const widgets = {\n  // Basic widgets\n  TextWidget,\n  PasswordWidget,\n  CheckboxWidget,\n  SelectWidget,\n  TextareaWidget,\n  URLWidget,\n  HiddenWidget,\n  \n  // Alternative names for compatibility\n  BaseInput: TextWidget,\n  password: PasswordWidget,\n  checkbox: CheckboxWidget,\n  select: SelectWidget,\n  textarea: TextareaWidget,\n  url: URLWidget,\n  hidden: HiddenWidget,\n  NumberWidget: TextWidget,\n  IntegerWidget: TextWidget,\n  // ArrayWidget will be handled by ArrayFieldTemplate\n}"
+    },
+    {
+      "file": "src/_future/form/widgets.tsx",
+      "objectName": "widgets",
+      "widgetKey": "password",
+      "widgetValue": "PasswordWidget",
+      "context": "const widgets = {\n  // Basic widgets\n  TextWidget,\n  PasswordWidget,\n  CheckboxWidget,\n  SelectWidget,\n  TextareaWidget,\n  URLWidget,\n  HiddenWidget,\n  \n  // Alternative names for compatibility\n  BaseInput: TextWidget,\n  password: PasswordWidget,\n  checkbox: CheckboxWidget,\n  select: SelectWidget,\n  textarea: TextareaWidget,\n  url: URLWidget,\n  hidden: HiddenWidget,\n  NumberWidget: TextWidget,\n  IntegerWidget: TextWidget,\n  // ArrayWidget will be handled by ArrayFieldTemplate\n}"
+    },
+    {
+      "file": "src/_future/form/widgets.tsx",
+      "objectName": "widgets",
+      "widgetKey": "checkbox",
+      "widgetValue": "CheckboxWidget",
+      "context": "const widgets = {\n  // Basic widgets\n  TextWidget,\n  PasswordWidget,\n  CheckboxWidget,\n  SelectWidget,\n  TextareaWidget,\n  URLWidget,\n  HiddenWidget,\n  \n  // Alternative names for compatibility\n  BaseInput: TextWidget,\n  password: PasswordWidget,\n  checkbox: CheckboxWidget,\n  select: SelectWidget,\n  textarea: TextareaWidget,\n  url: URLWidget,\n  hidden: HiddenWidget,\n  NumberWidget: TextWidget,\n  IntegerWidget: TextWidget,\n  // ArrayWidget will be handled by ArrayFieldTemplate\n}"
+    },
+    {
+      "file": "src/_future/form/widgets.tsx",
+      "objectName": "widgets",
+      "widgetKey": "select",
+      "widgetValue": "SelectWidget",
+      "context": "const widgets = {\n  // Basic widgets\n  TextWidget,\n  PasswordWidget,\n  CheckboxWidget,\n  SelectWidget,\n  TextareaWidget,\n  URLWidget,\n  HiddenWidget,\n  \n  // Alternative names for compatibility\n  BaseInput: TextWidget,\n  password: PasswordWidget,\n  checkbox: CheckboxWidget,\n  select: SelectWidget,\n  textarea: TextareaWidget,\n  url: URLWidget,\n  hidden: HiddenWidget,\n  NumberWidget: TextWidget,\n  IntegerWidget: TextWidget,\n  // ArrayWidget will be handled by ArrayFieldTemplate\n}"
+    },
+    {
+      "file": "src/_future/form/widgets.tsx",
+      "objectName": "widgets",
+      "widgetKey": "textarea",
+      "widgetValue": "TextareaWidget",
+      "context": "const widgets = {\n  // Basic widgets\n  TextWidget,\n  PasswordWidget,\n  CheckboxWidget,\n  SelectWidget,\n  TextareaWidget,\n  URLWidget,\n  HiddenWidget,\n  \n  // Alternative names for compatibility\n  BaseInput: TextWidget,\n  password: PasswordWidget,\n  checkbox: CheckboxWidget,\n  select: SelectWidget,\n  textarea: TextareaWidget,\n  url: URLWidget,\n  hidden: HiddenWidget,\n  NumberWidget: TextWidget,\n  IntegerWidget: TextWidget,\n  // ArrayWidget will be handled by ArrayFieldTemplate\n}"
+    },
+    {
+      "file": "src/_future/form/widgets.tsx",
+      "objectName": "widgets",
+      "widgetKey": "url",
+      "widgetValue": "URLWidget",
+      "context": "const widgets = {\n  // Basic widgets\n  TextWidget,\n  PasswordWidget,\n  CheckboxWidget,\n  SelectWidget,\n  TextareaWidget,\n  URLWidget,\n  HiddenWidget,\n  \n  // Alternative names for compatibility\n  BaseInput: TextWidget,\n  password: PasswordWidget,\n  checkbox: CheckboxWidget,\n  select: SelectWidget,\n  textarea: TextareaWidget,\n  url: URLWidget,\n  hidden: HiddenWidget,\n  NumberWidget: TextWidget,\n  IntegerWidget: TextWidget,\n  // ArrayWidget will be handled by ArrayFieldTemplate\n}"
+    },
+    {
+      "file": "src/_future/form/widgets.tsx",
+      "objectName": "widgets",
+      "widgetKey": "hidden",
+      "widgetValue": "HiddenWidget",
+      "context": "const widgets = {\n  // Basic widgets\n  TextWidget,\n  PasswordWidget,\n  CheckboxWidget,\n  SelectWidget,\n  TextareaWidget,\n  URLWidget,\n  HiddenWidget,\n  \n  // Alternative names for compatibility\n  BaseInput: TextWidget,\n  password: PasswordWidget,\n  checkbox: CheckboxWidget,\n  select: SelectWidget,\n  textarea: TextareaWidget,\n  url: URLWidget,\n  hidden: HiddenWidget,\n  NumberWidget: TextWidget,\n  IntegerWidget: TextWidget,\n  // ArrayWidget will be handled by ArrayFieldTemplate\n}"
+    },
+    {
+      "file": "src/_future/form/widgets.tsx",
+      "objectName": "widgets",
+      "widgetKey": "NumberWidget",
+      "widgetValue": "TextWidget",
+      "context": "const widgets = {\n  // Basic widgets\n  TextWidget,\n  PasswordWidget,\n  CheckboxWidget,\n  SelectWidget,\n  TextareaWidget,\n  URLWidget,\n  HiddenWidget,\n  \n  // Alternative names for compatibility\n  BaseInput: TextWidget,\n  password: PasswordWidget,\n  checkbox: CheckboxWidget,\n  select: SelectWidget,\n  textarea: TextareaWidget,\n  url: URLWidget,\n  hidden: HiddenWidget,\n  NumberWidget: TextWidget,\n  IntegerWidget: TextWidget,\n  // ArrayWidget will be handled by ArrayFieldTemplate\n}"
+    },
+    {
+      "file": "src/_future/form/widgets.tsx",
+      "objectName": "widgets",
+      "widgetKey": "IntegerWidget",
+      "widgetValue": "TextWidget",
+      "context": "const widgets = {\n  // Basic widgets\n  TextWidget,\n  PasswordWidget,\n  CheckboxWidget,\n  SelectWidget,\n  TextareaWidget,\n  URLWidget,\n  HiddenWidget,\n  \n  // Alternative names for compatibility\n  BaseInput: TextWidget,\n  password: PasswordWidget,\n  checkbox: CheckboxWidget,\n  select: SelectWidget,\n  textarea: TextareaWidget,\n  url: URLWidget,\n  hidden: HiddenWidget,\n  NumberWidget: TextWidget,\n  IntegerWidget: TextWidget,\n  // ArrayWidget will be handled by ArrayFieldTemplate\n}"
+    },
+    {
+      "file": "src/_future/form/widgets.tsx",
+      "componentName": "TextWidget",
+      "type": "component",
+      "context": "function TextWidget("
+    },
+    {
+      "file": "src/_future/form/widgets.tsx",
+      "componentName": "PasswordWidget",
+      "type": "component",
+      "context": "function PasswordWidget("
+    },
+    {
+      "file": "src/_future/form/widgets.tsx",
+      "componentName": "CheckboxWidget",
+      "type": "component",
+      "context": "function CheckboxWidget("
+    },
+    {
+      "file": "src/_future/form/widgets.tsx",
+      "componentName": "SelectWidget",
+      "type": "component",
+      "context": "function SelectWidget("
+    },
+    {
+      "file": "src/_future/form/widgets.tsx",
+      "componentName": "URLWidget",
+      "type": "component",
+      "context": "function URLWidget("
+    },
+    {
+      "file": "src/_future/form/widgets.tsx",
+      "componentName": "TextareaWidget",
+      "type": "component",
+      "context": "function TextareaWidget("
+    },
+    {
+      "file": "src/_future/form/widgets.tsx",
+      "componentName": "HiddenWidget",
+      "type": "component",
+      "context": "function HiddenWidget("
+    }
+  ],
+  "fields": [
+    {
+      "file": "src/_future/form/custom-fields/OverrideableField.tsx",
+      "componentName": "DefaultField",
+      "type": "component",
+      "context": "const DefaultField ="
+    },
+    {
+      "file": "src/_future/form/custom-fields/PlanRestrictedField.tsx",
+      "componentName": "PlanRestrictedField",
+      "type": "component",
+      "context": "function PlanRestrictedField("
+    },
+    {
+      "file": "src/_future/form/custom-fields/PlanRestrictedField.tsx",
+      "componentName": "DefaultField",
+      "type": "component",
+      "context": "const DefaultField ="
+    },
+    {
+      "file": "src/components/config-form.tsx",
+      "componentName": "getComponentForField",
+      "type": "component",
+      "context": "const getComponentForField ="
+    },
+    {
+      "file": "src/components/config-form.tsx",
+      "componentName": "renderField",
+      "type": "component",
+      "context": "const renderField ="
+    },
+    {
+      "file": "src/components/ui/form/fields/array-field.tsx",
+      "componentName": "ArrayField",
+      "type": "component",
+      "context": "export function ArrayField("
+    },
+    {
+      "file": "src/components/ui/form/fields/date-field.tsx",
+      "componentName": "DateField",
+      "type": "component",
+      "context": "export function DateField("
+    },
+    {
+      "file": "src/components/ui/form/fields/integer-field.tsx",
+      "componentName": "IntegerField",
+      "type": "component",
+      "context": "export function IntegerField("
+    },
+    {
+      "file": "src/components/ui/form/fields/number-field.tsx",
+      "componentName": "NumberField",
+      "type": "component",
+      "context": "export function NumberField("
+    },
+    {
+      "file": "src/components/ui/form/fields/object-field.tsx",
+      "componentName": "ObjectField",
+      "type": "component",
+      "context": "export function ObjectField("
+    },
+    {
+      "file": "src/components/ui/form/fields/secret-field.tsx",
+      "componentName": "SecretField",
+      "type": "component",
+      "context": "export function SecretField("
+    },
+    {
+      "file": "src/components/ui/form/fields/select-field.tsx",
+      "componentName": "SelectField",
+      "type": "component",
+      "context": "export function SelectField("
+    },
+    {
+      "file": "src/components/ui/form/fields/text-field.tsx",
+      "componentName": "TextField",
+      "type": "component",
+      "context": "export function TextField("
+    },
+    {
+      "file": "src/components/ui/form/fields/toggle-field.tsx",
+      "componentName": "ToggleField",
+      "type": "component",
+      "context": "export function ToggleField("
+    },
+    {
+      "file": "src/components/ui/form/wrappers/conditional-field.tsx",
+      "componentName": "ConditionalField",
+      "type": "component",
+      "context": "export function ConditionalField("
+    },
+    {
+      "file": "src/components/ui/form/wrappers/overrideable-field.tsx",
+      "componentName": "OverrideableField",
+      "type": "component",
+      "context": "export function OverrideableField("
+    }
+  ],
+  "templates": [
+    {
+      "file": "src/_future/components/config-form-rjsf.tsx",
+      "name": "\n    FieldTemplate: SimpleFieldTemplate,\n    ObjectFieldTemplate: SimpleObjectFieldTemplate,\n    ArrayFieldTemplate: SimpleArrayFieldTemplate,\n  ",
+      "context": "templates = {\n    FieldTemplate: SimpleFieldTemplate,\n    ObjectFieldTemplate: SimpleObjectFieldTemplate,\n    ArrayFieldTemplate: SimpleArrayFieldTemplate,\n  }"
+    },
+    {
+      "file": "src/_future/components/config-form-rjsf.tsx",
+      "name": "templates",
+      "context": "templates={templates}"
+    }
+  ],
+  "ui_components_in_rjsf": [
+    {
+      "component": "Card",
+      "source": "@/components/ui/card",
+      "usedInFiles": [
+        "src/_future/components/config-form-rjsf.tsx",
+        "src/components/config-form.tsx"
+      ]
+    },
+    {
+      "component": "CardContent",
+      "source": "@/components/ui/card",
+      "usedInFiles": [
+        "src/_future/components/config-form-rjsf.tsx",
+        "src/components/config-form.tsx"
+      ]
+    },
+    {
+      "component": "CardHeader",
+      "source": "@/components/ui/card",
+      "usedInFiles": [
+        "src/_future/components/config-form-rjsf.tsx",
+        "src/components/config-form.tsx"
+      ]
+    },
+    {
+      "component": "CardTitle",
+      "source": "@/components/ui/card",
+      "usedInFiles": [
+        "src/_future/components/config-form-rjsf.tsx",
+        "src/components/config-form.tsx"
+      ]
+    },
+    {
+      "component": "Alert",
+      "source": "@/components/ui/alert",
+      "usedInFiles": [
+        "src/_future/components/config-form-rjsf.tsx"
+      ]
+    },
+    {
+      "component": "AlertDescription",
+      "source": "@/components/ui/alert",
+      "usedInFiles": [
+        "src/_future/components/config-form-rjsf.tsx"
+      ]
+    },
+    {
+      "component": "Button",
+      "source": "@/components/ui/button",
+      "usedInFiles": [
+        "src/_future/components/config-form-rjsf.tsx",
+        "src/_future/form/SimpleArrayFieldTemplate.tsx",
+        "src/components/ui/form/fields/array-field.tsx",
+        "src/components/ui/form/fields/date-field.tsx",
+        "src/components/ui/form/fields/object-field.tsx",
+        "src/components/ui/form/fields/secret-field.tsx"
+      ]
+    },
+    {
+      "component": "OverrideableField",
+      "source": "@/components/ui/form/wrappers/overrideable-field",
+      "usedInFiles": [
+        "src/_future/form/custom-fields/OverrideableField.tsx"
+      ]
+    },
+    {
+      "component": "PlanRestrictedFeature",
+      "source": "@/components/ui/form/wrappers/plan-restricted-feature",
+      "usedInFiles": [
+        "src/_future/form/custom-fields/PlanRestrictedField.tsx"
+      ]
+    },
+    {
+      "component": "TextField",
+      "source": "@/components/ui/form/fields/text-field",
+      "usedInFiles": [
+        "src/_future/form/widgets.tsx",
+        "src/components/config-form.tsx"
+      ]
+    },
+    {
+      "component": "SecretField",
+      "source": "@/components/ui/form/fields/secret-field",
+      "usedInFiles": [
+        "src/_future/form/widgets.tsx",
+        "src/components/config-form.tsx"
+      ]
+    },
+    {
+      "component": "ToggleField",
+      "source": "@/components/ui/form/fields/toggle-field",
+      "usedInFiles": [
+        "src/_future/form/widgets.tsx",
+        "src/components/config-form.tsx"
+      ]
+    },
+    {
+      "component": "SelectField",
+      "source": "@/components/ui/form/fields/select-field",
+      "usedInFiles": [
+        "src/_future/form/widgets.tsx",
+        "src/components/config-form.tsx"
+      ]
+    },
+    {
+      "component": "URLInput",
+      "source": "@/components/ui/form/fields/url-input",
+      "usedInFiles": [
+        "src/_future/form/widgets.tsx",
+        "src/components/config-form.tsx"
+      ]
+    },
+    {
+      "component": "MarkdownTextArea",
+      "source": "@/components/ui/form/fields/markdown-text-area",
+      "usedInFiles": [
+        "src/_future/form/widgets.tsx"
+      ]
+    },
+    {
+      "component": "Collapsible",
+      "source": "@/components/ui/collapsible",
+      "usedInFiles": [
+        "src/components/config-form.tsx",
+        "src/components/ui/form/fields/object-field.tsx"
+      ]
+    },
+    {
+      "component": "CollapsibleContent",
+      "source": "@/components/ui/collapsible",
+      "usedInFiles": [
+        "src/components/config-form.tsx",
+        "src/components/ui/form/fields/object-field.tsx"
+      ]
+    },
+    {
+      "component": "CollapsibleTrigger",
+      "source": "@/components/ui/collapsible",
+      "usedInFiles": [
+        "src/components/config-form.tsx",
+        "src/components/ui/form/fields/object-field.tsx"
+      ]
+    },
+    {
+      "component": "Textarea",
+      "source": "@/components/ui/textarea",
+      "usedInFiles": [
+        "src/components/config-form.tsx"
+      ]
+    },
+    {
+      "component": "Input",
+      "source": "@/components/ui/input",
+      "usedInFiles": [
+        "src/components/ui/form/fields/array-field.tsx",
+        "src/components/ui/form/fields/integer-field.tsx",
+        "src/components/ui/form/fields/number-field.tsx",
+        "src/components/ui/form/fields/object-field.tsx",
+        "src/components/ui/form/fields/secret-field.tsx",
+        "src/components/ui/form/fields/text-field.tsx",
+        "src/components/ui/form/wrappers/overrideable-field.tsx"
+      ]
+    },
+    {
+      "component": "Label",
+      "source": "@/components/ui/label",
+      "usedInFiles": [
+        "src/components/ui/form/fields/array-field.tsx",
+        "src/components/ui/form/fields/date-field.tsx",
+        "src/components/ui/form/fields/integer-field.tsx",
+        "src/components/ui/form/fields/number-field.tsx",
+        "src/components/ui/form/fields/object-field.tsx",
+        "src/components/ui/form/fields/secret-field.tsx",
+        "src/components/ui/form/fields/select-field.tsx",
+        "src/components/ui/form/fields/text-field.tsx",
+        "src/components/ui/form/fields/toggle-field.tsx",
+        "src/components/ui/form/wrappers/overrideable-field.tsx"
+      ]
+    },
+    {
+      "component": "FormDescription",
+      "source": "@/components/ui/form",
+      "usedInFiles": [
+        "src/components/ui/form/fields/array-field.tsx",
+        "src/components/ui/form/fields/date-field.tsx",
+        "src/components/ui/form/fields/integer-field.tsx",
+        "src/components/ui/form/fields/number-field.tsx",
+        "src/components/ui/form/fields/object-field.tsx",
+        "src/components/ui/form/fields/secret-field.tsx",
+        "src/components/ui/form/fields/select-field.tsx",
+        "src/components/ui/form/fields/text-field.tsx",
+        "src/components/ui/form/fields/toggle-field.tsx",
+        "src/components/ui/form/wrappers/overrideable-field.tsx"
+      ]
+    },
+    {
+      "component": "Calendar",
+      "source": "@/components/ui/calendar",
+      "usedInFiles": [
+        "src/components/ui/form/fields/date-field.tsx"
+      ]
+    },
+    {
+      "component": "Popover",
+      "source": "@/components/ui/popover",
+      "usedInFiles": [
+        "src/components/ui/form/fields/date-field.tsx"
+      ]
+    },
+    {
+      "component": "PopoverContent",
+      "source": "@/components/ui/popover",
+      "usedInFiles": [
+        "src/components/ui/form/fields/date-field.tsx"
+      ]
+    },
+    {
+      "component": "PopoverTrigger",
+      "source": "@/components/ui/popover",
+      "usedInFiles": [
+        "src/components/ui/form/fields/date-field.tsx"
+      ]
+    },
+    {
+      "component": "Select",
+      "source": "@/components/ui/select",
+      "usedInFiles": [
+        "src/components/ui/form/fields/object-field.tsx",
+        "src/components/ui/form/fields/select-field.tsx"
+      ]
+    },
+    {
+      "component": "SelectContent",
+      "source": "@/components/ui/select",
+      "usedInFiles": [
+        "src/components/ui/form/fields/object-field.tsx",
+        "src/components/ui/form/fields/select-field.tsx"
+      ]
+    },
+    {
+      "component": "SelectItem",
+      "source": "@/components/ui/select",
+      "usedInFiles": [
+        "src/components/ui/form/fields/object-field.tsx",
+        "src/components/ui/form/fields/select-field.tsx"
+      ]
+    },
+    {
+      "component": "SelectTrigger",
+      "source": "@/components/ui/select",
+      "usedInFiles": [
+        "src/components/ui/form/fields/object-field.tsx",
+        "src/components/ui/form/fields/select-field.tsx"
+      ]
+    },
+    {
+      "component": "SelectValue",
+      "source": "@/components/ui/select",
+      "usedInFiles": [
+        "src/components/ui/form/fields/object-field.tsx",
+        "src/components/ui/form/fields/select-field.tsx"
+      ]
+    },
+    {
+      "component": "Switch",
+      "source": "@/components/ui/switch",
+      "usedInFiles": [
+        "src/components/ui/form/fields/toggle-field.tsx",
+        "src/components/ui/form/wrappers/overrideable-field.tsx"
+      ]
+    }
+  ],
+  "ui_schemas": [
+    {
+      "file": "src/_future/components/config-form-rjsf.tsx",
+      "context": "\n            uiSchema={uiSchema}\n            formData={formData}\n            onChange={handleChange}\n            validator={validator}\n            widgets={widgets}\n            templates={templates}\n "
+    },
+    {
+      "file": "src/schemas/generated-schemas.ts",
+      "context": "const uiSchema = {\n  'ui:order': [],\n};\n\nexport const schemaMetadata = {\n  version: '0.2.0-placeholder',\n  fields: [],\n  categoryCount: 0,\n  fieldCount: 0,\n  generatedAt: new Date().toISOString(),\n};\n"
+    }
+  ],
+  "validation_patterns": [
+    {
+      "file": "src/_future/components/config-form-rjsf.tsx",
+      "pattern": "liveValidate"
+    }
+  ],
+  "summary": {
+    "total_rjsf_files": 20,
+    "total_widgets": 16,
+    "total_fields": 16,
+    "total_templates": 2,
+    "unique_ui_components": 32,
+    "ui_schemas_count": 2,
+    "validation_patterns_count": 1
+  },
+  "recommendations": {
+    "critical_components": [
+      {
+        "component": "Button",
+        "source": "@/components/ui/button",
+        "files": [
+          "src/_future/components/config-form-rjsf.tsx",
+          "src/_future/form/SimpleArrayFieldTemplate.tsx",
+          "src/components/ui/form/fields/array-field.tsx",
+          "src/components/ui/form/fields/date-field.tsx",
+          "src/components/ui/form/fields/object-field.tsx",
+          "src/components/ui/form/fields/secret-field.tsx"
+        ],
+        "recommendation": "This component is heavily used in RJSF contexts. Migration requires careful testing of all forms."
+      },
+      {
+        "component": "Input",
+        "source": "@/components/ui/input",
+        "files": [
+          "src/components/ui/form/fields/array-field.tsx",
+          "src/components/ui/form/fields/integer-field.tsx",
+          "src/components/ui/form/fields/number-field.tsx",
+          "src/components/ui/form/fields/object-field.tsx",
+          "src/components/ui/form/fields/secret-field.tsx",
+          "src/components/ui/form/fields/text-field.tsx",
+          "src/components/ui/form/wrappers/overrideable-field.tsx"
+        ],
+        "recommendation": "This component is heavily used in RJSF contexts. Migration requires careful testing of all forms."
+      },
+      {
+        "component": "Label",
+        "source": "@/components/ui/label",
+        "files": [
+          "src/components/ui/form/fields/array-field.tsx",
+          "src/components/ui/form/fields/date-field.tsx",
+          "src/components/ui/form/fields/integer-field.tsx",
+          "src/components/ui/form/fields/number-field.tsx",
+          "src/components/ui/form/fields/object-field.tsx",
+          "src/components/ui/form/fields/secret-field.tsx",
+          "src/components/ui/form/fields/select-field.tsx",
+          "src/components/ui/form/fields/text-field.tsx",
+          "src/components/ui/form/fields/toggle-field.tsx",
+          "src/components/ui/form/wrappers/overrideable-field.tsx"
+        ],
+        "recommendation": "This component is heavily used in RJSF contexts. Migration requires careful testing of all forms."
+      },
+      {
+        "component": "FormDescription",
+        "source": "@/components/ui/form",
+        "files": [
+          "src/components/ui/form/fields/array-field.tsx",
+          "src/components/ui/form/fields/date-field.tsx",
+          "src/components/ui/form/fields/integer-field.tsx",
+          "src/components/ui/form/fields/number-field.tsx",
+          "src/components/ui/form/fields/object-field.tsx",
+          "src/components/ui/form/fields/secret-field.tsx",
+          "src/components/ui/form/fields/select-field.tsx",
+          "src/components/ui/form/fields/text-field.tsx",
+          "src/components/ui/form/fields/toggle-field.tsx",
+          "src/components/ui/form/wrappers/overrideable-field.tsx"
+        ],
+        "recommendation": "This component is heavily used in RJSF contexts. Migration requires careful testing of all forms."
+      }
+    ],
+    "widget_migration_checklist": [
+      {
+        "task": "Review all custom widgets",
+        "count": 16,
+        "files": [
+          "src/_future/form/widgets.tsx"
+        ]
+      },
+      {
+        "task": "Review all custom fields",
+        "count": 16,
+        "files": [
+          "src/_future/form/custom-fields/OverrideableField.tsx",
+          "src/_future/form/custom-fields/PlanRestrictedField.tsx",
+          "src/components/config-form.tsx",
+          "src/components/ui/form/fields/array-field.tsx",
+          "src/components/ui/form/fields/date-field.tsx",
+          "src/components/ui/form/fields/integer-field.tsx",
+          "src/components/ui/form/fields/number-field.tsx",
+          "src/components/ui/form/fields/object-field.tsx",
+          "src/components/ui/form/fields/secret-field.tsx",
+          "src/components/ui/form/fields/select-field.tsx",
+          "src/components/ui/form/fields/text-field.tsx",
+          "src/components/ui/form/fields/toggle-field.tsx",
+          "src/components/ui/form/wrappers/conditional-field.tsx",
+          "src/components/ui/form/wrappers/overrideable-field.tsx"
+        ]
+      },
+      {
+        "task": "Review all templates",
+        "count": 2,
+        "files": [
+          "src/_future/components/config-form-rjsf.tsx"
+        ]
+      }
+    ],
+    "migration_priority": [
+      "Test all RJSF forms in isolated environment",
+      "Update custom widgets to use direct Radix components",
+      "Update custom fields to use direct Radix components",
+      "Update templates to use direct Radix components",
+      "Re-test all forms after each component migration",
+      "Validate form submission and validation still work"
+    ]
+  }
+}
