@@ -38,7 +38,8 @@ mode = "smart"
 
 # Custom domain routing
 routes = [
-  { pattern = "app.leger.run/*", zone_name = "leger.run" }
+  { pattern = "app.leger.run/*", zone_name = "leger.run" },
+  { pattern = "api.leger.run/*", zone_name = "leger.run" }
 ]
 
 # Secrets (set with wrangler secret put)
