@@ -275,7 +275,6 @@ function generatePropertyUiSchema(propName, propSchema, context = {}) {
  * Recursively process schema to generate uiSchema
  */
 function processSchema(schema, path = [], parentCategory) {
-function processSchema(schema, path = []) {
   if (path.includes('secrets')) {
     return {};
   }
@@ -287,15 +286,14 @@ function processSchema(schema, path = []) {
     const propUiSchemas = {};
 
     for (const [propName, propSchema] of Object.entries(schema.properties)) {
-      const category = propSchema['x-category'] || parentCategory;
-      const propUiSchema = generatePropertyUiSchema(propName, propSchema, {
-        category
-      });
       if (propName === 'secrets') {
         continue;
       }
 
-      const propUiSchema = generatePropertyUiSchema(propName, propSchema);
+      const category = propSchema['x-category'] || parentCategory;
+      const propUiSchema = generatePropertyUiSchema(propName, propSchema, {
+        category
+      });
 
       if (propSchema.type === 'object' && propSchema.properties) {
         // Recursively process nested objects
@@ -304,8 +302,12 @@ function processSchema(schema, path = []) {
           [...path, propName],
           category
         );
+        const combinedUiSchema = { ...propUiSchema };
         if (Object.keys(nestedUiSchema).length > 0) {
-          propUiSchemas[propName] = nestedUiSchema;
+          Object.assign(combinedUiSchema, nestedUiSchema);
+        }
+        if (Object.keys(combinedUiSchema).length > 0) {
+          propUiSchemas[propName] = combinedUiSchema;
         }
       } else if (propUiSchema) {
         propUiSchemas[propName] = propUiSchema;
