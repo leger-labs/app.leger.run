@@ -15,6 +15,10 @@ import type {
   ReleasesListResponse,
   CreateReleaseInput,
   UpdateReleaseInput,
+  ConfigData,
+  ConfigurationRecord,
+  DeploymentRecord,
+  DeploymentStatusResponse,
 } from '@/types';
 
 class APIClient {
@@ -212,6 +216,46 @@ class APIClient {
     await this.request<void>(`/releases/${id}`, {
       method: 'DELETE',
     });
+  }
+
+  /**
+   * Save configuration for a release
+   */
+  async saveConfiguration(
+    releaseId: string,
+    configData: ConfigData,
+    schemaVersion: string = '0.2.0'
+  ): Promise<ConfigurationRecord> {
+    return this.request<ConfigurationRecord>(
+      `/releases/${releaseId}/configuration`,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          config_data: configData,
+          schema_version: schemaVersion,
+        }),
+      }
+    );
+  }
+
+  /**
+   * Deploy a release (render templates and upload to R2)
+   */
+  async deployRelease(releaseId: string): Promise<DeploymentRecord> {
+    return this.request<DeploymentRecord>(`/releases/${releaseId}/deploy`, {
+      method: 'POST',
+    });
+  }
+
+  /**
+   * Get deployment status for a release
+   */
+  async getDeploymentStatus(
+    releaseId: string
+  ): Promise<DeploymentStatusResponse> {
+    return this.request<DeploymentStatusResponse>(
+      `/releases/${releaseId}/deployment`
+    );
   }
 }
 
