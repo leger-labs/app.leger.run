@@ -5,7 +5,7 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import { Loader2, Copy, Check } from 'lucide-react';
+import { Loader2, Copy, Check, Upload, ExternalLink, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { PageHeader } from '@/components/layout/PageHeader';
@@ -14,8 +14,9 @@ import { TextField } from '@/components/ui/form/fields/text-field';
 import { URLInput } from '@/components/ui/form/fields/url-input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -29,6 +30,7 @@ import { apiClient } from '@/lib/api-client';
 import { CategoryBasedReleaseForm } from '@/components/releases/CategoryBasedReleaseForm';
 import { getReleaseSchemaBundle } from '@/lib/schema-loader';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import type { DeploymentRecord } from '@/types';
 
 export function ReleaseFormPage() {
   const { id } = useParams();
@@ -53,6 +55,11 @@ export function ReleaseFormPage() {
   const [configData, setConfigData] = useState<Record<string, unknown>>({});
   const [isConfigSaving, setIsConfigSaving] = useState(false);
   const [isConfigDirty, setIsConfigDirty] = useState(false);
+
+  // Deployment state
+  const [isDeploying, setIsDeploying] = useState(false);
+  const [deployment, setDeployment] = useState<DeploymentRecord | null>(null);
+  const [deployError, setDeployError] = useState<string | null>(null);
 
   const releaseSchemaBundle = useMemo(() => getReleaseSchemaBundle(), []);
 
@@ -201,6 +208,80 @@ export function ReleaseFormPage() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  // Deployment handlers
+  const handleDeploy = async () => {
+    if (!id) {
+      toast.error('Please save the release first before deploying');
+      return;
+    }
+
+    setIsDeploying(true);
+    setDeployError(null);
+
+    try {
+      const deploymentRecord = await apiClient.deployRelease(id);
+      setDeployment(deploymentRecord);
+      toast.success('Deployment started');
+
+      // Start polling for status
+      pollDeploymentStatus();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Failed to start deployment';
+      setDeployError(message);
+      setIsDeploying(false);
+    }
+  };
+
+  const pollDeploymentStatus = async () => {
+    if (!id) return;
+
+    const pollInterval = setInterval(async () => {
+      try {
+        const status = await apiClient.getDeploymentStatus(id);
+
+        if (status.deployment) {
+          setDeployment(status.deployment);
+
+          if (status.deployment.status === 'ready') {
+            clearInterval(pollInterval);
+            setIsDeploying(false);
+            toast.success('Deployment complete!');
+          } else if (status.deployment.status === 'failed') {
+            clearInterval(pollInterval);
+            setIsDeploying(false);
+            setDeployError(status.deployment.error_message || 'Deployment failed');
+            toast.error('Deployment failed');
+          }
+        }
+      } catch (error) {
+        clearInterval(pollInterval);
+        setIsDeploying(false);
+        const message = error instanceof Error ? error.message : 'Failed to check deployment status';
+        setDeployError(message);
+      }
+    }, 2000); // Poll every 2 seconds
+
+    // Clean up interval on component unmount
+    return () => clearInterval(pollInterval);
+  };
+
+  // Fetch deployment status on mount (if editing)
+  useEffect(() => {
+    if (!isNew && id) {
+      const fetchDeploymentStatus = async () => {
+        try {
+          const status = await apiClient.getDeploymentStatus(id);
+          if (status.deployment) {
+            setDeployment(status.deployment);
+          }
+        } catch (error) {
+          console.error('Failed to fetch deployment status:', error);
+        }
+      };
+      fetchDeploymentStatus();
+    }
+  }, [isNew, id]);
+
   if (isLoading) {
     return (
       <PageLayout>
@@ -323,6 +404,97 @@ export function ReleaseFormPage() {
           />
         </CardContent>
       </Card>
+
+      {!isNew && id && (
+        <Card>
+          <CardHeader>
+            <CardTitle>Deploy to R2</CardTitle>
+            <CardDescription>
+              Render templates and upload to Cloudflare R2 for deployment
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex items-center gap-4">
+              <Button
+                onClick={handleDeploy}
+                disabled={isDeploying}
+                className="w-full sm:w-auto"
+              >
+                {isDeploying ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Deploying...
+                  </>
+                ) : (
+                  <>
+                    <Upload className="mr-2 h-4 w-4" />
+                    Deploy to R2
+                  </>
+                )}
+              </Button>
+
+              {deployment && (
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground">Status:</span>
+                  {deployment.status === 'rendering' && (
+                    <Badge variant="secondary">
+                      <Loader2 className="mr-1 h-3 w-3 animate-spin" />
+                      Rendering
+                    </Badge>
+                  )}
+                  {deployment.status === 'uploading' && (
+                    <Badge variant="secondary">
+                      <Loader2 className="mr-1 h-3 w-3 animate-spin" />
+                      Uploading
+                    </Badge>
+                  )}
+                  {deployment.status === 'ready' && (
+                    <Badge variant="default" className="bg-green-500">
+                      <Check className="mr-1 h-3 w-3" />
+                      Ready
+                    </Badge>
+                  )}
+                  {deployment.status === 'failed' && (
+                    <Badge variant="destructive">
+                      <AlertCircle className="mr-1 h-3 w-3" />
+                      Failed
+                    </Badge>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {deployError && (
+              <Alert variant="destructive">
+                <AlertCircle className="h-4 w-4" />
+                <AlertTitle>Deployment Failed</AlertTitle>
+                <AlertDescription>{deployError}</AlertDescription>
+              </Alert>
+            )}
+
+            {deployment?.status === 'ready' && deployment.manifest_url && (
+              <Alert>
+                <AlertTitle>Deployment Complete</AlertTitle>
+                <AlertDescription className="space-y-2">
+                  <p>Your deployment is ready at:</p>
+                  <a
+                    href={deployment.manifest_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-primary hover:underline font-mono text-sm"
+                  >
+                    {deployment.manifest_url}
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Use the Leger CLI to pull and install this deployment
+                  </p>
+                </AlertDescription>
+              </Alert>
+            )}
+          </CardContent>
+        </Card>
+      )}
 
       {formData.name && (
         <Card>
