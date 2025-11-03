@@ -37,7 +37,7 @@ export function AIGatewayPage() {
   const [search, setSearch] = useState('');
   const [selectedProvider, setSelectedProvider] = useState<string>('all');
   const [selectedCapability, setSelectedCapability] = useState<string>('all');
-  const [viewMode, setViewMode] = useState<ViewMode>('cards');
+  const [viewMode, setViewMode] = useState<ViewMode>('table');
 
   // Build filter object
   const filters: ModelFilters = useMemo(() => {
@@ -253,6 +253,17 @@ function ModelTable({ models, onModelClick }: ModelTableProps) {
     return value;
   };
 
+  const formatContextWindow = (tokens: number): string => {
+    if (tokens >= 1000000) {
+      const millions = tokens / 1000000;
+      return `${millions % 1 === 0 ? millions.toFixed(0) : millions.toFixed(1)}M`;
+    }
+    if (tokens >= 1000) {
+      return `${(tokens / 1000).toFixed(0)}K`;
+    }
+    return `${tokens}`;
+  };
+
   return (
     <div className="border rounded-lg">
       <Table>
@@ -291,7 +302,7 @@ function ModelTable({ models, onModelClick }: ModelTableProps) {
 
                 {/* Context Column */}
                 <TableCell className="text-right font-medium">
-                  {(model.context_window / 1000).toFixed(0)}K
+                  {formatContextWindow(model.context_window)}
                 </TableCell>
 
                 {/* Input Tokens Column */}
