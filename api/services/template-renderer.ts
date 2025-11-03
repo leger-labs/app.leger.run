@@ -111,62 +111,364 @@ function getFileType(filename: string): RenderedFile['type'] {
 }
 
 /**
- * Fetch templates from GitHub (for now, we'll use a simple approach)
- * In production, these should be bundled or cached
+ * Quadlet metadata extracted from rendered files
  */
-async function fetchTemplatesFromGitHub(
-  version: string = 'v0.0.1'
-): Promise<Map<string, string>> {
-  const templates = new Map<string, string>()
+export interface QuadletMetadata {
+  image?: string
+  ports?: string[]
+  secrets?: string[]
+  volumes?: string[]
+  environment?: Record<string, string>
+}
 
-  // For now, return empty map - this will be implemented to fetch from GitHub or bundle
-  // In the meantime, we'll rely on pre-rendering or client-side rendering
+/**
+ * Enhanced rendered file with metadata
+ */
+export interface RenderedFileWithMetadata extends RenderedFile {
+  checksum: string
+  metadata: QuadletMetadata
+}
 
-  console.warn('Template fetching not yet implemented')
-  return templates
+/**
+ * Generate a container quadlet file
+ */
+function generateContainerQuadlet(
+  serviceName: string,
+  image: string,
+  options: {
+    ports?: string[]
+    environment?: Record<string, string>
+    secrets?: string[]
+    volumes?: string[]
+    network?: string
+  } = {}
+): string {
+  const lines: string[] = []
+
+  // [Unit] section
+  lines.push('[Unit]')
+  lines.push(`Description=${serviceName} container`)
+  lines.push('After=network-online.target')
+  lines.push('Wants=network-online.target')
+  lines.push('')
+
+  // [Container] section
+  lines.push('[Container]')
+  lines.push(`Image=${image}`)
+
+  // Add ports
+  if (options.ports && options.ports.length > 0) {
+    options.ports.forEach(port => {
+      lines.push(`PublishPort=${port}`)
+    })
+  }
+
+  // Add environment variables
+  if (options.environment) {
+    Object.entries(options.environment).forEach(([key, value]) => {
+      lines.push(`Environment=${key}=${value}`)
+    })
+  }
+
+  // Add secrets
+  if (options.secrets && options.secrets.length > 0) {
+    options.secrets.forEach(secret => {
+      lines.push(`Secret=${secret}`)
+    })
+  }
+
+  // Add volumes
+  if (options.volumes && options.volumes.length > 0) {
+    options.volumes.forEach(volume => {
+      lines.push(`Volume=${volume}`)
+    })
+  }
+
+  // Add network
+  if (options.network) {
+    lines.push(`Network=${options.network}`)
+  }
+
+  lines.push('')
+
+  // [Service] section
+  lines.push('[Service]')
+  lines.push('Restart=always')
+  lines.push('TimeoutStartSec=900')
+  lines.push('')
+
+  // [Install] section
+  lines.push('[Install]')
+  lines.push('WantedBy=default.target')
+
+  return lines.join('\n')
+}
+
+/**
+ * Generate a network quadlet file
+ */
+function generateNetworkQuadlet(networkName: string, subnet?: string): string {
+  const lines: string[] = []
+
+  lines.push('[Unit]')
+  lines.push(`Description=${networkName} network`)
+  lines.push('')
+
+  lines.push('[Network]')
+  if (subnet) {
+    lines.push(`Subnet=${subnet}`)
+  }
+  lines.push('')
+
+  lines.push('[Install]')
+  lines.push('WantedBy=default.target')
+
+  return lines.join('\n')
+}
+
+/**
+ * Generate a volume quadlet file
+ */
+function generateVolumeQuadlet(volumeName: string): string {
+  const lines: string[] = []
+
+  lines.push('[Unit]')
+  lines.push(`Description=${volumeName} volume`)
+  lines.push('')
+
+  lines.push('[Volume]')
+  lines.push('')
+
+  lines.push('[Install]')
+  lines.push('WantedBy=default.target')
+
+  return lines.join('\n')
+}
+
+/**
+ * Extract metadata from quadlet content
+ */
+export function extractQuadletMetadata(quadletContent: string, filename: string): QuadletMetadata {
+  const metadata: QuadletMetadata = {
+    ports: [],
+    secrets: [],
+    volumes: [],
+    environment: {}
+  }
+
+  // Parse INI-style format
+  const lines = quadletContent.split('\n')
+
+  for (const line of lines) {
+    const trimmed = line.trim()
+
+    // Extract image
+    if (trimmed.startsWith('Image=')) {
+      metadata.image = trimmed.substring(6)
+    }
+
+    // Extract ports
+    else if (trimmed.startsWith('PublishPort=')) {
+      metadata.ports?.push(trimmed.substring(12))
+    }
+
+    // Extract secrets
+    else if (trimmed.startsWith('Secret=')) {
+      const secretDef = trimmed.substring(7)
+      // Extract secret name (before comma if there are options)
+      const secretName = secretDef.split(',')[0]
+      metadata.secrets?.push(secretName)
+    }
+
+    // Extract volumes
+    else if (trimmed.startsWith('Volume=')) {
+      metadata.volumes?.push(trimmed.substring(7))
+    }
+
+    // Extract environment
+    else if (trimmed.startsWith('Environment=')) {
+      const envDef = trimmed.substring(12)
+      const [key, value] = envDef.split('=', 2)
+      if (metadata.environment) {
+        metadata.environment[key] = value || ''
+      }
+    }
+  }
+
+  return metadata
+}
+
+/**
+ * Service configuration mapping
+ * Maps service names to their container images and configurations
+ */
+const SERVICE_IMAGES: Record<string, { image: string; ports?: string[]; volumes?: string[] }> = {
+  'litellm': {
+    image: 'ghcr.io/berriai/litellm:latest',
+    ports: ['4000:4000'],
+    volumes: []
+  },
+  'openwebui': {
+    image: 'ghcr.io/open-webui/open-webui:latest',
+    ports: ['8080:8080'],
+    volumes: ['openwebui-data:/app/backend/data']
+  },
+  'qdrant': {
+    image: 'qdrant/qdrant:latest',
+    ports: ['6333:6333'],
+    volumes: ['qdrant-data:/qdrant/storage']
+  },
+  'postgres': {
+    image: 'postgres:15',
+    ports: ['5432:5432'],
+    volumes: ['postgres-data:/var/lib/postgresql/data']
+  },
+  'searxng': {
+    image: 'searxng/searxng:latest',
+    ports: ['8888:8080']
+  },
+  'jupyter': {
+    image: 'jupyter/minimal-notebook:latest',
+    ports: ['8888:8888']
+  },
+  'caddy': {
+    image: 'caddy:latest',
+    ports: ['443:443', '80:80'],
+    volumes: ['caddy-data:/data', 'caddy-config:/config']
+  }
 }
 
 /**
  * Render templates with user configuration
  *
- * NOTE: This is a simplified implementation for v0.2.0
- * Full implementation will require either:
- * 1. Bundling templates at build time
- * 2. Fetching templates from GitHub/R2
- * 3. Using a separate rendering service
- *
- * For now, we'll return a placeholder that indicates rendering is pending
+ * Generates quadlet files from user configuration based on enabled features and providers
  */
 export async function renderTemplates(
   userConfig: UserConfig,
   schemaVersion: string = 'v0.0.1'
 ): Promise<RenderedFile[]> {
-  // Load release catalog (stub for now)
-  const releaseCatalog = {
-    services: {},
-    release: { version: schemaVersion },
-  }
-
-  // Build context
-  const context = buildTemplateContext(userConfig, releaseCatalog)
-
-  // Fetch templates (not implemented yet)
-  const templates = await fetchTemplatesFromGitHub(schemaVersion)
-
-  if (templates.size === 0) {
-    // Return placeholder indicating templates need to be rendered
-    // In practice, this should be handled by a separate rendering pipeline
-    throw new Error(
-      'Template rendering not fully implemented. ' +
-      'Templates should be pre-rendered or rendered via separate service.'
-    )
-  }
-
-  // Render each template
   const renderedFiles: RenderedFile[] = []
+  const networkName = userConfig.infrastructure?.network?.name || 'llm'
+  const networkSubnet = userConfig.infrastructure?.network?.subnet
 
-  // TODO: Implement actual rendering with Nunjucks
-  // This requires either bundling Nunjucks or using a separate service
+  // 1. Generate network quadlet
+  const networkContent = generateNetworkQuadlet(networkName, networkSubnet)
+  renderedFiles.push({
+    name: `${networkName}.network`,
+    content: networkContent,
+    type: 'network'
+  })
+
+  // 2. Determine which services to deploy based on configuration
+  const servicesToDeploy = new Set<string>()
+
+  // Core services
+  if (userConfig.providers?.llm_proxy === 'litellm') {
+    servicesToDeploy.add('litellm')
+    servicesToDeploy.add('postgres') // LiteLLM needs postgres
+  }
+
+  if (userConfig.providers?.web_ui === 'openwebui' || userConfig.features?.web_ui) {
+    servicesToDeploy.add('openwebui')
+  }
+
+  // Feature-based services
+  if (userConfig.features?.rag) {
+    const vectorDb = userConfig.providers?.vector_db
+    if (vectorDb === 'qdrant') {
+      servicesToDeploy.add('qdrant')
+    }
+  }
+
+  if (userConfig.features?.web_search) {
+    servicesToDeploy.add('searxng')
+  }
+
+  if (userConfig.features?.jupyter) {
+    servicesToDeploy.add('jupyter')
+  }
+
+  // Always add caddy for reverse proxy
+  servicesToDeploy.add('caddy')
+
+  // 3. Generate service quadlets
+  for (const serviceName of servicesToDeploy) {
+    const serviceConfig = SERVICE_IMAGES[serviceName]
+    if (!serviceConfig) {
+      console.warn(`Unknown service: ${serviceName}, skipping`)
+      continue
+    }
+
+    // Build environment variables
+    const environment: Record<string, string> = {}
+
+    // Extract secrets for this service
+    const secrets: string[] = []
+    if (serviceName === 'litellm' && userConfig.provider_config) {
+      // Add API keys as secrets
+      const config = userConfig.provider_config
+      if (config.openai_api_key) secrets.push('openai_api_key')
+      if (config.anthropic_api_key) secrets.push('anthropic_api_key')
+
+      // Database URL
+      if (userConfig.litellm?.database_url) {
+        environment['DATABASE_URL'] = userConfig.litellm.database_url
+      }
+    }
+
+    if (serviceName === 'postgres') {
+      environment['POSTGRES_USER'] = 'litellm'
+      environment['POSTGRES_DB'] = 'litellm'
+      secrets.push('postgres_password')
+    }
+
+    if (serviceName === 'qdrant' && userConfig.provider_config?.qdrant_api_key) {
+      secrets.push('qdrant_api_key')
+    }
+
+    // Generate container quadlet
+    const quadletContent = generateContainerQuadlet(
+      serviceName,
+      serviceConfig.image,
+      {
+        ports: serviceConfig.ports,
+        volumes: serviceConfig.volumes,
+        environment,
+        secrets,
+        network: networkName
+      }
+    )
+
+    renderedFiles.push({
+      name: `${serviceName}.container`,
+      content: quadletContent,
+      type: 'container'
+    })
+  }
+
+  // 4. Generate volume quadlets
+  const volumesNeeded = new Set<string>()
+  for (const serviceName of servicesToDeploy) {
+    const serviceConfig = SERVICE_IMAGES[serviceName]
+    if (serviceConfig?.volumes) {
+      serviceConfig.volumes.forEach(vol => {
+        // Extract volume name (before colon)
+        const volumeName = vol.split(':')[0]
+        volumesNeeded.add(volumeName)
+      })
+    }
+  }
+
+  for (const volumeName of volumesNeeded) {
+    const volumeContent = generateVolumeQuadlet(volumeName)
+    renderedFiles.push({
+      name: `${volumeName}.volume`,
+      content: volumeContent,
+      type: 'volume'
+    })
+  }
+
+  console.log(`✅ Rendered ${renderedFiles.length} files for ${servicesToDeploy.size} services`)
 
   return renderedFiles
 }

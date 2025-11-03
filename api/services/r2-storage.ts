@@ -6,7 +6,33 @@
 import type { Env } from '../middleware/auth'
 import type { RenderedFile } from './template-renderer'
 import type { DeploymentManifest } from '../models/deployment'
-import { calculateChecksum } from './template-renderer'
+import { calculateChecksum, extractQuadletMetadata } from './template-renderer'
+
+/**
+ * CLI-compatible manifest format
+ * This is what the Leger CLI expects when pulling deployments
+ */
+interface CLIManifest {
+  version: number // Manifest schema version (use 1)
+  created_at: string // ISO 8601 timestamp
+  user_uuid: string // User's UUID
+  services: CLIServiceDefinition[]
+  volumes?: CLIVolumeDefinition[]
+}
+
+interface CLIServiceDefinition {
+  name: string // Service name (e.g., "nginx")
+  quadlet_file: string // Filename (e.g., "nginx.container")
+  checksum: string // SHA-256 checksum of quadlet file
+  image?: string // Container image (e.g., "nginx:latest")
+  ports?: string[] // Port mappings (e.g., ["8080:80"])
+  secrets_required?: string[] // Secret names referenced in quadlet
+}
+
+interface CLIVolumeDefinition {
+  name: string // Volume name
+  mount_path?: string // Optional mount path
+}
 
 /**
  * R2 path structure: {userUUID}/v{version}/
@@ -56,9 +82,64 @@ async function uploadFileToR2(
 }
 
 /**
- * Generate deployment manifest
+ * Generate CLI-compatible deployment manifest
  */
-async function generateManifest(
+async function generateCLIManifest(
+  userUuid: string,
+  files: RenderedFile[]
+): Promise<CLIManifest> {
+  const services: CLIServiceDefinition[] = []
+  const volumes: CLIVolumeDefinition[] = []
+  const allSecretsRequired = new Set<string>()
+
+  // Process each file
+  for (const file of files) {
+    const checksum = await calculateChecksum(file.content)
+
+    // Container files become services
+    if (file.type === 'container') {
+      const metadata = extractQuadletMetadata(file.content, file.name)
+      const serviceName = file.name.replace('.container', '')
+
+      services.push({
+        name: serviceName,
+        quadlet_file: file.name,
+        checksum: `sha256:${checksum}`,
+        image: metadata.image,
+        ports: metadata.ports && metadata.ports.length > 0 ? metadata.ports : undefined,
+        secrets_required: metadata.secrets && metadata.secrets.length > 0 ? metadata.secrets : undefined
+      })
+
+      // Collect secrets
+      if (metadata.secrets) {
+        metadata.secrets.forEach(s => allSecretsRequired.add(s))
+      }
+    }
+
+    // Volume files
+    else if (file.type === 'volume') {
+      const volumeName = file.name.replace('.volume', '')
+      volumes.push({
+        name: volumeName
+      })
+    }
+  }
+
+  const manifest: CLIManifest = {
+    version: 1,
+    created_at: new Date().toISOString(),
+    user_uuid: userUuid,
+    services,
+    volumes: volumes.length > 0 ? volumes : undefined
+  }
+
+  return manifest
+}
+
+/**
+ * Generate internal deployment manifest (for tracking in D1)
+ */
+async function generateDeploymentManifest(
   releaseId: string,
   userUuid: string,
   schemaVersion: string,
@@ -70,8 +151,10 @@ async function generateManifest(
     user_uuid: userUuid,
     generated_at: new Date().toISOString(),
     files: [],
-    required_secrets: [], // TODO: Extract from rendered files
+    required_secrets: [],
   }
+
+  const allSecretsRequired = new Set<string>()
 
   // Process each file
   for (const file of files) {
@@ -84,13 +167,28 @@ async function generateManifest(
       checksum,
       size,
     })
+
+    // Extract secrets from container files
+    if (file.type === 'container') {
+      const metadata = extractQuadletMetadata(file.content, file.name)
+      if (metadata.secrets) {
+        metadata.secrets.forEach(s => allSecretsRequired.add(s))
+      }
+    }
   }
+
+  manifest.required_secrets = Array.from(allSecretsRequired)
 
   return manifest
 }
 
 /**
  * Upload all rendered files to R2
+ *
+ * IMPORTANT: Files are uploaded in a specific order to ensure atomic deployments:
+ * 1. All quadlet files (.container, .volume, .network, etc.)
+ * 2. Environment files (.env)
+ * 3. Manifest.json LAST (signals deployment is complete)
  */
 export async function uploadToR2(
   env: Env,
@@ -107,28 +205,41 @@ export async function uploadToR2(
   const r2Path = generateR2Path(userUuid, version)
 
   console.log(`📤 Uploading ${files.length} files to R2: ${r2Path}`)
+  console.log(`   Target path: ${r2Path}`)
 
-  // Upload each rendered file
-  for (const file of files) {
-    // Determine content type based on file type
-    let contentType = 'text/plain'
-    if (file.type === 'config' && file.name.endsWith('.json')) {
-      contentType = 'application/json'
-    } else if (file.type === 'config' && file.name.endsWith('.yaml')) {
-      contentType = 'application/yaml'
-    }
+  // Separate files by type for ordered upload
+  const quadletFiles = files.filter(f =>
+    f.type === 'container' || f.type === 'volume' || f.type === 'network' || f.type === 'config'
+  )
+  const envFiles = files.filter(f => f.type === 'env')
 
-    await uploadFileToR2(env, r2Path, file.name, file.content, contentType)
+  // Step 1: Upload all quadlet files first
+  console.log(`   Uploading ${quadletFiles.length} quadlet files...`)
+  for (const file of quadletFiles) {
+    await uploadFileToR2(env, r2Path, file.name, file.content, 'text/plain')
   }
 
-  // Generate and upload manifest
-  const manifest = await generateManifest(releaseId, userUuid, schemaVersion, files)
-  const manifestContent = JSON.stringify(manifest, null, 2)
+  // Step 2: Upload environment files
+  if (envFiles.length > 0) {
+    console.log(`   Uploading ${envFiles.length} environment files...`)
+    for (const file of envFiles) {
+      await uploadFileToR2(env, r2Path, file.name, file.content, 'text/plain')
+    }
+  }
+
+  // Step 3: Generate CLI-compatible manifest
+  console.log(`   Generating manifest...`)
+  const cliManifest = await generateCLIManifest(userUuid, files)
+
+  // Step 4: Upload manifest LAST (atomic deployment signal)
+  const manifestContent = JSON.stringify(cliManifest, null, 2)
   await uploadFileToR2(env, r2Path, 'manifest.json', manifestContent, 'application/json')
 
   const manifestUrl = generateManifestUrl(userUuid, version)
 
   console.log(`✅ Upload complete: ${manifestUrl}`)
+  console.log(`   Services: ${cliManifest.services.length}`)
+  console.log(`   Volumes: ${cliManifest.volumes?.length || 0}`)
 
   return {
     r2Path,
