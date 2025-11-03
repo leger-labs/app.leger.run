@@ -11,7 +11,9 @@ import { AppLayout } from '@/components/layout/AppLayout';
 import { AuthPage } from '@/pages/AuthPage';
 import { AuthErrorPage } from '@/pages/AuthErrorPage';
 import { TestAuthPage } from '@/pages/TestAuthPage';
-import { ApiKeysPage } from '@/pages/ApiKeysPage';
+import { IntegrationsPage } from '@/pages/IntegrationsPage';
+import { AIGatewayPage } from '@/pages/AIGatewayPage';
+import { ModelDetailPage } from '@/pages/ModelDetailPage';
 import { ReleasesPage } from '@/pages/ReleasesPage';
 import { ReleaseFormPage } from '@/pages/ReleaseFormPage';
 import { SettingsPage } from '@/pages/SettingsPage';
@@ -111,11 +113,17 @@ export default function App() {
                 </ProtectedRoute>
               }
             >
-              {/* Default redirect to API Keys */}
-              <Route index element={<Navigate to="/api-keys" replace />} />
+              {/* Default redirect to AI Gateway */}
+              <Route index element={<Navigate to="/ai-gateway" replace />} />
 
-              {/* API Keys (Default page) */}
-              <Route path="api-keys" element={<ApiKeysPage />} />
+              {/* Integrations (replaces API Keys) */}
+              <Route path="integrations" element={<IntegrationsPage />} />
+              {/* Keep old API Keys route for backwards compatibility */}
+              <Route path="api-keys" element={<Navigate to="/integrations" replace />} />
+
+              {/* AI Gateway */}
+              <Route path="ai-gateway" element={<AIGatewayPage />} />
+              <Route path="models/:modelId" element={<ModelDetailPage />} />
 
               {/* Releases */}
               <Route path="releases" element={<ReleasesPage />} />
