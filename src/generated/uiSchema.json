@@ -1,5 +1,16 @@
 {
   "tailscale": {
+    "ui:help": "Tailscale MagicDNS configuration for HTTPS access",
+    "ui:order": [
+      "full_hostname",
+      "hostname",
+      "tailnet",
+      "*"
+    ],
+    "ui:title": "Tailscale Configuration",
+    "ui:options": {
+      "category": "Infrastructure"
+    },
     "full_hostname": {
       "ui:widget": "text",
       "ui:help": "Find this in your Tailscale admin console under 'DNS' settings. Format: <machine-name>.<tailnet-id>.ts.net",
@@ -31,16 +42,16 @@
       "ui:options": {
         "category": "Infrastructure"
       }
-    },
-    "ui:order": [
-      "full_hostname",
-      "hostname",
-      "tailnet",
-      "*"
-    ]
+    }
   },
   "infrastructure": {
+    "ui:help": "Service infrastructure configuration with defaults",
     "network": {
+      "ui:order": 1,
+      "ui:title": "Network Configuration",
+      "ui:options": {
+        "category": "Infrastructure"
+      },
       "name": {
         "ui:widget": "text",
         "ui:title": "Network Name",
@@ -57,6 +68,7 @@
       }
     },
     "services": {
+      "ui:title": "Service Infrastructure",
       "caddy": {
         "container_name": {
           "ui:widget": "text"
@@ -498,6 +510,8 @@
     ]
   },
   "features": {
+    "ui:help": "Enable/disable major capabilities (15 boolean decisions)",
+    "ui:title": "Feature Toggles",
     "rag": {
       "ui:widget": "checkbox",
       "ui:order": 100,
@@ -638,6 +652,8 @@
     ]
   },
   "providers": {
+    "ui:help": "Choose implementation for each feature (13 enum decisions)",
+    "ui:title": "Provider Selections",
     "vector_db": {
       "ui:widget": "select",
       "ui:order": 100,
@@ -1077,6 +1093,8 @@
     ]
   },
   "provider_config": {
+    "ui:help": "Configuration fields for selected providers (including advanced parameters)",
+    "ui:title": "Provider Configuration",
     "webui_name": {
       "ui:widget": "text",
       "ui:help": "The name displayed in the interface header (e.g., 'Leger AI', 'My Company AI')",
@@ -1113,7 +1131,9 @@
       }
     },
     "qdrant_api_key": {
-      "ui:widget": "password",
+      "ui:widget": "secret-reference",
+      "ui:placeholder": "{SECRET_NAME}",
+      "ui:help": "Select or enter a secret reference. Manage actual secret values in the API Keys tab.",
       "ui:order": 101,
       "ui:dependencies": [
         {
@@ -1217,7 +1237,9 @@
       }
     },
     "rag_embedding_api_key": {
-      "ui:widget": "password",
+      "ui:widget": "secret-reference",
+      "ui:placeholder": "{SECRET_NAME}",
+      "ui:help": "Select or enter a secret reference. Manage actual secret values in the API Keys tab.",
       "ui:order": 110,
       "ui:dependencies": [
         {
@@ -1437,7 +1459,9 @@
       }
     },
     "tavily_api_key": {
-      "ui:widget": "password",
+      "ui:widget": "secret-reference",
+      "ui:placeholder": "{SECRET_NAME}",
+      "ui:help": "Select or enter a secret reference. Manage actual secret values in the API Keys tab.",
       "ui:order": 140,
       "ui:dependencies": [
         {
@@ -1454,7 +1478,9 @@
       }
     },
     "brave_api_key": {
-      "ui:widget": "password",
+      "ui:widget": "secret-reference",
+      "ui:placeholder": "{SECRET_NAME}",
+      "ui:help": "Select or enter a secret reference. Manage actual secret values in the API Keys tab.",
       "ui:order": 150,
       "ui:dependencies": [
         {
@@ -1743,7 +1769,9 @@
       }
     },
     "stt_api_key": {
-      "ui:widget": "password",
+      "ui:widget": "secret-reference",
+      "ui:placeholder": "{SECRET_NAME}",
+      "ui:help": "Select or enter a secret reference. Manage actual secret values in the API Keys tab.",
       "ui:order": 180,
       "ui:dependencies": [
         {
@@ -1895,7 +1923,9 @@
       }
     },
     "elevenlabs_api_key": {
-      "ui:widget": "password",
+      "ui:widget": "secret-reference",
+      "ui:placeholder": "{SECRET_NAME}",
+      "ui:help": "Select or enter a secret reference. Manage actual secret values in the API Keys tab.",
       "ui:order": 200,
       "ui:dependencies": [
         {
@@ -1912,7 +1942,9 @@
       }
     },
     "tts_api_key": {
-      "ui:widget": "password",
+      "ui:widget": "secret-reference",
+      "ui:placeholder": "{SECRET_NAME}",
+      "ui:help": "Select or enter a secret reference. Manage actual secret values in the API Keys tab.",
       "ui:order": 210,
       "ui:dependencies": [
         {
@@ -2058,7 +2090,9 @@
       }
     },
     "e2b_api_key": {
-      "ui:widget": "password",
+      "ui:widget": "secret-reference",
+      "ui:placeholder": "{SECRET_NAME}",
+      "ui:help": "Select or enter a secret reference. Manage actual secret values in the API Keys tab.",
       "ui:order": 230,
       "ui:dependencies": [
         {
@@ -2346,88 +2380,6 @@
       "redis_key_prefix",
       "*"
     ]
-  },
-  "secrets": {
-    "openai_api_key": {
-      "ui:widget": "password",
-      "ui:help": "OpenAI API key for GPT models, embeddings, and speech services. Register at https://platform.openai.com/api-keys",
-      "ui:title": "OpenAI API Key",
-      "ui:options": {
-        "category": "Security"
-      }
-    },
-    "anthropic_api_key": {
-      "ui:widget": "password",
-      "ui:help": "Anthropic API key for Claude models. Register at https://console.anthropic.com/",
-      "ui:title": "Anthropic API Key",
-      "ui:options": {
-        "category": "Security"
-      }
-    },
-    "gemini_api_key": {
-      "ui:widget": "password",
-      "ui:help": "Google Gemini API key for Gemini models. Register at https://makersuite.google.com/app/apikey",
-      "ui:title": "Google Gemini API Key",
-      "ui:options": {
-        "category": "Security"
-      }
-    },
-    "groq_api_key": {
-      "ui:widget": "password",
-      "ui:help": "Groq API key for fast inference. Register at https://console.groq.com/",
-      "ui:title": "Groq API Key",
-      "ui:options": {
-        "category": "Security"
-      }
-    },
-    "mistral_api_key": {
-      "ui:widget": "password",
-      "ui:help": "Mistral API key for Mistral models. Register at https://console.mistral.ai/",
-      "ui:title": "Mistral API Key",
-      "ui:options": {
-        "category": "Security"
-      }
-    },
-    "openrouter_api_key": {
-      "ui:widget": "password",
-      "ui:help": "OpenRouter API key for unified model access. Register at https://openrouter.ai/keys",
-      "ui:title": "OpenRouter API Key",
-      "ui:options": {
-        "category": "Security"
-      }
-    },
-    "perplexity_api_key": {
-      "ui:widget": "password",
-      "ui:help": "Perplexity API key for Perplexity models and search. Register at https://www.perplexity.ai/settings/api",
-      "ui:title": "Perplexity API Key",
-      "ui:options": {
-        "category": "Security"
-      }
-    },
-    "tavily_api_key": {
-      "ui:widget": "password",
-      "ui:help": "Tavily API key for AI-powered web search. Register at https://tavily.com/",
-      "ui:title": "Tavily Search API Key",
-      "ui:options": {
-        "category": "Security"
-      }
-    },
-    "hf_token": {
-      "ui:widget": "password",
-      "ui:help": "HuggingFace token for model downloads. Register at https://huggingface.co/settings/tokens",
-      "ui:title": "HuggingFace API Token",
-      "ui:options": {
-        "category": "Security"
-      }
-    },
-    "civitai_token": {
-      "ui:widget": "password",
-      "ui:help": "CivitAI token for model downloads. Register at https://civitai.com/user/account",
-      "ui:title": "CivitAI API Token",
-      "ui:options": {
-        "category": "Security"
-      }
-    }
   },
   "ui:order": [
     "tailscale",
