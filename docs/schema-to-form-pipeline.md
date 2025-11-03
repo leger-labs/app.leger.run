@@ -86,7 +86,7 @@ The `schema.json` uses standard JSON Schema with custom `x-*` extensions:
 - `x-depends-on`: Define conditional visibility (progressive disclosure)
 - `x-provider-fields`: Map provider choices to required config fields
 - `x-affects-services`: Define which services are deployed based on choices
-- `x-sensitive`: Mark fields as secrets (use password input)
+- `x-sensitive`: Mark fields as managed secrets (render secret reference selector)
 - `x-readonly`: Make fields read-only
 - `x-help`: Additional help text for users
 
@@ -120,6 +120,16 @@ Map RJSF widgets to existing Leger components:
 | `TextareaWidget` | `Textarea` | Long text fields |
 | `NumberWidget` | `Input[type=number]` | Numeric inputs |
 | `URLWidget` | `URLInput` | URL validation |
+| `secret-reference` | `SecretReferenceWidget` | Select or enter `{SECRET}` references synced from API Keys |
+
+Sensitive fields (`x-sensitive: true`) render with the `SecretReferenceWidget`. The widget:
+
+- Prefills existing `{SECRET_NAME}` references
+- Provides a dropdown of secrets fetched from `/api/secrets`
+- Adds helper text reminding users that values are managed in the **API Keys** tab
+- Links directly to `/api-keys` for managing secrets
+
+The `secrets` section of the schema is omitted from the release form entirely because those values are managed separately.
 
 ### 4. Model Integration
 

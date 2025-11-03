@@ -29,6 +29,9 @@ const SCHEMA_OUTPUT_PATH = join(
   '../../src/generated/schema.json'
 );
 
+const SECRET_REFERENCE_HELP =
+  'Select or enter a secret reference. Manage actual secret values in the API Keys tab.';
+
 /**
  * Generate widget type based on JSON Schema type and format
  */
@@ -49,7 +52,7 @@ function getWidget(schema) {
       return 'uri';
     }
     if (schema['x-sensitive']) {
-      return 'password';
+      return 'secret-reference';
     }
     if (schema.maxLength && schema.maxLength > 200) {
       return 'textarea';
@@ -201,9 +204,25 @@ function generatePropertyUiSchema(propName, propSchema, context = {}) {
     uiSchema['ui:widget'] = widget;
   }
 
+  if (propSchema['x-sensitive']) {
+    if (!uiSchema['ui:placeholder']) {
+      uiSchema['ui:placeholder'] = '{SECRET_NAME}';
+    }
+
+    if (propSchema['x-help'] || propSchema.description) {
+      const existingHelp = propSchema['x-help'] || propSchema.description;
+      uiSchema['ui:help'] = `${existingHelp}\n\n${SECRET_REFERENCE_HELP}`;
+    } else {
+      uiSchema['ui:help'] = SECRET_REFERENCE_HELP;
+    }
+  }
+
   // Help text
   if (propSchema['x-help'] || propSchema.description) {
-    uiSchema['ui:help'] = propSchema['x-help'] || propSchema.description;
+    // Preserve help text set above for sensitive fields
+    if (!uiSchema['ui:help']) {
+      uiSchema['ui:help'] = propSchema['x-help'] || propSchema.description;
+    }
   }
 
   // Display order
@@ -256,6 +275,11 @@ function generatePropertyUiSchema(propName, propSchema, context = {}) {
  * Recursively process schema to generate uiSchema
  */
 function processSchema(schema, path = [], parentCategory) {
+function processSchema(schema, path = []) {
+  if (path.includes('secrets')) {
+    return {};
+  }
+
   const uiSchema = {};
 
   if (schema.type === 'object' && schema.properties) {
@@ -267,6 +291,11 @@ function processSchema(schema, path = [], parentCategory) {
       const propUiSchema = generatePropertyUiSchema(propName, propSchema, {
         category
       });
+      if (propName === 'secrets') {
+        continue;
+      }
+
+      const propUiSchema = generatePropertyUiSchema(propName, propSchema);
 
       if (propSchema.type === 'object' && propSchema.properties) {
         // Recursively process nested objects
