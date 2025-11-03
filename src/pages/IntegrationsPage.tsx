@@ -3,8 +3,8 @@
  * Manage AI provider integrations and API keys
  */
 
-import { useState, useEffect } from 'react';
-import { Loader2, ExternalLink, Check, Plus } from 'lucide-react';
+import { useState, useEffect, useMemo } from 'react';
+import { Loader2, ExternalLink, Check, Plus, Eye, EyeOff, Search, FileX } from 'lucide-react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -20,17 +20,26 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Skeleton } from '@/components/ui/skeleton';
 import { useModelStore } from '@/hooks/use-model-store';
 import { useSecrets } from '@/hooks/use-secrets';
+import { toast } from 'sonner';
 import type { Provider } from '@/types/model-store';
 
 export function IntegrationsPage() {
   const { providers, models, isLoading: isLoadingModelStore } = useModelStore();
   const { secrets, isLoading: isLoadingSecrets, upsertSecret } = useSecrets();
 
+  const [search, setSearch] = useState('');
+  const [filterTab, setFilterTab] = useState<'all' | 'configured' | 'available'>('all');
   const [selectedProvider, setSelectedProvider] = useState<Provider | null>(null);
   const [apiKeyValue, setApiKeyValue] = useState('');
+  const [isEditMode, setIsEditMode] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [isTesting, setIsTesting] = useState(false);
+  const [testResult, setTestResult] = useState<'success' | 'error' | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
   const [configuredProviders, setConfiguredProviders] = useState<Set<string>>(new Set());
 
   const isLoading = isLoadingModelStore || isLoadingSecrets;
@@ -56,6 +65,58 @@ export function IntegrationsPage() {
   const handleAddProvider = (provider: Provider) => {
     setSelectedProvider(provider);
     setApiKeyValue('');
+    setIsEditMode(false);
+    setShowPassword(false);
+    setTestResult(null);
+  };
+
+  const handleEditProvider = (provider: Provider) => {
+    setSelectedProvider(provider);
+    // Load existing API key value
+    const existingSecret = secrets.find((s) => s.name === provider.requires_api_key);
+    setApiKeyValue(existingSecret?.value || '');
+    setIsEditMode(true);
+    setShowPassword(false);
+    setTestResult(null);
+  };
+
+  const handleTestApiKey = async () => {
+    if (!apiKeyValue || !selectedProvider) return;
+
+    setIsTesting(true);
+    setTestResult(null);
+
+    // Simulate API key validation with basic format checking
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    // Basic validation by provider
+    let isValid = false;
+    const key = apiKeyValue.trim();
+
+    if (selectedProvider.id === 'anthropic' && key.startsWith('sk-ant-')) {
+      isValid = true;
+    } else if (selectedProvider.id === 'openai' && key.startsWith('sk-')) {
+      isValid = true;
+    } else if (selectedProvider.id === 'gemini' && key.length > 20) {
+      isValid = true;
+    } else if (key.length > 10) {
+      // Generic validation for other providers
+      isValid = true;
+    }
+
+    if (isValid) {
+      setTestResult('success');
+      toast.success('API key format is valid', {
+        description: 'The API key appears to be correctly formatted.',
+      });
+    } else {
+      setTestResult('error');
+      toast.error('Invalid API key format', {
+        description: 'Please check the API key format for this provider.',
+      });
+    }
+
+    setIsTesting(false);
   };
 
   const handleSaveApiKey = async () => {
@@ -69,13 +130,47 @@ export function IntegrationsPage() {
       setConfiguredProviders((prev) => new Set([...prev, selectedProvider.id]));
       setSelectedProvider(null);
       setApiKeyValue('');
+      setShowPassword(false);
+      setTestResult(null);
     }
   };
 
   const handleCloseDialog = () => {
     setSelectedProvider(null);
     setApiKeyValue('');
+    setIsEditMode(false);
+    setShowPassword(false);
+    setTestResult(null);
   };
+
+  const handleClearFilters = () => {
+    setSearch('');
+    setFilterTab('all');
+  };
+
+  // Filter providers based on search and filter tab
+  const filteredProviders = useMemo(() => {
+    let filtered = providers;
+
+    // Filter by tab
+    if (filterTab === 'configured') {
+      filtered = filtered.filter((p) => configuredProviders.has(p.id));
+    } else if (filterTab === 'available') {
+      filtered = filtered.filter((p) => !configuredProviders.has(p.id));
+    }
+
+    // Filter by search
+    if (search) {
+      const searchLower = search.toLowerCase();
+      filtered = filtered.filter(
+        (p) =>
+          p.name.toLowerCase().includes(searchLower) ||
+          p.description.toLowerCase().includes(searchLower)
+      );
+    }
+
+    return filtered;
+  }, [providers, configuredProviders, filterTab, search]);
 
   // Get representative pricing for a provider (from any model that uses it)
   const getProviderPricing = (providerId: string) => {
@@ -89,8 +184,40 @@ export function IntegrationsPage() {
   if (isLoading) {
     return (
       <PageLayout>
-        <div className="flex items-center justify-center py-12">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <PageHeader
+          title="Integrations"
+          description="The AI Gateway supports routing requests across multiple AI providers."
+        />
+        <div className="mb-8">
+          <Skeleton className="h-4 w-48 mb-4" />
+          <Skeleton className="h-10 w-full mb-4" />
+          <Skeleton className="h-10 w-64" />
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <Card key={i}>
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <div className="flex items-center gap-3">
+                    <Skeleton className="h-8 w-8 rounded" />
+                    <Skeleton className="h-5 w-32" />
+                  </div>
+                  <Skeleton className="h-6 w-20" />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <Skeleton className="h-12 w-full mb-4" />
+                <div className="grid grid-cols-2 gap-2 mb-4">
+                  <Skeleton className="h-8 w-full" />
+                  <Skeleton className="h-8 w-full" />
+                </div>
+                <div className="flex gap-2">
+                  <Skeleton className="h-4 w-16" />
+                  <Skeleton className="h-4 w-16" />
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </PageLayout>
     );
@@ -104,6 +231,9 @@ export function IntegrationsPage() {
       />
 
       <div className="mb-6 text-sm text-muted-foreground">
+        <div className="mb-2">
+          {configuredProviders.size} provider{configuredProviders.size !== 1 ? 's' : ''} configured
+        </div>
         For more information, see the{' '}
         <a
           href="https://docs.leger.run/ai-gateway/providers"
@@ -116,8 +246,50 @@ export function IntegrationsPage() {
         </a>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {providers.map((provider) => {
+      {/* Search and Filters */}
+      <div className="mb-6 space-y-4">
+        <div className="flex flex-col sm:flex-row gap-4">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              placeholder="Search providers..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="pl-9"
+            />
+          </div>
+        </div>
+
+        <Tabs value={filterTab} onValueChange={(v) => setFilterTab(v as typeof filterTab)}>
+          <TabsList>
+            <TabsTrigger value="all">All ({providers.length})</TabsTrigger>
+            <TabsTrigger value="configured">
+              Configured ({configuredProviders.size})
+            </TabsTrigger>
+            <TabsTrigger value="available">
+              Available ({providers.length - configuredProviders.size})
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
+      </div>
+
+      {/* Provider Grid */}
+      {filteredProviders.length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-16 text-center">
+          <FileX className="h-16 w-16 text-muted-foreground mb-4" />
+          <h3 className="text-lg font-semibold mb-2">No providers found</h3>
+          <p className="text-sm text-muted-foreground mb-6 max-w-sm">
+            {filterTab === 'configured'
+              ? 'You haven\'t configured any providers yet. Add an integration to get started.'
+              : 'Try adjusting your search or filter to find what you\'re looking for.'}
+          </p>
+          <Button variant="outline" onClick={handleClearFilters}>
+            Clear filters
+          </Button>
+        </div>
+      ) : (
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {filteredProviders.map((provider) => {
           const isConfigured = configuredProviders.has(provider.id);
           const pricing = getProviderPricing(provider.id);
 
@@ -133,23 +305,36 @@ export function IntegrationsPage() {
                     />
                     <CardTitle className="text-lg">{provider.name}</CardTitle>
                   </div>
-                  {isConfigured ? (
-                    <Badge variant="secondary" className="flex items-center gap-1">
-                      <Check className="h-3 w-3" />
-                      Configured
-                    </Badge>
-                  ) : (
-                    provider.requires_api_key && (
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => handleAddProvider(provider)}
-                      >
-                        <Plus className="h-4 w-4 mr-1" />
-                        Add
-                      </Button>
-                    )
-                  )}
+                  <div className="flex items-center gap-2">
+                    {isConfigured ? (
+                      <>
+                        <Badge variant="secondary" className="flex items-center gap-1">
+                          <Check className="h-3 w-3" />
+                          Configured
+                        </Badge>
+                        {provider.requires_api_key && (
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => handleEditProvider(provider)}
+                          >
+                            Edit
+                          </Button>
+                        )}
+                      </>
+                    ) : (
+                      provider.requires_api_key && (
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleAddProvider(provider)}
+                        >
+                          <Plus className="h-4 w-4 mr-1" />
+                          Add
+                        </Button>
+                      )
+                    )}
+                  </div>
                 </div>
               </CardHeader>
               <CardContent>
@@ -200,13 +385,16 @@ export function IntegrationsPage() {
             </Card>
           );
         })}
-      </div>
+        </div>
+      )}
 
       {/* Add Provider Dialog */}
       <Dialog open={!!selectedProvider} onOpenChange={handleCloseDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Add {selectedProvider?.name} Integration</DialogTitle>
+            <DialogTitle>
+              {isEditMode ? 'Edit' : 'Add'} {selectedProvider?.name} Integration
+            </DialogTitle>
             <DialogDescription>
               Enter your API key to enable {selectedProvider?.name} provider.
               {selectedProvider?.api_key_register_url && (
@@ -230,19 +418,68 @@ export function IntegrationsPage() {
           <div className="space-y-4 py-4">
             <div className="space-y-2">
               <Label htmlFor="api-key">API Key</Label>
-              <Input
-                id="api-key"
-                type="password"
-                value={apiKeyValue}
-                onChange={(e) => setApiKeyValue(e.target.value)}
-                placeholder="Enter your API key"
-              />
+              <div className="relative">
+                <Input
+                  id="api-key"
+                  type={showPassword ? 'text' : 'password'}
+                  value={apiKeyValue}
+                  onChange={(e) => {
+                    setApiKeyValue(e.target.value);
+                    setTestResult(null); // Reset test result when key changes
+                  }}
+                  placeholder="Enter your API key"
+                  className="pr-10"
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4 text-muted-foreground" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-muted-foreground" />
+                  )}
+                </Button>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Your API key is stored securely and only used for requests to{' '}
+                {selectedProvider?.name}
+              </p>
             </div>
+
+            {/* Test Result */}
+            {testResult && (
+              <div
+                className={`text-sm flex items-center gap-2 ${
+                  testResult === 'success' ? 'text-green-600' : 'text-red-600'
+                }`}
+              >
+                {testResult === 'success' ? (
+                  <>
+                    <Check className="h-4 w-4" />
+                    <span>API key format is valid</span>
+                  </>
+                ) : (
+                  <span>Invalid API key format</span>
+                )}
+              </div>
+            )}
           </div>
 
-          <DialogFooter>
+          <DialogFooter className="gap-2">
             <Button variant="outline" onClick={handleCloseDialog}>
               Cancel
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={handleTestApiKey}
+              disabled={!apiKeyValue || isTesting}
+            >
+              {isTesting && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+              Test API Key
             </Button>
             <Button
               onClick={handleSaveApiKey}
