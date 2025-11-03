@@ -10,6 +10,7 @@ import { CheckboxWidget } from './CheckboxWidget';
 import { TextareaWidget } from './TextareaWidget';
 import { NumberWidget } from './NumberWidget';
 import { URLWidget } from './URLWidget';
+import { SecretReferenceWidget } from './SecretReferenceWidget';
 
 export const customWidgets: RegistryWidgetsType = {
   TextWidget,
@@ -18,6 +19,7 @@ export const customWidgets: RegistryWidgetsType = {
   TextareaWidget,
   NumberWidget,
   URLWidget,
+  SecretReferenceWidget,
   // Map common widget names to our custom widgets
   text: TextWidget,
   select: SelectWidget,
@@ -27,6 +29,7 @@ export const customWidgets: RegistryWidgetsType = {
   updown: NumberWidget,
   url: URLWidget,
   uri: URLWidget,
+  'secret-reference': SecretReferenceWidget,
 };
 
 export {
@@ -36,4 +39,5 @@ export {
   TextareaWidget,
   NumberWidget,
   URLWidget,
+  SecretReferenceWidget,
 };
