@@ -1,6 +1,5 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
-import { FormDescription } from "@/components/ui/form"
 
 interface SelectOption {
   value: string
@@ -31,6 +30,7 @@ export function SelectField({
   id,
 }: SelectFieldProps) {
   const fieldId = id || label.toLowerCase().replace(/\s+/g, "-")
+  const descriptionId = description ? `${fieldId}-description` : undefined
 
   return (
     <div className="space-y-2">
@@ -38,7 +38,11 @@ export function SelectField({
         {label}
       </Label>
       <Select value={value} onValueChange={onChange} disabled={disabled}>
-        <SelectTrigger id={fieldId} className={error ? "border-destructive" : ""}>
+        <SelectTrigger
+          id={fieldId}
+          className={error ? "border-destructive" : ""}
+          aria-describedby={!error && descriptionId ? descriptionId : undefined}
+        >
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent>
@@ -49,7 +53,11 @@ export function SelectField({
           ))}
         </SelectContent>
       </Select>
-      {description && !error && <FormDescription>{description}</FormDescription>}
+      {description && !error && (
+        <p id={descriptionId} className="text-sm text-muted-foreground">
+          {description}
+        </p>
+      )}
       {error && <p className="text-sm font-medium text-destructive">{error}</p>}
     </div>
   )

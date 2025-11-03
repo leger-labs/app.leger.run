@@ -6,7 +6,6 @@
 import { WidgetProps } from '@rjsf/utils';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { FormDescription } from '@/components/ui/form';
 
 export function TextareaWidget(props: WidgetProps) {
   const {
@@ -28,6 +27,9 @@ export function TextareaWidget(props: WidgetProps) {
   };
 
   const error = rawErrors && rawErrors.length > 0 ? rawErrors[0] : undefined;
+  const description =
+    (schema.description || (uiSchema?.['ui:description'] as string | undefined)) ?? undefined;
+  const descriptionId = description ? `${id}-description` : undefined;
 
   return (
     <div className="space-y-2">
@@ -44,9 +46,12 @@ export function TextareaWidget(props: WidgetProps) {
         placeholder={uiSchema?.['ui:placeholder'] as string}
         rows={options.rows || 4}
         className={error ? 'border-destructive' : ''}
+        aria-describedby={!error && descriptionId ? descriptionId : undefined}
       />
-      {schema.description && !error && (
-        <FormDescription>{schema.description}</FormDescription>
+      {description && !error && (
+        <p id={descriptionId} className="text-sm text-muted-foreground">
+          {description}
+        </p>
       )}
       {error && <p className="text-sm font-medium text-destructive">{error}</p>}
     </div>

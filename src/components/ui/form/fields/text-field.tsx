@@ -2,7 +2,6 @@ import React from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
-import { FormDescription } from "@/components/ui/form"
 
 interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string
@@ -24,6 +23,7 @@ export function TextField({
 }: TextFieldProps) {
   const [charCount, setCharCount] = React.useState(props.value?.toString().length || 0)
   const fieldId = id || label.toLowerCase().replace(/\s+/g, "-")
+  const descriptionId = description ? `${fieldId}-description` : undefined
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCharCount(e.target.value.length)
@@ -52,10 +52,15 @@ export function TextField({
         id={fieldId}
         className={cn(error && "border-destructive", className)}
         maxLength={maxLength}
+        aria-describedby={!error && descriptionId ? descriptionId : undefined}
         onChange={handleChange}
         {...props}
       />
-      {description && !error && <FormDescription>{description}</FormDescription>}
+      {description && !error && (
+        <p id={descriptionId} className="text-sm text-muted-foreground">
+          {description}
+        </p>
+      )}
       {error && <p className="text-sm font-medium text-destructive">{error}</p>}
     </div>
   )
