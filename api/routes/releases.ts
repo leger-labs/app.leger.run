@@ -5,6 +5,9 @@
  * POST /api/releases - Create new release
  * PUT /api/releases/:id - Update release
  * DELETE /api/releases/:id - Delete release
+ * POST /api/releases/:id/configuration - Save configuration
+ * POST /api/releases/:id/deploy - Deploy release
+ * GET /api/releases/:id/deployment - Get deployment status
  */
 
 import type { Env } from '../middleware/auth'
@@ -22,6 +25,8 @@ import {
   updateRelease,
   deleteRelease,
 } from '../services/releases'
+import { saveConfiguration } from '../services/configurations'
+import { orchestrateDeployment, getDeploymentStatus } from '../services/deployment-orchestrator'
 
 /**
  * GET /api/releases
@@ -154,6 +159,98 @@ export async function handleDeleteRelease(
     }
 
     return successResponse({ deleted: true })
+  } catch (error) {
+    return handleError(error)
+  }
+}
+
+/**
+ * POST /api/releases/:id/configuration
+ * Save configuration for a release
+ */
+export async function handleSaveConfiguration(
+  request: Request,
+  env: Env,
+  releaseId: string
+): Promise<Response> {
+  try {
+    const payload = await authenticateRequest(request, env)
+
+    // Verify release exists and belongs to user
+    const release = await getRelease(env, payload.sub, releaseId)
+    if (!release) {
+      return errorResponse('not_found', `Release '${releaseId}' not found`, 404)
+    }
+
+    // Parse request body
+    const body = await request.json()
+
+    if (!body.config_data) {
+      return errorResponse('validation_error', 'Missing required field: config_data', 400)
+    }
+
+    // Save configuration
+    const configuration = await saveConfiguration(env, payload.sub, {
+      release_id: releaseId,
+      config_data: body.config_data,
+      schema_version: body.schema_version || '0.2.0',
+    })
+
+    return successResponse(configuration, 201)
+  } catch (error) {
+    return handleError(error)
+  }
+}
+
+/**
+ * POST /api/releases/:id/deploy
+ * Deploy a release (render templates and upload to R2)
+ */
+export async function handleDeployRelease(
+  request: Request,
+  env: Env,
+  releaseId: string
+): Promise<Response> {
+  try {
+    const payload = await authenticateRequest(request, env)
+
+    // Verify release exists and belongs to user
+    const release = await getRelease(env, payload.sub, releaseId)
+    if (!release) {
+      return errorResponse('not_found', `Release '${releaseId}' not found`, 404)
+    }
+
+    // Start deployment orchestration
+    const deployment = await orchestrateDeployment(env, payload.sub, releaseId)
+
+    return successResponse(deployment, 202) // 202 Accepted (async operation)
+  } catch (error) {
+    return handleError(error)
+  }
+}
+
+/**
+ * GET /api/releases/:id/deployment
+ * Get deployment status for a release
+ */
+export async function handleGetDeployment(
+  request: Request,
+  env: Env,
+  releaseId: string
+): Promise<Response> {
+  try {
+    const payload = await authenticateRequest(request, env)
+
+    // Verify release exists and belongs to user
+    const release = await getRelease(env, payload.sub, releaseId)
+    if (!release) {
+      return errorResponse('not_found', `Release '${releaseId}' not found`, 404)
+    }
+
+    // Get deployment status
+    const status = await getDeploymentStatus(env, payload.sub, releaseId)
+
+    return successResponse(status)
   } catch (error) {
     return handleError(error)
   }

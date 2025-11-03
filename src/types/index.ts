@@ -122,10 +122,96 @@ export interface ReleasesListResponse {
 
 /**
  * Configuration data (v0.2.0+)
- * Placeholder for future configuration form support
+ * User configuration in schema.json format
  */
 export interface ConfigData {
-  [key: string]: string;
+  infrastructure?: {
+    network?: {
+      name: string;
+      subnet: string;
+      [key: string]: unknown;
+    };
+    services?: {
+      [serviceName: string]: {
+        container_name: string;
+        [key: string]: unknown;
+      };
+    };
+  };
+  features?: {
+    [feature: string]: boolean;
+  };
+  providers?: {
+    [providerType: string]: string;
+  };
+  provider_config?: {
+    [key: string]: unknown;
+  };
+  secrets?: {
+    [key: string]: string;
+  };
+  models?: {
+    cloud?: string[];
+    local?: string[];
+  };
+  litellm?: {
+    database_url?: string;
+    drop_params?: boolean;
+  };
+  local_inference?: {
+    groups?: Record<string, unknown>;
+    defaults?: Record<string, unknown>;
+  };
+  tailscale?: {
+    full_hostname: string;
+    hostname: string;
+    tailnet: string;
+  };
+}
+
+/**
+ * Configuration record
+ * From api/models/configuration.ts
+ */
+export interface ConfigurationRecord {
+  id: string;
+  user_uuid: string;
+  release_id: string | null;
+  config_data: string; // JSON string
+  schema_version: string;
+  version: number;
+  created_at: string;
+}
+
+/**
+ * Deployment status
+ * From api/models/deployment.ts
+ */
+export type DeploymentStatus = 'rendering' | 'uploading' | 'ready' | 'deployed' | 'failed';
+
+/**
+ * Deployment record
+ * From api/models/deployment.ts
+ */
+export interface DeploymentRecord {
+  id: string;
+  release_id: string;
+  user_uuid: string;
+  status: DeploymentStatus;
+  r2_path: string | null;
+  manifest_url: string | null;
+  error_message: string | null;
+  started_at: string;
+  completed_at: string | null;
+}
+
+/**
+ * Deployment status response
+ * From api/services/deployment-orchestrator.ts
+ */
+export interface DeploymentStatusResponse {
+  deployment: DeploymentRecord | null;
+  hasConfiguration: boolean;
 }
 
 /**

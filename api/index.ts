@@ -16,6 +16,9 @@ import {
   handleCreateRelease,
   handleUpdateRelease,
   handleDeleteRelease,
+  handleSaveConfiguration,
+  handleDeployRelease,
+  handleGetDeployment,
 } from './routes/releases'
 import {
   handleTestAuthLogin,
@@ -181,18 +184,38 @@ export default {
         }
 
         if (normalizedPath.startsWith('/releases/')) {
-          const releaseId = normalizedPath.substring('/releases/'.length)
+          const pathParts = normalizedPath.substring('/releases/'.length).split('/')
+          const releaseId = pathParts[0]
+          const action = pathParts[1] || null
 
-          if (request.method === 'GET') {
-            return addCorsHeaders(await handleGetRelease(request, env, releaseId))
+          // Handle /releases/:id/configuration
+          if (action === 'configuration' && request.method === 'POST') {
+            return addCorsHeaders(await handleSaveConfiguration(request, env, releaseId))
           }
 
-          if (request.method === 'PUT') {
-            return addCorsHeaders(await handleUpdateRelease(request, env, releaseId))
+          // Handle /releases/:id/deploy
+          if (action === 'deploy' && request.method === 'POST') {
+            return addCorsHeaders(await handleDeployRelease(request, env, releaseId))
           }
 
-          if (request.method === 'DELETE') {
-            return addCorsHeaders(await handleDeleteRelease(request, env, releaseId))
+          // Handle /releases/:id/deployment
+          if (action === 'deployment' && request.method === 'GET') {
+            return addCorsHeaders(await handleGetDeployment(request, env, releaseId))
+          }
+
+          // Handle standard CRUD operations on /releases/:id
+          if (!action) {
+            if (request.method === 'GET') {
+              return addCorsHeaders(await handleGetRelease(request, env, releaseId))
+            }
+
+            if (request.method === 'PUT') {
+              return addCorsHeaders(await handleUpdateRelease(request, env, releaseId))
+            }
+
+            if (request.method === 'DELETE') {
+              return addCorsHeaders(await handleDeleteRelease(request, env, releaseId))
+            }
           }
         }
 
