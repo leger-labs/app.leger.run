@@ -56,3 +56,6 @@ src/_future/
 # Future features not in v0.1.0
 src/_future/
 dist-storybook/
+
+# Generated model-store copy (source is in submodule)
+public/model-store/

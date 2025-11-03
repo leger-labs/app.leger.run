@@ -4,9 +4,10 @@
   "description": "Web application for Leger secret management and release tracking",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "npm run schema:generate && vite build && npm run build:worker",
+    "dev": "npm run copy:model-store && vite",
+    "build": "npm run schema:generate && npm run copy:model-store && vite build && npm run build:worker",
     "build:worker": "node scripts/build-worker.js",
+    "copy:model-store": "mkdir -p public && cp -r model-store public/ || true",
     "preview": "vite preview",
     "deploy": "echo '⚠️  Use GitHub Actions for deployment. Push to main branch or run workflow manually.'",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 65",
