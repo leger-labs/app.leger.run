@@ -3,8 +3,8 @@
  * RJSF-based form with progressive disclosure
  */
 
-import { useState, useCallback, useMemo } from 'react';
-import Form from '@rjsf/core';
+import { useState, useCallback, useMemo, useEffect } from 'react';
+import Form, { IChangeEvent } from '@rjsf/core';
 import validator from '@rjsf/validator-ajv8';
 import { RJSFSchema, UiSchema } from '@rjsf/utils';
 import { customWidgets } from './widgets';
@@ -17,6 +17,7 @@ interface ReleaseConfigFormProps {
   onChange?: (data: any) => void;
   onSubmit?: (data: any) => void;
   onError?: (errors: any) => void;
+  formContext?: Record<string, unknown>;
 }
 
 /**
@@ -94,8 +95,13 @@ export function ReleaseConfigForm({
   onChange,
   onSubmit,
   onError,
+  formContext,
 }: ReleaseConfigFormProps) {
   const [formData, setFormData] = useState(initialFormData || {});
+
+  useEffect(() => {
+    setFormData(initialFormData || {});
+  }, [initialFormData]);
 
   // Apply progressive disclosure based on current form data
   const processedUiSchema = useMemo(() => {
@@ -103,16 +109,17 @@ export function ReleaseConfigForm({
   }, [uiSchema, formData]);
 
   const handleChange = useCallback(
-    ({ formData: newFormData }: { formData: any }) => {
+    (event: IChangeEvent<any, RJSFSchema>) => {
+      const newFormData = event.formData;
       setFormData(newFormData);
-      onChange?.(newFormData);
+      onChange?.(newFormData as Record<string, unknown>);
     },
     [onChange]
   );
 
   const handleSubmit = useCallback(
-    ({ formData: submitData }: { formData: any }) => {
-      onSubmit?.(submitData);
+    (event: IChangeEvent<any, RJSFSchema>) => {
+      onSubmit?.(event.formData as Record<string, unknown>);
     },
     [onSubmit]
   );
@@ -132,8 +139,9 @@ export function ReleaseConfigForm({
       validator={validator}
       widgets={customWidgets}
       templates={customTemplates}
-      onChange={handleChange}
-      onSubmit={handleSubmit}
+      formContext={formContext}
+      onChange={(event) => handleChange(event)}
+      onSubmit={(event) => handleSubmit(event)}
       onError={handleError}
       showErrorList={false}
       noHtml5Validate={true}

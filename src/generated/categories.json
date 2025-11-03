@@ -1,0 +1,892 @@
+[
+  {
+    "name": "Advanced",
+    "order": 999,
+    "fields": [
+      {
+        "path": "provider_config.tika_heap_size",
+        "name": "tika_heap_size",
+        "title": "Tika Heap Size",
+        "type": "string",
+        "required": false,
+        "order": 121
+      },
+      {
+        "path": "provider_config.searxng_max_page",
+        "name": "searxng_max_page",
+        "title": "Maximum Pages",
+        "type": "integer",
+        "required": false,
+        "order": 134
+      },
+      {
+        "path": "provider_config.comfyui_log_level",
+        "name": "comfyui_log_level",
+        "title": "ComfyUI Log Level",
+        "type": "string",
+        "required": false,
+        "order": 163
+      },
+      {
+        "path": "provider_config.comfyui_args",
+        "name": "comfyui_args",
+        "title": "ComfyUI Additional Arguments",
+        "type": "string",
+        "required": false,
+        "order": 164
+      },
+      {
+        "path": "provider_config.comfyui_startup_timeout",
+        "name": "comfyui_startup_timeout",
+        "title": "ComfyUI Startup Timeout",
+        "type": "integer",
+        "required": false,
+        "order": 165
+      },
+      {
+        "path": "provider_config.whisper_beam_size",
+        "name": "whisper_beam_size",
+        "title": "Beam Size",
+        "type": "integer",
+        "required": false,
+        "order": 172
+      },
+      {
+        "path": "provider_config.whisper_compute_type",
+        "name": "whisper_compute_type",
+        "title": "Compute Type",
+        "type": "string",
+        "required": false,
+        "order": 173
+      },
+      {
+        "path": "provider_config.whisper_device",
+        "name": "whisper_device",
+        "title": "Device",
+        "type": "string",
+        "required": false,
+        "order": 174
+      },
+      {
+        "path": "provider_config.whisper_cache_dir",
+        "name": "whisper_cache_dir",
+        "title": "Cache Directory",
+        "type": "string",
+        "required": false,
+        "order": 175
+      },
+      {
+        "path": "provider_config.edgetts_log_level",
+        "name": "edgetts_log_level",
+        "title": "Edge TTS Log Level",
+        "type": "string",
+        "required": false,
+        "order": 193
+      },
+      {
+        "path": "provider_config.edgetts_startup_timeout",
+        "name": "edgetts_startup_timeout",
+        "title": "Edge TTS Startup Timeout",
+        "type": "integer",
+        "required": false,
+        "order": 194
+      },
+      {
+        "path": "provider_config.jupyter_disable_execute_tool",
+        "name": "jupyter_disable_execute_tool",
+        "title": "Disable Jupyter Notebook Execute Tool",
+        "type": "boolean",
+        "required": false,
+        "order": 220
+      },
+      {
+        "path": "provider_config.jupyter_timeout",
+        "name": "jupyter_timeout",
+        "title": "Jupyter Timeout (seconds)",
+        "type": "integer",
+        "required": false,
+        "order": 222
+      },
+      {
+        "path": "provider_config.task_model_title",
+        "name": "task_model_title",
+        "title": "Task Model: Title Generation",
+        "type": "string",
+        "required": false,
+        "order": 301
+      },
+      {
+        "path": "provider_config.task_model_tags",
+        "name": "task_model_tags",
+        "title": "Task Model: Tags Generation",
+        "type": "string",
+        "required": false,
+        "order": 302
+      },
+      {
+        "path": "provider_config.task_model_autocomplete",
+        "name": "task_model_autocomplete",
+        "title": "Task Model: Autocomplete Generation",
+        "type": "string",
+        "required": false,
+        "order": 303
+      },
+      {
+        "path": "provider_config.task_model_query",
+        "name": "task_model_query",
+        "title": "Task Model: Query Generation",
+        "type": "string",
+        "required": false,
+        "order": 304
+      },
+      {
+        "path": "provider_config.task_model_search_query",
+        "name": "task_model_search_query",
+        "title": "Task Model: Search Query Generation",
+        "type": "string",
+        "required": false,
+        "order": 305
+      },
+      {
+        "path": "provider_config.task_model_rag_template",
+        "name": "task_model_rag_template",
+        "title": "Task Model: RAG Template Generation",
+        "type": "string",
+        "required": false,
+        "order": 306
+      },
+      {
+        "path": "features.websocket_support",
+        "name": "websocket_support",
+        "title": "WebSocket Support",
+        "type": "boolean",
+        "required": false,
+        "order": 400
+      },
+      {
+        "path": "provider_config.rag_top_k",
+        "name": "rag_top_k",
+        "title": "RAG Top K",
+        "type": "integer",
+        "required": false,
+        "order": 500
+      },
+      {
+        "path": "provider_config.chunk_size",
+        "name": "chunk_size",
+        "title": "Chunk Size",
+        "type": "integer",
+        "required": false,
+        "order": 501
+      },
+      {
+        "path": "provider_config.chunk_overlap",
+        "name": "chunk_overlap",
+        "title": "Chunk Overlap",
+        "type": "integer",
+        "required": false,
+        "order": 502
+      },
+      {
+        "path": "provider_config.openwebui_timeout_start",
+        "name": "openwebui_timeout_start",
+        "title": "OpenWebUI Startup Timeout",
+        "type": "integer",
+        "required": false,
+        "order": 600
+      },
+      {
+        "path": "provider_config.log_level",
+        "name": "log_level",
+        "title": "Log Level",
+        "type": "string",
+        "required": false,
+        "order": 601
+      },
+      {
+        "path": "provider_config.redis_key_prefix",
+        "name": "redis_key_prefix",
+        "title": "Redis Key Prefix",
+        "type": "string",
+        "required": false,
+        "order": 610
+      }
+    ]
+  },
+  {
+    "name": "AI Assistance",
+    "order": 999,
+    "fields": [
+      {
+        "path": "features.title_generation",
+        "name": "title_generation",
+        "title": "AI Title Generation",
+        "type": "boolean",
+        "required": false,
+        "order": 300
+      },
+      {
+        "path": "features.autocomplete_generation",
+        "name": "autocomplete_generation",
+        "title": "Autocomplete Generation",
+        "type": "boolean",
+        "required": false,
+        "order": 301
+      },
+      {
+        "path": "features.tags_generation",
+        "name": "tags_generation",
+        "title": "Tags Generation",
+        "type": "boolean",
+        "required": false,
+        "order": 302
+      }
+    ]
+  },
+  {
+    "name": "Core",
+    "order": 999,
+    "fields": [
+      {
+        "path": "provider_config.webui_name",
+        "name": "webui_name",
+        "title": "WebUI Instance Name",
+        "type": "string",
+        "required": false,
+        "order": 10
+      },
+      {
+        "path": "provider_config.custom_name",
+        "name": "custom_name",
+        "title": "Custom Instance Label",
+        "type": "string",
+        "required": false,
+        "order": 11
+      }
+    ]
+  },
+  {
+    "name": "Features",
+    "order": 999,
+    "fields": [
+      {
+        "path": "features.rag",
+        "name": "rag",
+        "title": "RAG (Retrieval-Augmented Generation)",
+        "type": "boolean",
+        "required": false,
+        "order": 100
+      },
+      {
+        "path": "features.web_search",
+        "name": "web_search",
+        "title": "Web Search",
+        "type": "boolean",
+        "required": false,
+        "order": 101
+      },
+      {
+        "path": "features.image_generation",
+        "name": "image_generation",
+        "title": "Image Generation",
+        "type": "boolean",
+        "required": false,
+        "order": 102
+      },
+      {
+        "path": "features.speech_to_text",
+        "name": "speech_to_text",
+        "title": "Speech-to-Text",
+        "type": "boolean",
+        "required": false,
+        "order": 103
+      },
+      {
+        "path": "features.text_to_speech",
+        "name": "text_to_speech",
+        "title": "Text-to-Speech",
+        "type": "boolean",
+        "required": false,
+        "order": 104
+      },
+      {
+        "path": "features.code_execution",
+        "name": "code_execution",
+        "title": "Code Execution",
+        "type": "boolean",
+        "required": false,
+        "order": 105
+      },
+      {
+        "path": "features.code_interpreter",
+        "name": "code_interpreter",
+        "title": "Code Interpreter",
+        "type": "boolean",
+        "required": false,
+        "order": 106
+      },
+      {
+        "path": "features.google_drive",
+        "name": "google_drive",
+        "title": "Google Drive Integration",
+        "type": "boolean",
+        "required": false,
+        "order": 107
+      },
+      {
+        "path": "features.onedrive",
+        "name": "onedrive",
+        "title": "OneDrive Integration",
+        "type": "boolean",
+        "required": false,
+        "order": 108
+      }
+    ]
+  },
+  {
+    "name": "Infrastructure",
+    "order": 999,
+    "fields": [
+      {
+        "path": "tailscale",
+        "name": "tailscale",
+        "title": "Tailscale Configuration",
+        "type": "object",
+        "required": true,
+        "order": 0
+      },
+      {
+        "path": "infrastructure.network",
+        "name": "network",
+        "title": "Network Configuration",
+        "type": "object",
+        "required": true,
+        "order": 1
+      },
+      {
+        "path": "tailscale.full_hostname",
+        "name": "full_hostname",
+        "title": "Tailscale MagicDNS Hostname",
+        "type": "string",
+        "required": true,
+        "order": 1
+      },
+      {
+        "path": "tailscale.hostname",
+        "name": "hostname",
+        "title": "Machine Hostname",
+        "type": "string",
+        "required": false,
+        "order": 2
+      },
+      {
+        "path": "tailscale.tailnet",
+        "name": "tailnet",
+        "title": "Tailnet Domain",
+        "type": "string",
+        "required": false,
+        "order": 3
+      },
+      {
+        "path": "infrastructure.network.name",
+        "name": "name",
+        "title": "Network Name",
+        "type": "string",
+        "required": false,
+        "order": 999
+      },
+      {
+        "path": "infrastructure.network.subnet",
+        "name": "subnet",
+        "title": "Network Subnet",
+        "type": "string",
+        "required": false,
+        "order": 999
+      }
+    ]
+  },
+  {
+    "name": "Providers",
+    "order": 999,
+    "fields": [
+      {
+        "path": "provider_config.qdrant_url",
+        "name": "qdrant_url",
+        "title": "Qdrant URL",
+        "type": "string",
+        "required": false,
+        "order": 100
+      },
+      {
+        "path": "providers.vector_db",
+        "name": "vector_db",
+        "title": "Vector Database",
+        "type": "string",
+        "required": false,
+        "order": 100
+      },
+      {
+        "path": "provider_config.qdrant_api_key",
+        "name": "qdrant_api_key",
+        "title": "Qdrant API Key",
+        "type": "string",
+        "required": false,
+        "order": 101
+      },
+      {
+        "path": "providers.rag_embedding",
+        "name": "rag_embedding",
+        "title": "RAG Embedding Model",
+        "type": "string",
+        "required": false,
+        "order": 101
+      },
+      {
+        "path": "providers.content_extraction",
+        "name": "content_extraction",
+        "title": "Content Extraction Engine",
+        "type": "string",
+        "required": false,
+        "order": 102
+      },
+      {
+        "path": "provider_config.qdrant_grpc_port",
+        "name": "qdrant_grpc_port",
+        "title": "Qdrant gRPC Port",
+        "type": "integer",
+        "required": false,
+        "order": 102
+      },
+      {
+        "path": "provider_config.qdrant_prefer_grpc",
+        "name": "qdrant_prefer_grpc",
+        "title": "Prefer gRPC",
+        "type": "boolean",
+        "required": false,
+        "order": 103
+      },
+      {
+        "path": "providers.text_splitter",
+        "name": "text_splitter",
+        "title": "Text Splitter Algorithm",
+        "type": "string",
+        "required": false,
+        "order": 103
+      },
+      {
+        "path": "provider_config.qdrant_on_disk",
+        "name": "qdrant_on_disk",
+        "title": "Store on Disk",
+        "type": "boolean",
+        "required": false,
+        "order": 104
+      },
+      {
+        "path": "provider_config.chroma_tenant",
+        "name": "chroma_tenant",
+        "title": "ChromaDB Tenant",
+        "type": "string",
+        "required": false,
+        "order": 105
+      },
+      {
+        "path": "provider_config.chroma_database",
+        "name": "chroma_database",
+        "title": "ChromaDB Database",
+        "type": "string",
+        "required": false,
+        "order": 106
+      },
+      {
+        "path": "provider_config.rag_embedding_api_key",
+        "name": "rag_embedding_api_key",
+        "title": "RAG Embedding API Key",
+        "type": "string",
+        "required": false,
+        "order": 110
+      },
+      {
+        "path": "providers.web_search_engine",
+        "name": "web_search_engine",
+        "title": "Web Search Engine",
+        "type": "string",
+        "required": false,
+        "order": 110
+      },
+      {
+        "path": "provider_config.rag_embedding_model",
+        "name": "rag_embedding_model",
+        "title": "RAG Embedding Model",
+        "type": "string",
+        "required": false,
+        "order": 111
+      },
+      {
+        "path": "providers.web_loader",
+        "name": "web_loader",
+        "title": "Web Page Loader",
+        "type": "string",
+        "required": false,
+        "order": 111
+      },
+      {
+        "path": "provider_config.ollama_embedding_model",
+        "name": "ollama_embedding_model",
+        "title": "Ollama Embedding Model",
+        "type": "string",
+        "required": false,
+        "order": 112
+      },
+      {
+        "path": "providers.image_engine",
+        "name": "image_engine",
+        "title": "Image Generation Engine",
+        "type": "string",
+        "required": false,
+        "order": 120
+      },
+      {
+        "path": "provider_config.tika_server_url",
+        "name": "tika_server_url",
+        "title": "Tika Server URL",
+        "type": "string",
+        "required": false,
+        "order": 120
+      },
+      {
+        "path": "provider_config.searxng_query_url",
+        "name": "searxng_query_url",
+        "title": "SearXNG Query URL",
+        "type": "string",
+        "required": false,
+        "order": 130
+      },
+      {
+        "path": "providers.stt_engine",
+        "name": "stt_engine",
+        "title": "Speech-to-Text Engine",
+        "type": "string",
+        "required": false,
+        "order": 130
+      },
+      {
+        "path": "provider_config.searxng_base_url",
+        "name": "searxng_base_url",
+        "title": "SearXNG Base URL",
+        "type": "string",
+        "required": false,
+        "order": 131
+      },
+      {
+        "path": "providers.tts_engine",
+        "name": "tts_engine",
+        "title": "Text-to-Speech Engine",
+        "type": "string",
+        "required": false,
+        "order": 131
+      },
+      {
+        "path": "provider_config.searxng_safe_search",
+        "name": "searxng_safe_search",
+        "title": "Safe Search Level",
+        "type": "integer",
+        "required": false,
+        "order": 132
+      },
+      {
+        "path": "provider_config.searxng_autocomplete",
+        "name": "searxng_autocomplete",
+        "title": "Autocomplete Provider",
+        "type": "string",
+        "required": false,
+        "order": 133
+      },
+      {
+        "path": "providers.code_execution_engine",
+        "name": "code_execution_engine",
+        "title": "Code Execution Engine",
+        "type": "string",
+        "required": false,
+        "order": 140
+      },
+      {
+        "path": "provider_config.tavily_api_key",
+        "name": "tavily_api_key",
+        "title": "Tavily API Key",
+        "type": "string",
+        "required": false,
+        "order": 140
+      },
+      {
+        "path": "providers.code_interpreter_engine",
+        "name": "code_interpreter_engine",
+        "title": "Code Interpreter Engine",
+        "type": "string",
+        "required": false,
+        "order": 141
+      },
+      {
+        "path": "provider_config.brave_api_key",
+        "name": "brave_api_key",
+        "title": "Brave Search API Key",
+        "type": "string",
+        "required": false,
+        "order": 150
+      },
+      {
+        "path": "providers.storage_provider",
+        "name": "storage_provider",
+        "title": "External Storage Provider",
+        "type": "string",
+        "required": false,
+        "order": 150
+      },
+      {
+        "path": "provider_config.comfyui_workspace",
+        "name": "comfyui_workspace",
+        "title": "ComfyUI Workspace Path",
+        "type": "string",
+        "required": false,
+        "order": 160
+      },
+      {
+        "path": "provider_config.comfyui_auto_update",
+        "name": "comfyui_auto_update",
+        "title": "ComfyUI Auto-Update",
+        "type": "boolean",
+        "required": false,
+        "order": 161
+      },
+      {
+        "path": "provider_config.comfyui_web_enable_auth",
+        "name": "comfyui_web_enable_auth",
+        "title": "ComfyUI Web Authentication",
+        "type": "boolean",
+        "required": false,
+        "order": 162
+      },
+      {
+        "path": "provider_config.whisper_model",
+        "name": "whisper_model",
+        "title": "Whisper Model",
+        "type": "string",
+        "required": false,
+        "order": 170
+      },
+      {
+        "path": "provider_config.whisper_language",
+        "name": "whisper_language",
+        "title": "Whisper Language",
+        "type": "string",
+        "required": false,
+        "order": 171
+      },
+      {
+        "path": "provider_config.stt_api_key",
+        "name": "stt_api_key",
+        "title": "STT API Key",
+        "type": "string",
+        "required": false,
+        "order": 180
+      },
+      {
+        "path": "provider_config.audio_stt_model",
+        "name": "audio_stt_model",
+        "title": "STT Model",
+        "type": "string",
+        "required": false,
+        "order": 181
+      },
+      {
+        "path": "provider_config.edgetts_response_format",
+        "name": "edgetts_response_format",
+        "title": "Edge TTS Response Format",
+        "type": "string",
+        "required": false,
+        "order": 190
+      },
+      {
+        "path": "provider_config.edgetts_speed",
+        "name": "edgetts_speed",
+        "title": "Edge TTS Speech Speed",
+        "type": "number",
+        "required": false,
+        "order": 191
+      },
+      {
+        "path": "provider_config.edgetts_voice",
+        "name": "edgetts_voice",
+        "title": "Edge TTS Voice",
+        "type": "string",
+        "required": false,
+        "order": 192
+      },
+      {
+        "path": "provider_config.elevenlabs_api_key",
+        "name": "elevenlabs_api_key",
+        "title": "ElevenLabs API Key",
+        "type": "string",
+        "required": false,
+        "order": 200
+      },
+      {
+        "path": "provider_config.tts_api_key",
+        "name": "tts_api_key",
+        "title": "TTS API Key",
+        "type": "string",
+        "required": false,
+        "order": 210
+      },
+      {
+        "path": "provider_config.audio_tts_model",
+        "name": "audio_tts_model",
+        "title": "TTS Model",
+        "type": "string",
+        "required": false,
+        "order": 211
+      },
+      {
+        "path": "provider_config.audio_tts_voice",
+        "name": "audio_tts_voice",
+        "title": "TTS Voice",
+        "type": "string",
+        "required": false,
+        "order": 212
+      },
+      {
+        "path": "provider_config.jupyter_auth_type",
+        "name": "jupyter_auth_type",
+        "title": "Jupyter Auth Type",
+        "type": "string",
+        "required": false,
+        "order": 221
+      },
+      {
+        "path": "provider_config.e2b_api_key",
+        "name": "e2b_api_key",
+        "title": "E2B API Key",
+        "type": "string",
+        "required": false,
+        "order": 230
+      }
+    ]
+  },
+  {
+    "name": "Security",
+    "order": 999,
+    "fields": [
+      {
+        "path": "providers.auth_provider",
+        "name": "auth_provider",
+        "title": "Authentication Provider",
+        "type": "string",
+        "required": false,
+        "order": 200
+      },
+      {
+        "path": "features.oauth_signup",
+        "name": "oauth_signup",
+        "title": "OAuth Signup",
+        "type": "boolean",
+        "required": false,
+        "order": 200
+      },
+      {
+        "path": "features.ldap",
+        "name": "ldap",
+        "title": "LDAP Authentication",
+        "type": "boolean",
+        "required": false,
+        "order": 201
+      },
+      {
+        "path": "secrets",
+        "name": "secrets",
+        "title": "External API Secrets",
+        "type": "object",
+        "required": false,
+        "order": 500
+      },
+      {
+        "path": "secrets.anthropic_api_key",
+        "name": "anthropic_api_key",
+        "title": "Anthropic API Key",
+        "type": "string",
+        "required": false,
+        "order": 999
+      },
+      {
+        "path": "secrets.civitai_token",
+        "name": "civitai_token",
+        "title": "CivitAI API Token",
+        "type": "string",
+        "required": false,
+        "order": 999
+      },
+      {
+        "path": "secrets.gemini_api_key",
+        "name": "gemini_api_key",
+        "title": "Google Gemini API Key",
+        "type": "string",
+        "required": false,
+        "order": 999
+      },
+      {
+        "path": "secrets.groq_api_key",
+        "name": "groq_api_key",
+        "title": "Groq API Key",
+        "type": "string",
+        "required": false,
+        "order": 999
+      },
+      {
+        "path": "secrets.hf_token",
+        "name": "hf_token",
+        "title": "HuggingFace API Token",
+        "type": "string",
+        "required": false,
+        "order": 999
+      },
+      {
+        "path": "secrets.mistral_api_key",
+        "name": "mistral_api_key",
+        "title": "Mistral API Key",
+        "type": "string",
+        "required": false,
+        "order": 999
+      },
+      {
+        "path": "secrets.openai_api_key",
+        "name": "openai_api_key",
+        "title": "OpenAI API Key",
+        "type": "string",
+        "required": false,
+        "order": 999
+      },
+      {
+        "path": "secrets.openrouter_api_key",
+        "name": "openrouter_api_key",
+        "title": "OpenRouter API Key",
+        "type": "string",
+        "required": false,
+        "order": 999
+      },
+      {
+        "path": "secrets.perplexity_api_key",
+        "name": "perplexity_api_key",
+        "title": "Perplexity API Key",
+        "type": "string",
+        "required": false,
+        "order": 999
+      },
+      {
+        "path": "secrets.tavily_api_key",
+        "name": "tavily_api_key",
+        "title": "Tavily Search API Key",
+        "type": "string",
+        "required": false,
+        "order": 999
+      }
+    ]
+  }
+]

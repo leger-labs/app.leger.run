@@ -1,4 +1,7 @@
-# Generated files - do not commit
+# Generated files - tracked subset
 *
 !.gitignore
 !README.md
+!uiSchema.json
+!categories.json
+!schema.json

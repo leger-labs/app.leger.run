@@ -2,14 +2,13 @@
 /**
  * Generate RJSF uiSchema from JSON Schema with x-extensions
  *
- * This script processes the schema.json and generates a uiSchema.json that includes:
- * - Progressive disclosure rules based on x-depends-on
- * - Field ordering based on x-display-order
- * - Widget selection based on field types
- * - Help text and descriptions
+ * This script processes the schema.json and generates:
+ * - uiSchema.json: RJSF UI schema with progressive disclosure, ordering, help text, and widget hints
+ * - categories.json: Category metadata derived from x-category/x-category-order for navigation
+ * - schema.json: Copy of the latest release schema for runtime consumption
  */
 
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -17,7 +16,18 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const SCHEMA_PATH = join(__dirname, '../../schemas/releases/latest/schema.json');
-const OUTPUT_PATH = join(__dirname, '../../src/generated/uiSchema.json');
+const UI_SCHEMA_OUTPUT_PATH = join(
+  __dirname,
+  '../../src/generated/uiSchema.json'
+);
+const CATEGORIES_OUTPUT_PATH = join(
+  __dirname,
+  '../../src/generated/categories.json'
+);
+const SCHEMA_OUTPUT_PATH = join(
+  __dirname,
+  '../../src/generated/schema.json'
+);
 
 /**
  * Generate widget type based on JSON Schema type and format
@@ -72,11 +82,118 @@ function processDependencies(schema) {
   return conditions;
 }
 
+const DEFAULT_CATEGORY_ORDER = 999;
+
+/**
+ * Walk schema tree and collect category metadata
+ */
+function extractCategories(schema) {
+  const categories = new Map();
+
+  function registerCategory(categoryName, fieldMeta, schemaMeta) {
+    if (!categories.has(categoryName)) {
+      categories.set(categoryName, {
+        name: categoryName,
+        order:
+          schemaMeta['x-category-order'] !== undefined
+            ? schemaMeta['x-category-order']
+            : DEFAULT_CATEGORY_ORDER,
+        fields: []
+      });
+    }
+
+    const category = categories.get(categoryName);
+    const candidateOrder =
+      schemaMeta['x-category-order'] !== undefined
+        ? schemaMeta['x-category-order']
+        : DEFAULT_CATEGORY_ORDER;
+    if (candidateOrder < category.order) {
+      category.order = candidateOrder;
+    }
+
+    category.fields.push(fieldMeta);
+  }
+
+  function walk(node, path = [], inheritedCategory, requiredSet = new Set()) {
+    if (!node || typeof node !== 'object') {
+      return;
+    }
+
+    const properties = node.properties || {};
+    const currentRequired = new Set(node.required || []);
+
+    Object.entries(properties).forEach(([propName, propSchema]) => {
+      const fieldPath = [...path, propName];
+      const explicitCategory = propSchema['x-category'];
+      const categoryName = explicitCategory || inheritedCategory;
+
+      if (categoryName) {
+        registerCategory(
+          categoryName,
+          {
+            path: fieldPath.join('.'),
+            name: propName,
+            title: propSchema.title || propName,
+            type: propSchema.type || (propSchema.enum ? 'string' : 'object'),
+            required: currentRequired.has(propName) || requiredSet.has(propName),
+            order:
+              propSchema['x-display-order'] !== undefined
+                ? propSchema['x-display-order']
+                : DEFAULT_CATEGORY_ORDER
+          },
+          propSchema
+        );
+      }
+
+      if (propSchema.type === 'object' && propSchema.properties) {
+        walk(propSchema, fieldPath, categoryName, currentRequired);
+      } else if (propSchema.type === 'array' && propSchema.items) {
+        const itemsSchema = Array.isArray(propSchema.items)
+          ? propSchema.items[0]
+          : propSchema.items;
+
+        if (itemsSchema && typeof itemsSchema === 'object') {
+          walk(itemsSchema, [...fieldPath, 'items'], categoryName, new Set());
+        }
+      }
+    });
+  }
+
+  walk(schema, [], undefined, new Set(schema.required || []));
+
+  return Array.from(categories.values())
+    .map(category => ({
+      ...category,
+      order:
+        category.order === undefined ? DEFAULT_CATEGORY_ORDER : category.order,
+      fields: category.fields.sort((a, b) => {
+        if (a.order !== b.order) {
+          return a.order - b.order;
+        }
+        return a.title.localeCompare(b.title);
+      })
+    }))
+    .sort((a, b) => {
+      if (a.order !== b.order) {
+        return a.order - b.order;
+      }
+      return a.name.localeCompare(b.name);
+    });
+}
+
+function ensureDirectoryExists(filePath) {
+  const dir = dirname(filePath);
+  if (!existsSync(dir)) {
+    mkdirSync(dir, { recursive: true });
+  }
+}
+
 /**
  * Generate uiSchema for a property
  */
-function generatePropertyUiSchema(propName, propSchema) {
+function generatePropertyUiSchema(propName, propSchema, context = {}) {
   const uiSchema = {};
+  const { category } = context;
 
   // Widget
   const widget = getWidget(propSchema);
@@ -125,13 +242,20 @@ function generatePropertyUiSchema(propName, propSchema) {
     };
   }
 
+  if (category) {
+    uiSchema['ui:options'] = {
+      ...(uiSchema['ui:options'] || {}),
+      category
+    };
+  }
+
   return Object.keys(uiSchema).length > 0 ? uiSchema : undefined;
 }
 
 /**
  * Recursively process schema to generate uiSchema
  */
-function processSchema(schema, path = []) {
+function processSchema(schema, path = [], parentCategory) {
   const uiSchema = {};
 
   if (schema.type === 'object' && schema.properties) {
@@ -139,11 +263,18 @@ function processSchema(schema, path = []) {
     const propUiSchemas = {};
 
     for (const [propName, propSchema] of Object.entries(schema.properties)) {
-      const propUiSchema = generatePropertyUiSchema(propName, propSchema);
+      const category = propSchema['x-category'] || parentCategory;
+      const propUiSchema = generatePropertyUiSchema(propName, propSchema, {
+        category
+      });
 
       if (propSchema.type === 'object' && propSchema.properties) {
         // Recursively process nested objects
-        const nestedUiSchema = processSchema(propSchema, [...path, propName]);
+        const nestedUiSchema = processSchema(
+          propSchema,
+          [...path, propName],
+          category
+        );
         if (Object.keys(nestedUiSchema).length > 0) {
           propUiSchemas[propName] = nestedUiSchema;
         }
@@ -180,24 +311,34 @@ function generateUiSchema() {
 
     console.log('Generating uiSchema...');
     const uiSchema = processSchema(schema);
+    const categories = extractCategories(schema);
 
-    // Ensure output directory exists
-    const outputDir = dirname(OUTPUT_PATH);
-    import('fs').then(fs => {
-      if (!fs.existsSync(outputDir)) {
-        fs.mkdirSync(outputDir, { recursive: true });
-      }
-    });
+    ensureDirectoryExists(UI_SCHEMA_OUTPUT_PATH);
+    ensureDirectoryExists(CATEGORIES_OUTPUT_PATH);
+    ensureDirectoryExists(SCHEMA_OUTPUT_PATH);
 
-    // Write output
     writeFileSync(
-      OUTPUT_PATH,
+      UI_SCHEMA_OUTPUT_PATH,
       JSON.stringify(uiSchema, null, 2),
       'utf-8'
     );
 
-    console.log('✓ uiSchema generated successfully at:', OUTPUT_PATH);
+    writeFileSync(
+      CATEGORIES_OUTPUT_PATH,
+      JSON.stringify(categories, null, 2),
+      'utf-8'
+    );
+
+    writeFileSync(
+      SCHEMA_OUTPUT_PATH,
+      JSON.stringify(schema, null, 2),
+      'utf-8'
+    );
+
+    console.log('✓ uiSchema generated successfully at:', UI_SCHEMA_OUTPUT_PATH);
     console.log('  Fields processed:', Object.keys(uiSchema).length);
+    console.log('✓ categories generated at:', CATEGORIES_OUTPUT_PATH);
+    console.log('  Total categories:', categories.length);
 
   } catch (error) {
     console.error('✗ Error generating uiSchema:', error.message);

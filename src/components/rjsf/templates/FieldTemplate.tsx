@@ -26,6 +26,10 @@ export function FieldTemplate(props: FieldTemplateProps) {
     uiSchema,
   } = props;
 
+  const fieldCategory =
+    (uiSchema?.['ui:options'] as Record<string, unknown> | undefined)?.category ||
+    schema['x-category'];
+
   // Handle conditional visibility based on x-depends-on
   const dependencies = uiSchema?.['ui:dependencies'];
   if (dependencies && Array.isArray(dependencies)) {
@@ -49,6 +53,7 @@ export function FieldTemplate(props: FieldTemplateProps) {
         disabled && 'opacity-50'
       )}
       data-field-id={id}
+      data-category={fieldCategory || undefined}
     >
       {children}
     </div>
