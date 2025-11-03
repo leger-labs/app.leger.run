@@ -7,7 +7,6 @@ import { ArrayFieldTemplateProps } from '@rjsf/utils';
 import { Button } from '@/components/ui/button';
 import { Plus, Trash2, ArrowUp, ArrowDown } from 'lucide-react';
 import { Label } from '@/components/ui/label';
-import { FormDescription } from '@/components/ui/form';
 
 export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
   const {
@@ -29,7 +28,7 @@ export function ArrayFieldTemplate(props: ArrayFieldTemplateProps) {
         <div>
           <Label>{title || schema.title}</Label>
           {schema.description && (
-            <FormDescription>{schema.description}</FormDescription>
+            <p className="text-sm text-muted-foreground">{schema.description}</p>
           )}
         </div>
         {canAdd && (

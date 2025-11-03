@@ -3,7 +3,6 @@ import type React from "react"
 import { useState } from "react"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { FormDescription } from "@/components/ui/form"
 import { cn } from "@/lib/utils"
 import { ExternalLink } from "lucide-react"
 
@@ -27,6 +26,7 @@ export function MarkdownTextArea({
 }: MarkdownTextAreaProps) {
   const [charCount, setCharCount] = useState(props.value?.toString().length || 0)
   const fieldId = id || label.toLowerCase().replace(/\s+/g, "-")
+  const descriptionId = description ? `${fieldId}-description` : undefined
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCharCount(e.target.value.length)
@@ -55,13 +55,18 @@ export function MarkdownTextArea({
         id={fieldId}
         className={cn("min-h-[120px] font-mono text-sm", error && "border-destructive", className)}
         maxLength={maxLength}
+        aria-describedby={!error && descriptionId ? descriptionId : undefined}
         onChange={handleChange}
         {...props}
       />
       <div className="flex justify-between items-center">
         {(description || error) && (
           <div>
-            {description && !error && <FormDescription>{description}</FormDescription>}
+            {description && !error && (
+              <p id={descriptionId} className="text-sm text-muted-foreground">
+                {description}
+              </p>
+            )}
             {error && <p className="text-sm font-medium text-destructive">{error}</p>}
           </div>
         )}

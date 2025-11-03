@@ -2,7 +2,6 @@ import type React from "react"
 
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { FormDescription } from "@/components/ui/form"
 import { cn } from "@/lib/utils"
 
 interface URLInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -14,6 +13,7 @@ interface URLInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export function URLInput({ label, description, error, prefix, className, id, ...props }: URLInputProps) {
   const fieldId = id || label.toLowerCase().replace(/\s+/g, "-")
+  const descriptionId = description ? `${fieldId}-description` : undefined
 
   return (
     <div className="space-y-2">
@@ -31,10 +31,15 @@ export function URLInput({ label, description, error, prefix, className, id, ...
           type="url"
           className={cn(error && "border-destructive", prefix && "pl-[calc(0.75rem+var(--prefix-width))]", className)}
           style={{ "--prefix-width": prefix ? `${prefix.length}ch` : "0ch" } as React.CSSProperties}
+          aria-describedby={!error && descriptionId ? descriptionId : undefined}
           {...props}
         />
       </div>
-      {description && !error && <FormDescription>{description}</FormDescription>}
+      {description && !error && (
+        <p id={descriptionId} className="text-sm text-muted-foreground">
+          {description}
+        </p>
+      )}
       {error && <p className="text-sm font-medium text-destructive">{error}</p>}
     </div>
   )

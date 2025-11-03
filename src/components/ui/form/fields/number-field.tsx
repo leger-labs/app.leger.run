@@ -2,7 +2,6 @@ import React from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
-import { FormDescription } from "@/components/ui/form"
 
 interface NumberFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'type' | 'step'> {
   label: string
@@ -29,6 +28,7 @@ export function NumberField({
   ...props
 }: NumberFieldProps) {
   const fieldId = id || label.toLowerCase().replace(/\s+/g, "-")
+  const descriptionId = description ? `${fieldId}-description` : undefined
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value
@@ -58,10 +58,15 @@ export function NumberField({
         max={max}
         step={step}
         value={displayValue}
+        aria-describedby={!error && descriptionId ? descriptionId : undefined}
         onChange={handleChange}
         {...props}
       />
-      {description && !error && <FormDescription>{description}</FormDescription>}
+      {description && !error && (
+        <p id={descriptionId} className="text-sm text-muted-foreground">
+          {description}
+        </p>
+      )}
       {error && <p className="text-sm font-medium text-destructive">{error}</p>}
     </div>
   )
