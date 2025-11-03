@@ -1,6 +1,8 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
 
+const EMPTY_OPTION_VALUE = "__empty__"
+
 interface SelectOption {
   value: string
   label: string
@@ -32,12 +34,36 @@ export function SelectField({
   const fieldId = id || label.toLowerCase().replace(/\s+/g, "-")
   const descriptionId = description ? `${fieldId}-description` : undefined
 
+  const normalizedOptions = options.map((option) => {
+    if (option.value !== "") {
+      return option
+    }
+
+    return {
+      ...option,
+      value: EMPTY_OPTION_VALUE,
+      label: option.label && option.label.trim().length > 0 ? option.label : "None",
+    }
+  })
+
+  const normalizedValue: string | undefined =
+    value === ""
+      ? options.some((option) => option.value === "")
+        ? EMPTY_OPTION_VALUE
+        : undefined
+      : value
+
+  const handleValueChange = (selectedValue: string) => {
+    const actualValue = selectedValue === EMPTY_OPTION_VALUE ? "" : selectedValue
+    onChange(actualValue)
+  }
+
   return (
     <div className="space-y-2">
       <Label htmlFor={fieldId} className={error ? "text-destructive" : ""}>
         {label}
       </Label>
-      <Select value={value} onValueChange={onChange} disabled={disabled}>
+      <Select value={normalizedValue} onValueChange={handleValueChange} disabled={disabled}>
         <SelectTrigger
           id={fieldId}
           className={error ? "border-destructive" : ""}
@@ -46,7 +72,7 @@ export function SelectField({
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent>
-          {options.map((option) => (
+          {normalizedOptions.map((option) => (
             <SelectItem key={option.value} value={option.value}>
               {option.label}
             </SelectItem>
