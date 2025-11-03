@@ -49,9 +49,22 @@ export interface Env {
 export default {
   async fetch(request: Request, env: Env, _ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url)
+    const hostname = url.hostname.toLowerCase()
+    const originalPath = url.pathname
+    const isApiHostname = hostname === 'api.leger.run'
+    const isApiPath = originalPath.startsWith('/api/') || originalPath === '/api'
+    const normalizedPath = (() => {
+      if (originalPath.startsWith('/api/')) {
+        return originalPath.substring(4) || '/'
+      }
+      if (originalPath === '/api') {
+        return '/'
+      }
+      return originalPath
+    })()
 
     // Handle health check endpoint (public, no auth)
-    if (url.pathname === '/health' || url.pathname === '/api/health') {
+    if (normalizedPath === '/health') {
       return new Response(
         JSON.stringify({
           status: 'healthy',
@@ -84,7 +97,7 @@ export default {
     }
 
     // Handle API routes
-    if (url.pathname.startsWith('/api/')) {
+    if (isApiHostname || isApiPath) {
       try {
         // Add CORS headers to all API responses
         const addCorsHeaders = (response: Response): Response => {
@@ -101,17 +114,17 @@ export default {
         }
 
         // Authentication routes
-        if (url.pathname === '/api/auth/validate' && request.method === 'POST') {
+        if (normalizedPath === '/auth/validate' && request.method === 'POST') {
           return addCorsHeaders(await handleAuthValidate(request, env))
         }
 
         // Secrets routes
-        if (url.pathname === '/api/secrets' && request.method === 'GET') {
+        if (normalizedPath === '/secrets' && request.method === 'GET') {
           return addCorsHeaders(await handleListSecrets(request, env))
         }
 
-        if (url.pathname.startsWith('/api/secrets/')) {
-          const secretName = url.pathname.substring('/api/secrets/'.length)
+        if (normalizedPath.startsWith('/secrets/')) {
+          const secretName = normalizedPath.substring('/secrets/'.length)
 
           if (request.method === 'GET') {
             return addCorsHeaders(await handleGetSecret(request, env, secretName))
@@ -127,7 +140,7 @@ export default {
         }
 
         // Releases routes
-        if (url.pathname === '/api/releases') {
+        if (normalizedPath === '/releases') {
           if (request.method === 'GET') {
             return addCorsHeaders(await handleListReleases(request, env))
           }
@@ -137,8 +150,8 @@ export default {
           }
         }
 
-        if (url.pathname.startsWith('/api/releases/')) {
-          const releaseId = url.pathname.substring('/api/releases/'.length)
+        if (normalizedPath.startsWith('/releases/')) {
+          const releaseId = normalizedPath.substring('/releases/'.length)
 
           if (request.method === 'GET') {
             return addCorsHeaders(await handleGetRelease(request, env, releaseId))
@@ -155,16 +168,16 @@ export default {
 
         // Test routes (NO AUTHENTICATION) - for development
         // Test auth endpoint for web UI testing
-        if (url.pathname === '/api/test/auth/login' && request.method === 'POST') {
+        if (normalizedPath === '/test/auth/login' && request.method === 'POST') {
           return addCorsHeaders(await handleTestAuthLogin(request, env))
         }
 
-        if (url.pathname === '/api/test/secrets' && request.method === 'GET') {
+        if (normalizedPath === '/test/secrets' && request.method === 'GET') {
           return addCorsHeaders(await handleTestListSecrets(request, env))
         }
 
-        if (url.pathname.startsWith('/api/test/secrets/')) {
-          const secretName = url.pathname.substring('/api/test/secrets/'.length)
+        if (normalizedPath.startsWith('/test/secrets/')) {
+          const secretName = normalizedPath.substring('/test/secrets/'.length)
 
           if (request.method === 'GET') {
             return addCorsHeaders(await handleTestGetSecret(request, env, secretName))
@@ -179,7 +192,7 @@ export default {
           }
         }
 
-        if (url.pathname === '/api/test/releases') {
+        if (normalizedPath === '/test/releases') {
           if (request.method === 'GET') {
             return addCorsHeaders(await handleTestListReleases(request, env))
           }
@@ -189,8 +202,8 @@ export default {
           }
         }
 
-        if (url.pathname.startsWith('/api/test/releases/')) {
-          const releaseId = url.pathname.substring('/api/test/releases/'.length)
+        if (normalizedPath.startsWith('/test/releases/')) {
+          const releaseId = normalizedPath.substring('/test/releases/'.length)
 
           if (request.method === 'GET') {
             return addCorsHeaders(await handleTestGetRelease(request, env, releaseId))
