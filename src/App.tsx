@@ -100,6 +100,7 @@ export default function App() {
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/auth-error" element={<AuthErrorPage />} />
             <Route path="/auth/test" element={<TestAuthPage />} />
+            <Route path="/api/test/auth/login" element={<TestAuthPage />} />
 
             {/* Protected routes */}
             <Route
