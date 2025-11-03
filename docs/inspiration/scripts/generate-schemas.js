@@ -229,9 +229,9 @@ if (!fs.existsSync(OPENAPI_SPEC_PATH)) {
           fieldUi['ui:widget'] = 'TextWidget';
         }
         
-        // Add help text
-        if (fieldDef['x-help'] || fieldDef.description) {
-          fieldUi['ui:help'] = fieldDef['x-help'] || fieldDef.description;
+        // Add help text from description
+        if (fieldDef.description) {
+          fieldUi['ui:help'] = fieldDef.description;
         }
         
         // Add placeholder

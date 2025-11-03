@@ -88,7 +88,8 @@ The `schema.json` uses standard JSON Schema with custom `x-*` extensions:
 - `x-affects-services`: Define which services are deployed based on choices
 - `x-sensitive`: Mark fields as secrets (use password input)
 - `x-readonly`: Make fields read-only
-- `x-help`: Additional help text for users
+
+**Note:** Help text for fields is now taken directly from the `description` property in the schema.
 
 ### 2. Progressive Disclosure
 

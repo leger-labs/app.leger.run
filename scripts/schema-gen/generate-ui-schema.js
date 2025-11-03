@@ -6,7 +6,7 @@
  * - Progressive disclosure rules based on x-depends-on
  * - Field ordering based on x-display-order
  * - Widget selection based on field types
- * - Help text and descriptions
+ * - Help text from description fields
  */
 
 import { readFileSync, writeFileSync } from 'fs';
@@ -84,9 +84,9 @@ function generatePropertyUiSchema(propName, propSchema) {
     uiSchema['ui:widget'] = widget;
   }
 
-  // Help text
-  if (propSchema['x-help'] || propSchema.description) {
-    uiSchema['ui:help'] = propSchema['x-help'] || propSchema.description;
+  // Help text from description
+  if (propSchema.description) {
+    uiSchema['ui:help'] = propSchema.description;
   }
 
   // Display order
