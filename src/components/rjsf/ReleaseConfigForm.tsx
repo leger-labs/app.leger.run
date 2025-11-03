@@ -18,6 +18,7 @@ interface ReleaseConfigFormProps {
   onSubmit?: (data: any) => void;
   onError?: (errors: any) => void;
   formContext?: Record<string, unknown>;
+  visibleFields?: string[]; // List of field paths to show
 }
 
 /**
@@ -44,11 +45,47 @@ function checkDependencies(
 }
 
 /**
+ * Filter schema to only include visible fields
+ */
+function filterSchemaByFields(
+  schema: RJSFSchema,
+  visibleFields: string[]
+): RJSFSchema {
+  if (!visibleFields || visibleFields.length === 0) {
+    return schema;
+  }
+
+  const filteredSchema: RJSFSchema = {
+    ...schema,
+    properties: {},
+  };
+
+  // Build a set of top-level properties that should be included
+  const topLevelProps = new Set<string>();
+  visibleFields.forEach((path) => {
+    const topLevel = path.split('.')[0];
+    topLevelProps.add(topLevel);
+  });
+
+  // Include only relevant properties
+  if (schema.properties) {
+    Object.entries(schema.properties).forEach(([key, value]) => {
+      if (topLevelProps.has(key)) {
+        filteredSchema.properties![key] = value;
+      }
+    });
+  }
+
+  return filteredSchema;
+}
+
+/**
  * Apply progressive disclosure rules to uiSchema
  */
 function applyProgressiveDisclosure(
   uiSchema: UiSchema | undefined,
-  formData: any
+  formData: any,
+  visibleFields?: string[]
 ): UiSchema {
   if (!uiSchema) {
     return {};
@@ -57,6 +94,14 @@ function applyProgressiveDisclosure(
   const processedUiSchema: UiSchema = {};
 
   Object.entries(uiSchema).forEach(([key, value]) => {
+    // If visibleFields is provided, only process fields in that list
+    if (visibleFields && visibleFields.length > 0) {
+      const isVisible = visibleFields.some((path) => path.startsWith(key));
+      if (!isVisible) {
+        return; // Skip this field entirely
+      }
+    }
+
     if (typeof value === 'object' && value !== null) {
       const dependencies = value['ui:dependencies'];
 
@@ -76,7 +121,7 @@ function applyProgressiveDisclosure(
 
       // Recursively process nested uiSchemas
       if (value['ui:field'] === 'object' || (value as any).properties) {
-        processedUiSchema[key] = applyProgressiveDisclosure(value, formData);
+        processedUiSchema[key] = applyProgressiveDisclosure(value, formData, visibleFields);
       } else {
         processedUiSchema[key] = value;
       }
@@ -96,6 +141,7 @@ export function ReleaseConfigForm({
   onSubmit,
   onError,
   formContext,
+  visibleFields,
 }: ReleaseConfigFormProps) {
   const [formData, setFormData] = useState(initialFormData || {});
 
@@ -103,10 +149,18 @@ export function ReleaseConfigForm({
     setFormData(initialFormData || {});
   }, [initialFormData]);
 
+  // Filter schema if visibleFields is provided
+  const filteredSchema = useMemo(() => {
+    if (visibleFields && visibleFields.length > 0) {
+      return filterSchemaByFields(schema, visibleFields);
+    }
+    return schema;
+  }, [schema, visibleFields]);
+
   // Apply progressive disclosure based on current form data
   const processedUiSchema = useMemo(() => {
-    return applyProgressiveDisclosure(uiSchema, formData);
-  }, [uiSchema, formData]);
+    return applyProgressiveDisclosure(uiSchema, formData, visibleFields);
+  }, [uiSchema, formData, visibleFields]);
 
   const handleChange = useCallback(
     (event: IChangeEvent<any, RJSFSchema>) => {
@@ -133,7 +187,7 @@ export function ReleaseConfigForm({
 
   return (
     <Form
-      schema={schema}
+      schema={filteredSchema}
       uiSchema={processedUiSchema}
       formData={formData}
       validator={validator}

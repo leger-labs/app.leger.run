@@ -1,12 +1,17 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { RJSFSchema, UiSchema } from '@rjsf/utils';
-import { HierarchicalNavigation } from '@/components/ui/navigation/hierarchical-navigation';
 import { ReleaseConfigForm } from '@/components/rjsf/ReleaseConfigForm';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Loader2 } from 'lucide-react';
+import { Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { ReleaseCategory } from '@/types/release-schema';
+import { CategoryTabs, CategoryTabPanel } from '@/components/ui/tabs/category-tabs';
+import {
+  filterFieldsByDependencies,
+  getCategoryStatus,
+  categoryHasVisibleFields,
+} from '@/lib/progressive-disclosure';
 
 type NavigationStatus = 'complete' | 'error' | 'incomplete' | undefined;
 
@@ -33,32 +38,6 @@ function slugify(value: string) {
   );
 }
 
-function buildFieldId(path: string) {
-  return `root_${path.replace(/[.\[\]]+/g, '_')}`.replace(/_+/g, '_');
-}
-
-function getValueAtPath(data: unknown, path: string) {
-  if (!path) return undefined;
-  const segments = path.split('.');
-  let current: any = data;
-
-  for (const segment of segments) {
-    if (current === null || current === undefined) {
-      return undefined;
-    }
-
-    if (segment === 'items') {
-      return Array.isArray(current) && current.length > 0
-        ? current
-        : undefined;
-    }
-
-    current = current[segment];
-  }
-
-  return current;
-}
-
 export function CategoryBasedReleaseForm({
   schema,
   uiSchema,
@@ -72,137 +51,67 @@ export function CategoryBasedReleaseForm({
   className,
 }: CategoryBasedReleaseFormProps) {
   const [formData, setFormData] = useState<Record<string, unknown>>(value || {});
-  const [activeNavId, setActiveNavId] = useState<string>('');
+  const [activeTab, setActiveTab] = useState<string>('');
 
   useEffect(() => {
     setFormData(value || {});
   }, [value]);
 
-  const sortedCategories = useMemo(() => {
-    return [...categories].sort((a, b) => {
-      const orderA = a.order ?? Number.MAX_SAFE_INTEGER;
-      const orderB = b.order ?? Number.MAX_SAFE_INTEGER;
-      if (orderA !== orderB) {
-        return orderA - orderB;
-      }
-      return a.name.localeCompare(b.name);
-    });
-  }, [categories]);
+  // Filter categories based on whether they have visible fields
+  const visibleCategories = useMemo(() => {
+    return categories.filter((category) =>
+      categoryHasVisibleFields(category, formData, schema)
+    );
+  }, [categories, formData, schema]);
 
+  // Set initial active tab
+  useEffect(() => {
+    if (visibleCategories.length > 0 && !activeTab) {
+      setActiveTab(slugify(visibleCategories[0].name));
+    }
+  }, [visibleCategories, activeTab]);
+
+  // Calculate category statuses with progressive disclosure
   const categoryStatuses = useMemo(() => {
     const statusMap = new Map<string, NavigationStatus>();
 
-    sortedCategories.forEach((category) => {
-      if (!category.fields || category.fields.length === 0) {
-        statusMap.set(category.name, undefined);
-        return;
-      }
-
-      const missingRequired = category.fields.some((field) => {
-        if (!field.required) {
-          return false;
-        }
-        const valueAtPath = getValueAtPath(formData, field.path);
-        return valueAtPath === undefined || valueAtPath === '';
-      });
-
-      statusMap.set(category.name, missingRequired ? 'incomplete' : 'complete');
+    visibleCategories.forEach((category) => {
+      const status = getCategoryStatus(category, formData, schema);
+      statusMap.set(category.name, status);
     });
 
     return statusMap;
-  }, [sortedCategories, formData]);
+  }, [visibleCategories, formData, schema]);
 
-  const navigationItems = useMemo(() => {
-    return sortedCategories.map((category) => ({
-      id: `category:${slugify(category.name)}`,
+  // Create tabs with status indicators
+  const tabs = useMemo(() => {
+    return visibleCategories.map((category) => ({
+      id: slugify(category.name),
       label: category.name,
       status: categoryStatuses.get(category.name),
     }));
-  }, [sortedCategories, categoryStatuses]);
+  }, [visibleCategories, categoryStatuses]);
 
-  const navigationTargets = useMemo(() => {
-    const targets = new Map<string, string>();
+  // Get current tab index for navigation
+  const currentTabIndex = useMemo(() => {
+    return tabs.findIndex((tab) => tab.id === activeTab);
+  }, [tabs, activeTab]);
 
-    sortedCategories.forEach((category) => {
-      const firstField = [...(category.fields || [])].sort((a, b) => {
-        const orderA = a.order ?? Number.MAX_SAFE_INTEGER;
-        const orderB = b.order ?? Number.MAX_SAFE_INTEGER;
-        if (orderA !== orderB) {
-          return orderA - orderB;
-        }
-        return a.title.localeCompare(b.title);
-      })[0];
+  const canGoPrevious = currentTabIndex > 0;
+  const canGoNext = currentTabIndex < tabs.length - 1;
+  const isLastTab = currentTabIndex === tabs.length - 1;
 
-      if (firstField) {
-        targets.set(`category:${slugify(category.name)}`, buildFieldId(firstField.path));
-      }
-    });
-
-    return targets;
-  }, [sortedCategories]);
-
-  useEffect(() => {
-    if (navigationItems.length > 0 && !activeNavId) {
-      setActiveNavId(navigationItems[0].id);
+  const handlePrevious = useCallback(() => {
+    if (canGoPrevious) {
+      setActiveTab(tabs[currentTabIndex - 1].id);
     }
-  }, [navigationItems, activeNavId]);
+  }, [canGoPrevious, tabs, currentTabIndex]);
 
-  useEffect(() => {
-    if (navigationTargets.size === 0) {
-      return;
+  const handleNext = useCallback(() => {
+    if (canGoNext) {
+      setActiveTab(tabs[currentTabIndex + 1].id);
     }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-        if (visible.length > 0) {
-          const entry = visible[0];
-          const categoryName = entry.target.getAttribute('data-category');
-          if (categoryName) {
-            const navId = `category:${slugify(categoryName)}`;
-            setActiveNavId(navId);
-          }
-        }
-      },
-      {
-        root: null,
-        rootMargin: '-20% 0px -60% 0px',
-        threshold: [0.1, 0.25, 0.5],
-      }
-    );
-
-    navigationTargets.forEach((targetId) => {
-      const element = document.querySelector<HTMLElement>(
-        `[data-field-id="${targetId}"]`
-      );
-      if (element) {
-        observer.observe(element);
-      }
-    });
-
-    return () => observer.disconnect();
-  }, [navigationTargets]);
-
-  const handleNavigationClick = useCallback(
-    (itemId: string) => {
-      setActiveNavId(itemId);
-      const targetId = navigationTargets.get(itemId);
-
-      if (targetId) {
-        const element = document.querySelector<HTMLElement>(
-          `[data-field-id="${targetId}"]`
-        );
-
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }
-    },
-    [navigationTargets]
-  );
+  }, [canGoNext, tabs, currentTabIndex]);
 
   const handleFormChange = useCallback(
     (data: any) => {
@@ -215,6 +124,18 @@ export function CategoryBasedReleaseForm({
   const handleSubmit = useCallback(() => {
     onSubmit?.(formData);
   }, [formData, onSubmit]);
+
+  // Get filtered fields for current category
+  const getCurrentCategoryFields = useCallback(
+    (categoryName: string) => {
+      const category = visibleCategories.find((cat) => cat.name === categoryName);
+      if (!category) return [];
+
+      const filtered = filterFieldsByDependencies(category, formData, schema);
+      return filtered.fields;
+    },
+    [visibleCategories, formData, schema]
+  );
 
   if (!schema || !uiSchema) {
     return (
@@ -229,46 +150,86 @@ export function CategoryBasedReleaseForm({
     );
   }
 
-  if (sortedCategories.length === 0) {
+  if (visibleCategories.length === 0) {
     return (
       <Alert className="border-yellow-500/30 bg-yellow-50 dark:border-yellow-600/40 dark:bg-muted">
-        <AlertTitle>No categories available</AlertTitle>
+        <AlertTitle>No configuration needed</AlertTitle>
         <AlertDescription>
-          The release schema does not include any <code>x-category</code> metadata.
+          All configuration categories are either managed elsewhere or have no available options.
         </AlertDescription>
       </Alert>
     );
   }
 
   return (
-    <div className={cn('grid gap-8 lg:grid-cols-[240px_minmax(0,1fr)]', className)}>
-      <div className="rounded-lg border bg-card p-4">
-        <h2 className="mb-4 text-sm font-semibold text-muted-foreground uppercase">
-          Configuration navigation
-        </h2>
-        <HierarchicalNavigation
-          items={navigationItems}
-          activeItemId={activeNavId || navigationItems[0]?.id || ''}
-          onItemClick={handleNavigationClick}
-        />
-      </div>
+    <div className={cn('space-y-6', className)}>
+      <CategoryTabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab}>
+        {visibleCategories.map((category) => {
+          const fields = getCurrentCategoryFields(category.name);
 
-      <div className="space-y-6">
-        <ReleaseConfigForm
-          schema={schema}
-          uiSchema={uiSchema}
-          formData={formData}
-          onChange={handleFormChange}
-        />
+          return (
+            <CategoryTabPanel key={category.name} value={slugify(category.name)}>
+              <div className="space-y-6">
+                {/* Category description */}
+                {category.name === 'Features' && (
+                  <Alert>
+                    <AlertTitle>Feature Toggles</AlertTitle>
+                    <AlertDescription>
+                      Enable the features you want to use. Only enabled features will show
+                      configuration options in subsequent tabs.
+                    </AlertDescription>
+                  </Alert>
+                )}
 
-        <div className="flex justify-end">
-          <Button onClick={handleSubmit} disabled={isSubmitting || !isDirty}>
-            {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            {submitLabel}
-          </Button>
-        </div>
-      </div>
+                {category.name === 'Providers' && (
+                  <Alert>
+                    <AlertTitle>Provider Selection</AlertTitle>
+                    <AlertDescription>
+                      Choose which provider to use for each enabled feature. Configuration
+                      options will appear based on your selections.
+                    </AlertDescription>
+                  </Alert>
+                )}
+
+                {/* Form for current category */}
+                <ReleaseConfigForm
+                  schema={schema}
+                  uiSchema={uiSchema}
+                  formData={formData}
+                  onChange={handleFormChange}
+                  visibleFields={fields.map((f) => f.path)}
+                />
+
+                {/* Navigation buttons */}
+                <div className="flex items-center justify-between pt-4 border-t">
+                  <Button
+                    variant="outline"
+                    onClick={handlePrevious}
+                    disabled={!canGoPrevious}
+                  >
+                    <ChevronLeft className="h-4 w-4 mr-2" />
+                    Previous
+                  </Button>
+
+                  <div className="flex gap-2">
+                    {!isLastTab ? (
+                      <Button onClick={handleNext} disabled={!canGoNext}>
+                        Next
+                        <ChevronRight className="h-4 w-4 ml-2" />
+                      </Button>
+                    ) : (
+                      <Button onClick={handleSubmit} disabled={isSubmitting || !isDirty}>
+                        {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                        {submitLabel}
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </CategoryTabPanel>
+          );
+        })}
+      </CategoryTabs>
     </div>
   );
 }
-

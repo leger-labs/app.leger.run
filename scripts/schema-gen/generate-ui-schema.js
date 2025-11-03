@@ -87,6 +87,21 @@ function processDependencies(schema) {
 
 const DEFAULT_CATEGORY_ORDER = 999;
 
+// Categories to exclude from release configurator (managed elsewhere)
+const EXCLUDED_CATEGORIES = ['Infrastructure', 'Security'];
+
+// Root properties to exclude (managed in Settings, not per-release)
+const EXCLUDED_ROOT_PROPERTIES = ['tailscale', 'secrets', 'infrastructure'];
+
+// Category ordering for release configurator
+const CATEGORY_ORDER = {
+  'Features': 10,
+  'Providers': 20,
+  'Core': 30,
+  'AI Assistance': 40,
+  'Advanced': 50
+};
+
 /**
  * Walk schema tree and collect category metadata
  */
@@ -94,26 +109,27 @@ function extractCategories(schema) {
   const categories = new Map();
 
   function registerCategory(categoryName, fieldMeta, schemaMeta) {
+    // Skip excluded categories
+    if (EXCLUDED_CATEGORIES.includes(categoryName)) {
+      return;
+    }
+
     if (!categories.has(categoryName)) {
+      // Use explicit category order or default
+      const explicitOrder = CATEGORY_ORDER[categoryName] !== undefined
+        ? CATEGORY_ORDER[categoryName]
+        : (schemaMeta['x-category-order'] !== undefined
+            ? schemaMeta['x-category-order']
+            : DEFAULT_CATEGORY_ORDER);
+
       categories.set(categoryName, {
         name: categoryName,
-        order:
-          schemaMeta['x-category-order'] !== undefined
-            ? schemaMeta['x-category-order']
-            : DEFAULT_CATEGORY_ORDER,
+        order: explicitOrder,
         fields: []
       });
     }
 
     const category = categories.get(categoryName);
-    const candidateOrder =
-      schemaMeta['x-category-order'] !== undefined
-        ? schemaMeta['x-category-order']
-        : DEFAULT_CATEGORY_ORDER;
-    if (candidateOrder < category.order) {
-      category.order = candidateOrder;
-    }
-
     category.fields.push(fieldMeta);
   }
 
@@ -126,6 +142,11 @@ function extractCategories(schema) {
     const currentRequired = new Set(node.required || []);
 
     Object.entries(properties).forEach(([propName, propSchema]) => {
+      // Skip excluded root properties
+      if (path.length === 0 && EXCLUDED_ROOT_PROPERTIES.includes(propName)) {
+        return;
+      }
+
       const fieldPath = [...path, propName];
       const explicitCategory = propSchema['x-category'];
       const categoryName = explicitCategory || inheritedCategory;
@@ -275,7 +296,7 @@ function generatePropertyUiSchema(propName, propSchema, context = {}) {
  * Recursively process schema to generate uiSchema
  */
 function processSchema(schema, path = [], parentCategory) {
-  if (path.includes('secrets')) {
+  if (path.includes('secrets') || path.includes('tailscale') || path.includes('infrastructure')) {
     return {};
   }
 
@@ -286,7 +307,8 @@ function processSchema(schema, path = [], parentCategory) {
     const propUiSchemas = {};
 
     for (const [propName, propSchema] of Object.entries(schema.properties)) {
-      if (propName === 'secrets') {
+      // Skip excluded root properties
+      if (path.length === 0 && EXCLUDED_ROOT_PROPERTIES.includes(propName)) {
         continue;
       }
 
