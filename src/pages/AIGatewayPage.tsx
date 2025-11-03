@@ -5,7 +5,7 @@
 
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Loader2, Search, ExternalLink } from 'lucide-react';
+import { Loader2, Search, ExternalLink, LayoutGrid, Table as TableIcon, SearchX } from 'lucide-react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { Card, CardContent } from '@/components/ui/card';
@@ -19,10 +19,16 @@ import {
 } from '@/components/ui/select';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Skeleton } from '@/components/ui/skeleton';
 import { useModelStore } from '@/hooks/use-model-store';
 import { filterModels } from '@/services/model-store-service';
 import type { ModelFilters, Model } from '@/types/model-store';
 import { isCloudModel } from '@/types/model-store';
+import { cn } from '@/lib/utils';
+
+type ViewMode = 'cards' | 'table';
 
 export function AIGatewayPage() {
   const { models, providers, isLoading } = useModelStore();
@@ -31,6 +37,7 @@ export function AIGatewayPage() {
   const [search, setSearch] = useState('');
   const [selectedProvider, setSelectedProvider] = useState<string>('all');
   const [selectedCapability, setSelectedCapability] = useState<string>('all');
+  const [viewMode, setViewMode] = useState<ViewMode>('cards');
 
   // Build filter object
   const filters: ModelFilters = useMemo(() => {
@@ -46,22 +53,79 @@ export function AIGatewayPage() {
     return filterModels(models, filters);
   }, [models, filters]);
 
-  // Get unique capabilities across all models
+  // Get unique capabilities across all models with counts
   const allCapabilities = useMemo(() => {
     const caps = new Set<string>();
     models.forEach((m) => m.capabilities.forEach((c) => caps.add(c)));
     return Array.from(caps).sort();
   }, [models]);
 
+  // Count models per capability
+  const capabilityCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    allCapabilities.forEach((cap) => {
+      counts[cap] = models.filter((m) => m.capabilities.includes(cap)).length;
+    });
+    return counts;
+  }, [models, allCapabilities]);
+
+  // Count models per provider
+  const providerCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    providers.forEach((p) => {
+      counts[p.id] = models.filter((m) => m.providers.some((mp) => mp.id === p.id)).length;
+    });
+    return counts;
+  }, [models, providers]);
+
   const handleModelClick = (modelId: string) => {
     navigate(`/models/${modelId}`);
+  };
+
+  const handleClearFilters = () => {
+    setSearch('');
+    setSelectedProvider('all');
+    setSelectedCapability('all');
   };
 
   if (isLoading) {
     return (
       <PageLayout>
-        <div className="flex items-center justify-center py-12">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <PageHeader
+          title="AI Gateway"
+          description="Seamlessly integrate AI models into your Vercel project."
+        />
+        <div className="mb-8">
+          <Skeleton className="h-6 w-48 mb-4" />
+          <div className="space-y-4">
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-10 w-full" />
+          </div>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <Card key={i}>
+              <CardContent className="p-6">
+                <div className="flex items-start gap-3 mb-4">
+                  <Skeleton className="h-8 w-8 rounded" />
+                  <div className="flex-1 space-y-2">
+                    <Skeleton className="h-4 w-3/4" />
+                    <Skeleton className="h-3 w-1/2" />
+                  </div>
+                </div>
+                <Skeleton className="h-12 w-full mb-4" />
+                <div className="space-y-2 mb-4">
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-full" />
+                </div>
+                <div className="flex gap-2">
+                  <Skeleton className="h-5 w-16" />
+                  <Skeleton className="h-5 w-16" />
+                  <Skeleton className="h-5 w-16" />
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </PageLayout>
     );
@@ -88,7 +152,29 @@ export function AIGatewayPage() {
 
       {/* Search and Filters */}
       <div className="mb-8 space-y-4">
-        <h3 className="text-lg font-semibold">Browse Models</h3>
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold">Browse Models</h3>
+
+          {/* View Toggle */}
+          <div className="flex gap-1 border rounded-md p-1">
+            <Button
+              variant={viewMode === 'cards' ? 'secondary' : 'ghost'}
+              size="sm"
+              onClick={() => setViewMode('cards')}
+              className="px-3"
+            >
+              <LayoutGrid className="h-4 w-4" />
+            </Button>
+            <Button
+              variant={viewMode === 'table' ? 'secondary' : 'ghost'}
+              size="sm"
+              onClick={() => setViewMode('table')}
+              className="px-3"
+            >
+              <TableIcon className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
 
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
@@ -102,14 +188,14 @@ export function AIGatewayPage() {
           </div>
 
           <Select value={selectedProvider} onValueChange={setSelectedProvider}>
-            <SelectTrigger className="w-full sm:w-[200px]">
+            <SelectTrigger className="w-full sm:w-[240px]">
               <SelectValue placeholder="All Providers" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All Providers</SelectItem>
+              <SelectItem value="all">All Providers ({models.length})</SelectItem>
               {providers.map((p) => (
                 <SelectItem key={p.id} value={p.id}>
-                  {p.name}
+                  {p.name} ({providerCounts[p.id] || 0})
                 </SelectItem>
               ))}
             </SelectContent>
@@ -119,29 +205,138 @@ export function AIGatewayPage() {
         {/* Capability Filters */}
         <Tabs value={selectedCapability} onValueChange={setSelectedCapability}>
           <TabsList>
-            <TabsTrigger value="all">All</TabsTrigger>
+            <TabsTrigger value="all">All ({models.length})</TabsTrigger>
             {allCapabilities.map((cap) => (
               <TabsTrigger key={cap} value={cap}>
-                {cap.charAt(0).toUpperCase() + cap.slice(1)}
+                {cap.charAt(0).toUpperCase() + cap.slice(1)} ({capabilityCounts[cap] || 0})
               </TabsTrigger>
             ))}
           </TabsList>
         </Tabs>
       </div>
 
-      {/* Model Grid */}
+      {/* Model Display */}
       {filteredModels.length === 0 ? (
-        <div className="text-center py-12 text-muted-foreground">
-          No models found matching your criteria.
+        <div className="flex flex-col items-center justify-center py-16 text-center">
+          <SearchX className="h-16 w-16 text-muted-foreground mb-4" />
+          <h3 className="text-lg font-semibold mb-2">No models found</h3>
+          <p className="text-sm text-muted-foreground mb-6 max-w-sm">
+            Try adjusting your filters or search term to find what you're looking for.
+          </p>
+          <Button variant="outline" onClick={handleClearFilters}>
+            Clear filters
+          </Button>
         </div>
-      ) : (
+      ) : viewMode === 'cards' ? (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredModels.map((model) => (
             <ModelCard key={model.id} model={model} onClick={handleModelClick} />
           ))}
         </div>
+      ) : (
+        <ModelTable models={filteredModels} onModelClick={handleModelClick} />
       )}
     </PageLayout>
+  );
+}
+
+interface ModelTableProps {
+  models: Model[];
+  onModelClick: (modelId: string) => void;
+}
+
+function ModelTable({ models, onModelClick }: ModelTableProps) {
+  const { getProvidersForModel } = useModelStore();
+
+  const formatTokens = (value: string | undefined) => {
+    if (!value) return 'N/A';
+    return value;
+  };
+
+  return (
+    <div className="border rounded-lg">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[40%]">Model</TableHead>
+            <TableHead className="text-right">Context</TableHead>
+            <TableHead className="text-right">Input</TableHead>
+            <TableHead className="text-right">Output</TableHead>
+            <TableHead className="text-right">Providers</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {models.map((model) => {
+            const modelProviders = getProvidersForModel(model.id);
+            const isCloud = isCloudModel(model);
+
+            return (
+              <TableRow
+                key={model.id}
+                className="cursor-pointer hover:bg-muted/50"
+                onClick={() => onModelClick(model.id)}
+              >
+                {/* Model Column */}
+                <TableCell>
+                  <div className="flex items-center gap-3">
+                    <img src={`/${model.icon}`} alt={model.name} className="h-8 w-8 rounded" />
+                    <div className="min-w-0">
+                      <div className="font-semibold truncate">{model.name}</div>
+                      <div className="text-xs text-muted-foreground truncate font-mono">
+                        {model.maker}/{model.id}
+                      </div>
+                    </div>
+                  </div>
+                </TableCell>
+
+                {/* Context Column */}
+                <TableCell className="text-right font-medium">
+                  {(model.context_window / 1000).toFixed(0)}K
+                </TableCell>
+
+                {/* Input Tokens Column */}
+                <TableCell className="text-right font-medium">
+                  {isCloud && model.pricing
+                    ? `${model.pricing.input_per_1m}/1M`
+                    : isCloud
+                    ? 'N/A'
+                    : 'Local'}
+                </TableCell>
+
+                {/* Output Tokens Column */}
+                <TableCell className="text-right font-medium">
+                  {isCloud && model.pricing
+                    ? `${model.pricing.output_per_1m}/1M`
+                    : isCloud
+                    ? 'N/A'
+                    : `${model.ram_required_gb}GB RAM`}
+                </TableCell>
+
+                {/* Providers Column */}
+                <TableCell className="text-right">
+                  <div className="flex gap-1 items-center justify-end">
+                    {modelProviders.slice(0, 3).map((provider) => (
+                      <img
+                        key={provider.id}
+                        src={`/${provider.icon}`}
+                        alt={provider.name}
+                        className="h-5 w-5 rounded"
+                        title={provider.name}
+                      />
+                    ))}
+                    {modelProviders.length > 3 && (
+                      <Badge variant="secondary" className="text-xs">
+                        +{modelProviders.length - 3}
+                      </Badge>
+                    )}
+                  </div>
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    </div>
   );
 }
 

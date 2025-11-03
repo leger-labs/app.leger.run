@@ -4,7 +4,7 @@
  */
 
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { Loader2, ArrowLeft, ExternalLink, Copy, Check } from 'lucide-react';
+import { Loader2, ArrowLeft, ExternalLink, Copy, Check, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -12,10 +12,25 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
 import { useModel, useModelsByMaker } from '@/hooks/use-model-store';
 import { useSecrets } from '@/hooks/use-secrets';
 import { isCloudModel } from '@/types/model-store';
 import { toast } from 'sonner';
+import { Skeleton } from '@/components/ui/skeleton';
 import type { Provider } from '@/types/model-store';
 
 export function ModelDetailPage() {
@@ -42,8 +57,34 @@ export function ModelDetailPage() {
   if (isLoading) {
     return (
       <PageLayout>
-        <div className="flex items-center justify-center py-12">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <Skeleton className="h-5 w-64 mb-6" />
+        <div className="mb-6">
+          <Skeleton className="h-10 w-32 mb-4" />
+          <div className="flex items-start gap-4">
+            <Skeleton className="h-16 w-16 rounded" />
+            <div className="flex-1 space-y-2">
+              <Skeleton className="h-8 w-64" />
+              <Skeleton className="h-6 w-48" />
+            </div>
+          </div>
+        </div>
+        <Skeleton className="h-10 w-96 mb-8" />
+        <div className="space-y-8">
+          <div>
+            <Skeleton className="h-6 w-32 mb-4" />
+            <Skeleton className="h-20 w-full mb-4" />
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <Skeleton key={i} className="h-16 w-full" />
+              ))}
+            </div>
+          </div>
+          <div>
+            <Skeleton className="h-6 w-32 mb-4" />
+            {Array.from({ length: 3 }).map((_, i) => (
+              <Skeleton key={i} className="h-24 w-full mb-4" />
+            ))}
+          </div>
         </div>
       </PageLayout>
     );
@@ -65,6 +106,21 @@ export function ModelDetailPage() {
 
   return (
     <PageLayout>
+      {/* Breadcrumbs */}
+      <Breadcrumb className="mb-6">
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link to="/ai-gateway">Browse Models</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>{model.name}</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+
       {/* Back Button and Header */}
       <div className="mb-6">
         <Button
@@ -186,33 +242,81 @@ export function ModelDetailPage() {
 
           {/* Providers Section */}
           <section>
-            <h2 className="text-xl font-semibold mb-4">Providers</h2>
-            <div className="space-y-4">
+            <h2 className="text-xl font-semibold mb-2">Providers</h2>
+            <p className="text-sm text-muted-foreground mb-4">
+              This model is available through multiple providers
+            </p>
+
+            <Accordion
+              type="single"
+              collapsible
+              defaultValue={model.providers.find((p) => p.is_default)?.id || providers[0]?.id}
+              className="space-y-4"
+            >
               {providers.map((provider) => {
                 const modelProvider = model.providers.find((p) => p.id === provider.id);
                 const isConfigured = isProviderConfigured(provider);
+                const isDefault = modelProvider?.is_default;
 
                 return (
-                  <Card key={provider.id}>
-                    <CardHeader>
-                      <div className="flex items-center justify-between">
+                  <AccordionItem
+                    key={provider.id}
+                    value={provider.id}
+                    className="border rounded-lg"
+                  >
+                    <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                      <div className="flex items-center justify-between w-full pr-4">
                         <div className="flex items-center gap-3">
                           <img
                             src={`/${provider.icon}`}
                             alt={provider.name}
                             className="h-8 w-8 rounded"
                           />
-                          <CardTitle>{provider.name}</CardTitle>
+                          <div className="text-left">
+                            <div className="font-semibold">{provider.name}</div>
+                            <div className="text-xs text-muted-foreground font-normal">
+                              {provider.description}
+                            </div>
+                          </div>
                         </div>
                         <div className="flex items-center gap-2">
+                          {isDefault && (
+                            <Badge variant="secondary" className="text-xs">
+                              Default
+                            </Badge>
+                          )}
                           {isConfigured && (
-                            <Badge variant="secondary" className="flex items-center gap-1">
+                            <Badge variant="secondary" className="flex items-center gap-1 text-xs">
                               <Check className="h-3 w-3" />
                               Configured
                             </Badge>
                           )}
+                          {!isConfigured && provider.requires_api_key && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                navigate('/integrations');
+                              }}
+                            >
+                              Add Integration
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    </AccordionTrigger>
+
+                    <AccordionContent className="px-6 pb-4">
+                      {/* Model identifier */}
+                      <div className="mb-4">
+                        <div className="text-xs text-muted-foreground mb-1">Model Identifier</div>
+                        <div className="flex items-center gap-2">
+                          <code className="text-xs bg-muted px-2 py-1 rounded font-mono flex-1 overflow-x-auto">
+                            {modelProvider?.litellm_model_name || modelProvider?.model_uri}
+                          </code>
                           <Button
-                            variant="outline"
+                            variant="ghost"
                             size="sm"
                             onClick={() =>
                               handleCopy(
@@ -231,73 +335,78 @@ export function ModelDetailPage() {
                           </Button>
                         </div>
                       </div>
-                    </CardHeader>
-                    <CardContent>
-                      {/* Model identifier */}
-                      <div className="mb-4">
-                        <code className="text-xs bg-muted px-2 py-1 rounded font-mono block overflow-x-auto">
-                          {modelProvider?.litellm_model_name || modelProvider?.model_uri}
-                        </code>
-                      </div>
 
-                      {/* Pricing Grid for Cloud Models */}
+                      {/* Pricing Table for Cloud Models */}
                       {isCloudModel(model) && model.pricing && (
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-                          <div>
-                            <div className="text-sm text-muted-foreground">Context</div>
-                            <div className="font-medium">
-                              {(model.context_window / 1000).toFixed(0)}K
-                            </div>
-                          </div>
-                          <div>
-                            <div className="text-sm text-muted-foreground">Input</div>
-                            <div className="font-medium">{model.pricing.input_per_1m}/1M</div>
-                          </div>
-                          <div>
-                            <div className="text-sm text-muted-foreground">Output</div>
-                            <div className="font-medium">{model.pricing.output_per_1m}/1M</div>
-                          </div>
-                          {model.pricing.cache_read_per_1m && (
-                            <div>
-                              <div className="text-sm text-muted-foreground">Cache Read</div>
-                              <div className="font-medium">
-                                {model.pricing.cache_read_per_1m}/1M
+                        <div className="mb-4">
+                          <div className="text-xs text-muted-foreground mb-2">Pricing</div>
+                          <div className="border rounded-lg overflow-hidden">
+                            <div className="grid grid-cols-2 text-sm">
+                              <div className="px-3 py-2 bg-muted/50 font-medium">Metric</div>
+                              <div className="px-3 py-2 bg-muted/50 font-medium text-right">Price</div>
+
+                              <div className="px-3 py-2 border-t">Context Window</div>
+                              <div className="px-3 py-2 border-t text-right font-medium">
+                                {(model.context_window / 1000).toFixed(0)}K tokens
                               </div>
-                            </div>
-                          )}
-                          {model.pricing.cache_write_per_1m && (
-                            <div>
-                              <div className="text-sm text-muted-foreground">Cache Write</div>
-                              <div className="font-medium">
-                                {model.pricing.cache_write_per_1m}/1M
+
+                              <div className="px-3 py-2 border-t bg-muted/20">Input Tokens</div>
+                              <div className="px-3 py-2 border-t bg-muted/20 text-right font-medium">
+                                {model.pricing.input_per_1m}/1M
                               </div>
+
+                              <div className="px-3 py-2 border-t">Output Tokens</div>
+                              <div className="px-3 py-2 border-t text-right font-medium">
+                                {model.pricing.output_per_1m}/1M
+                              </div>
+
+                              {model.pricing.cache_read_per_1m && (
+                                <>
+                                  <div className="px-3 py-2 border-t bg-muted/20">Cache Read Tokens</div>
+                                  <div className="px-3 py-2 border-t bg-muted/20 text-right font-medium">
+                                    {model.pricing.cache_read_per_1m}/1M
+                                  </div>
+                                </>
+                              )}
+
+                              {model.pricing.cache_write_per_1m && (
+                                <>
+                                  <div className="px-3 py-2 border-t">Cache Write Tokens</div>
+                                  <div className="px-3 py-2 border-t text-right font-medium">
+                                    {model.pricing.cache_write_per_1m}/1M
+                                  </div>
+                                </>
+                              )}
                             </div>
-                          )}
+                          </div>
                         </div>
                       )}
 
                       {/* Local Model Details */}
                       {!isCloudModel(model) && (
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-                          <div>
-                            <div className="text-sm text-muted-foreground">RAM Required</div>
-                            <div className="font-medium">{model.ram_required_gb}GB</div>
-                          </div>
-                          <div>
-                            <div className="text-sm text-muted-foreground">Context</div>
-                            <div className="font-medium">
-                              {(model.context_window / 1000).toFixed(0)}K
+                        <div className="mb-4">
+                          <div className="text-xs text-muted-foreground mb-2">Specifications</div>
+                          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div>
+                              <div className="text-sm text-muted-foreground">RAM Required</div>
+                              <div className="font-medium">{model.ram_required_gb}GB</div>
                             </div>
-                          </div>
-                          <div>
-                            <div className="text-sm text-muted-foreground">Quantization</div>
-                            <div className="font-medium">{model.quantization}</div>
+                            <div>
+                              <div className="text-sm text-muted-foreground">Context Window</div>
+                              <div className="font-medium">
+                                {(model.context_window / 1000).toFixed(0)}K tokens
+                              </div>
+                            </div>
+                            <div>
+                              <div className="text-sm text-muted-foreground">Quantization</div>
+                              <div className="font-medium">{model.quantization}</div>
+                            </div>
                           </div>
                         </div>
                       )}
 
                       {/* Provider Links */}
-                      <div className="flex gap-3 text-xs">
+                      <div className="flex gap-3 text-xs pt-2 border-t">
                         <a
                           href={`${provider.website}/terms`}
                           target="_blank"
@@ -317,11 +426,11 @@ export function ModelDetailPage() {
                           <ExternalLink className="h-3 w-3" />
                         </a>
                       </div>
-                    </CardContent>
-                  </Card>
+                    </AccordionContent>
+                  </AccordionItem>
                 );
               })}
-            </div>
+            </Accordion>
           </section>
 
           <Separator />
