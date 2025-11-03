@@ -113,6 +113,36 @@ export default {
           })
         }
 
+        // Handle root path on API hostname
+        if (isApiHostname && normalizedPath === '/') {
+          return addCorsHeaders(
+            new Response(
+              JSON.stringify({
+                success: true,
+                data: {
+                  service: 'leger-api',
+                  version: env.APP_VERSION || '0.1.0',
+                  message: 'Leger API is running',
+                  documentation: 'https://docs.leger.run/api',
+                  endpoints: {
+                    health: '/health',
+                    auth: '/auth/validate',
+                    secrets: '/secrets',
+                    releases: '/releases',
+                  },
+                },
+              }),
+              {
+                status: 200,
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Cache-Control': 'no-cache, no-store, must-revalidate',
+                },
+              }
+            )
+          )
+        }
+
         // Authentication routes
         if (normalizedPath === '/auth/validate' && request.method === 'POST') {
           return addCorsHeaders(await handleAuthValidate(request, env))

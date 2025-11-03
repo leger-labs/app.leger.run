@@ -75,7 +75,7 @@ export function AuthErrorPage() {
               To authenticate, run this command in your terminal:
             </p>
             <code className="block p-2 bg-background rounded text-xs font-mono">
-              leger auth web
+              leger auth login
             </code>
           </div>
 
