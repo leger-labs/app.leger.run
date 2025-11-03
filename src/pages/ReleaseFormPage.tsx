@@ -3,7 +3,7 @@
  * Create or edit a release
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { Loader2, Copy, Check } from 'lucide-react';
 import { toast } from 'sonner';
@@ -26,6 +26,9 @@ import {
 } from '@/components/ui/breadcrumb';
 import { useReleases } from '@/hooks/use-releases';
 import { apiClient } from '@/lib/api-client';
+import { CategoryBasedReleaseForm } from '@/components/releases/CategoryBasedReleaseForm';
+import { getReleaseSchemaBundle } from '@/lib/schema-loader';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 export function ReleaseFormPage() {
   const { id } = useParams();
@@ -47,6 +50,11 @@ export function ReleaseFormPage() {
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isDirty, setIsDirty] = useState(false);
+  const [configData, setConfigData] = useState<Record<string, unknown>>({});
+  const [isConfigSaving, setIsConfigSaving] = useState(false);
+  const [isConfigDirty, setIsConfigDirty] = useState(false);
+
+  const releaseSchemaBundle = useMemo(() => getReleaseSchemaBundle(), []);
 
   // Fetch existing release if editing
   useEffect(() => {
@@ -124,6 +132,24 @@ export function ReleaseFormPage() {
     setErrors((prev) => ({ ...prev, [field]: error || '' }));
     setIsDirty(true);
   };
+
+  const handleConfigChange = useCallback((data: Record<string, unknown>) => {
+    setConfigData(data);
+    setIsConfigDirty(true);
+  }, []);
+
+  const handleConfigSubmit = useCallback(() => {
+    setIsConfigSaving(true);
+    try {
+      toast.success('Configuration captured', {
+        description:
+          'Release configuration is stored locally until backend persistence is available.',
+      });
+      setIsConfigDirty(false);
+    } finally {
+      setIsConfigSaving(false);
+    }
+  }, []);
 
   const validateAllFields = (): boolean => {
     const newErrors: Record<string, string> = {};
@@ -260,6 +286,33 @@ export function ReleaseFormPage() {
           />
         </div>
       </CategorySection>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Infrastructure configuration (preview)</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <Alert className="border-primary/20 bg-primary/5">
+            <AlertTitle>Schema-driven configuration</AlertTitle>
+            <AlertDescription>
+              Navigation and field groups are generated from the latest schema release. Saving
+              stores your changes locally until backend support is implemented.
+            </AlertDescription>
+          </Alert>
+
+          <CategoryBasedReleaseForm
+            schema={releaseSchemaBundle.schema}
+            uiSchema={releaseSchemaBundle.uiSchema}
+            categories={releaseSchemaBundle.categories}
+            value={configData}
+            onChange={handleConfigChange}
+            onSubmit={handleConfigSubmit}
+            isSubmitting={isConfigSaving}
+            isDirty={isConfigDirty}
+            submitLabel="Save configuration preview"
+          />
+        </CardContent>
+      </Card>
 
       {formData.name && (
         <Card>

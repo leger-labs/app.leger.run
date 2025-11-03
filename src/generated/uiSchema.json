@@ -1,0 +1,2437 @@
+{
+  "tailscale": {
+    "full_hostname": {
+      "ui:widget": "text",
+      "ui:help": "Find this in your Tailscale admin console under 'DNS' settings. Format: <machine-name>.<tailnet-id>.ts.net",
+      "ui:order": 1,
+      "ui:placeholder": "myserver.tail8dd1.ts.net",
+      "ui:title": "Tailscale MagicDNS Hostname",
+      "ui:options": {
+        "category": "Infrastructure"
+      }
+    },
+    "hostname": {
+      "ui:widget": "text",
+      "ui:help": "The machine name portion (auto-extracted from full_hostname)",
+      "ui:order": 2,
+      "ui:readonly": true,
+      "ui:placeholder": "blueprint",
+      "ui:title": "Machine Hostname",
+      "ui:options": {
+        "category": "Infrastructure"
+      }
+    },
+    "tailnet": {
+      "ui:widget": "text",
+      "ui:help": "The tailnet domain portion (auto-extracted from full_hostname)",
+      "ui:order": 3,
+      "ui:readonly": true,
+      "ui:placeholder": "tail8dd1.ts.net",
+      "ui:title": "Tailnet Domain",
+      "ui:options": {
+        "category": "Infrastructure"
+      }
+    },
+    "ui:order": [
+      "full_hostname",
+      "hostname",
+      "tailnet",
+      "*"
+    ]
+  },
+  "infrastructure": {
+    "network": {
+      "name": {
+        "ui:widget": "text",
+        "ui:title": "Network Name",
+        "ui:options": {
+          "category": "Infrastructure"
+        }
+      },
+      "subnet": {
+        "ui:widget": "text",
+        "ui:title": "Network Subnet",
+        "ui:options": {
+          "category": "Infrastructure"
+        }
+      }
+    },
+    "services": {
+      "caddy": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "published_port": {
+          "ui:widget": "updown"
+        },
+        "bind_address": {
+          "ui:widget": "text"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      },
+      "cockpit": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "published_port": {
+          "ui:widget": "updown"
+        },
+        "bind_address": {
+          "ui:widget": "text"
+        },
+        "external_subdomain": {
+          "ui:widget": "text"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      },
+      "openwebui": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "published_port": {
+          "ui:widget": "updown"
+        },
+        "bind_address": {
+          "ui:widget": "text"
+        },
+        "external_subdomain": {
+          "ui:widget": "text"
+        },
+        "volume": {
+          "ui:widget": "text"
+        },
+        "websocket": {
+          "ui:widget": "checkbox"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      },
+      "openwebui_postgres": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "volume": {
+          "ui:widget": "text"
+        },
+        "db_name": {
+          "ui:widget": "text"
+        },
+        "db_user": {
+          "ui:widget": "text"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      },
+      "openwebui_redis": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "volume": {
+          "ui:widget": "text"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      },
+      "litellm": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "published_port": {
+          "ui:widget": "updown"
+        },
+        "bind_address": {
+          "ui:widget": "text"
+        },
+        "external_subdomain": {
+          "ui:widget": "text"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      },
+      "litellm_postgres": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "volume": {
+          "ui:widget": "text"
+        },
+        "db_name": {
+          "ui:widget": "text"
+        },
+        "db_user": {
+          "ui:widget": "text"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      },
+      "litellm_redis": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "volume": {
+          "ui:widget": "text"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      },
+      "jupyter": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "published_port": {
+          "ui:widget": "updown"
+        },
+        "bind_address": {
+          "ui:widget": "text"
+        },
+        "external_subdomain": {
+          "ui:widget": "text"
+        },
+        "volume": {
+          "ui:widget": "text"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      },
+      "llama_swap": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "published_port": {
+          "ui:widget": "updown"
+        },
+        "bind_address": {
+          "ui:widget": "text"
+        },
+        "external_subdomain": {
+          "ui:widget": "text"
+        },
+        "volume": {
+          "ui:widget": "text"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      },
+      "qdrant": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "published_port": {
+          "ui:widget": "updown"
+        },
+        "bind_address": {
+          "ui:widget": "text"
+        },
+        "external_subdomain": {
+          "ui:widget": "text"
+        },
+        "volume": {
+          "ui:widget": "text"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      },
+      "searxng": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "published_port": {
+          "ui:widget": "updown"
+        },
+        "bind_address": {
+          "ui:widget": "text"
+        },
+        "external_subdomain": {
+          "ui:widget": "text"
+        },
+        "volume": {
+          "ui:widget": "text"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      },
+      "searxng_redis": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "volume": {
+          "ui:widget": "text"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      },
+      "tika": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      },
+      "whisper": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "published_port": {
+          "ui:widget": "updown"
+        },
+        "bind_address": {
+          "ui:widget": "text"
+        },
+        "external_subdomain": {
+          "ui:widget": "text"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      },
+      "edgetts": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "published_port": {
+          "ui:widget": "updown"
+        },
+        "bind_address": {
+          "ui:widget": "text"
+        },
+        "external_subdomain": {
+          "ui:widget": "text"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      },
+      "comfyui": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "published_port": {
+          "ui:widget": "updown"
+        },
+        "bind_address": {
+          "ui:widget": "text"
+        },
+        "external_subdomain": {
+          "ui:widget": "text"
+        },
+        "websocket": {
+          "ui:widget": "checkbox"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      },
+      "mcp_context_forge": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "published_port": {
+          "ui:widget": "updown"
+        },
+        "bind_address": {
+          "ui:widget": "text"
+        },
+        "external_subdomain": {
+          "ui:widget": "text"
+        },
+        "data_dir": {
+          "ui:widget": "text"
+        },
+        "config_dir": {
+          "ui:widget": "text"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      },
+      "mcp_context_forge_postgres": {
+        "container_name": {
+          "ui:widget": "text"
+        },
+        "hostname": {
+          "ui:widget": "text"
+        },
+        "port": {
+          "ui:widget": "updown"
+        },
+        "volume": {
+          "ui:widget": "text"
+        },
+        "db_name": {
+          "ui:widget": "text"
+        },
+        "db_user": {
+          "ui:widget": "text"
+        },
+        "description": {
+          "ui:widget": "text"
+        }
+      }
+    },
+    "ui:order": [
+      "network",
+      "*"
+    ]
+  },
+  "features": {
+    "rag": {
+      "ui:widget": "checkbox",
+      "ui:order": 100,
+      "ui:title": "RAG (Retrieval-Augmented Generation)",
+      "ui:options": {
+        "category": "Features"
+      }
+    },
+    "web_search": {
+      "ui:widget": "checkbox",
+      "ui:order": 101,
+      "ui:title": "Web Search",
+      "ui:options": {
+        "category": "Features"
+      }
+    },
+    "image_generation": {
+      "ui:widget": "checkbox",
+      "ui:order": 102,
+      "ui:title": "Image Generation",
+      "ui:options": {
+        "category": "Features"
+      }
+    },
+    "speech_to_text": {
+      "ui:widget": "checkbox",
+      "ui:order": 103,
+      "ui:title": "Speech-to-Text",
+      "ui:options": {
+        "category": "Features"
+      }
+    },
+    "text_to_speech": {
+      "ui:widget": "checkbox",
+      "ui:order": 104,
+      "ui:title": "Text-to-Speech",
+      "ui:options": {
+        "category": "Features"
+      }
+    },
+    "code_execution": {
+      "ui:widget": "checkbox",
+      "ui:order": 105,
+      "ui:title": "Code Execution",
+      "ui:options": {
+        "category": "Features"
+      }
+    },
+    "code_interpreter": {
+      "ui:widget": "checkbox",
+      "ui:order": 106,
+      "ui:title": "Code Interpreter",
+      "ui:options": {
+        "category": "Features"
+      }
+    },
+    "google_drive": {
+      "ui:widget": "checkbox",
+      "ui:order": 107,
+      "ui:title": "Google Drive Integration",
+      "ui:options": {
+        "category": "Features"
+      }
+    },
+    "onedrive": {
+      "ui:widget": "checkbox",
+      "ui:order": 108,
+      "ui:title": "OneDrive Integration",
+      "ui:options": {
+        "category": "Features"
+      }
+    },
+    "oauth_signup": {
+      "ui:widget": "checkbox",
+      "ui:order": 200,
+      "ui:title": "OAuth Signup",
+      "ui:options": {
+        "category": "Security"
+      }
+    },
+    "ldap": {
+      "ui:widget": "checkbox",
+      "ui:order": 201,
+      "ui:title": "LDAP Authentication",
+      "ui:options": {
+        "category": "Security"
+      }
+    },
+    "title_generation": {
+      "ui:widget": "checkbox",
+      "ui:order": 300,
+      "ui:title": "AI Title Generation",
+      "ui:options": {
+        "category": "AI Assistance"
+      }
+    },
+    "autocomplete_generation": {
+      "ui:widget": "checkbox",
+      "ui:order": 301,
+      "ui:title": "Autocomplete Generation",
+      "ui:options": {
+        "category": "AI Assistance"
+      }
+    },
+    "tags_generation": {
+      "ui:widget": "checkbox",
+      "ui:order": 302,
+      "ui:title": "Tags Generation",
+      "ui:options": {
+        "category": "AI Assistance"
+      }
+    },
+    "websocket_support": {
+      "ui:widget": "checkbox",
+      "ui:order": 400,
+      "ui:title": "WebSocket Support",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "ui:order": [
+      "rag",
+      "web_search",
+      "image_generation",
+      "speech_to_text",
+      "text_to_speech",
+      "code_execution",
+      "code_interpreter",
+      "google_drive",
+      "onedrive",
+      "oauth_signup",
+      "ldap",
+      "title_generation",
+      "autocomplete_generation",
+      "tags_generation",
+      "websocket_support",
+      "*"
+    ]
+  },
+  "providers": {
+    "vector_db": {
+      "ui:widget": "select",
+      "ui:order": 100,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "rag"
+          ],
+          "value": true
+        }
+      ],
+      "ui:title": "Vector Database",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "pgvector",
+            "label": "pgvector"
+          },
+          {
+            "value": "qdrant",
+            "label": "qdrant"
+          },
+          {
+            "value": "chroma",
+            "label": "chroma"
+          }
+        ],
+        "category": "Providers"
+      }
+    },
+    "rag_embedding": {
+      "ui:widget": "select",
+      "ui:order": 101,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "rag"
+          ],
+          "value": true
+        }
+      ],
+      "ui:title": "RAG Embedding Model",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "openai",
+            "label": "openai"
+          },
+          {
+            "value": "ollama",
+            "label": "ollama"
+          }
+        ],
+        "category": "Providers"
+      }
+    },
+    "content_extraction": {
+      "ui:widget": "select",
+      "ui:order": 102,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "rag"
+          ],
+          "value": true
+        }
+      ],
+      "ui:title": "Content Extraction Engine",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "tika",
+            "label": "tika"
+          },
+          {
+            "value": "docling",
+            "label": "docling"
+          }
+        ],
+        "category": "Providers"
+      }
+    },
+    "text_splitter": {
+      "ui:widget": "select",
+      "ui:order": 103,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "rag"
+          ],
+          "value": true
+        }
+      ],
+      "ui:title": "Text Splitter Algorithm",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "character",
+            "label": "character"
+          },
+          {
+            "value": "recursive",
+            "label": "recursive"
+          },
+          {
+            "value": "token",
+            "label": "token"
+          },
+          {
+            "value": "markdown_header",
+            "label": "markdown_header"
+          }
+        ],
+        "category": "Providers"
+      }
+    },
+    "web_search_engine": {
+      "ui:widget": "select",
+      "ui:order": 110,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "web_search"
+          ],
+          "value": true
+        }
+      ],
+      "ui:title": "Web Search Engine",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "searxng",
+            "label": "searxng"
+          },
+          {
+            "value": "tavily",
+            "label": "tavily"
+          },
+          {
+            "value": "brave",
+            "label": "brave"
+          },
+          {
+            "value": "google_pse",
+            "label": "google_pse"
+          },
+          {
+            "value": "serper",
+            "label": "serper"
+          },
+          {
+            "value": "serpapi",
+            "label": "serpapi"
+          },
+          {
+            "value": "bing",
+            "label": "bing"
+          },
+          {
+            "value": "",
+            "label": ""
+          }
+        ],
+        "category": "Providers"
+      }
+    },
+    "web_loader": {
+      "ui:widget": "select",
+      "ui:order": 111,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "web_search"
+          ],
+          "value": true
+        }
+      ],
+      "ui:title": "Web Page Loader",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "requests",
+            "label": "requests"
+          },
+          {
+            "value": "selenium",
+            "label": "selenium"
+          },
+          {
+            "value": "playwright",
+            "label": "playwright"
+          },
+          {
+            "value": "safe_web",
+            "label": "safe_web"
+          }
+        ],
+        "category": "Providers"
+      }
+    },
+    "image_engine": {
+      "ui:widget": "select",
+      "ui:order": 120,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "image_generation"
+          ],
+          "value": true
+        }
+      ],
+      "ui:title": "Image Generation Engine",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "openai",
+            "label": "openai"
+          },
+          {
+            "value": "automatic1111",
+            "label": "automatic1111"
+          },
+          {
+            "value": "comfyui",
+            "label": "comfyui"
+          },
+          {
+            "value": "gemini",
+            "label": "gemini"
+          },
+          {
+            "value": "",
+            "label": ""
+          }
+        ],
+        "category": "Providers"
+      }
+    },
+    "stt_engine": {
+      "ui:widget": "select",
+      "ui:order": 130,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "speech_to_text"
+          ],
+          "value": true
+        }
+      ],
+      "ui:title": "Speech-to-Text Engine",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "openai",
+            "label": "openai"
+          },
+          {
+            "value": "whisper",
+            "label": "whisper"
+          },
+          {
+            "value": "azure",
+            "label": "azure"
+          },
+          {
+            "value": "deepgram",
+            "label": "deepgram"
+          },
+          {
+            "value": "",
+            "label": ""
+          }
+        ],
+        "category": "Providers"
+      }
+    },
+    "tts_engine": {
+      "ui:widget": "select",
+      "ui:order": 131,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "text_to_speech"
+          ],
+          "value": true
+        }
+      ],
+      "ui:title": "Text-to-Speech Engine",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "openai",
+            "label": "openai"
+          },
+          {
+            "value": "elevenlabs",
+            "label": "elevenlabs"
+          },
+          {
+            "value": "edgetts",
+            "label": "edgetts"
+          },
+          {
+            "value": "azure",
+            "label": "azure"
+          },
+          {
+            "value": "",
+            "label": ""
+          }
+        ],
+        "category": "Providers"
+      }
+    },
+    "code_execution_engine": {
+      "ui:widget": "select",
+      "ui:order": 140,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "code_execution"
+          ],
+          "value": true
+        }
+      ],
+      "ui:title": "Code Execution Engine",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "jupyter",
+            "label": "jupyter"
+          },
+          {
+            "value": "pyodide",
+            "label": "pyodide"
+          }
+        ],
+        "category": "Providers"
+      }
+    },
+    "code_interpreter_engine": {
+      "ui:widget": "select",
+      "ui:order": 141,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "code_interpreter"
+          ],
+          "value": true
+        }
+      ],
+      "ui:title": "Code Interpreter Engine",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "jupyter",
+            "label": "jupyter"
+          },
+          {
+            "value": "e2b",
+            "label": "e2b"
+          }
+        ],
+        "category": "Providers"
+      }
+    },
+    "storage_provider": {
+      "ui:widget": "select",
+      "ui:order": 150,
+      "ui:title": "External Storage Provider",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "",
+            "label": ""
+          },
+          {
+            "value": "s3",
+            "label": "s3"
+          },
+          {
+            "value": "gcs",
+            "label": "gcs"
+          }
+        ],
+        "category": "Providers"
+      }
+    },
+    "auth_provider": {
+      "ui:widget": "select",
+      "ui:order": 200,
+      "ui:title": "Authentication Provider",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "local",
+            "label": "local"
+          },
+          {
+            "value": "oauth",
+            "label": "oauth"
+          },
+          {
+            "value": "ldap",
+            "label": "ldap"
+          }
+        ],
+        "category": "Security"
+      }
+    },
+    "ui:order": [
+      "vector_db",
+      "rag_embedding",
+      "content_extraction",
+      "text_splitter",
+      "web_search_engine",
+      "web_loader",
+      "image_engine",
+      "stt_engine",
+      "tts_engine",
+      "code_execution_engine",
+      "code_interpreter_engine",
+      "storage_provider",
+      "auth_provider",
+      "*"
+    ]
+  },
+  "provider_config": {
+    "webui_name": {
+      "ui:widget": "text",
+      "ui:help": "The name displayed in the interface header (e.g., 'Leger AI', 'My Company AI')",
+      "ui:order": 10,
+      "ui:title": "WebUI Instance Name",
+      "ui:options": {
+        "category": "Core"
+      }
+    },
+    "custom_name": {
+      "ui:widget": "text",
+      "ui:help": "Optional label for the instance (e.g., 'Dev', 'Staging', 'Production')",
+      "ui:order": 11,
+      "ui:title": "Custom Instance Label",
+      "ui:options": {
+        "category": "Core"
+      }
+    },
+    "qdrant_url": {
+      "ui:widget": "uri",
+      "ui:order": 100,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "vector_db"
+          ],
+          "value": "qdrant"
+        }
+      ],
+      "ui:title": "Qdrant URL",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "qdrant_api_key": {
+      "ui:widget": "password",
+      "ui:order": 101,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "vector_db"
+          ],
+          "value": "qdrant"
+        }
+      ],
+      "ui:title": "Qdrant API Key",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "qdrant_grpc_port": {
+      "ui:widget": "updown",
+      "ui:order": 102,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "vector_db"
+          ],
+          "value": "qdrant"
+        }
+      ],
+      "ui:title": "Qdrant gRPC Port",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "qdrant_prefer_grpc": {
+      "ui:widget": "checkbox",
+      "ui:order": 103,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "vector_db"
+          ],
+          "value": "qdrant"
+        }
+      ],
+      "ui:title": "Prefer gRPC",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "qdrant_on_disk": {
+      "ui:widget": "checkbox",
+      "ui:order": 104,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "vector_db"
+          ],
+          "value": "qdrant"
+        }
+      ],
+      "ui:title": "Store on Disk",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "chroma_tenant": {
+      "ui:widget": "text",
+      "ui:help": "ChromaDB multitenancy tenant name",
+      "ui:order": 105,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "vector_db"
+          ],
+          "value": "chroma"
+        }
+      ],
+      "ui:title": "ChromaDB Tenant",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "chroma_database": {
+      "ui:widget": "text",
+      "ui:help": "ChromaDB database name",
+      "ui:order": 106,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "vector_db"
+          ],
+          "value": "chroma"
+        }
+      ],
+      "ui:title": "ChromaDB Database",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "rag_embedding_api_key": {
+      "ui:widget": "password",
+      "ui:order": 110,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "rag_embedding"
+          ],
+          "value": "openai"
+        }
+      ],
+      "ui:title": "RAG Embedding API Key",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "rag_embedding_model": {
+      "ui:widget": "text",
+      "ui:help": "Model ID for RAG embeddings. Must be an embedding model from model-store.",
+      "ui:order": 111,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "rag"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "providers",
+            "rag_embedding"
+          ],
+          "value": "openai"
+        }
+      ],
+      "ui:placeholder": "qwen3-embedding-8b",
+      "ui:title": "RAG Embedding Model",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "ollama_embedding_model": {
+      "ui:widget": "text",
+      "ui:help": "Model ID for Ollama embeddings (if using native Ollama daemon).",
+      "ui:order": 112,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "rag"
+          ],
+          "value": true
+        },
+        {
+          "path": [
+            "providers",
+            "rag_embedding"
+          ],
+          "value": "ollama"
+        }
+      ],
+      "ui:placeholder": "nomic-embed-text-v1.5",
+      "ui:title": "Ollama Embedding Model",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "tika_server_url": {
+      "ui:widget": "uri",
+      "ui:order": 120,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "content_extraction"
+          ],
+          "value": "tika"
+        }
+      ],
+      "ui:title": "Tika Server URL",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "tika_heap_size": {
+      "ui:widget": "text",
+      "ui:order": 121,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "content_extraction"
+          ],
+          "value": "tika"
+        }
+      ],
+      "ui:title": "Tika Heap Size",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "searxng_query_url": {
+      "ui:widget": "uri",
+      "ui:order": 130,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "web_search_engine"
+          ],
+          "value": "searxng"
+        }
+      ],
+      "ui:title": "SearXNG Query URL",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "searxng_base_url": {
+      "ui:widget": "text",
+      "ui:order": 131,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "web_search_engine"
+          ],
+          "value": "searxng"
+        }
+      ],
+      "ui:title": "SearXNG Base URL",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "searxng_safe_search": {
+      "ui:widget": "updown",
+      "ui:order": 132,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "web_search_engine"
+          ],
+          "value": "searxng"
+        }
+      ],
+      "ui:title": "Safe Search Level",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": 0,
+            "label": 0
+          },
+          {
+            "value": 1,
+            "label": 1
+          },
+          {
+            "value": 2,
+            "label": 2
+          }
+        ],
+        "category": "Providers"
+      }
+    },
+    "searxng_autocomplete": {
+      "ui:widget": "select",
+      "ui:order": 133,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "web_search_engine"
+          ],
+          "value": "searxng"
+        }
+      ],
+      "ui:title": "Autocomplete Provider",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "google",
+            "label": "google"
+          },
+          {
+            "value": "duckduckgo",
+            "label": "duckduckgo"
+          },
+          {
+            "value": "wikipedia",
+            "label": "wikipedia"
+          },
+          {
+            "value": "",
+            "label": ""
+          }
+        ],
+        "category": "Providers"
+      }
+    },
+    "searxng_max_page": {
+      "ui:widget": "updown",
+      "ui:order": 134,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "web_search_engine"
+          ],
+          "value": "searxng"
+        }
+      ],
+      "ui:title": "Maximum Pages",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "tavily_api_key": {
+      "ui:widget": "password",
+      "ui:order": 140,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "web_search_engine"
+          ],
+          "value": "tavily"
+        }
+      ],
+      "ui:title": "Tavily API Key",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "brave_api_key": {
+      "ui:widget": "password",
+      "ui:order": 150,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "web_search_engine"
+          ],
+          "value": "brave"
+        }
+      ],
+      "ui:title": "Brave Search API Key",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "comfyui_workspace": {
+      "ui:widget": "text",
+      "ui:order": 160,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "image_engine"
+          ],
+          "value": "comfyui"
+        }
+      ],
+      "ui:title": "ComfyUI Workspace Path",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "comfyui_auto_update": {
+      "ui:widget": "checkbox",
+      "ui:order": 161,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "image_engine"
+          ],
+          "value": "comfyui"
+        }
+      ],
+      "ui:title": "ComfyUI Auto-Update",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "comfyui_web_enable_auth": {
+      "ui:widget": "checkbox",
+      "ui:order": 162,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "image_engine"
+          ],
+          "value": "comfyui"
+        }
+      ],
+      "ui:title": "ComfyUI Web Authentication",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "comfyui_log_level": {
+      "ui:widget": "select",
+      "ui:order": 163,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "image_engine"
+          ],
+          "value": "comfyui"
+        }
+      ],
+      "ui:title": "ComfyUI Log Level",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "DEBUG",
+            "label": "DEBUG"
+          },
+          {
+            "value": "INFO",
+            "label": "INFO"
+          },
+          {
+            "value": "WARNING",
+            "label": "WARNING"
+          },
+          {
+            "value": "ERROR",
+            "label": "ERROR"
+          }
+        ],
+        "category": "Advanced"
+      }
+    },
+    "comfyui_args": {
+      "ui:widget": "text",
+      "ui:order": 164,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "image_engine"
+          ],
+          "value": "comfyui"
+        }
+      ],
+      "ui:title": "ComfyUI Additional Arguments",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "comfyui_startup_timeout": {
+      "ui:widget": "updown",
+      "ui:order": 165,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "image_engine"
+          ],
+          "value": "comfyui"
+        }
+      ],
+      "ui:title": "ComfyUI Startup Timeout",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "whisper_model": {
+      "ui:widget": "select",
+      "ui:order": 170,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "stt_engine"
+          ],
+          "value": "whisper"
+        }
+      ],
+      "ui:title": "Whisper Model",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "tiny",
+            "label": "tiny"
+          },
+          {
+            "value": "base",
+            "label": "base"
+          },
+          {
+            "value": "small",
+            "label": "small"
+          },
+          {
+            "value": "medium",
+            "label": "medium"
+          },
+          {
+            "value": "large",
+            "label": "large"
+          }
+        ],
+        "category": "Providers"
+      }
+    },
+    "whisper_language": {
+      "ui:widget": "text",
+      "ui:order": 171,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "stt_engine"
+          ],
+          "value": "whisper"
+        }
+      ],
+      "ui:title": "Whisper Language",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "whisper_beam_size": {
+      "ui:widget": "updown",
+      "ui:order": 172,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "stt_engine"
+          ],
+          "value": "whisper"
+        }
+      ],
+      "ui:title": "Beam Size",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "whisper_compute_type": {
+      "ui:widget": "select",
+      "ui:order": 173,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "stt_engine"
+          ],
+          "value": "whisper"
+        }
+      ],
+      "ui:title": "Compute Type",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "int8",
+            "label": "int8"
+          },
+          {
+            "value": "float16",
+            "label": "float16"
+          },
+          {
+            "value": "float32",
+            "label": "float32"
+          }
+        ],
+        "category": "Advanced"
+      }
+    },
+    "whisper_device": {
+      "ui:widget": "select",
+      "ui:order": 174,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "stt_engine"
+          ],
+          "value": "whisper"
+        }
+      ],
+      "ui:title": "Device",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "auto",
+            "label": "auto"
+          },
+          {
+            "value": "cpu",
+            "label": "cpu"
+          },
+          {
+            "value": "cuda",
+            "label": "cuda"
+          }
+        ],
+        "category": "Advanced"
+      }
+    },
+    "whisper_cache_dir": {
+      "ui:widget": "text",
+      "ui:order": 175,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "stt_engine"
+          ],
+          "value": "whisper"
+        }
+      ],
+      "ui:title": "Cache Directory",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "stt_api_key": {
+      "ui:widget": "password",
+      "ui:order": 180,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "stt_engine"
+          ],
+          "value": "openai"
+        }
+      ],
+      "ui:title": "STT API Key",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "audio_stt_model": {
+      "ui:widget": "text",
+      "ui:help": "OpenAI STT model (e.g., whisper-1)",
+      "ui:order": 181,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "stt_engine"
+          ],
+          "value": "openai"
+        }
+      ],
+      "ui:title": "STT Model",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "edgetts_response_format": {
+      "ui:widget": "select",
+      "ui:order": 190,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "tts_engine"
+          ],
+          "value": "edgetts"
+        }
+      ],
+      "ui:title": "Edge TTS Response Format",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "mp3",
+            "label": "mp3"
+          },
+          {
+            "value": "wav",
+            "label": "wav"
+          },
+          {
+            "value": "opus",
+            "label": "opus"
+          }
+        ],
+        "category": "Providers"
+      }
+    },
+    "edgetts_speed": {
+      "ui:widget": "updown",
+      "ui:order": 191,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "tts_engine"
+          ],
+          "value": "edgetts"
+        }
+      ],
+      "ui:title": "Edge TTS Speech Speed",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "edgetts_voice": {
+      "ui:widget": "text",
+      "ui:order": 192,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "tts_engine"
+          ],
+          "value": "edgetts"
+        }
+      ],
+      "ui:title": "Edge TTS Voice",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "edgetts_log_level": {
+      "ui:widget": "select",
+      "ui:order": 193,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "tts_engine"
+          ],
+          "value": "edgetts"
+        }
+      ],
+      "ui:title": "Edge TTS Log Level",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "DEBUG",
+            "label": "DEBUG"
+          },
+          {
+            "value": "INFO",
+            "label": "INFO"
+          },
+          {
+            "value": "WARNING",
+            "label": "WARNING"
+          },
+          {
+            "value": "ERROR",
+            "label": "ERROR"
+          }
+        ],
+        "category": "Advanced"
+      }
+    },
+    "edgetts_startup_timeout": {
+      "ui:widget": "updown",
+      "ui:order": 194,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "tts_engine"
+          ],
+          "value": "edgetts"
+        }
+      ],
+      "ui:title": "Edge TTS Startup Timeout",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "elevenlabs_api_key": {
+      "ui:widget": "password",
+      "ui:order": 200,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "tts_engine"
+          ],
+          "value": "elevenlabs"
+        }
+      ],
+      "ui:title": "ElevenLabs API Key",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "tts_api_key": {
+      "ui:widget": "password",
+      "ui:order": 210,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "tts_engine"
+          ],
+          "value": "openai"
+        }
+      ],
+      "ui:title": "TTS API Key",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "audio_tts_model": {
+      "ui:widget": "text",
+      "ui:help": "OpenAI TTS model (e.g., tts-1, tts-1-hd)",
+      "ui:order": 211,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "tts_engine"
+          ],
+          "value": "openai"
+        }
+      ],
+      "ui:title": "TTS Model",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "audio_tts_voice": {
+      "ui:widget": "select",
+      "ui:help": "OpenAI TTS voice (alloy, echo, fable, onyx, nova, shimmer)",
+      "ui:order": 212,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "tts_engine"
+          ],
+          "value": "openai"
+        }
+      ],
+      "ui:title": "TTS Voice",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "alloy",
+            "label": "alloy"
+          },
+          {
+            "value": "echo",
+            "label": "echo"
+          },
+          {
+            "value": "fable",
+            "label": "fable"
+          },
+          {
+            "value": "onyx",
+            "label": "onyx"
+          },
+          {
+            "value": "nova",
+            "label": "nova"
+          },
+          {
+            "value": "shimmer",
+            "label": "shimmer"
+          }
+        ],
+        "category": "Providers"
+      }
+    },
+    "jupyter_disable_execute_tool": {
+      "ui:widget": "checkbox",
+      "ui:order": 220,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "code_execution_engine"
+          ],
+          "value": "jupyter"
+        }
+      ],
+      "ui:title": "Disable Jupyter Notebook Execute Tool",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "jupyter_auth_type": {
+      "ui:widget": "select",
+      "ui:help": "Jupyter authentication method",
+      "ui:order": 221,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "code_execution_engine"
+          ],
+          "value": "jupyter"
+        }
+      ],
+      "ui:title": "Jupyter Auth Type",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "token",
+            "label": "token"
+          },
+          {
+            "value": "password",
+            "label": "password"
+          },
+          {
+            "value": "none",
+            "label": "none"
+          }
+        ],
+        "category": "Providers"
+      }
+    },
+    "jupyter_timeout": {
+      "ui:widget": "updown",
+      "ui:help": "Jupyter execution timeout in seconds",
+      "ui:order": 222,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "code_execution_engine"
+          ],
+          "value": "jupyter"
+        }
+      ],
+      "ui:title": "Jupyter Timeout (seconds)",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "e2b_api_key": {
+      "ui:widget": "password",
+      "ui:order": 230,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "code_interpreter_engine"
+          ],
+          "value": "e2b"
+        }
+      ],
+      "ui:title": "E2B API Key",
+      "ui:options": {
+        "category": "Providers"
+      }
+    },
+    "rag_top_k": {
+      "ui:widget": "updown",
+      "ui:order": 500,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "rag"
+          ],
+          "value": true
+        }
+      ],
+      "ui:title": "RAG Top K",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "chunk_size": {
+      "ui:widget": "updown",
+      "ui:order": 501,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "rag"
+          ],
+          "value": true
+        }
+      ],
+      "ui:title": "Chunk Size",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "chunk_overlap": {
+      "ui:widget": "updown",
+      "ui:order": 502,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "rag"
+          ],
+          "value": true
+        }
+      ],
+      "ui:title": "Chunk Overlap",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "task_model_title": {
+      "ui:widget": "text",
+      "ui:help": "Model ID for generating chat titles (ultra-fast, <1B params). Must exist in model-store.",
+      "ui:order": 301,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "title_generation"
+          ],
+          "value": true
+        }
+      ],
+      "ui:placeholder": "qwen3-0.6b",
+      "ui:title": "Task Model: Title Generation",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "task_model_tags": {
+      "ui:widget": "text",
+      "ui:help": "Model ID for generating conversation tags (balanced, 3-4B params). Must exist in model-store.",
+      "ui:order": 302,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "tags_generation"
+          ],
+          "value": true
+        }
+      ],
+      "ui:placeholder": "qwen3-4b",
+      "ui:title": "Task Model: Tags Generation",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "task_model_autocomplete": {
+      "ui:widget": "text",
+      "ui:help": "Model ID for autocomplete suggestions (ultra-fast, <1B params). Must exist in model-store.",
+      "ui:order": 303,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "autocomplete_generation"
+          ],
+          "value": true
+        }
+      ],
+      "ui:placeholder": "qwen3-0.6b",
+      "ui:title": "Task Model: Autocomplete Generation",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "task_model_query": {
+      "ui:widget": "text",
+      "ui:help": "Model ID for RAG query rewriting (balanced, 3-4B params). Must exist in model-store.",
+      "ui:order": 304,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "rag"
+          ],
+          "value": true
+        }
+      ],
+      "ui:placeholder": "qwen3-4b",
+      "ui:title": "Task Model: Query Generation",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "task_model_search_query": {
+      "ui:widget": "text",
+      "ui:help": "Model ID for web search query generation. Must exist in model-store.",
+      "ui:order": 305,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "web_search"
+          ],
+          "value": true
+        }
+      ],
+      "ui:placeholder": "qwen3-4b",
+      "ui:title": "Task Model: Search Query Generation",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "task_model_rag_template": {
+      "ui:widget": "text",
+      "ui:help": "Model ID for RAG template generation. Must exist in model-store.",
+      "ui:order": 306,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "rag"
+          ],
+          "value": true
+        }
+      ],
+      "ui:placeholder": "qwen3-4b",
+      "ui:title": "Task Model: RAG Template Generation",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "log_level": {
+      "ui:widget": "select",
+      "ui:help": "Logging verbosity for OpenWebUI",
+      "ui:order": 601,
+      "ui:title": "Log Level",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "DEBUG",
+            "label": "DEBUG"
+          },
+          {
+            "value": "INFO",
+            "label": "INFO"
+          },
+          {
+            "value": "WARNING",
+            "label": "WARNING"
+          },
+          {
+            "value": "ERROR",
+            "label": "ERROR"
+          }
+        ],
+        "category": "Advanced"
+      }
+    },
+    "redis_key_prefix": {
+      "ui:widget": "text",
+      "ui:help": "Redis namespace prefix for OpenWebUI",
+      "ui:order": 610,
+      "ui:title": "Redis Key Prefix",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "openwebui_timeout_start": {
+      "ui:widget": "updown",
+      "ui:order": 600,
+      "ui:title": "OpenWebUI Startup Timeout",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "ui:order": [
+      "webui_name",
+      "custom_name",
+      "qdrant_url",
+      "qdrant_api_key",
+      "qdrant_grpc_port",
+      "qdrant_prefer_grpc",
+      "qdrant_on_disk",
+      "chroma_tenant",
+      "chroma_database",
+      "rag_embedding_api_key",
+      "rag_embedding_model",
+      "ollama_embedding_model",
+      "tika_server_url",
+      "tika_heap_size",
+      "searxng_query_url",
+      "searxng_base_url",
+      "searxng_safe_search",
+      "searxng_autocomplete",
+      "searxng_max_page",
+      "tavily_api_key",
+      "brave_api_key",
+      "comfyui_workspace",
+      "comfyui_auto_update",
+      "comfyui_web_enable_auth",
+      "comfyui_log_level",
+      "comfyui_args",
+      "comfyui_startup_timeout",
+      "whisper_model",
+      "whisper_language",
+      "whisper_beam_size",
+      "whisper_compute_type",
+      "whisper_device",
+      "whisper_cache_dir",
+      "stt_api_key",
+      "audio_stt_model",
+      "edgetts_response_format",
+      "edgetts_speed",
+      "edgetts_voice",
+      "edgetts_log_level",
+      "edgetts_startup_timeout",
+      "elevenlabs_api_key",
+      "tts_api_key",
+      "audio_tts_model",
+      "audio_tts_voice",
+      "jupyter_disable_execute_tool",
+      "jupyter_auth_type",
+      "jupyter_timeout",
+      "e2b_api_key",
+      "task_model_title",
+      "task_model_tags",
+      "task_model_autocomplete",
+      "task_model_query",
+      "task_model_search_query",
+      "task_model_rag_template",
+      "rag_top_k",
+      "chunk_size",
+      "chunk_overlap",
+      "openwebui_timeout_start",
+      "log_level",
+      "redis_key_prefix",
+      "*"
+    ]
+  },
+  "secrets": {
+    "openai_api_key": {
+      "ui:widget": "password",
+      "ui:help": "OpenAI API key for GPT models, embeddings, and speech services. Register at https://platform.openai.com/api-keys",
+      "ui:title": "OpenAI API Key",
+      "ui:options": {
+        "category": "Security"
+      }
+    },
+    "anthropic_api_key": {
+      "ui:widget": "password",
+      "ui:help": "Anthropic API key for Claude models. Register at https://console.anthropic.com/",
+      "ui:title": "Anthropic API Key",
+      "ui:options": {
+        "category": "Security"
+      }
+    },
+    "gemini_api_key": {
+      "ui:widget": "password",
+      "ui:help": "Google Gemini API key for Gemini models. Register at https://makersuite.google.com/app/apikey",
+      "ui:title": "Google Gemini API Key",
+      "ui:options": {
+        "category": "Security"
+      }
+    },
+    "groq_api_key": {
+      "ui:widget": "password",
+      "ui:help": "Groq API key for fast inference. Register at https://console.groq.com/",
+      "ui:title": "Groq API Key",
+      "ui:options": {
+        "category": "Security"
+      }
+    },
+    "mistral_api_key": {
+      "ui:widget": "password",
+      "ui:help": "Mistral API key for Mistral models. Register at https://console.mistral.ai/",
+      "ui:title": "Mistral API Key",
+      "ui:options": {
+        "category": "Security"
+      }
+    },
+    "openrouter_api_key": {
+      "ui:widget": "password",
+      "ui:help": "OpenRouter API key for unified model access. Register at https://openrouter.ai/keys",
+      "ui:title": "OpenRouter API Key",
+      "ui:options": {
+        "category": "Security"
+      }
+    },
+    "perplexity_api_key": {
+      "ui:widget": "password",
+      "ui:help": "Perplexity API key for Perplexity models and search. Register at https://www.perplexity.ai/settings/api",
+      "ui:title": "Perplexity API Key",
+      "ui:options": {
+        "category": "Security"
+      }
+    },
+    "tavily_api_key": {
+      "ui:widget": "password",
+      "ui:help": "Tavily API key for AI-powered web search. Register at https://tavily.com/",
+      "ui:title": "Tavily Search API Key",
+      "ui:options": {
+        "category": "Security"
+      }
+    },
+    "hf_token": {
+      "ui:widget": "password",
+      "ui:help": "HuggingFace token for model downloads. Register at https://huggingface.co/settings/tokens",
+      "ui:title": "HuggingFace API Token",
+      "ui:options": {
+        "category": "Security"
+      }
+    },
+    "civitai_token": {
+      "ui:widget": "password",
+      "ui:help": "CivitAI token for model downloads. Register at https://civitai.com/user/account",
+      "ui:title": "CivitAI API Token",
+      "ui:options": {
+        "category": "Security"
+      }
+    }
+  },
+  "ui:order": [
+    "tailscale",
+    "secrets",
+    "*"
+  ]
+}
