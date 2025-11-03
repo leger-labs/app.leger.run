@@ -239,13 +239,22 @@ export function ReleaseFormPage() {
       />
 
       <CategorySection
-        title="Release Configuration"
-        description="Basic information about your release"
+        title="Release Metadata"
+        description="Basic information to identify this release"
         isDirty={isDirty}
         isLoading={isSaving}
         onSave={handleSave}
         saveText={isNew ? 'Create Release' : 'Save Changes'}
       >
+        <Alert className="border-blue-500/30 bg-blue-50 dark:border-blue-600/40 dark:bg-muted">
+          <AlertTitle>Release vs Configuration</AlertTitle>
+          <AlertDescription>
+            This section defines your <strong>application release</strong> metadata. The infrastructure
+            configuration below uses the schema from <code className="text-xs">leger-labs/schema</code>
+            to define which services and features to deploy.
+          </AlertDescription>
+        </Alert>
+
         <TextField
           label="Release Name"
           description="A unique identifier for this release (alphanumeric, hyphens, underscores)"
@@ -259,11 +268,11 @@ export function ReleaseFormPage() {
 
         <URLInput
           label="Git Repository URL"
-          description="The HTTPS URL of your Git repository"
+          description="The HTTPS URL of your application's Git repository (not leger-labs/schema)"
           value={formData.git_url}
           onChange={(e) => handleFieldChange('git_url', e.target.value)}
           error={errors.git_url}
-          placeholder="https://github.com/username/repository"
+          placeholder="https://github.com/username/my-app"
         />
 
         <TextField
@@ -289,14 +298,15 @@ export function ReleaseFormPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Infrastructure configuration (preview)</CardTitle>
+          <CardTitle>Infrastructure Configuration</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           <Alert className="border-primary/20 bg-primary/5">
-            <AlertTitle>Schema-driven configuration</AlertTitle>
+            <AlertTitle>Schema-Driven Configuration</AlertTitle>
             <AlertDescription>
-              Navigation and field groups are generated from the latest schema release. Saving
-              stores your changes locally until backend support is implemented.
+              Configure your infrastructure deployment using the latest schema from{' '}
+              <code className="text-xs">leger-labs/schema</code>. Enable the features you want,
+              select providers, and fine-tune settings through an intuitive step-by-step interface.
             </AlertDescription>
           </Alert>
 
@@ -309,7 +319,7 @@ export function ReleaseFormPage() {
             onSubmit={handleConfigSubmit}
             isSubmitting={isConfigSaving}
             isDirty={isConfigDirty}
-            submitLabel="Save configuration preview"
+            submitLabel="Save configuration"
           />
         </CardContent>
       </Card>

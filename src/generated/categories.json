@@ -1,273 +1,7 @@
 [
   {
-    "name": "Advanced",
-    "order": 999,
-    "fields": [
-      {
-        "path": "provider_config.tika_heap_size",
-        "name": "tika_heap_size",
-        "title": "Tika Heap Size",
-        "type": "string",
-        "required": false,
-        "order": 121
-      },
-      {
-        "path": "provider_config.searxng_max_page",
-        "name": "searxng_max_page",
-        "title": "Maximum Pages",
-        "type": "integer",
-        "required": false,
-        "order": 134
-      },
-      {
-        "path": "provider_config.comfyui_log_level",
-        "name": "comfyui_log_level",
-        "title": "ComfyUI Log Level",
-        "type": "string",
-        "required": false,
-        "order": 163
-      },
-      {
-        "path": "provider_config.comfyui_args",
-        "name": "comfyui_args",
-        "title": "ComfyUI Additional Arguments",
-        "type": "string",
-        "required": false,
-        "order": 164
-      },
-      {
-        "path": "provider_config.comfyui_startup_timeout",
-        "name": "comfyui_startup_timeout",
-        "title": "ComfyUI Startup Timeout",
-        "type": "integer",
-        "required": false,
-        "order": 165
-      },
-      {
-        "path": "provider_config.whisper_beam_size",
-        "name": "whisper_beam_size",
-        "title": "Beam Size",
-        "type": "integer",
-        "required": false,
-        "order": 172
-      },
-      {
-        "path": "provider_config.whisper_compute_type",
-        "name": "whisper_compute_type",
-        "title": "Compute Type",
-        "type": "string",
-        "required": false,
-        "order": 173
-      },
-      {
-        "path": "provider_config.whisper_device",
-        "name": "whisper_device",
-        "title": "Device",
-        "type": "string",
-        "required": false,
-        "order": 174
-      },
-      {
-        "path": "provider_config.whisper_cache_dir",
-        "name": "whisper_cache_dir",
-        "title": "Cache Directory",
-        "type": "string",
-        "required": false,
-        "order": 175
-      },
-      {
-        "path": "provider_config.edgetts_log_level",
-        "name": "edgetts_log_level",
-        "title": "Edge TTS Log Level",
-        "type": "string",
-        "required": false,
-        "order": 193
-      },
-      {
-        "path": "provider_config.edgetts_startup_timeout",
-        "name": "edgetts_startup_timeout",
-        "title": "Edge TTS Startup Timeout",
-        "type": "integer",
-        "required": false,
-        "order": 194
-      },
-      {
-        "path": "provider_config.jupyter_disable_execute_tool",
-        "name": "jupyter_disable_execute_tool",
-        "title": "Disable Jupyter Notebook Execute Tool",
-        "type": "boolean",
-        "required": false,
-        "order": 220
-      },
-      {
-        "path": "provider_config.jupyter_timeout",
-        "name": "jupyter_timeout",
-        "title": "Jupyter Timeout (seconds)",
-        "type": "integer",
-        "required": false,
-        "order": 222
-      },
-      {
-        "path": "provider_config.task_model_title",
-        "name": "task_model_title",
-        "title": "Task Model: Title Generation",
-        "type": "string",
-        "required": false,
-        "order": 301
-      },
-      {
-        "path": "provider_config.task_model_tags",
-        "name": "task_model_tags",
-        "title": "Task Model: Tags Generation",
-        "type": "string",
-        "required": false,
-        "order": 302
-      },
-      {
-        "path": "provider_config.task_model_autocomplete",
-        "name": "task_model_autocomplete",
-        "title": "Task Model: Autocomplete Generation",
-        "type": "string",
-        "required": false,
-        "order": 303
-      },
-      {
-        "path": "provider_config.task_model_query",
-        "name": "task_model_query",
-        "title": "Task Model: Query Generation",
-        "type": "string",
-        "required": false,
-        "order": 304
-      },
-      {
-        "path": "provider_config.task_model_search_query",
-        "name": "task_model_search_query",
-        "title": "Task Model: Search Query Generation",
-        "type": "string",
-        "required": false,
-        "order": 305
-      },
-      {
-        "path": "provider_config.task_model_rag_template",
-        "name": "task_model_rag_template",
-        "title": "Task Model: RAG Template Generation",
-        "type": "string",
-        "required": false,
-        "order": 306
-      },
-      {
-        "path": "features.websocket_support",
-        "name": "websocket_support",
-        "title": "WebSocket Support",
-        "type": "boolean",
-        "required": false,
-        "order": 400
-      },
-      {
-        "path": "provider_config.rag_top_k",
-        "name": "rag_top_k",
-        "title": "RAG Top K",
-        "type": "integer",
-        "required": false,
-        "order": 500
-      },
-      {
-        "path": "provider_config.chunk_size",
-        "name": "chunk_size",
-        "title": "Chunk Size",
-        "type": "integer",
-        "required": false,
-        "order": 501
-      },
-      {
-        "path": "provider_config.chunk_overlap",
-        "name": "chunk_overlap",
-        "title": "Chunk Overlap",
-        "type": "integer",
-        "required": false,
-        "order": 502
-      },
-      {
-        "path": "provider_config.openwebui_timeout_start",
-        "name": "openwebui_timeout_start",
-        "title": "OpenWebUI Startup Timeout",
-        "type": "integer",
-        "required": false,
-        "order": 600
-      },
-      {
-        "path": "provider_config.log_level",
-        "name": "log_level",
-        "title": "Log Level",
-        "type": "string",
-        "required": false,
-        "order": 601
-      },
-      {
-        "path": "provider_config.redis_key_prefix",
-        "name": "redis_key_prefix",
-        "title": "Redis Key Prefix",
-        "type": "string",
-        "required": false,
-        "order": 610
-      }
-    ]
-  },
-  {
-    "name": "AI Assistance",
-    "order": 999,
-    "fields": [
-      {
-        "path": "features.title_generation",
-        "name": "title_generation",
-        "title": "AI Title Generation",
-        "type": "boolean",
-        "required": false,
-        "order": 300
-      },
-      {
-        "path": "features.autocomplete_generation",
-        "name": "autocomplete_generation",
-        "title": "Autocomplete Generation",
-        "type": "boolean",
-        "required": false,
-        "order": 301
-      },
-      {
-        "path": "features.tags_generation",
-        "name": "tags_generation",
-        "title": "Tags Generation",
-        "type": "boolean",
-        "required": false,
-        "order": 302
-      }
-    ]
-  },
-  {
-    "name": "Core",
-    "order": 999,
-    "fields": [
-      {
-        "path": "provider_config.webui_name",
-        "name": "webui_name",
-        "title": "WebUI Instance Name",
-        "type": "string",
-        "required": false,
-        "order": 10
-      },
-      {
-        "path": "provider_config.custom_name",
-        "name": "custom_name",
-        "title": "Custom Instance Label",
-        "type": "string",
-        "required": false,
-        "order": 11
-      }
-    ]
-  },
-  {
     "name": "Features",
-    "order": 999,
+    "order": 10,
     "fields": [
       {
         "path": "features.rag",
@@ -344,70 +78,8 @@
     ]
   },
   {
-    "name": "Infrastructure",
-    "order": 999,
-    "fields": [
-      {
-        "path": "tailscale",
-        "name": "tailscale",
-        "title": "Tailscale Configuration",
-        "type": "object",
-        "required": true,
-        "order": 0
-      },
-      {
-        "path": "infrastructure.network",
-        "name": "network",
-        "title": "Network Configuration",
-        "type": "object",
-        "required": true,
-        "order": 1
-      },
-      {
-        "path": "tailscale.full_hostname",
-        "name": "full_hostname",
-        "title": "Tailscale MagicDNS Hostname",
-        "type": "string",
-        "required": true,
-        "order": 1
-      },
-      {
-        "path": "tailscale.hostname",
-        "name": "hostname",
-        "title": "Machine Hostname",
-        "type": "string",
-        "required": false,
-        "order": 2
-      },
-      {
-        "path": "tailscale.tailnet",
-        "name": "tailnet",
-        "title": "Tailnet Domain",
-        "type": "string",
-        "required": false,
-        "order": 3
-      },
-      {
-        "path": "infrastructure.network.name",
-        "name": "name",
-        "title": "Network Name",
-        "type": "string",
-        "required": false,
-        "order": 999
-      },
-      {
-        "path": "infrastructure.network.subnet",
-        "name": "subnet",
-        "title": "Network Subnet",
-        "type": "string",
-        "required": false,
-        "order": 999
-      }
-    ]
-  },
-  {
     "name": "Providers",
-    "order": 999,
+    "order": 20,
     "fields": [
       {
         "path": "provider_config.qdrant_url",
@@ -772,120 +444,268 @@
     ]
   },
   {
-    "name": "Security",
-    "order": 999,
+    "name": "Core",
+    "order": 30,
     "fields": [
       {
-        "path": "providers.auth_provider",
-        "name": "auth_provider",
-        "title": "Authentication Provider",
+        "path": "provider_config.webui_name",
+        "name": "webui_name",
+        "title": "WebUI Instance Name",
         "type": "string",
         "required": false,
-        "order": 200
+        "order": 10
       },
       {
-        "path": "features.oauth_signup",
-        "name": "oauth_signup",
-        "title": "OAuth Signup",
+        "path": "provider_config.custom_name",
+        "name": "custom_name",
+        "title": "Custom Instance Label",
+        "type": "string",
+        "required": false,
+        "order": 11
+      }
+    ]
+  },
+  {
+    "name": "AI Assistance",
+    "order": 40,
+    "fields": [
+      {
+        "path": "features.title_generation",
+        "name": "title_generation",
+        "title": "AI Title Generation",
         "type": "boolean",
         "required": false,
-        "order": 200
+        "order": 300
       },
       {
-        "path": "features.ldap",
-        "name": "ldap",
-        "title": "LDAP Authentication",
+        "path": "features.autocomplete_generation",
+        "name": "autocomplete_generation",
+        "title": "Autocomplete Generation",
         "type": "boolean",
         "required": false,
-        "order": 201
+        "order": 301
       },
       {
-        "path": "secrets",
-        "name": "secrets",
-        "title": "External API Secrets",
-        "type": "object",
+        "path": "features.tags_generation",
+        "name": "tags_generation",
+        "title": "Tags Generation",
+        "type": "boolean",
+        "required": false,
+        "order": 302
+      }
+    ]
+  },
+  {
+    "name": "Advanced",
+    "order": 50,
+    "fields": [
+      {
+        "path": "provider_config.tika_heap_size",
+        "name": "tika_heap_size",
+        "title": "Tika Heap Size",
+        "type": "string",
+        "required": false,
+        "order": 121
+      },
+      {
+        "path": "provider_config.searxng_max_page",
+        "name": "searxng_max_page",
+        "title": "Maximum Pages",
+        "type": "integer",
+        "required": false,
+        "order": 134
+      },
+      {
+        "path": "provider_config.comfyui_log_level",
+        "name": "comfyui_log_level",
+        "title": "ComfyUI Log Level",
+        "type": "string",
+        "required": false,
+        "order": 163
+      },
+      {
+        "path": "provider_config.comfyui_args",
+        "name": "comfyui_args",
+        "title": "ComfyUI Additional Arguments",
+        "type": "string",
+        "required": false,
+        "order": 164
+      },
+      {
+        "path": "provider_config.comfyui_startup_timeout",
+        "name": "comfyui_startup_timeout",
+        "title": "ComfyUI Startup Timeout",
+        "type": "integer",
+        "required": false,
+        "order": 165
+      },
+      {
+        "path": "provider_config.whisper_beam_size",
+        "name": "whisper_beam_size",
+        "title": "Beam Size",
+        "type": "integer",
+        "required": false,
+        "order": 172
+      },
+      {
+        "path": "provider_config.whisper_compute_type",
+        "name": "whisper_compute_type",
+        "title": "Compute Type",
+        "type": "string",
+        "required": false,
+        "order": 173
+      },
+      {
+        "path": "provider_config.whisper_device",
+        "name": "whisper_device",
+        "title": "Device",
+        "type": "string",
+        "required": false,
+        "order": 174
+      },
+      {
+        "path": "provider_config.whisper_cache_dir",
+        "name": "whisper_cache_dir",
+        "title": "Cache Directory",
+        "type": "string",
+        "required": false,
+        "order": 175
+      },
+      {
+        "path": "provider_config.edgetts_log_level",
+        "name": "edgetts_log_level",
+        "title": "Edge TTS Log Level",
+        "type": "string",
+        "required": false,
+        "order": 193
+      },
+      {
+        "path": "provider_config.edgetts_startup_timeout",
+        "name": "edgetts_startup_timeout",
+        "title": "Edge TTS Startup Timeout",
+        "type": "integer",
+        "required": false,
+        "order": 194
+      },
+      {
+        "path": "provider_config.jupyter_disable_execute_tool",
+        "name": "jupyter_disable_execute_tool",
+        "title": "Disable Jupyter Notebook Execute Tool",
+        "type": "boolean",
+        "required": false,
+        "order": 220
+      },
+      {
+        "path": "provider_config.jupyter_timeout",
+        "name": "jupyter_timeout",
+        "title": "Jupyter Timeout (seconds)",
+        "type": "integer",
+        "required": false,
+        "order": 222
+      },
+      {
+        "path": "provider_config.task_model_title",
+        "name": "task_model_title",
+        "title": "Task Model: Title Generation",
+        "type": "string",
+        "required": false,
+        "order": 301
+      },
+      {
+        "path": "provider_config.task_model_tags",
+        "name": "task_model_tags",
+        "title": "Task Model: Tags Generation",
+        "type": "string",
+        "required": false,
+        "order": 302
+      },
+      {
+        "path": "provider_config.task_model_autocomplete",
+        "name": "task_model_autocomplete",
+        "title": "Task Model: Autocomplete Generation",
+        "type": "string",
+        "required": false,
+        "order": 303
+      },
+      {
+        "path": "provider_config.task_model_query",
+        "name": "task_model_query",
+        "title": "Task Model: Query Generation",
+        "type": "string",
+        "required": false,
+        "order": 304
+      },
+      {
+        "path": "provider_config.task_model_search_query",
+        "name": "task_model_search_query",
+        "title": "Task Model: Search Query Generation",
+        "type": "string",
+        "required": false,
+        "order": 305
+      },
+      {
+        "path": "provider_config.task_model_rag_template",
+        "name": "task_model_rag_template",
+        "title": "Task Model: RAG Template Generation",
+        "type": "string",
+        "required": false,
+        "order": 306
+      },
+      {
+        "path": "features.websocket_support",
+        "name": "websocket_support",
+        "title": "WebSocket Support",
+        "type": "boolean",
+        "required": false,
+        "order": 400
+      },
+      {
+        "path": "provider_config.rag_top_k",
+        "name": "rag_top_k",
+        "title": "RAG Top K",
+        "type": "integer",
         "required": false,
         "order": 500
       },
       {
-        "path": "secrets.anthropic_api_key",
-        "name": "anthropic_api_key",
-        "title": "Anthropic API Key",
-        "type": "string",
+        "path": "provider_config.chunk_size",
+        "name": "chunk_size",
+        "title": "Chunk Size",
+        "type": "integer",
         "required": false,
-        "order": 999
+        "order": 501
       },
       {
-        "path": "secrets.civitai_token",
-        "name": "civitai_token",
-        "title": "CivitAI API Token",
-        "type": "string",
+        "path": "provider_config.chunk_overlap",
+        "name": "chunk_overlap",
+        "title": "Chunk Overlap",
+        "type": "integer",
         "required": false,
-        "order": 999
+        "order": 502
       },
       {
-        "path": "secrets.gemini_api_key",
-        "name": "gemini_api_key",
-        "title": "Google Gemini API Key",
-        "type": "string",
+        "path": "provider_config.openwebui_timeout_start",
+        "name": "openwebui_timeout_start",
+        "title": "OpenWebUI Startup Timeout",
+        "type": "integer",
         "required": false,
-        "order": 999
+        "order": 600
       },
       {
-        "path": "secrets.groq_api_key",
-        "name": "groq_api_key",
-        "title": "Groq API Key",
+        "path": "provider_config.log_level",
+        "name": "log_level",
+        "title": "Log Level",
         "type": "string",
         "required": false,
-        "order": 999
+        "order": 601
       },
       {
-        "path": "secrets.hf_token",
-        "name": "hf_token",
-        "title": "HuggingFace API Token",
+        "path": "provider_config.redis_key_prefix",
+        "name": "redis_key_prefix",
+        "title": "Redis Key Prefix",
         "type": "string",
         "required": false,
-        "order": 999
-      },
-      {
-        "path": "secrets.mistral_api_key",
-        "name": "mistral_api_key",
-        "title": "Mistral API Key",
-        "type": "string",
-        "required": false,
-        "order": 999
-      },
-      {
-        "path": "secrets.openai_api_key",
-        "name": "openai_api_key",
-        "title": "OpenAI API Key",
-        "type": "string",
-        "required": false,
-        "order": 999
-      },
-      {
-        "path": "secrets.openrouter_api_key",
-        "name": "openrouter_api_key",
-        "title": "OpenRouter API Key",
-        "type": "string",
-        "required": false,
-        "order": 999
-      },
-      {
-        "path": "secrets.perplexity_api_key",
-        "name": "perplexity_api_key",
-        "title": "Perplexity API Key",
-        "type": "string",
-        "required": false,
-        "order": 999
-      },
-      {
-        "path": "secrets.tavily_api_key",
-        "name": "tavily_api_key",
-        "title": "Tavily Search API Key",
-        "type": "string",
-        "required": false,
-        "order": 999
+        "order": 610
       }
     ]
   }
