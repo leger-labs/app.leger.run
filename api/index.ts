@@ -3,7 +3,7 @@
  * Complete API implementation with authentication, secrets, and releases
  */
 
-import { handleAuthLogin, handleAuthValidate } from './routes/auth'
+import { handleAuthCli, handleAuthLogin, handleAuthValidate } from './routes/auth'
 import {
   handleListSecrets,
   handleGetSecret,
@@ -130,6 +130,7 @@ export default {
                   endpoints: {
                     health: '/health',
                     auth: {
+                      cli: '/auth/cli',
                       login: '/auth/login',
                       validate: '/auth/validate',
                     },
@@ -150,6 +151,10 @@ export default {
         }
 
         // Authentication routes
+        if (normalizedPath === '/auth/cli' && request.method === 'POST') {
+          return addCorsHeaders(await handleAuthCli(request, env))
+        }
+
         if (normalizedPath === '/auth/login' && request.method === 'POST') {
           return addCorsHeaders(await handleAuthLogin(request, env))
         }
