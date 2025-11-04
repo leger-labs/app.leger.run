@@ -3,7 +3,7 @@
  * Complete API implementation with authentication, secrets, and releases
  */
 
-import { handleAuthValidate } from './routes/auth'
+import { handleAuthLogin, handleAuthValidate } from './routes/auth'
 import {
   handleListSecrets,
   handleGetSecret,
@@ -129,7 +129,10 @@ export default {
                   documentation: 'https://docs.leger.run/api',
                   endpoints: {
                     health: '/health',
-                    auth: '/auth/validate',
+                    auth: {
+                      login: '/auth/login',
+                      validate: '/auth/validate',
+                    },
                     secrets: '/secrets',
                     releases: '/releases',
                   },
@@ -147,6 +150,10 @@ export default {
         }
 
         // Authentication routes
+        if (normalizedPath === '/auth/login' && request.method === 'POST') {
+          return addCorsHeaders(await handleAuthLogin(request, env))
+        }
+
         if (normalizedPath === '/auth/validate' && request.method === 'POST') {
           return addCorsHeaders(await handleAuthValidate(request, env))
         }
