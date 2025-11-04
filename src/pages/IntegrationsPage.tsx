@@ -7,7 +7,6 @@ import { useState, useEffect, useMemo } from 'react';
 import { Loader2, ExternalLink, Check, Plus, Eye, EyeOff, Search, FileX } from 'lucide-react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { PageHeader } from '@/components/layout/PageHeader';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -28,7 +27,7 @@ import { toast } from 'sonner';
 import type { Provider } from '@/types/model-store';
 
 export function IntegrationsPage() {
-  const { providers, models, isLoading: isLoadingModelStore } = useModelStore();
+  const { providers, isLoading: isLoadingModelStore } = useModelStore();
   const { secrets, isLoading: isLoadingSecrets, upsertSecret } = useSecrets();
 
   const [search, setSearch] = useState('');
@@ -172,51 +171,30 @@ export function IntegrationsPage() {
     return filtered;
   }, [providers, configuredProviders, filterTab, search]);
 
-  // Get representative pricing for a provider (from any model that uses it)
-  const getProviderPricing = (providerId: string) => {
-    const model = models.find((m) => m.providers.some((p) => p.id === providerId));
-    if (model && 'pricing' in model && model.pricing) {
-      return model.pricing;
-    }
-    return null;
-  };
-
   if (isLoading) {
     return (
       <PageLayout>
         <PageHeader
           title="Integrations"
-          description="The AI Gateway supports routing requests across multiple AI providers."
+          description="Use your own provider API keys to access AI Gateway with automatic fallback."
         />
         <div className="mb-8">
           <Skeleton className="h-4 w-48 mb-4" />
           <Skeleton className="h-10 w-full mb-4" />
           <Skeleton className="h-10 w-64" />
         </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <Card key={i}>
-              <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center gap-3">
-                    <Skeleton className="h-8 w-8 rounded" />
-                    <Skeleton className="h-5 w-32" />
-                  </div>
-                  <Skeleton className="h-6 w-20" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <Skeleton className="h-12 w-full mb-4" />
-                <div className="grid grid-cols-2 gap-2 mb-4">
-                  <Skeleton className="h-8 w-full" />
-                  <Skeleton className="h-8 w-full" />
-                </div>
-                <div className="flex gap-2">
-                  <Skeleton className="h-4 w-16" />
-                  <Skeleton className="h-4 w-16" />
-                </div>
-              </CardContent>
-            </Card>
+        <div className="space-y-1.5">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div
+              key={i}
+              className="flex items-center justify-between px-4 py-3 border rounded-lg"
+            >
+              <div className="flex items-center gap-4 flex-1">
+                <Skeleton className="h-8 w-8 rounded flex-shrink-0" />
+                <Skeleton className="h-5 w-32" />
+              </div>
+              <Skeleton className="h-9 w-16" />
+            </div>
           ))}
         </div>
       </PageLayout>
@@ -227,23 +205,11 @@ export function IntegrationsPage() {
     <PageLayout>
       <PageHeader
         title="Integrations"
-        description="The AI Gateway supports routing requests across multiple AI providers. You can control provider preferences using the provider slugs available for copying with the buttons below."
+        description="Use your own provider API keys to access AI Gateway with automatic fallback."
       />
 
       <div className="mb-6 text-sm text-muted-foreground">
-        <div className="mb-2">
-          {configuredProviders.size} provider{configuredProviders.size !== 1 ? 's' : ''} configured
-        </div>
-        For more information, see the{' '}
-        <a
-          href="https://docs.leger.run/ai-gateway/providers"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-primary hover:underline inline-flex items-center gap-1"
-        >
-          AI Gateway provider options documentation
-          <ExternalLink className="h-3 w-3" />
-        </a>
+        {configuredProviders.size} provider{configuredProviders.size !== 1 ? 's' : ''} configured
       </div>
 
       {/* Search and Filters */}
@@ -273,7 +239,7 @@ export function IntegrationsPage() {
         </Tabs>
       </div>
 
-      {/* Provider Grid */}
+      {/* Provider List */}
       {filteredProviders.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-center">
           <FileX className="h-16 w-16 text-muted-foreground mb-4" />
@@ -288,103 +254,61 @@ export function IntegrationsPage() {
           </Button>
         </div>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="space-y-1.5">
           {filteredProviders.map((provider) => {
-          const isConfigured = configuredProviders.has(provider.id);
-          const pricing = getProviderPricing(provider.id);
+            const isConfigured = configuredProviders.has(provider.id);
 
-          return (
-            <Card key={provider.id} className="relative">
-              <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={`/${provider.icon}`}
-                      alt={provider.name}
-                      className="h-8 w-8 rounded"
-                    />
-                    <CardTitle className="text-lg">{provider.name}</CardTitle>
+            return (
+              <div
+                key={provider.id}
+                className="flex items-center justify-between px-4 py-3 border rounded-lg hover:bg-accent/50 transition-colors"
+              >
+                {/* Left: Logo */}
+                <div className="flex items-center gap-4 flex-1 min-w-0">
+                  <img
+                    src={`/${provider.icon}`}
+                    alt={provider.name}
+                    className="h-8 w-8 rounded flex-shrink-0"
+                  />
+
+                  {/* Center: Name and Badge */}
+                  <div className="flex items-center gap-3 flex-1 min-w-0">
+                    <span className="font-medium text-sm truncate">{provider.name}</span>
+                    {isConfigured && (
+                      <Badge variant="secondary" className="flex items-center gap-1 flex-shrink-0">
+                        <Check className="h-3 w-3" />
+                        Configured
+                      </Badge>
+                    )}
                   </div>
-                  <div className="flex items-center gap-2">
-                    {isConfigured ? (
-                      <>
-                        <Badge variant="secondary" className="flex items-center gap-1">
-                          <Check className="h-3 w-3" />
-                          Configured
-                        </Badge>
-                        {provider.requires_api_key && (
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            onClick={() => handleEditProvider(provider)}
-                          >
-                            Edit
-                          </Button>
-                        )}
-                      </>
+                </div>
+
+                {/* Right: Add/Edit Button */}
+                <div className="flex-shrink-0">
+                  {provider.requires_api_key && (
+                    isConfigured ? (
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleEditProvider(provider)}
+                      >
+                        Edit
+                      </Button>
                     ) : (
-                      provider.requires_api_key && (
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => handleAddProvider(provider)}
-                        >
-                          <Plus className="h-4 w-4 mr-1" />
-                          Add
-                        </Button>
-                      )
-                    )}
-                  </div>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleAddProvider(provider)}
+                      >
+                        <Plus className="h-4 w-4 mr-1" />
+                        Add
+                      </Button>
+                    )
+                  )}
                 </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">
-                  {provider.description}
-                </p>
-
-                {pricing && (
-                  <div className="grid grid-cols-2 gap-2 mb-4 text-sm">
-                    <div>
-                      <div className="text-muted-foreground">Input</div>
-                      <div className="font-medium">{pricing.input_per_1m}/1M</div>
-                    </div>
-                    <div>
-                      <div className="text-muted-foreground">Output</div>
-                      <div className="font-medium">{pricing.output_per_1m}/1M</div>
-                    </div>
-                    {pricing.cache_read_per_1m && (
-                      <div>
-                        <div className="text-muted-foreground">Cache Read</div>
-                        <div className="font-medium">{pricing.cache_read_per_1m}/1M</div>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                <div className="flex gap-2 text-xs">
-                  <a
-                    href={`${provider.website}/terms`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline inline-flex items-center gap-1"
-                  >
-                    Terms
-                    <ExternalLink className="h-3 w-3" />
-                  </a>
-                  <a
-                    href={`${provider.website}/privacy`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline inline-flex items-center gap-1"
-                  >
-                    Privacy
-                    <ExternalLink className="h-3 w-3" />
-                  </a>
-                </div>
-              </CardContent>
-            </Card>
-          );
-        })}
+              </div>
+            );
+          })}
         </div>
       )}
 
