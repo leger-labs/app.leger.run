@@ -9,11 +9,6 @@ import { Loader2, Copy, Check, Upload, ExternalLink, AlertCircle } from 'lucide-
 import { toast } from 'sonner';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { PageHeader } from '@/components/layout/PageHeader';
-import { CategorySection } from '@/components/ui/form/layouts/category-section';
-import { TextField } from '@/components/ui/form/fields/text-field';
-import { URLInput } from '@/components/ui/form/fields/url-input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -45,9 +40,6 @@ export function ReleaseFormPage() {
   // Form state
   const [formData, setFormData] = useState({
     name: '',
-    git_url: '',
-    git_branch: 'main',
-    description: '',
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -71,9 +63,6 @@ export function ReleaseFormPage() {
           const release = await apiClient.getRelease(id);
           setFormData({
             name: release.name,
-            git_url: release.git_url,
-            git_branch: release.git_branch,
-            description: release.description || '',
           });
         } catch (error) {
           console.error('Failed to fetch release:', error);
@@ -87,50 +76,15 @@ export function ReleaseFormPage() {
 
   // Validation - matches backend validation rules
   const validateField = (field: string, value: string): string | null => {
-    switch (field) {
-      case 'name':
-        if (!value) return 'Name is required';
-        if (!/^[a-zA-Z0-9_-]+$/.test(value)) {
-          return 'Name must contain only letters, numbers, underscores, and hyphens';
-        }
-        if (value.length > 64) return 'Name must be 64 characters or less';
-        return null;
-
-      case 'git_url':
-        if (!value) return 'Git URL is required';
-        try {
-          const url = new URL(value);
-          if (!['http:', 'https:'].includes(url.protocol)) {
-            return 'URL must use http or https';
-          }
-          // Validate it looks like a git repo URL
-          if (
-            !url.hostname.includes('github.com') &&
-            !url.hostname.includes('gitlab.com') &&
-            !url.pathname.endsWith('.git')
-          ) {
-            return 'URL should be a valid git repository';
-          }
-        } catch {
-          return 'Invalid URL format';
-        }
-        return null;
-
-      case 'git_branch':
-        if (!value) return null; // Optional, defaults to 'main'
-        if (!/^[a-zA-Z0-9/_-]+$/.test(value)) {
-          return 'Invalid branch name';
-        }
-        if (value.length > 255) return 'Branch name too long';
-        return null;
-
-      case 'description':
-        // Optional field, no validation needed
-        return null;
-
-      default:
-        return null;
+    if (field === 'name') {
+      if (!value) return 'Name is required';
+      if (!/^[a-zA-Z0-9_-]+$/.test(value)) {
+        return 'Name must contain only letters, numbers, underscores, and hyphens';
+      }
+      if (value.length > 64) return 'Name must be 64 characters or less';
+      return null;
     }
+    return null;
   };
 
   const handleFieldChange = (field: string, value: string) => {
@@ -161,14 +115,8 @@ export function ReleaseFormPage() {
   const validateAllFields = (): boolean => {
     const newErrors: Record<string, string> = {};
     const nameError = validateField('name', formData.name);
-    const urlError = validateField('git_url', formData.git_url);
-    const branchError = validateField('git_branch', formData.git_branch);
-    const descError = validateField('description', formData.description);
 
     if (nameError) newErrors.name = nameError;
-    if (urlError) newErrors.git_url = urlError;
-    if (branchError) newErrors.git_branch = branchError;
-    if (descError) newErrors.description = descError;
 
     setErrors(newErrors);
 
@@ -318,64 +266,6 @@ export function ReleaseFormPage() {
             : 'Update your release configuration'
         }
       />
-
-      <CategorySection
-        title="Release Metadata"
-        description="Basic information to identify this release"
-        isDirty={isDirty}
-        isLoading={isSaving}
-        onSave={handleSave}
-        saveText={isNew ? 'Create Release' : 'Save Changes'}
-      >
-        <Alert className="border-blue-500/30 bg-blue-50 dark:border-blue-600/40 dark:bg-muted">
-          <AlertTitle>Release vs Configuration</AlertTitle>
-          <AlertDescription>
-            This section defines your <strong>application release</strong> metadata. The infrastructure
-            configuration below uses the schema from <code className="text-xs">leger-labs/schema</code>
-            to define which services and features to deploy.
-          </AlertDescription>
-        </Alert>
-
-        <TextField
-          label="Release Name"
-          description="A unique identifier for this release (alphanumeric, hyphens, underscores)"
-          value={formData.name}
-          onChange={(e) => handleFieldChange('name', e.target.value)}
-          error={errors.name}
-          placeholder="my-application"
-          maxLength={64}
-          showCharCount
-        />
-
-        <URLInput
-          label="Git Repository URL"
-          description="The HTTPS URL of your application's Git repository (not leger-labs/schema)"
-          value={formData.git_url}
-          onChange={(e) => handleFieldChange('git_url', e.target.value)}
-          error={errors.git_url}
-          placeholder="https://github.com/username/my-app"
-        />
-
-        <TextField
-          label="Git Branch"
-          description="The branch to deploy from"
-          value={formData.git_branch}
-          onChange={(e) => handleFieldChange('git_branch', e.target.value)}
-          error={errors.git_branch}
-          placeholder="main"
-        />
-
-        <div className="space-y-2">
-          <Label htmlFor="description">Description (Optional)</Label>
-          <Textarea
-            id="description"
-            value={formData.description}
-            onChange={(e) => handleFieldChange('description', e.target.value)}
-            placeholder="A brief description of this release..."
-            rows={3}
-          />
-        </div>
-      </CategorySection>
 
       <Card>
         <CardHeader>

@@ -9,11 +9,7 @@ import type {
   CreateReleaseInput,
   UpdateReleaseInput,
 } from '../models/release'
-import {
-  isValidReleaseName,
-  isValidGitURL,
-  isValidBranchName,
-} from '../models/release'
+import { isValidReleaseName } from '../models/release'
 import { generateUUIDv4 } from '../utils/uuid'
 
 /**
@@ -88,15 +84,6 @@ export async function createRelease(
     )
   }
 
-  if (!isValidGitURL(input.git_url)) {
-    throw new Error('Invalid Git URL. Must be a valid HTTPS repository URL')
-  }
-
-  const gitBranch = input.git_branch || 'main'
-  if (!isValidBranchName(gitBranch)) {
-    throw new Error('Invalid branch name')
-  }
-
   // Check for duplicate name
   const existing = await getReleaseByName(env, userUuid, input.name)
   if (existing) {
@@ -118,9 +105,6 @@ export async function createRelease(
     id: generateUUIDv4(),
     user_uuid: userUuid,
     name: input.name,
-    git_url: input.git_url,
-    git_branch: gitBranch,
-    description: input.description || null,
     version,
     created_at: now,
     updated_at: now,
@@ -129,17 +113,13 @@ export async function createRelease(
   // Insert into D1
   await env.LEGER_DB.prepare(
     `INSERT INTO releases (
-      id, user_uuid, name, git_url, git_branch,
-      description, version, created_at, updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      id, user_uuid, name, version, created_at, updated_at
+    ) VALUES (?, ?, ?, ?, ?, ?)`
   )
     .bind(
       release.id,
       release.user_uuid,
       release.name,
-      release.git_url,
-      release.git_branch,
-      release.description,
       release.version,
       release.created_at,
       release.updated_at
@@ -185,29 +165,6 @@ export async function updateRelease(
 
     updates.push('name = ?')
     bindings.push(input.name)
-  }
-
-  if (input.git_url !== undefined) {
-    if (!isValidGitURL(input.git_url)) {
-      throw new Error('Invalid Git URL. Must be a valid HTTPS repository URL')
-    }
-
-    updates.push('git_url = ?')
-    bindings.push(input.git_url)
-  }
-
-  if (input.git_branch !== undefined) {
-    if (!isValidBranchName(input.git_branch)) {
-      throw new Error('Invalid branch name')
-    }
-
-    updates.push('git_branch = ?')
-    bindings.push(input.git_branch)
-  }
-
-  if (input.description !== undefined) {
-    updates.push('description = ?')
-    bindings.push(input.description)
   }
 
   if (updates.length === 0) {

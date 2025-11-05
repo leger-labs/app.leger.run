@@ -44,10 +44,7 @@ export interface SecretWithValue {
 export interface ReleaseRecord {
   id: string; // UUID v4
   user_uuid: string; // Owner
-  name: string; // User-chosen name (e.g., "my-openwebui")
-  git_url: string; // GitHub/GitLab URL
-  git_branch: string; // Branch to clone (default: "main")
-  description: string | null; // Optional description
+  name: string; // User-chosen name (e.g., "my-app-prod")
   version: number; // Auto-increment per user (1, 2, 3...)
   created_at: string; // ISO 8601 timestamp
   updated_at: string; // Last modification time
@@ -59,9 +56,6 @@ export interface ReleaseRecord {
  */
 export interface CreateReleaseInput {
   name: string;
-  git_url: string;
-  git_branch?: string; // Defaults to "main"
-  description?: string;
 }
 
 /**
@@ -70,9 +64,6 @@ export interface CreateReleaseInput {
  */
 export interface UpdateReleaseInput {
   name?: string;
-  git_url?: string;
-  git_branch?: string;
-  description?: string;
 }
 
 /**
