@@ -1,0 +1,34 @@
+{
+  "id": "ollama-embeddings",
+  "name": "Ollama Embeddings",
+  "category": "rag",
+  "requires_api_key": false,
+  "logo": "/assets/ollama-embeddings.png",
+  "openwebui_variables": [
+    {
+      "name": "RAG_EMBEDDING_ENGINE",
+      "type": "str",
+      "default": null,
+      "description": "Selects an embedding engine to use for RAG.",
+      "options": [
+        "ollama",
+        "openai",
+        "azure_openai"
+      ]
+    },
+    {
+      "name": "RAG_OLLAMA_API_KEY",
+      "type": "str",
+      "default": null,
+      "description": "Sets the API key for Ollama API used in RAG models.",
+      "options": []
+    },
+    {
+      "name": "RAG_OLLAMA_BASE_URL",
+      "type": "str",
+      "default": null,
+      "description": "Sets the base URL for Ollama API used in RAG models.",
+      "options": []
+    }
+  ]
+}

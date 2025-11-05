@@ -1,0 +1,58 @@
+{
+  "id": "opensearch",
+  "name": "OpenSearch",
+  "category": "rag",
+  "requires_api_key": false,
+  "logo": "/assets/opensearch.png",
+  "openwebui_variables": [
+    {
+      "name": "OPENSEARCH_CERT_VERIFY",
+      "type": "bool",
+      "default": "False",
+      "description": "Enables or disables OpenSearch certificate verification.",
+      "options": []
+    },
+    {
+      "name": "OPENSEARCH_PASSWORD",
+      "type": "str",
+      "default": "None",
+      "description": "Sets the password for OpenSearch.",
+      "options": []
+    },
+    {
+      "name": "OPENSEARCH_SSL",
+      "type": "bool",
+      "default": "True",
+      "description": "Enables or disables SSL for OpenSearch.",
+      "options": []
+    },
+    {
+      "name": "OPENSEARCH_URI",
+      "type": "str",
+      "default": "https://localhost:9200",
+      "description": "Sets the URI for OpenSearch.",
+      "options": []
+    },
+    {
+      "name": "OPENSEARCH_USERNAME",
+      "type": "str",
+      "default": "None",
+      "description": "Sets the username for OpenSearch.\n\n### PGVector\n\n:::note\n\nPostgreSQL Dependencies\nTo use `pgvector`, ensure you have PostgreSQL dependencies installed:\n\n```bash\npip install open-webui[all]\n```\n\n:::",
+      "options": []
+    },
+    {
+      "name": "PGVECTOR_DB_URL",
+      "type": "str",
+      "default": null,
+      "description": "Sets the database URL for model storage.",
+      "options": []
+    },
+    {
+      "name": "VECTOR_DB",
+      "type": "str",
+      "default": "chroma",
+      "description": "Specifies which vector database system to use. This setting determines which vector storage system will be used for managing embeddings.\n\n:::note\n\nPostgreSQL Dependencies\nTo use `pgvector`, ensure you have PostgreSQL dependencies installed:\n\n```bash\npip install open-webui[all]\n```\n\n:::\n\n### ChromaDB",
+      "options": []
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "serper",
+  "name": "Serper",
+  "category": "web-search",
+  "requires_api_key": true,
+  "logo": "/assets/serper.png",
+  "openwebui_variables": [
+    {
+      "name": "SERPER_API_KEY",
+      "type": "str",
+      "default": null,
+      "description": "Sets the API key for Serper search API.",
+      "options": []
+    }
+  ]
+}

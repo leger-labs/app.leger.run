@@ -1,0 +1,37 @@
+{
+  "id": "duckduckgo",
+  "name": "DuckDuckGo",
+  "category": "web-search",
+  "requires_api_key": false,
+  "logo": "/assets/duckduckgo.png",
+  "openwebui_variables": [
+    {
+      "name": "WEB_SEARCH_ENGINE",
+      "type": "str",
+      "default": null,
+      "description": null,
+      "options": [
+        "searxng",
+        "google_pse",
+        "brave",
+        "kagi",
+        "mojeek",
+        "bocha",
+        "serpstack",
+        "serper",
+        "serply",
+        "searchapi",
+        "serpapi",
+        "duckduckgo",
+        "tavily",
+        "jina",
+        "bing",
+        "exa",
+        "perplexity",
+        "perplexity_search",
+        "sougou",
+        "ollama_cloud"
+      ]
+    }
+  ]
+}

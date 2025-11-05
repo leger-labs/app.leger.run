@@ -1,0 +1,65 @@
+{
+  "id": "pinecone",
+  "name": "Pinecone",
+  "category": "rag",
+  "requires_api_key": true,
+  "logo": "/assets/pinecone.png",
+  "openwebui_variables": [
+    {
+      "name": "PGVECTOR_DB_URL",
+      "type": "str",
+      "default": null,
+      "description": "Sets the database URL for model storage.",
+      "options": []
+    },
+    {
+      "name": "PINECONE_API_KEY",
+      "type": "str",
+      "default": "None",
+      "description": "Sets the API key used to authenticate with the Pinecone service.",
+      "options": []
+    },
+    {
+      "name": "PINECONE_CLOUD",
+      "type": "str",
+      "default": "aws",
+      "description": "Specifies the cloud provider where the Pinecone index is hosted.\n\n### Oracle 23ai Vector Search (oracle23ai)",
+      "options": []
+    },
+    {
+      "name": "PINECONE_DIMENSION",
+      "type": "int",
+      "default": "1536",
+      "description": "The dimensionality of the vector embeddings. Must match the dimension expected by the index (commonly 768, 1024, 1536, or 3072 based on model used).",
+      "options": []
+    },
+    {
+      "name": "PINECONE_ENVIRONMENT",
+      "type": "str",
+      "default": "None",
+      "description": "Specifies the Pinecone environment to connect to (e.g., `us-west1-gcp`, `gcp-starter`, etc.).",
+      "options": []
+    },
+    {
+      "name": "PINECONE_INDEX_NAME",
+      "type": "str",
+      "default": "open-webui-index",
+      "description": "Defines the name of the Pinecone index that will be used to store and query vector embeddings.",
+      "options": []
+    },
+    {
+      "name": "PINECONE_METRIC",
+      "type": "str",
+      "default": "cosine",
+      "description": "Specifies the similarity metric to use for vector comparisons within the Pinecone index.",
+      "options": []
+    },
+    {
+      "name": "VECTOR_DB",
+      "type": "str",
+      "default": "chroma",
+      "description": "Specifies which vector database system to use. This setting determines which vector storage system will be used for managing embeddings.\n\n:::note\n\nPostgreSQL Dependencies\nTo use `pgvector`, ensure you have PostgreSQL dependencies installed:\n\n```bash\npip install open-webui[all]\n```\n\n:::\n\n### ChromaDB",
+      "options": []
+    }
+  ]
+}

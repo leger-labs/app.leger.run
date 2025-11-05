@@ -14,6 +14,7 @@ import { TestAuthPage } from '@/pages/TestAuthPage';
 import { IntegrationsPage } from '@/pages/IntegrationsPage';
 import { AIGatewayPage } from '@/pages/AIGatewayPage';
 import { ModelDetailPage } from '@/pages/ModelDetailPage';
+import { MarketplacePage } from '@/pages/MarketplacePage';
 import { ReleasesPage } from '@/pages/ReleasesPage';
 import { ReleaseFormPage } from '@/pages/ReleaseFormPage';
 import { SettingsPage } from '@/pages/SettingsPage';
@@ -129,6 +130,9 @@ export default function App() {
               <Route path="releases" element={<ReleasesPage />} />
               <Route path="releases/new" element={<ReleaseFormPage />} />
               <Route path="releases/:id" element={<ReleaseFormPage />} />
+
+              {/* Marketplace */}
+              <Route path="marketplace" element={<MarketplacePage />} />
 
               {/* Settings */}
               <Route path="settings" element={<SettingsPage />} />

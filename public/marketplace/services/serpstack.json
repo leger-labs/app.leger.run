@@ -1,0 +1,23 @@
+{
+  "id": "serpstack",
+  "name": "Serpstack",
+  "category": "web-search",
+  "requires_api_key": true,
+  "logo": "/assets/serpstack.png",
+  "openwebui_variables": [
+    {
+      "name": "SERPSTACK_API_KEY",
+      "type": "str",
+      "default": null,
+      "description": "Sets the API key for Serpstack search API.",
+      "options": []
+    },
+    {
+      "name": "SERPSTACK_HTTPS",
+      "type": "bool",
+      "default": "True",
+      "description": "Configures the use of HTTPS for Serpstack requests. Free tier requests are restricted to HTTP only.",
+      "options": []
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "id": "jupyter",
+  "name": "Jupyter Kernel",
+  "category": "code-execution",
+  "requires_api_key": false,
+  "logo": "/assets/jupyter.png",
+  "openwebui_variables": [
+    {
+      "name": "CODE_EXECUTION_ENGINE",
+      "type": "str",
+      "default": "pyodide",
+      "description": "Specifies the code execution engine to use.",
+      "options": []
+    },
+    {
+      "name": "CODE_EXECUTION_JUPYTER_AUTH",
+      "type": "str",
+      "default": "None",
+      "description": "Specifies the Jupyter authentication method to use for code execution.",
+      "options": []
+    },
+    {
+      "name": "CODE_EXECUTION_JUPYTER_AUTH_PASSWORD",
+      "type": "str",
+      "default": "None",
+      "description": "Specifies the Jupyter authentication password to use for code execution.",
+      "options": []
+    },
+    {
+      "name": "CODE_EXECUTION_JUPYTER_AUTH_TOKEN",
+      "type": "str",
+      "default": "None",
+      "description": "Specifies the Jupyter authentication token to use for code execution.",
+      "options": []
+    },
+    {
+      "name": "CODE_EXECUTION_JUPYTER_TIMEOUT",
+      "type": "str",
+      "default": null,
+      "description": "Specifies the timeout for Jupyter code execution.",
+      "options": []
+    },
+    {
+      "name": "CODE_EXECUTION_JUPYTER_URL",
+      "type": "str",
+      "default": "None",
+      "description": "Specifies the Jupyter URL to use for code execution.",
+      "options": []
+    },
+    {
+      "name": "CODE_INTERPRETER_ENGINE",
+      "type": "str",
+      "default": "pyodide",
+      "description": "Specifies the code interpreter engine to use.",
+      "options": []
+    },
+    {
+      "name": "CODE_INTERPRETER_JUPYTER_AUTH",
+      "type": "str",
+      "default": null,
+      "description": "Specifies the Jupyter authentication method to use for code interpreter.",
+      "options": []
+    },
+    {
+      "name": "CODE_INTERPRETER_JUPYTER_AUTH_PASSWORD",
+      "type": "str",
+      "default": null,
+      "description": "Specifies the Jupyter authentication password to use for code interpreter.",
+      "options": []
+    },
+    {
+      "name": "CODE_INTERPRETER_JUPYTER_AUTH_TOKEN",
+      "type": "str",
+      "default": null,
+      "description": "Specifies the Jupyter authentication token to use for code interpreter.",
+      "options": []
+    },
+    {
+      "name": "CODE_INTERPRETER_JUPYTER_TIMEOUT",
+      "type": "str",
+      "default": null,
+      "description": "Specifies the timeout for the Jupyter code interpreter.",
+      "options": []
+    },
+    {
+      "name": "CODE_INTERPRETER_JUPYTER_URL",
+      "type": "str",
+      "default": null,
+      "description": "Specifies the Jupyter URL to use for code interpreter.",
+      "options": []
+    }
+  ]
+}

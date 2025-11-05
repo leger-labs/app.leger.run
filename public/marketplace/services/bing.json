@@ -1,0 +1,23 @@
+{
+  "id": "bing",
+  "name": "Bing Search",
+  "category": "web-search",
+  "requires_api_key": true,
+  "logo": "/assets/bing.png",
+  "openwebui_variables": [
+    {
+      "name": "BING_SEARCH_V7_ENDPOINT",
+      "type": "str",
+      "default": null,
+      "description": "Sets the endpoint for Bing Search API.",
+      "options": []
+    },
+    {
+      "name": "BING_SEARCH_V7_SUBSCRIPTION_KEY",
+      "type": "str",
+      "default": "https://api.bing.microsoft.com/v7.0/search",
+      "description": "Sets the subscription key for Bing Search API.",
+      "options": []
+    }
+  ]
+}

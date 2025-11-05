@@ -1,0 +1,56 @@
+{
+  "id": "automatic1111",
+  "name": "AUTOMATIC1111 (Stable Diffusion)",
+  "category": "image-generation",
+  "requires_api_key": false,
+  "logo": "/assets/automatic1111.png",
+  "openwebui_variables": [
+    {
+      "name": "AUTOMATIC1111_API_AUTH",
+      "type": "str",
+      "default": null,
+      "description": "Sets the AUTOMATIC1111 API authentication.",
+      "options": []
+    },
+    {
+      "name": "AUTOMATIC1111_BASE_URL",
+      "type": "str",
+      "default": null,
+      "description": "Specifies the URL to AUTOMATIC1111's Stable Diffusion API.",
+      "options": []
+    },
+    {
+      "name": "AUTOMATIC1111_CFG_SCALE",
+      "type": "float",
+      "default": null,
+      "description": "Sets the scale for AUTOMATIC1111 inference.",
+      "options": []
+    },
+    {
+      "name": "AUTOMATIC1111_SAMPLER",
+      "type": "str",
+      "default": null,
+      "description": "Sets the sampler for AUTOMATIC1111 inference.",
+      "options": []
+    },
+    {
+      "name": "AUTOMATIC1111_SCHEDULER",
+      "type": "str",
+      "default": null,
+      "description": "Sets the scheduler for AUTOMATIC1111 inference.",
+      "options": []
+    },
+    {
+      "name": "IMAGE_GENERATION_ENGINE",
+      "type": "str",
+      "default": "openai",
+      "description": "Specifies the engine to use for image generation.",
+      "options": [
+        "openai",
+        "comfyui",
+        "automatic1111",
+        "gemini"
+      ]
+    }
+  ]
+}

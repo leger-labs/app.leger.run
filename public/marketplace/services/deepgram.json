@@ -1,0 +1,27 @@
+{
+  "id": "deepgram",
+  "name": "Deepgram",
+  "category": "speech-to-text",
+  "requires_api_key": true,
+  "logo": "/assets/deepgram.png",
+  "openwebui_variables": [
+    {
+      "name": "AUDIO_STT_ENGINE",
+      "type": "str",
+      "default": null,
+      "description": "Specifies the Speech-to-Text engine to use.",
+      "options": [
+        "openai",
+        "deepgram",
+        "azure"
+      ]
+    },
+    {
+      "name": "DEEPGRAM_API_KEY",
+      "type": "str",
+      "default": "None",
+      "description": "Specifies the Deepgram API key to use for Speech-to-Text.",
+      "options": []
+    }
+  ]
+}

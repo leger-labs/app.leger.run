@@ -1,0 +1,33 @@
+{
+  "id": "playwright",
+  "name": "Playwright",
+  "category": "web-search",
+  "requires_api_key": false,
+  "logo": "/assets/playwright.png",
+  "openwebui_variables": [
+    {
+      "name": "PLAYWRIGHT_TIMEOUT",
+      "type": "int",
+      "default": null,
+      "description": "Specifies the timeout for Playwright requests.",
+      "options": []
+    },
+    {
+      "name": "PLAYWRIGHT_WS_URL",
+      "type": "str",
+      "default": "None",
+      "description": "Specifies the WebSocket URI of a remote Playwright browser instance. When set, Open WebUI will use this remote browser instead of installing browser dependencies locally. This is particularly useful in containerized environments where you want to keep the Open WebUI container lightweight and separate browser concerns. Example: `ws://playwright:3000`",
+      "options": []
+    },
+    {
+      "name": "WEB_LOADER_ENGINE",
+      "type": "str",
+      "default": "safe_web",
+      "description": "Specifies the loader to use for retrieving and processing web content.",
+      "options": [
+        "requests",
+        "playwright"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "comfyui",
+  "name": "ComfyUI",
+  "category": "image-generation",
+  "requires_api_key": false,
+  "logo": "/assets/comfyui.png",
+  "openwebui_variables": [
+    {
+      "name": "COMFYUI_API_KEY",
+      "type": "str",
+      "default": null,
+      "description": "Sets the API key for ComfyUI.",
+      "options": []
+    },
+    {
+      "name": "COMFYUI_BASE_URL",
+      "type": "str",
+      "default": null,
+      "description": "Specifies the URL to the ComfyUI image generation API.",
+      "options": []
+    },
+    {
+      "name": "COMFYUI_WORKFLOW",
+      "type": "str",
+      "default": "",
+      "description": "Sets the ComfyUI workflow.",
+      "options": []
+    },
+    {
+      "name": "IMAGE_GENERATION_ENGINE",
+      "type": "str",
+      "default": "openai",
+      "description": "Specifies the engine to use for image generation.",
+      "options": [
+        "openai",
+        "comfyui",
+        "automatic1111",
+        "gemini"
+      ]
+    }
+  ]
+}

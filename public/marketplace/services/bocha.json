@@ -1,0 +1,16 @@
+{
+  "id": "bocha",
+  "name": "Bocha Search",
+  "category": "web-search",
+  "requires_api_key": true,
+  "logo": "/assets/bocha.png",
+  "openwebui_variables": [
+    {
+      "name": "BOCHA_SEARCH_API_KEY",
+      "type": "str",
+      "default": "None",
+      "description": "Sets the API key for Bocha Search API.",
+      "options": []
+    }
+  ]
+}

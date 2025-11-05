@@ -1,0 +1,30 @@
+{
+  "id": "redis",
+  "name": "Redis",
+  "category": "cache",
+  "requires_api_key": false,
+  "logo": "/assets/redis.png",
+  "openwebui_variables": [
+    {
+      "name": "REDIS_KEY_PREFIX",
+      "type": "str",
+      "default": "open-webui",
+      "description": "Customizes the Redis key prefix used for storing configuration values. This allows multiple Open WebUI instances to share the same Redis instance without key conflicts. When operating in Redis cluster mode, the prefix is formatted as `{prefix}:` (e.g., `{open-webui}:config:*`) to enable multi-key operations on configuration keys within the same hash slot.",
+      "options": []
+    },
+    {
+      "name": "REDIS_URL",
+      "type": "str",
+      "default": null,
+      "description": "Specifies the URL of the Redis instance or cluster host for storing application state.",
+      "options": []
+    },
+    {
+      "name": "WEBSOCKET_REDIS_URL",
+      "type": "str",
+      "default": "${REDIS_URL}",
+      "description": "Specifies the URL of the Redis instance or cluster host for websocket communication. It is distinct from `REDIS_URL` and in practice, it is recommended to set both.\n\n:::info\n\nWhen deploying Open WebUI in a multi-node/worker cluster with a load balancer, you must ensure that the WEBSOCKET_REDIS_URL value is set and a key-value NoSQL database like Redis is used. Without it, websocket consistency and persistency issues will occur.\n\n:::",
+      "options": []
+    }
+  ]
+}

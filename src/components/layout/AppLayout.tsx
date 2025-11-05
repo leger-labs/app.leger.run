@@ -166,12 +166,7 @@ export function AppLayout() {
             <NavLink to="/ai-gateway">AI Gateway</NavLink>
             <NavLink to="/integrations">Integrations</NavLink>
             <NavLink to="/releases">Releases</NavLink>
-            <NavLink to="/marketplace" disabled>
-              Marketplace
-              <Badge variant="secondary" className="ml-2 text-xs">
-                Soon
-              </Badge>
-            </NavLink>
+            <NavLink to="/marketplace">Marketplace</NavLink>
             <NavLink to="/settings">Settings</NavLink>
           </nav>
         </div>

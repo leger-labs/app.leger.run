@@ -1,0 +1,16 @@
+{
+  "id": "brave-search",
+  "name": "Brave Search",
+  "category": "web-search",
+  "requires_api_key": true,
+  "logo": "/assets/brave-search.png",
+  "openwebui_variables": [
+    {
+      "name": "BRAVE_SEARCH_API_KEY",
+      "type": "str",
+      "default": null,
+      "description": "Sets the API key for the Brave Search API.",
+      "options": []
+    }
+  ]
+}
