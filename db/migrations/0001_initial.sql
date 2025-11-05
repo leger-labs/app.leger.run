@@ -19,14 +19,11 @@ CREATE INDEX IF NOT EXISTS idx_users_tailscale_id ON users(tailscale_user_id);
 CREATE INDEX IF NOT EXISTS idx_users_email ON users(tailscale_email);
 CREATE INDEX IF NOT EXISTS idx_users_tailnet ON users(tailnet);
 
--- Releases table (v0.1.0: GitHub URLs only)
+-- Releases table (named configuration containers)
 CREATE TABLE IF NOT EXISTS releases (
     id TEXT PRIMARY KEY,
     user_uuid TEXT NOT NULL,
     name TEXT NOT NULL,
-    git_url TEXT NOT NULL,
-    git_branch TEXT NOT NULL DEFAULT 'main',
-    description TEXT,
     version INTEGER NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

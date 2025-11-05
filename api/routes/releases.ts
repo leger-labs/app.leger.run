@@ -91,19 +91,16 @@ export async function handleCreateRelease(request: Request, env: Env): Promise<R
     // Parse request body
     const body = await request.json()
 
-    if (!body.name || !body.git_url) {
+    if (!body.name) {
       return errorResponse(
         'validation_error',
-        'Missing required fields: name, git_url',
+        'Missing required field: name',
         400
       )
     }
 
     const release = await createRelease(env, payload.sub, {
       name: body.name,
-      git_url: body.git_url,
-      git_branch: body.git_branch,
-      description: body.description,
     })
 
     return successResponse(release, 201)
@@ -129,9 +126,6 @@ export async function handleUpdateRelease(
 
     const release = await updateRelease(env, payload.sub, releaseId, {
       name: body.name,
-      git_url: body.git_url,
-      git_branch: body.git_branch,
-      description: body.description,
     })
 
     return successResponse(release)
