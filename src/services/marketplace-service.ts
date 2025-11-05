@@ -10,62 +10,48 @@ import type {
 } from '@/types/marketplace';
 
 /**
+ * Marketplace index structure
+ */
+interface MarketplaceIndex {
+  version: string;
+  generated: string;
+  count: number;
+  services: string[];
+}
+
+/**
+ * Load marketplace index
+ */
+async function fetchMarketplaceIndex(): Promise<MarketplaceIndex> {
+  try {
+    const response = await fetch('/marketplace/index.json');
+    if (!response.ok) {
+      throw new Error(`Failed to load marketplace index: ${response.statusText}`);
+    }
+    const index: MarketplaceIndex = await response.json();
+    return index;
+  } catch (error) {
+    console.error('Failed to load marketplace index:', error);
+    throw error;
+  }
+}
+
+/**
  * Load all services from the marketplace
  */
 async function fetchServices(): Promise<Map<string, Service>> {
   const services = new Map<string, Service>();
 
-  // List of known service IDs (based on marketplace repository)
-  const serviceIds = [
-    'automatic1111',
-    'azure-dalle',
-    'azure-document-intelligence',
-    'azure-openai-embeddings',
-    'azure-openai',
-    'azure-storage',
-    'bing',
-    'bocha',
-    'brave',
-    'chroma',
-    'comfyui',
-    'duckduckgo',
-    'elevenlabs',
-    'exa',
-    'gcs',
-    'gemini-images',
-    'google-drive',
-    'google-pse',
-    'jina',
-    'jupyter',
-    'kagi',
-    'milvus',
-    'mojeek',
-    'ollama-cloud-search',
-    'onedrive-personal',
-    'openai-api',
-    'openai-embeddings',
-    'openai-stt',
-    'openai-tts',
-    'oracle23ai',
-    'perplexity',
-    'pgvector',
-    'pinecone',
-    'qdrant',
-    's3',
-    'searchapi',
-    'searxng',
-    'serper',
-    'serpapi',
-    'serply',
-    'serpstack',
-    'sougou',
-    'tavily',
-    'upstash-redis',
-  ];
+  // Load the marketplace index to get list of available services
+  const index = await fetchMarketplaceIndex();
+  const serviceIds = index.services;
 
+  console.log(`Loading ${serviceIds.length} marketplace services...`);
+
+  // Load each service definition
   for (const id of serviceIds) {
     try {
-      const response = await fetch(`/marketplace/services/${id}.json`);
+      const response = await fetch(`/marketplace/services/services/${id}.json`);
       if (response.ok) {
         const service: Service = await response.json();
         services.set(service.id, service);
@@ -74,6 +60,8 @@ async function fetchServices(): Promise<Map<string, Service>> {
       console.error(`Failed to load service ${id}:`, error);
     }
   }
+
+  console.log(`Loaded ${services.size} marketplace services`);
 
   return services;
 }
