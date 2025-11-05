@@ -21,6 +21,13 @@ import {
   handleGetDeployment,
 } from './routes/releases'
 import {
+  handleListInstalledServices,
+  handleGetInstalledService,
+  handleInstallService,
+  handleUpdateService,
+  handleUninstallService,
+} from './routes/marketplace'
+import {
   handleTestAuthLogin,
   handleTestListSecrets,
   handleTestGetSecret,
@@ -136,6 +143,7 @@ export default {
                     },
                     secrets: '/secrets',
                     releases: '/releases',
+                    marketplace: '/marketplace/services',
                   },
                 },
               }),
@@ -192,6 +200,33 @@ export default {
 
           if (request.method === 'POST') {
             return addCorsHeaders(await handleCreateRelease(request, env))
+          }
+        }
+
+        // Marketplace routes
+        if (normalizedPath === '/marketplace/services') {
+          if (request.method === 'GET') {
+            return addCorsHeaders(await handleListInstalledServices(request, env))
+          }
+
+          if (request.method === 'POST') {
+            return addCorsHeaders(await handleInstallService(request, env))
+          }
+        }
+
+        if (normalizedPath.startsWith('/marketplace/services/')) {
+          const serviceId = normalizedPath.substring('/marketplace/services/'.length)
+
+          if (request.method === 'GET') {
+            return addCorsHeaders(await handleGetInstalledService(request, env, serviceId))
+          }
+
+          if (request.method === 'PUT') {
+            return addCorsHeaders(await handleUpdateService(request, env, serviceId))
+          }
+
+          if (request.method === 'DELETE') {
+            return addCorsHeaders(await handleUninstallService(request, env, serviceId))
           }
         }
 

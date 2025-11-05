@@ -7,3 +7,6 @@
 [submodule "model-store"]
 	path = model-store
 	url = https://github.com/leger-labs/model-store.git
+[submodule "marketplace"]
+	path = marketplace
+	url = https://github.com/leger-labs/marketplace.git

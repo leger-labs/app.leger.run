@@ -49,6 +49,12 @@ export interface UserConfig {
     cloud?: string[]
     local?: string[]
   }
+  marketplace_services?: {
+    [serviceId: string]: {
+      enabled: boolean
+      config: Record<string, any>
+    }
+  }
   litellm?: {
     database_url?: string
     drop_params?: boolean
