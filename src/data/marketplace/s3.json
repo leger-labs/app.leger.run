@@ -34,6 +34,27 @@
       "options": []
     },
     {
+      "name": "S3_KEY_PREFIX",
+      "type": "str",
+      "default": null,
+      "description": "Sets the key prefix for a S3 object.",
+      "options": []
+    },
+    {
+      "name": "S3_USE_ACCELERATE_ENDPOINT",
+      "type": "bool",
+      "default": false,
+      "description": "Specifies whether to use the accelerated endpoint for S3 storage.",
+      "options": []
+    },
+    {
+      "name": "S3_ENABLE_TAGGING",
+      "type": "bool",
+      "default": false,
+      "description": "Enables S3 object tagging. Set to False for Cloudflare R2.",
+      "options": []
+    },
+    {
       "name": "STORAGE_PROVIDER",
       "type": "str",
       "default": null,

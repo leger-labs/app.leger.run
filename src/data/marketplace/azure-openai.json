@@ -6,59 +6,10 @@
   "logo": "@/assets/icons/azure.svg",
   "openwebui_variables": [
     {
-      "name": "AUDIO_STT_OPENAI_API_BASE_URL",
-      "type": "str",
-      "default": "${OPENAI_API_BASE_URL}",
-      "description": "Sets the OpenAI-compatible base URL to use for Speech-to-Text.",
-      "options": []
-    },
-    {
-      "name": "AUDIO_STT_OPENAI_API_KEY",
-      "type": "str",
-      "default": "${OPENAI_API_KEY}",
-      "description": "Sets the OpenAI API key to use for Speech-to-Text.",
-      "options": []
-    },
-    {
-      "name": "AUDIO_TTS_OPENAI_API_BASE_URL",
-      "type": "str",
-      "default": "${OPENAI_API_BASE_URL}",
-      "description": "Sets the OpenAI-compatible base URL to use for text-to-speech.",
-      "options": []
-    },
-    {
-      "name": "AUDIO_TTS_OPENAI_API_KEY",
-      "type": "str",
-      "default": "${OPENAI_API_KEY}",
-      "description": "Sets the API key to use for text-to-speech.",
-      "options": []
-    },
-    {
       "name": "ENABLE_OPENAI_API",
       "type": "bool",
-      "default": "True",
+      "default": true,
       "description": "Enables the use of OpenAI APIs.",
-      "options": []
-    },
-    {
-      "name": "IMAGES_OPENAI_API_BASE_URL",
-      "type": "str",
-      "default": "${OPENAI_API_BASE_URL}",
-      "description": "Sets the OpenAI-compatible base URL to use for DALL-E image generation.",
-      "options": []
-    },
-    {
-      "name": "IMAGES_OPENAI_API_KEY",
-      "type": "str",
-      "default": "${OPENAI_API_KEY}",
-      "description": "Sets the API key to use for DALL-E image generation.",
-      "options": []
-    },
-    {
-      "name": "IMAGES_OPENAI_API_VERSION",
-      "type": "str",
-      "default": "${OPENAI_API_VERSION}",
-      "description": "Optional setting. If provided it sets the `api-version` query parameter when calling the image generation. If the Azure OpenAI service is used, this needs to be configured.",
       "options": []
     },
     {

@@ -23,6 +23,13 @@
         "openai",
         "transformers"
       ]
+    },
+    {
+      "name": "ELEVENLABS_API_BASE_URL",
+      "type": "str",
+      "default": "https://api.elevenlabs.io",
+      "description": "Configures custom ElevenLabs API endpoints for EU residency and regional deployments.",
+      "options": []
     }
   ]
 }

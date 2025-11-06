@@ -11,6 +11,13 @@
       "default": "http://localhost:9998",
       "description": "Sets the URL for the Apache Tika server.",
       "options": []
+    },
+    {
+      "name": "TIKA_HEAP_SIZE",
+      "type": "str",
+      "default": "2g",
+      "description": "Tika heap size",
+      "options": []
     }
   ]
 }

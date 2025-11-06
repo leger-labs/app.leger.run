@@ -11,6 +11,39 @@
       "default": null,
       "description": "The [SearXNG search API](https://docs.searxng.org/dev/search_api.html) URL supporting JSON output. `<query>` is replaced with\nthe search query. Example: `http://searxng.local/search?q=<query>`",
       "options": []
+    },
+    {
+      "name": "SEARXNG_BASE_URL",
+      "type": "str",
+      "default": "",
+      "description": "SearXNG base URL",
+      "options": []
+    },
+    {
+      "name": "SEARXNG_SAFE_SEARCH",
+      "type": "int",
+      "default": 0,
+      "description": "Safe search level (0, 1, 2)",
+      "options": []
+    },
+    {
+      "name": "SEARXNG_AUTOCOMPLETE",
+      "type": "str",
+      "default": "google",
+      "description": "Autocomplete provider",
+      "options": [
+        "google",
+        "duckduckgo",
+        "wikipedia",
+        ""
+      ]
+    },
+    {
+      "name": "SEARXNG_MAX_PAGE",
+      "type": "int",
+      "default": 10,
+      "description": "Maximum pages to search",
+      "options": []
     }
   ]
 }

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+  <title>OpenTelemetry</title>
+  <g fill="none" fill-rule="evenodd">
+    <circle cx="12" cy="12" r="10" fill="#4C51BF" opacity=".12"/>
+    <path fill="#4C51BF" d="M17.35 6.65a1 1 0 0 1 1.3 1.5l-4.34 3.77a2 2 0 0 0-.68 1.52v2.86a1 1 0 1 1-2 0v-2.86a4 4 0 0 1 1.36-3.04z"/>
+    <path fill="#F6AD55" d="M6.65 17.35a1 1 0 0 1-1.3-1.5l4.34-3.77a2 2 0 0 0 .68-1.52V7.7a1 1 0 1 1 2 0v2.86a4 4 0 0 1-1.36 3.04z"/>
+    <circle cx="12" cy="12" r="2.25" fill="#48BB78"/>
+  </g>
+</svg>
