@@ -5,16 +5,16 @@
   "providers": [
     {
       "id": "llama-cpp",
-      "model_uri": "huggingface://openai/gpt-oss-120b-GGUF/gpt-oss-120b-q4_k_m.gguf",
+      "model_uri": "huggingface://openai/gpt-oss-120b-GGUF/gpt-oss-120b-mxfp4.gguf",
       "is_default": true
     }
   ],
-  "quantization": "Q4_K_M",
+  "quantization": "MXFP4",
   "ram_required_gb": 80,
   "context_window": 8192,
   "group": "heavy",
   "icon": "@/assets/icons/openai.svg",
-  "description": "OpenAI's 120B parameter model - Complex reasoning",
+  "description": "OpenAI's 120B parameter model - complex reasoning with MXFP4 throughput",
   "family": "gpt-oss",
   "capabilities": [
     "chat",
@@ -24,7 +24,7 @@
   "ctx_size": 8192,
   "ttl": 900,
   "hf_repo": "openai/gpt-oss-120b-GGUF",
-  "hf_file": "gpt-oss-120b-q4_k_m.gguf",
+  "hf_file": "gpt-oss-120b-mxfp4.gguf",
   "vulkan_driver": "AMDVLK",
   "flash_attn": true,
   "enabled": true,
@@ -34,5 +34,194 @@
     "Research and analysis",
     "Long-form content"
   ],
-  "notes": "Auto-swaps after 15 minutes. Better for long prompts with AMDVLK driver"
+  "quantization_options": [
+    {
+      "level": "MXFP4",
+      "hf_file": "gpt-oss-120b-mxfp4.gguf",
+      "ram_required_gb": 80,
+      "recommended_backend": "vulkan_amdvlk",
+      "benchmarks": {
+        "prompt_processing": {
+          "context": "pp512",
+          "metric": "tokens_per_second",
+          "winner": "vulkan_amdvlk",
+          "backends": [
+            {
+              "id": "rocm6_4_4-rocwmma",
+              "throughput": 767.28,
+              "stddev": 2.81
+            },
+            {
+              "id": "rocm7_rc-rocwmma",
+              "throughput": 756.58,
+              "stddev": 4.67
+            },
+            {
+              "id": "vulkan_amdvlk",
+              "throughput": 788.46,
+              "stddev": 4.36
+            },
+            {
+              "id": "vulkan_radv",
+              "throughput": 526.13,
+              "stddev": 3.2
+            }
+          ]
+        },
+        "text_generation": {
+          "context": "tg128",
+          "metric": "tokens_per_second",
+          "winner": "vulkan_radv",
+          "backends": [
+            {
+              "id": "rocm6_4_4-rocwmma",
+              "throughput": 47.63,
+              "stddev": 0.01
+            },
+            {
+              "id": "rocm7_rc-rocwmma",
+              "throughput": 47.62,
+              "stddev": 0.01
+            },
+            {
+              "id": "vulkan_amdvlk",
+              "throughput": 50.32,
+              "stddev": 0.03
+            },
+            {
+              "id": "vulkan_radv",
+              "throughput": 52.9,
+              "stddev": 0.05
+            }
+          ]
+        }
+      }
+    },
+    {
+      "level": "F16",
+      "hf_file": "gpt-oss-120b-f16.gguf",
+      "ram_required_gb": 128,
+      "recommended_backend": "rocm6_4_4-rocwmma",
+      "benchmarks": {
+        "prompt_processing": {
+          "context": "pp512",
+          "metric": "tokens_per_second",
+          "winner": "rocm6_4_4-rocwmma",
+          "backends": [
+            {
+              "id": "rocm6_4_4-rocwmma",
+              "throughput": 786.49,
+              "stddev": 4.02
+            },
+            {
+              "id": "rocm7_rc-rocwmma",
+              "throughput": 770.55,
+              "stddev": 4.47
+            },
+            {
+              "id": "vulkan_amdvlk",
+              "throughput": 719.39,
+              "stddev": 2.63
+            },
+            {
+              "id": "vulkan_radv",
+              "throughput": 481.71,
+              "stddev": 2.11
+            }
+          ]
+        },
+        "text_generation": {
+          "context": "tg128",
+          "metric": "tokens_per_second",
+          "winner": "rocm6_4_4-rocwmma",
+          "backends": [
+            {
+              "id": "rocm6_4_4-rocwmma",
+              "throughput": 35.16,
+              "stddev": 0.0
+            },
+            {
+              "id": "rocm7_rc-rocwmma",
+              "throughput": 35.07,
+              "stddev": 0.0
+            },
+            {
+              "id": "vulkan_amdvlk",
+              "throughput": 34.71,
+              "stddev": 0.02
+            },
+            {
+              "id": "vulkan_radv",
+              "throughput": 34.46,
+              "stddev": 0.02
+            }
+          ]
+        }
+      }
+    },
+    {
+      "level": "Q4_K_M",
+      "hf_file": "gpt-oss-120b-q4_k_m.gguf",
+      "ram_required_gb": 64,
+      "recommended_backend": "vulkan_amdvlk",
+      "notes": "Legacy quantization retained for compatibility"
+    }
+  ],
+  "benchmarks": {
+    "prompt_processing": {
+      "context": "pp512",
+      "metric": "tokens_per_second",
+      "winner": "vulkan_amdvlk",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 767.28,
+          "stddev": 2.81
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 756.58,
+          "stddev": 4.67
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 788.46,
+          "stddev": 4.36
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 526.13,
+          "stddev": 3.2
+        }
+      ]
+    },
+    "text_generation": {
+      "context": "tg128",
+      "metric": "tokens_per_second",
+      "winner": "vulkan_radv",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 47.63,
+          "stddev": 0.01
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 47.62,
+          "stddev": 0.01
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 50.32,
+          "stddev": 0.03
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 52.9,
+          "stddev": 0.05
+        }
+      ]
+    }
+  },
+  "notes": "MXFP4 unlocks high throughput on AMDVLK; keep F16 for maximum fidelity if memory allows."
 }

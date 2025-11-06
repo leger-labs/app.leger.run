@@ -1,0 +1,101 @@
+{
+  "id": "llama-2-7b",
+  "name": "Llama 2 7B",
+  "maker": "meta",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://meta-llama/Llama-2-7b-chat-GGUF/llama-2-7b-chat-q4_0.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q4_0",
+  "ram_required_gb": 8,
+  "context_window": 4096,
+  "group": "task",
+  "icon": "@/assets/icons/meta.svg",
+  "description": "Classic Llama 2 7B chat model for lightweight assistants",
+  "family": "llama",
+  "capabilities": [
+    "chat",
+    "code"
+  ],
+  "ctx_size": 4096,
+  "ttl": 600,
+  "hf_repo": "meta-llama/Llama-2-7b-chat-GGUF",
+  "hf_file": "llama-2-7b-chat-q4_0.gguf",
+  "vulkan_driver": "AMDVLK",
+  "flash_attn": true,
+  "enabled": false,
+  "use_cases": [
+    "Legacy compatibility",
+    "Fast draft generation",
+    "Conversational prototyping",
+    "Education and tutoring"
+  ],
+  "quantization_options": [
+    {
+      "level": "Q4_0",
+      "hf_file": "llama-2-7b-chat-q4_0.gguf",
+      "ram_required_gb": 8,
+      "recommended_backend": "vulkan_amdvlk"
+    }
+  ],
+  "benchmarks": {
+    "prompt_processing": {
+      "context": "pp512",
+      "metric": "tokens_per_second",
+      "winner": "vulkan_amdvlk",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 1101.41,
+          "stddev": 1.79
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 1092.96,
+          "stddev": 3.0
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 1376.09,
+          "stddev": 0.77
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 1096.08,
+          "stddev": 2.8
+        }
+      ]
+    },
+    "text_generation": {
+      "context": "tg128",
+      "metric": "tokens_per_second",
+      "winner": "vulkan_radv",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 49.92,
+          "stddev": 0.01
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 49.81,
+          "stddev": 0.01
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 53.23,
+          "stddev": 0.06
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 53.86,
+          "stddev": 0.02
+        }
+      ]
+    }
+  },
+  "notes": "Still a great baseline for low-power setups; shines with Vulkan RADV for generation throughput."
+}

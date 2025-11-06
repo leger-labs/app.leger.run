@@ -36,5 +36,69 @@
     "Research-grade analysis",
     "Long-form content creation"
   ],
-  "notes": "This is HUGE but fits in 128GB with Q3_K quantization. Expect slower inference but incredible quality. Conservative 65k context (can do 130k max)"
+  "quantization_options": [
+    {
+      "level": "Q3_K_XL",
+      "hf_file": "Qwen3-235B-A22B-Instruct-2507-UD-Q3_K_XL.gguf",
+      "ram_required_gb": 97,
+      "recommended_backend": "rocm6_4_4-rocwmma"
+    }
+  ],
+  "benchmarks": {
+    "prompt_processing": {
+      "context": "pp512",
+      "metric": "tokens_per_second",
+      "winner": "rocm6_4_4-rocwmma",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 142.3,
+          "stddev": 0.82
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 142.6,
+          "stddev": 0.56
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 135.43,
+          "stddev": 4.81
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 125.48,
+          "stddev": 4.53
+        }
+      ]
+    },
+    "text_generation": {
+      "context": "tg128",
+      "metric": "tokens_per_second",
+      "winner": "vulkan_radv",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 14.9,
+          "stddev": 0.12
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 14.9,
+          "stddev": 0.09
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 17.14,
+          "stddev": 0.02
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 18.02,
+          "stddev": 0.01
+        }
+      ]
+    }
+  },
+  "notes": "Fits tightly into 128GB systems with Q3_K_XL; expect slower inference but unmatched quality. Conservative 65k context (130k max)."
 }

@@ -1,0 +1,104 @@
+{
+  "id": "gemma-3-27b-it",
+  "name": "Gemma 3 27B Instruct",
+  "maker": "google",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://google/gemma-3-27b-it-GGUF/gemma-3-27b-it-BF16.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "BF16",
+  "ram_required_gb": 64,
+  "context_window": 8192,
+  "group": "heavy",
+  "icon": "@/assets/icons/gemma.svg",
+  "description": "Largest Gemma 3 instruction variant for top-tier quality and reasoning",
+  "family": "gemma",
+  "capabilities": [
+    "chat",
+    "code",
+    "reasoning"
+  ],
+  "ctx_size": 8192,
+  "ttl": 1200,
+  "hf_repo": "google/gemma-3-27b-it-GGUF",
+  "hf_file": "gemma-3-27b-it-BF16.gguf",
+  "vulkan_driver": "AMDVLK",
+  "flash_attn": true,
+  "enabled": false,
+  "use_cases": [
+    "Enterprise copilots",
+    "Complex analytical workflows",
+    "High-accuracy summarization",
+    "Advanced planning and coding"
+  ],
+  "quantization_options": [
+    {
+      "level": "BF16",
+      "hf_file": "gemma-3-27b-it-BF16.gguf",
+      "ram_required_gb": 64,
+      "recommended_backend": "rocm6_4_4-rocwmma"
+    }
+  ],
+  "benchmarks": {
+    "prompt_processing": {
+      "context": "pp512",
+      "metric": "tokens_per_second",
+      "winner": "rocm6_4_4-rocwmma",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 468.87,
+          "stddev": 0.84
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 464.58,
+          "stddev": 0.58
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": null,
+          "stddev": null,
+          "status": "load_error"
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 107.33,
+          "stddev": 1.0
+        }
+      ]
+    },
+    "text_generation": {
+      "context": "tg128",
+      "metric": "tokens_per_second",
+      "winner": "rocm6_4_4-rocwmma",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 4.11,
+          "stddev": 0.0
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 4.11,
+          "stddev": 0.0
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": null,
+          "stddev": null,
+          "status": "load_error"
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 3.91,
+          "stddev": 0.0
+        }
+      ]
+    }
+  },
+  "notes": "Requires high-end hardware (BF16) but delivers flagship Gemma quality; Vulkan AMDVLK backend currently fails to load."
+}

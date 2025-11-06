@@ -1,0 +1,102 @@
+{
+  "id": "qwen3-30b-a3b",
+  "name": "Qwen3 30B A3B",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://Qwen/Qwen3-30B-A3B-GGUF/Qwen3-30B-A3B-BF16.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "BF16",
+  "ram_required_gb": 64,
+  "context_window": 32768,
+  "group": "heavy",
+  "icon": "@/assets/icons/qwen.svg",
+  "description": "Full-precision Qwen3 30B base for highest quality local inference",
+  "family": "qwen",
+  "capabilities": [
+    "chat",
+    "code",
+    "reasoning"
+  ],
+  "ctx_size": 32768,
+  "ttl": 900,
+  "hf_repo": "Qwen/Qwen3-30B-A3B-GGUF",
+  "hf_file": "Qwen3-30B-A3B-BF16.gguf",
+  "vulkan_driver": "AMDVLK",
+  "flash_attn": true,
+  "enabled": false,
+  "use_cases": [
+    "High-accuracy copilots",
+    "Complex research tasks",
+    "Advanced planning",
+    "Large-context analysis"
+  ],
+  "quantization_options": [
+    {
+      "level": "BF16",
+      "hf_file": "Qwen3-30B-A3B-BF16.gguf",
+      "ram_required_gb": 64,
+      "recommended_backend": "rocm6_4_4-rocwmma"
+    }
+  ],
+  "benchmarks": {
+    "prompt_processing": {
+      "context": "pp512",
+      "metric": "tokens_per_second",
+      "winner": "rocm6_4_4-rocwmma",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 480.95,
+          "stddev": 4.32
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 477.05,
+          "stddev": 5.97
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 216.46,
+          "stddev": 0.31
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 166.05,
+          "stddev": 0.25
+        }
+      ]
+    },
+    "text_generation": {
+      "context": "tg128",
+      "metric": "tokens_per_second",
+      "winner": "rocm7_rc-rocwmma",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 25.82,
+          "stddev": 0.0
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 25.84,
+          "stddev": 0.0
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 10.0,
+          "stddev": 0.01
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 9.29,
+          "stddev": 0.02
+        }
+      ]
+    }
+  },
+  "notes": "BF16 delivers maximum fidelity; pair with ROCm for best performance."
+}
