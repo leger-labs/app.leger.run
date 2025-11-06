@@ -4,7 +4,7 @@
  */
 
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { Loader2, ArrowLeft, ExternalLink, Copy, Check, ChevronDown } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Copy, Check } from 'lucide-react';
 import { useState } from 'react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
