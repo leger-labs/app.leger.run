@@ -1,0 +1,37 @@
+{
+  "id": "qwen3-1.7b",
+  "name": "Qwen3 1.7B",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://Qwen/Qwen3-1.7B-GGUF/qwen3-1.7b-q4_k_m.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q4_K_M",
+  "ram_required_gb": 2,
+  "context_window": 32768,
+  "group": "task",
+  "icon": "@/assets/icons/qwen.svg",
+  "description": "Fast task model - metadata tagging, summarization",
+  "family": "qwen",
+  "capabilities": [
+    "chat"
+  ],
+  "ctx_size": 8192,
+  "ttl": 600,
+  "hf_repo": "Qwen/Qwen3-1.7B-GGUF",
+  "hf_file": "qwen3-1.7b-q4_k_m.gguf",
+  "shortname": "qwen3-small",
+  "vulkan_driver": "RADV",
+  "flash_attn": true,
+  "enabled": false,
+  "use_cases": [
+    "Metadata tagging",
+    "Document summarization",
+    "Lightweight automation",
+    "Fast chat responses"
+  ],
+  "notes": "Enable for lightweight tasks that need more context than the tiny model"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "qwen3-embedding-0.6b",
+  "name": "Qwen3 Embedding 0.6B",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://Qwen/Qwen3-Embedding-0.6B-GGUF/qwen3-embedding-0.6b-q8_0.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q8_0",
+  "ram_required_gb": 1,
+  "context_window": 8192,
+  "group": "embeddings",
+  "icon": "@/assets/icons/qwen.svg",
+  "description": "Ultra-fast embedding model - 0.6B parameters",
+  "family": "qwen",
+  "capabilities": [
+    "embeddings"
+  ],
+  "ctx_size": 8192,
+  "ttl": 0,
+  "hf_repo": "Qwen/Qwen3-Embedding-0.6B-GGUF",
+  "hf_file": "qwen3-embedding-0.6b-q8_0.gguf",
+  "shortname": "qwen3-emb-tiny",
+  "embedding_dimension": 1024,
+  "vulkan_driver": "RADV",
+  "flash_attn": false,
+  "enabled": false,
+  "use_cases": [
+    "Low-latency RAG",
+    "Fast semantic search",
+    "Edge deployments",
+    "Bulk document ingestion"
+  ],
+  "notes": "Default choice when you need the smallest embedding footprint"
+}

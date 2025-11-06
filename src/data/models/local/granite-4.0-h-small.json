@@ -1,0 +1,42 @@
+{
+  "id": "granite-4.0-h-small",
+  "name": "Granite 4.0 H-Small",
+  "maker": "ibm",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://unsloth/granite-4.0-h-small-GGUF/granite-4.0-h-small-UD-Q4_K_XL.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q4_K_XL",
+  "ram_required_gb": 22,
+  "context_window": 131072,
+  "group": "heavy",
+  "icon": "@/assets/icons/ibm.svg",
+  "description": "IBM's 32B MoE model (9B active) - Enterprise workhorse",
+  "family": "granite",
+  "capabilities": [
+    "chat",
+    "code"
+  ],
+  "ctx_size": 16384,
+  "ttl": 900,
+  "hf_repo": "unsloth/granite-4.0-h-small-GGUF",
+  "hf_file": "granite-4.0-h-small-UD-Q4_K_XL.gguf",
+  "aliases": [
+    "granite-small",
+    "granite-32b"
+  ],
+  "shortname": "granite-small",
+  "vulkan_driver": "AMDVLK",
+  "flash_attn": true,
+  "enabled": false,
+  "use_cases": [
+    "Enterprise-grade assistants",
+    "Structured document analysis",
+    "Production code support",
+    "Business workflow automation"
+  ],
+  "notes": "MoE architecture delivers strong quality with efficient active parameters"
+}

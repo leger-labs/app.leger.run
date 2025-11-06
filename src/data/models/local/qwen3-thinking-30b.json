@@ -1,0 +1,41 @@
+{
+  "id": "qwen3-thinking-30b",
+  "name": "Qwen3 Thinking 30B",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://unsloth/Qwen3-30B-A3B-Thinking-2507-GGUF/Qwen3-30B-A3B-Thinking-2507-UD-Q4_K_XL.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q4_K_XL",
+  "ram_required_gb": 20,
+  "context_window": 8192,
+  "group": "heavy",
+  "icon": "@/assets/icons/qwen.svg",
+  "description": "Deep reasoning specialist - thinks through problems",
+  "family": "qwen",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "ctx_size": 8192,
+  "ttl": 900,
+  "hf_repo": "unsloth/Qwen3-30B-A3B-Thinking-2507-GGUF",
+  "hf_file": "Qwen3-30B-A3B-Thinking-2507-UD-Q4_K_XL.gguf",
+  "aliases": [
+    "thinking",
+    "qwen-thinking"
+  ],
+  "vulkan_driver": "AMDVLK",
+  "flash_attn": true,
+  "enabled": false,
+  "use_cases": [
+    "Complex reasoning tasks",
+    "In-depth analysis",
+    "Strategic planning",
+    "Challenging problem solving"
+  ],
+  "notes": "Enable when you need extended reasoning with thoughtful responses"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "qwen3-embedding-4b",
+  "name": "Qwen3 Embedding 4B",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://Qwen/Qwen3-Embedding-4B-GGUF/qwen3-embedding-4b-q8_0.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q8_0",
+  "ram_required_gb": 5,
+  "context_window": 8192,
+  "group": "embeddings",
+  "icon": "@/assets/icons/qwen.svg",
+  "description": "Balanced embedding model - 4B parameters",
+  "family": "qwen",
+  "capabilities": [
+    "embeddings"
+  ],
+  "ctx_size": 8192,
+  "ttl": 0,
+  "hf_repo": "Qwen/Qwen3-Embedding-4B-GGUF",
+  "hf_file": "qwen3-embedding-4b-q8_0.gguf",
+  "shortname": "qwen3-emb-medium",
+  "embedding_dimension": 2048,
+  "vulkan_driver": "RADV",
+  "flash_attn": false,
+  "enabled": false,
+  "use_cases": [
+    "Balanced RAG pipelines",
+    "Semantic clustering",
+    "Knowledge base indexing",
+    "Multilingual search"
+  ],
+  "notes": "Great middle ground between speed and embedding fidelity"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "voyage-3-large",
+  "name": "Voyage 3 Large",
+  "maker": "voyage",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://voyageai/voyage-3-large-GGUF/voyage-3-large-q8_0.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q8_0",
+  "ram_required_gb": 11,
+  "context_window": 8192,
+  "group": "embeddings",
+  "icon": "@/assets/icons/voyage.svg",
+  "description": "High-capacity embedding - 10B parameters",
+  "family": "voyage",
+  "capabilities": [
+    "embeddings"
+  ],
+  "ctx_size": 8192,
+  "ttl": 0,
+  "hf_repo": "voyageai/voyage-3-large-GGUF",
+  "hf_file": "voyage-3-large-q8_0.gguf",
+  "embedding_dimension": 1536,
+  "vulkan_driver": "RADV",
+  "flash_attn": false,
+  "enabled": false,
+  "use_cases": [
+    "High fidelity semantic search",
+    "Enterprise RAG workloads",
+    "Large document indexing",
+    "Advanced similarity ranking"
+  ],
+  "notes": "Premium embedding quality for demanding retrieval tasks"
+}

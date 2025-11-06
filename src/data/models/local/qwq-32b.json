@@ -1,0 +1,37 @@
+{
+  "id": "qwq-32b",
+  "name": "QwQ 32B",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://bartowski/Qwen_QwQ-32B-GGUF/Qwen_QwQ-32B-Q4_K_M.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q4_K_M",
+  "ram_required_gb": 20,
+  "context_window": 32768,
+  "group": "heavy",
+  "icon": "@/assets/icons/qwen.svg",
+  "description": "Question-answering specialist with reasoning",
+  "family": "qwen",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "ctx_size": 32768,
+  "ttl": 900,
+  "hf_repo": "bartowski/Qwen_QwQ-32B-GGUF",
+  "hf_file": "Qwen_QwQ-32B-Q4_K_M.gguf",
+  "vulkan_driver": "AMDVLK",
+  "flash_attn": true,
+  "enabled": false,
+  "use_cases": [
+    "High-accuracy Q&A",
+    "Reasoning with citations",
+    "Technical troubleshooting",
+    "Educational explanations"
+  ],
+  "notes": "Optimized for question answering with visible reasoning traces"
+}
