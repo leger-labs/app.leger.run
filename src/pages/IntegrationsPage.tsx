@@ -25,6 +25,7 @@ import { useModelStore } from '@/hooks/use-model-store';
 import { useSecrets } from '@/hooks/use-secrets';
 import { toast } from 'sonner';
 import type { Provider } from '@/types/model-store';
+import { resolveIconPath } from '@/assets/icons';
 
 export function IntegrationsPage() {
   const { providers, isLoading: isLoadingModelStore } = useModelStore();
@@ -266,7 +267,7 @@ export function IntegrationsPage() {
                 {/* Left: Logo */}
                 <div className="flex items-center gap-4 flex-1 min-w-0">
                   <img
-                    src={`/${provider.icon}`}
+                    src={resolveIconPath(provider.icon)}
                     alt={provider.name}
                     className="h-8 w-8 rounded flex-shrink-0"
                   />
