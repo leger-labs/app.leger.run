@@ -4,7 +4,7 @@
  */
 
 import { useState, useEffect, useMemo } from 'react';
-import { Loader2, ExternalLink, Check, Plus, Eye, EyeOff, Search, FileX } from 'lucide-react';
+import { Loader2, ExternalLink, Check, Plus, Eye, EyeOff, Search, FileX, BadgeCheck } from 'lucide-react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { Button } from '@/components/ui/button';
@@ -24,16 +24,78 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useModelStore } from '@/hooks/use-model-store';
 import { useSecrets } from '@/hooks/use-secrets';
 import { toast } from 'sonner';
-import type { Provider } from '@/types/model-store';
+import { useMarketplace } from '@/hooks/use-marketplace';
+import type { Service, ServiceVariable } from '@/types/marketplace';
 import { resolveIconPath } from '@/assets/icons';
 
+interface ProviderDisplay {
+  id: string;
+  name: string;
+  icon: string;
+  description: string;
+  requiresApiKey: string | null;
+  apiKeyRegisterUrl?: string | null;
+  website?: string | null;
+  source: 'llm' | 'marketplace';
+  relatedServices: string[];
+}
+
+interface ExtractedSecret {
+  envVar: string;
+}
+
+function extractSecretVariables(service: Service): ExtractedSecret[] {
+  const secrets: ExtractedSecret[] = [];
+
+  service.openwebui_variables.forEach((variable) => {
+    const envVar = inferEnvVarName(variable);
+    if (!envVar) return;
+
+    // Avoid duplicates within the same service
+    if (secrets.some((secret) => secret.envVar === envVar)) {
+      return;
+    }
+
+    secrets.push({
+      envVar,
+    });
+  });
+
+  return secrets;
+}
+
+function inferEnvVarName(variable: ServiceVariable): string | null {
+  if (typeof variable.default === 'string') {
+    const envMatch = variable.default.match(/^\$\{([A-Z0-9_]+)\}$/);
+    if (envMatch) {
+      return envMatch[1];
+    }
+  }
+
+  // Fallback to variable name if it looks like a secret token
+  if (/API|TOKEN|SECRET|KEY/.test(variable.name)) {
+    return variable.name.toUpperCase();
+  }
+
+  return null;
+}
+
+function humanizeEnvVar(value: string): string {
+  return value
+    .toLowerCase()
+    .split('_')
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ');
+}
+
 export function ProvidersPage() {
-  const { providers, isLoading: isLoadingModelStore } = useModelStore();
+  const { providers: baseProviders, isLoading: isLoadingModelStore } = useModelStore();
+  const { services, isLoading: isLoadingMarketplace } = useMarketplace();
   const { secrets, isLoading: isLoadingSecrets, upsertSecret } = useSecrets();
 
   const [search, setSearch] = useState('');
   const [filterTab, setFilterTab] = useState<'all' | 'configured' | 'available'>('all');
-  const [selectedProvider, setSelectedProvider] = useState<Provider | null>(null);
+  const [selectedProvider, setSelectedProvider] = useState<ProviderDisplay | null>(null);
   const [apiKeyValue, setApiKeyValue] = useState('');
   const [isEditMode, setIsEditMode] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -42,27 +104,87 @@ export function ProvidersPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [configuredProviders, setConfiguredProviders] = useState<Set<string>>(new Set());
 
-  const isLoading = isLoadingModelStore || isLoadingSecrets;
+  const isLoading = isLoadingModelStore || isLoadingMarketplace || isLoadingSecrets;
+
+  const providerEntries = useMemo<ProviderDisplay[]>(() => {
+    const entries: ProviderDisplay[] = [];
+    const envVarMap = new Map<string, ProviderDisplay>();
+
+    baseProviders.forEach((provider) => {
+      const entry: ProviderDisplay = {
+        id: provider.id,
+        name: provider.name,
+        icon: provider.icon,
+        description: provider.description,
+        requiresApiKey: provider.requires_api_key,
+        apiKeyRegisterUrl: provider.api_key_register_url ?? null,
+        website: provider.website,
+        source: 'llm',
+        relatedServices: [],
+      };
+
+      entries.push(entry);
+
+      if (provider.requires_api_key) {
+        envVarMap.set(provider.requires_api_key, entry);
+      }
+    });
+
+    services.forEach((service) => {
+      const secrets = extractSecretVariables(service);
+
+      secrets.forEach(({ envVar }) => {
+        let entry = envVarMap.get(envVar);
+
+        if (!entry) {
+          entry = {
+            id: envVar.toLowerCase(),
+            name: humanizeEnvVar(envVar),
+            icon: service.logo,
+            description: `Credentials used by ${service.name} integration`,
+            requiresApiKey: envVar,
+            apiKeyRegisterUrl: null,
+            website: null,
+            source: 'marketplace',
+            relatedServices: [],
+          };
+
+          entries.push(entry);
+          envVarMap.set(envVar, entry);
+        }
+
+        if (!entry.icon && service.logo) {
+          entry.icon = service.logo;
+        }
+
+        if (!entry.relatedServices.includes(service.id)) {
+          entry.relatedServices.push(service.id);
+        }
+      });
+    });
+
+    return entries;
+  }, [baseProviders, services]);
 
   // Determine which providers are configured
   useEffect(() => {
     const configured = new Set<string>();
-    providers.forEach((provider) => {
+    providerEntries.forEach((provider) => {
       // Local providers don't need API keys
-      if (!provider.requires_api_key) {
+      if (!provider.requiresApiKey) {
         configured.add(provider.id);
         return;
       }
 
       // Check if secret exists for this provider
-      if (secrets.some((s) => s.name === provider.requires_api_key)) {
+      if (secrets.some((s) => s.name === provider.requiresApiKey)) {
         configured.add(provider.id);
       }
     });
     setConfiguredProviders(configured);
-  }, [providers, secrets]);
+  }, [providerEntries, secrets]);
 
-  const handleAddProvider = (provider: Provider) => {
+  const handleAddProvider = (provider: ProviderDisplay) => {
     setSelectedProvider(provider);
     setApiKeyValue('');
     setIsEditMode(false);
@@ -70,10 +192,10 @@ export function ProvidersPage() {
     setTestResult(null);
   };
 
-  const handleEditProvider = (provider: Provider) => {
+  const handleEditProvider = (provider: ProviderDisplay) => {
     setSelectedProvider(provider);
     // Load existing API key value
-    const existingSecret = secrets.find((s) => s.name === provider.requires_api_key);
+    const existingSecret = secrets.find((s) => s.name === provider.requiresApiKey);
     setApiKeyValue(existingSecret?.value || '');
     setIsEditMode(true);
     setShowPassword(false);
@@ -120,10 +242,10 @@ export function ProvidersPage() {
   };
 
   const handleSaveApiKey = async () => {
-    if (!selectedProvider || !selectedProvider.requires_api_key) return;
+    if (!selectedProvider || !selectedProvider.requiresApiKey) return;
 
     setIsSaving(true);
-    const success = await upsertSecret(selectedProvider.requires_api_key, apiKeyValue);
+    const success = await upsertSecret(selectedProvider.requiresApiKey, apiKeyValue);
     setIsSaving(false);
 
     if (success) {
@@ -150,7 +272,7 @@ export function ProvidersPage() {
 
   // Filter providers based on search and filter tab
   const filteredProviders = useMemo(() => {
-    let filtered = providers;
+    let filtered = providerEntries;
 
     // Filter by tab
     if (filterTab === 'configured') {
@@ -162,15 +284,18 @@ export function ProvidersPage() {
     // Filter by search
     if (search) {
       const searchLower = search.toLowerCase();
-      filtered = filtered.filter(
-        (p) =>
+      filtered = filtered.filter((p) => {
+        const description = p.description || '';
+        return (
           p.name.toLowerCase().includes(searchLower) ||
-          p.description.toLowerCase().includes(searchLower)
-      );
+          description.toLowerCase().includes(searchLower) ||
+          (p.requiresApiKey ?? '').toLowerCase().includes(searchLower)
+        );
+      });
     }
 
     return filtered;
-  }, [providers, configuredProviders, filterTab, search]);
+  }, [providerEntries, configuredProviders, filterTab, search]);
 
   if (isLoading) {
     return (
@@ -229,12 +354,12 @@ export function ProvidersPage() {
 
         <Tabs value={filterTab} onValueChange={(v) => setFilterTab(v as typeof filterTab)}>
           <TabsList>
-            <TabsTrigger value="all">All ({providers.length})</TabsTrigger>
+            <TabsTrigger value="all">All ({providerEntries.length})</TabsTrigger>
             <TabsTrigger value="configured">
               Configured ({configuredProviders.size})
             </TabsTrigger>
             <TabsTrigger value="available">
-              Available ({providers.length - configuredProviders.size})
+              Available ({providerEntries.length - configuredProviders.size})
             </TabsTrigger>
           </TabsList>
         </Tabs>
@@ -273,20 +398,39 @@ export function ProvidersPage() {
                   />
 
                   {/* Center: Name and Badge */}
-                  <div className="flex items-center gap-3 flex-1 min-w-0">
-                    <span className="font-medium text-sm truncate">{provider.name}</span>
-                    {isConfigured && (
-                      <Badge variant="secondary" className="flex items-center gap-1 flex-shrink-0">
-                        <Check className="h-3 w-3" />
-                        Configured
+                  <div className="flex flex-col flex-1 min-w-0">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span className="font-medium text-sm truncate">{provider.name}</span>
+                      <Badge variant="outline" className="uppercase text-[10px] tracking-wide">
+                        {provider.source === 'llm' ? 'LLM Provider' : 'Marketplace Secret'}
                       </Badge>
-                    )}
+                      {isConfigured && (
+                        <Badge variant="secondary" className="flex items-center gap-1 flex-shrink-0">
+                          <Check className="h-3 w-3" />
+                          Configured
+                        </Badge>
+                      )}
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground mt-1">
+                      {provider.requiresApiKey && (
+                        <span className="inline-flex items-center gap-1">
+                          <BadgeCheck className="h-3 w-3" />
+                          {provider.requiresApiKey}
+                        </span>
+                      )}
+                      {provider.relatedServices.length > 0 && (
+                        <span className="truncate">
+                          Used by {provider.relatedServices.length}{' '}
+                          {provider.relatedServices.length === 1 ? 'integration' : 'integrations'}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
 
                 {/* Right: Add/Edit Button */}
                 <div className="flex-shrink-0">
-                  {provider.requires_api_key && (
+                  {provider.requiresApiKey && (
                     isConfigured ? (
                       <Button
                         size="sm"
@@ -322,12 +466,12 @@ export function ProvidersPage() {
             </DialogTitle>
             <DialogDescription>
               Enter your API key to enable {selectedProvider?.name} provider.
-              {selectedProvider?.api_key_register_url && (
+              {selectedProvider?.apiKeyRegisterUrl && (
                 <>
                   {' '}
                   You can get your API key from{' '}
                   <a
-                    href={selectedProvider.api_key_register_url}
+                    href={selectedProvider.apiKeyRegisterUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:underline inline-flex items-center gap-1"

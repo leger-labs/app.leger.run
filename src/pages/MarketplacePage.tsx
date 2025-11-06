@@ -55,13 +55,15 @@ function formatCategoryLabel(id: string) {
     .join(' ');
 }
 
+type VariableValue = string | number | boolean | null;
+
 export function MarketplacePage() {
   const { services, isLoading, getCategories } = useMarketplace();
 
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const [configValues, setConfigValues] = useState<Record<string, any>>({});
+  const [configValues, setConfigValues] = useState<Record<string, VariableValue>>({});
   const [isInstalling, setIsInstalling] = useState(false);
 
   // Get categories with counts
@@ -89,7 +91,7 @@ export function MarketplacePage() {
   const handleInstall = (service: Service) => {
     setSelectedService(service);
     // Initialize config values with defaults
-    const initialConfig: Record<string, any> = {};
+    const initialConfig: Record<string, VariableValue> = {};
     service.openwebui_variables.forEach((variable) => {
       initialConfig[variable.name] = variable.default;
     });
@@ -347,8 +349,8 @@ function ServiceCard({ service, onInstall }: ServiceCardProps) {
 
 interface VariableInputProps {
   variable: ServiceVariable;
-  value: any;
-  onChange: (value: any) => void;
+  value: VariableValue;
+  onChange: (value: VariableValue) => void;
 }
 
 function VariableInput({ variable, value, onChange }: VariableInputProps) {
@@ -368,7 +370,7 @@ function VariableInput({ variable, value, onChange }: VariableInputProps) {
         <Switch
           id={variable.name}
           checked={value === true || value === 'True' || value === 'true'}
-          onCheckedChange={onChange}
+          onCheckedChange={(checked) => onChange(checked)}
         />
       </div>
     );
@@ -382,7 +384,7 @@ function VariableInput({ variable, value, onChange }: VariableInputProps) {
         </Label>
         <select
           id={variable.name}
-          value={value || ''}
+          value={(value as string) || ''}
           onChange={(e) => onChange(e.target.value)}
           className="w-full px-3 py-2 border rounded-md bg-background"
         >
@@ -410,7 +412,7 @@ function VariableInput({ variable, value, onChange }: VariableInputProps) {
       <Input
         id={variable.name}
         type={variable.type === 'int' || variable.type === 'float' ? 'number' : 'text'}
-        value={value || ''}
+        value={value ?? ''}
         onChange={(e) => {
           const val = e.target.value;
           if (variable.type === 'int') {
