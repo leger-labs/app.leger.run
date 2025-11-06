@@ -88,6 +88,31 @@
       "default": null,
       "description": "Specifies the Jupyter URL to use for code interpreter.",
       "options": []
+    },
+    {
+      "name": "JUPYTER_DISABLE_EXECUTE_TOOL",
+      "type": "bool",
+      "default": true,
+      "description": "Disable Jupyter notebook execute tool",
+      "options": []
+    },
+    {
+      "name": "JUPYTER_AUTH_TYPE",
+      "type": "str",
+      "default": "token",
+      "description": "Jupyter authentication method",
+      "options": [
+        "token",
+        "password",
+        "none"
+      ]
+    },
+    {
+      "name": "JUPYTER_TIMEOUT",
+      "type": "int",
+      "default": 300,
+      "description": "Jupyter execution timeout in seconds",
+      "options": []
     }
   ]
 }

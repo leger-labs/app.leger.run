@@ -19,8 +19,8 @@ export const iconRegistry = {
   ],
   services: [
     'automatic', 'bing', 'bocha', 'brave-search', 'chromadb', 'comfyui',
-    'dalle', 'deepgram', 'docling', 'duckduckgo', 'elasticsearch', 'elevenlabs',
-    'exa', 'firecrawl', 'jupyter', 'kagi', 'milvus', 'mojeek', 'opensearch',
+    'dalle', 'deepgram', 'docling', 'duckduckgo', 'edgetts', 'elasticsearch', 'elevenlabs',
+    'exa', 'firecrawl', 'jupyter', 'kagi', 'milvus', 'mojeek', 'opensearch', 'opentelemetry',
     'pinecone', 'playwright', 'postgresql', 'puppeteer', 'pyodide', 'qdrant',
     'redis', 's3', 's3vectors', 'searchapi', 'searxng', 'serpapi', 'sougou',
     'sqlite', 'tavily', 'tika', 'mysql', 'neo4j'

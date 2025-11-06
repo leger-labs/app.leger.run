@@ -27,6 +27,13 @@
       "options": []
     },
     {
+      "name": "COMFYUI_WORKFLOW_NODES",
+      "type": "list",
+      "default": [],
+      "description": "Specifies the ComfyUI workflow node mappings for image generation.",
+      "options": []
+    },
+    {
       "name": "IMAGE_GENERATION_ENGINE",
       "type": "str",
       "default": "openai",
@@ -37,6 +44,57 @@
         "automatic1111",
         "gemini"
       ]
+    },
+    {
+      "name": "COMFYUI_WORKSPACE",
+      "type": "str",
+      "default": "/workspace",
+      "description": "ComfyUI workspace path",
+      "options": []
+    },
+    {
+      "name": "COMFYUI_AUTO_UPDATE",
+      "type": "bool",
+      "default": false,
+      "description": "ComfyUI auto-update flag",
+      "options": []
+    },
+    {
+      "name": "COMFYUI_WEB_ENABLE_AUTH",
+      "type": "bool",
+      "default": false,
+      "description": "ComfyUI web authentication",
+      "options": []
+    },
+    {
+      "name": "COMFYUI_LOG_LEVEL",
+      "type": "str",
+      "default": "INFO",
+      "description": "ComfyUI log level",
+      "options": [
+        "DEBUG",
+        "INFO",
+        "WARNING",
+        "ERROR"
+      ]
+    },
+    {
+      "name": "COMFYUI_ARGS",
+      "type": "str",
+      "default": "",
+      "description": "ComfyUI additional arguments",
+      "options": []
+    },
+    {
+      "name": "COMFYUI_STARTUP_TIMEOUT",
+      "type": "int",
+      "default": 900,
+      "description": "ComfyUI startup timeout in seconds",
+      "validation": {
+        "min": 60,
+        "max": 1800
+      },
+      "options": []
     }
   ]
 }

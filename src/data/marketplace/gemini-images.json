@@ -34,6 +34,16 @@
       "options": []
     },
     {
+      "name": "IMAGES_GEMINI_ENDPOINT_METHOD",
+      "type": "str",
+      "default": "",
+      "description": "Specifies the Gemini API endpoint method (predict or generateContent).",
+      "options": [
+        "predict",
+        "generateContent"
+      ]
+    },
+    {
       "name": "IMAGE_GENERATION_ENGINE",
       "type": "str",
       "default": "openai",

@@ -1,0 +1,180 @@
+{
+  "id": "opentelemetry",
+  "name": "OpenTelemetry",
+  "category": "observability",
+  "requires_api_key": false,
+  "logo": "@/assets/icons/opentelemetry.svg",
+  "openwebui_variables": [
+    {
+      "name": "ENABLE_OTEL",
+      "type": "bool",
+      "default": false,
+      "description": "Enables OpenTelemetry observability",
+      "options": []
+    },
+    {
+      "name": "ENABLE_OTEL_TRACES",
+      "type": "bool",
+      "default": false,
+      "description": "Enables OpenTelemetry traces",
+      "options": []
+    },
+    {
+      "name": "ENABLE_OTEL_METRICS",
+      "type": "bool",
+      "default": false,
+      "description": "Enables OpenTelemetry metrics",
+      "options": []
+    },
+    {
+      "name": "ENABLE_OTEL_LOGS",
+      "type": "bool",
+      "default": false,
+      "description": "Enables OpenTelemetry logging",
+      "options": []
+    },
+    {
+      "name": "OTEL_EXPORTER_OTLP_ENDPOINT",
+      "type": "str",
+      "default": "http://localhost:4317",
+      "description": "OTLP endpoint for traces/metrics/logs",
+      "options": []
+    },
+    {
+      "name": "OTEL_METRICS_EXPORTER_OTLP_ENDPOINT",
+      "type": "str",
+      "default": null,
+      "description": "Dedicated OTLP endpoint for metrics",
+      "options": []
+    },
+    {
+      "name": "OTEL_LOGS_EXPORTER_OTLP_ENDPOINT",
+      "type": "str",
+      "default": null,
+      "description": "Dedicated OTLP endpoint for logs",
+      "options": []
+    },
+    {
+      "name": "OTEL_EXPORTER_OTLP_INSECURE",
+      "type": "bool",
+      "default": false,
+      "description": "Use insecure connection for traces",
+      "options": []
+    },
+    {
+      "name": "OTEL_METRICS_EXPORTER_OTLP_INSECURE",
+      "type": "bool",
+      "default": null,
+      "description": "Use insecure connection for metrics",
+      "options": []
+    },
+    {
+      "name": "OTEL_LOGS_EXPORTER_OTLP_INSECURE",
+      "type": "bool",
+      "default": null,
+      "description": "Use insecure connection for logs",
+      "options": []
+    },
+    {
+      "name": "OTEL_SERVICE_NAME",
+      "type": "str",
+      "default": "open-webui",
+      "description": "Service name in telemetry",
+      "options": []
+    },
+    {
+      "name": "OTEL_RESOURCE_ATTRIBUTES",
+      "type": "str",
+      "default": "",
+      "description": "Additional resource attributes (key1=val1,key2=val2)",
+      "options": []
+    },
+    {
+      "name": "OTEL_TRACES_SAMPLER",
+      "type": "str",
+      "default": "parentbased_always_on",
+      "description": "Trace sampling strategy",
+      "options": [
+        "parentbased_always_on",
+        "always_on",
+        "always_off",
+        "parentbased_always_off"
+      ]
+    },
+    {
+      "name": "OTEL_BASIC_AUTH_USERNAME",
+      "type": "str",
+      "default": "",
+      "description": "Basic auth username for OTLP",
+      "options": []
+    },
+    {
+      "name": "OTEL_BASIC_AUTH_PASSWORD",
+      "type": "str",
+      "default": "",
+      "description": "Basic auth password for OTLP",
+      "sensitive": true,
+      "options": []
+    },
+    {
+      "name": "OTEL_METRICS_BASIC_AUTH_USERNAME",
+      "type": "str",
+      "default": null,
+      "description": "Basic auth username for metrics OTLP",
+      "options": []
+    },
+    {
+      "name": "OTEL_METRICS_BASIC_AUTH_PASSWORD",
+      "type": "str",
+      "default": null,
+      "description": "Basic auth password for metrics OTLP",
+      "sensitive": true,
+      "options": []
+    },
+    {
+      "name": "OTEL_LOGS_BASIC_AUTH_USERNAME",
+      "type": "str",
+      "default": null,
+      "description": "Basic auth username for logs OTLP",
+      "options": []
+    },
+    {
+      "name": "OTEL_LOGS_BASIC_AUTH_PASSWORD",
+      "type": "str",
+      "default": null,
+      "description": "Basic auth password for logs OTLP",
+      "sensitive": true,
+      "options": []
+    },
+    {
+      "name": "OTEL_OTLP_SPAN_EXPORTER",
+      "type": "str",
+      "default": "grpc",
+      "description": "Protocol for exporting traces",
+      "options": [
+        "grpc",
+        "http"
+      ]
+    },
+    {
+      "name": "OTEL_METRICS_OTLP_SPAN_EXPORTER",
+      "type": "str",
+      "default": null,
+      "description": "Protocol for exporting metrics",
+      "options": [
+        "grpc",
+        "http"
+      ]
+    },
+    {
+      "name": "OTEL_LOGS_OTLP_SPAN_EXPORTER",
+      "type": "str",
+      "default": null,
+      "description": "Protocol for exporting logs",
+      "options": [
+        "grpc",
+        "http"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "edgetts",
+  "name": "Edge TTS",
+  "category": "text-to-speech",
+  "requires_api_key": false,
+  "logo": "@/assets/icons/edgetts.svg",
+  "openwebui_variables": [
+    {
+      "name": "AUDIO_TTS_ENGINE",
+      "type": "str",
+      "default": null,
+      "description": "Specifies the Text-to-Speech engine to use.",
+      "options": [
+        "azure",
+        "elevenlabs",
+        "openai",
+        "transformers"
+      ]
+    },
+    {
+      "name": "EDGETTS_RESPONSE_FORMAT",
+      "type": "str",
+      "default": "mp3",
+      "description": "Edge TTS response format",
+      "options": [
+        "mp3",
+        "wav",
+        "opus"
+      ]
+    },
+    {
+      "name": "EDGETTS_SPEED",
+      "type": "float",
+      "default": 1.0,
+      "description": "Edge TTS speech speed",
+      "validation": {
+        "min": 0.5,
+        "max": 2.0
+      },
+      "options": []
+    },
+    {
+      "name": "EDGETTS_VOICE",
+      "type": "str",
+      "default": "en-US-AriaNeural",
+      "description": "Edge TTS voice",
+      "options": []
+    },
+    {
+      "name": "EDGETTS_LOG_LEVEL",
+      "type": "str",
+      "default": "INFO",
+      "description": "Edge TTS log level",
+      "options": [
+        "DEBUG",
+        "INFO",
+        "WARNING",
+        "ERROR"
+      ]
+    },
+    {
+      "name": "EDGETTS_STARTUP_TIMEOUT",
+      "type": "int",
+      "default": 300,
+      "description": "Edge TTS startup timeout",
+      "validation": {
+        "min": 30,
+        "max": 600
+      },
+      "options": []
+    }
+  ]
+}

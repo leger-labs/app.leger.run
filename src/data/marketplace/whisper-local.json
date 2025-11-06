@@ -19,21 +19,27 @@
     {
       "name": "WHISPER_LANGUAGE",
       "type": "str",
-      "default": "None",
-      "description": "Specifies the ISO 639-1 language Whisper uses for STT (ISO 639-2 for Hawaiian and Cantonese). Whisper predicts the language by default.\n\n### Speech-to-Text (OpenAI)",
+      "default": "",
+      "description": "Whisper language code",
       "options": []
     },
     {
       "name": "WHISPER_MODEL",
       "type": "str",
       "default": "base",
-      "description": "Sets the Whisper model to use for Speech-to-Text. The backend used is faster_whisper with quantization to `int8`.",
-      "options": []
+      "description": "Whisper model to use",
+      "options": [
+        "tiny",
+        "base",
+        "small",
+        "medium",
+        "large"
+      ]
     },
     {
       "name": "WHISPER_MODEL_AUTO_UPDATE",
       "type": "bool",
-      "default": "False",
+      "default": false,
       "description": "Toggles automatic update of the Whisper model.",
       "options": []
     },
@@ -47,8 +53,44 @@
     {
       "name": "WHISPER_VAD_FILTER",
       "type": "bool",
-      "default": "False",
+      "default": false,
       "description": "Specifies whether to apply a Voice Activity Detection (VAD) filter to Whisper Speech-to-Text.",
+      "options": []
+    },
+    {
+      "name": "WHISPER_BEAM_SIZE",
+      "type": "int",
+      "default": 5,
+      "description": "Whisper beam size",
+      "options": []
+    },
+    {
+      "name": "WHISPER_COMPUTE_TYPE",
+      "type": "str",
+      "default": "int8",
+      "description": "Whisper compute type",
+      "options": [
+        "int8",
+        "float16",
+        "float32"
+      ]
+    },
+    {
+      "name": "WHISPER_DEVICE",
+      "type": "str",
+      "default": "auto",
+      "description": "Whisper device",
+      "options": [
+        "auto",
+        "cpu",
+        "cuda"
+      ]
+    },
+    {
+      "name": "WHISPER_CACHE_DIR",
+      "type": "str",
+      "default": "/var/lib/whisper/cache",
+      "description": "Whisper cache directory",
       "options": []
     }
   ]

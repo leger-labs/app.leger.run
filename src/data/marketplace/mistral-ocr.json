@@ -11,6 +11,13 @@
       "default": "None",
       "description": "Specifies the Mistral OCR API key to use.",
       "options": []
+    },
+    {
+      "name": "MISTRAL_OCR_API_BASE_URL",
+      "type": "str",
+      "default": "https://api.mistral.ai/v1",
+      "description": "Configures custom Mistral OCR API endpoints.",
+      "options": []
     }
   ]
 }
