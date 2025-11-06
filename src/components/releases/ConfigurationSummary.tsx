@@ -5,12 +5,11 @@
  */
 
 import { useMemo } from 'react';
+import type { UiSchema } from '@rjsf/utils';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import {
   CheckCircle2,
-  XCircle,
   Server,
   Database,
   Search,
@@ -28,6 +27,7 @@ import { getValueAtPath } from '@/lib/progressive-disclosure';
 interface ConfigurationSummaryProps {
   formData: Record<string, unknown>;
   schema: any;
+  uiSchema?: UiSchema;
 }
 
 interface EnabledFeature {
@@ -38,149 +38,170 @@ interface EnabledFeature {
   providerLabel?: string;
 }
 
-/**
- * Get icon for a feature
- */
-function getFeatureIcon(feature: string): React.ReactNode {
-  const icons: Record<string, React.ReactNode> = {
-    rag: <Database className="h-4 w-4" />,
-    web_search: <Search className="h-4 w-4" />,
-    image_generation: <Image className="h-4 w-4" />,
-    speech_to_text: <Mic className="h-4 w-4" />,
-    text_to_speech: <Volume2 className="h-4 w-4" />,
-    code_execution: <Code className="h-4 w-4" />,
-    code_interpreter: <Code className="h-4 w-4" />,
-    google_drive: <Cloud className="h-4 w-4" />,
-    onedrive: <Cloud className="h-4 w-4" />,
-    oauth_signup: <Shield className="h-4 w-4" />,
-    ldap: <Shield className="h-4 w-4" />,
-    title_generation: <Sparkles className="h-4 w-4" />,
-    autocomplete_generation: <Sparkles className="h-4 w-4" />,
-    tags_generation: <Sparkles className="h-4 w-4" />,
-  };
-
-  return icons[feature] || <CheckCircle2 className="h-4 w-4" />;
-}
-
-/**
- * Get human-readable label for a feature
- */
-function getFeatureLabel(feature: string): string {
-  const labels: Record<string, string> = {
-    rag: 'RAG (Retrieval-Augmented Generation)',
-    web_search: 'Web Search',
-    image_generation: 'Image Generation',
-    speech_to_text: 'Speech-to-Text',
-    text_to_speech: 'Text-to-Speech',
-    code_execution: 'Code Execution',
-    code_interpreter: 'Code Interpreter',
-    google_drive: 'Google Drive Integration',
-    onedrive: 'OneDrive Integration',
-    oauth_signup: 'OAuth Signup',
-    ldap: 'LDAP Authentication',
-    title_generation: 'AI Title Generation',
-    autocomplete_generation: 'Autocomplete',
-    tags_generation: 'Tags Generation',
-    websocket_support: 'WebSocket Support',
-  };
-
-  return labels[feature] || feature;
-}
-
-/**
- * Get provider label
- */
-function getProviderLabel(providerKey: string, providerValue: string): string {
-  const labels: Record<string, Record<string, string>> = {
-    vector_db: {
-      qdrant: 'Qdrant',
-      pgvector: 'PostgreSQL+pgvector',
-      chroma: 'ChromaDB',
-    },
-    rag_embedding: {
-      openai: 'OpenAI',
-      ollama: 'Ollama',
-    },
-    content_extraction: {
-      tika: 'Apache Tika',
-      docling: 'Docling',
-    },
-    text_splitter: {
-      character: 'Character Splitter',
-      recursive: 'Recursive Splitter',
-      token: 'Token Splitter',
-      markdown_header: 'Markdown Header Splitter',
-    },
-    web_search_engine: {
-      searxng: 'SearXNG',
-      tavily: 'Tavily',
-      brave: 'Brave Search',
-      google_pse: 'Google PSE',
-      serper: 'Serper',
-      serpapi: 'SerpAPI',
-      bing: 'Bing',
-    },
-    web_loader: {
-      requests: 'Requests',
-      selenium: 'Selenium',
-      playwright: 'Playwright',
-      safe_web: 'SafeWeb',
-    },
-    image_engine: {
-      openai: 'OpenAI DALL-E',
-      automatic1111: 'Automatic1111',
-      comfyui: 'ComfyUI',
-      gemini: 'Google Gemini',
-    },
-    stt_engine: {
-      openai: 'OpenAI Whisper',
-      whisper: 'Faster Whisper',
-      azure: 'Azure STT',
-      deepgram: 'Deepgram',
-    },
-    tts_engine: {
-      openai: 'OpenAI TTS',
-      elevenlabs: 'ElevenLabs',
-      edgetts: 'Edge TTS',
-      azure: 'Azure TTS',
-    },
-    code_execution_engine: {
-      jupyter: 'Jupyter',
-      pyodide: 'Pyodide',
-    },
-    code_interpreter_engine: {
-      jupyter: 'Jupyter',
-      e2b: 'E2B',
-    },
-    storage_provider: {
-      '': 'None',
-      s3: 'AWS S3',
-      gcs: 'Google Cloud Storage',
-    },
-    auth_provider: {
-      local: 'Local',
-      oauth: 'OAuth',
-      ldap: 'LDAP',
-    },
-  };
-
-  return labels[providerKey]?.[providerValue] || providerValue || 'Not selected';
-}
-
-/**
- * Map features to their provider keys
- */
-const featureProviderMap: Record<string, string[]> = {
-  rag: ['vector_db', 'rag_embedding', 'content_extraction', 'text_splitter'],
-  web_search: ['web_search_engine', 'web_loader'],
-  image_generation: ['image_engine'],
-  speech_to_text: ['stt_engine'],
-  text_to_speech: ['tts_engine'],
-  code_execution: ['code_execution_engine'],
-  code_interpreter: ['code_interpreter_engine'],
+const FEATURE_ICONS: Record<string, React.ReactNode> = {
+  rag: <Database className="h-4 w-4" />,
+  web_search: <Search className="h-4 w-4" />,
+  image_generation: <Image className="h-4 w-4" />,
+  speech_to_text: <Mic className="h-4 w-4" />,
+  text_to_speech: <Volume2 className="h-4 w-4" />,
+  code_execution: <Code className="h-4 w-4" />,
+  code_interpreter: <Code className="h-4 w-4" />,
+  google_drive: <Cloud className="h-4 w-4" />,
+  onedrive: <Cloud className="h-4 w-4" />,
+  oauth_signup: <Shield className="h-4 w-4" />,
+  ldap: <Shield className="h-4 w-4" />,
+  title_generation: <Sparkles className="h-4 w-4" />,
+  autocomplete_generation: <Sparkles className="h-4 w-4" />,
+  tags_generation: <Sparkles className="h-4 w-4" />,
 };
 
-export function ConfigurationSummary({ formData, schema }: ConfigurationSummaryProps) {
+function getFeatureIcon(feature: string): React.ReactNode {
+  return FEATURE_ICONS[feature] || <CheckCircle2 className="h-4 w-4" />;
+}
+
+function humanize(value: string): string {
+  const cleaned = value
+    .replace(/[_-]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (!cleaned) {
+    return value || 'Unknown';
+  }
+
+  return cleaned.replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+type JsonSchema = {
+  properties?: Record<string, any>;
+};
+
+function getFeatureDefinitions(schema: JsonSchema | undefined) {
+  const featureProps = schema?.properties?.features?.properties ?? {};
+  return new Map(
+    Object.entries(featureProps).map(([key, value]) => {
+      const property = value as { title?: string } | undefined;
+      const title =
+        property && typeof property.title === 'string' && property.title.trim()
+          ? property.title
+          : humanize(key);
+      return [key, { title }];
+    })
+  );
+}
+
+function buildFeatureProviderMap(schema: JsonSchema | undefined) {
+  const providers = schema?.properties?.providers?.properties ?? {};
+  const providerEntries = Object.entries(providers).map(([key, value]) => {
+    const property = value as { [key: string]: unknown } | undefined;
+    const orderValue = property && typeof property['x-display-order'] === 'number'
+      ? (property['x-display-order'] as number)
+      : Number.MAX_SAFE_INTEGER;
+
+    return {
+      key,
+      order: orderValue,
+      dependsOn: (property?.['x-depends-on'] as Record<string, unknown> | undefined) ?? undefined,
+    };
+  });
+
+  providerEntries.sort((a, b) => a.order - b.order);
+
+  const map = new Map<string, string[]>();
+
+  providerEntries.forEach(({ key, dependsOn }) => {
+    if (!dependsOn || typeof dependsOn !== 'object') {
+      return;
+    }
+
+    Object.keys(dependsOn).forEach((dependency) => {
+      if (!dependency.startsWith('features.')) {
+        return;
+      }
+
+      const featureKey = dependency.split('.')[1];
+      if (!featureKey) {
+        return;
+      }
+
+      const existing = map.get(featureKey) ?? [];
+      if (!existing.includes(key)) {
+        existing.push(key);
+      }
+      map.set(featureKey, existing);
+    });
+  });
+
+  return map;
+}
+
+function getEnumLabelFromUiSchema(
+  providerKey: string,
+  providerValue: string,
+  uiSchema?: UiSchema
+): string | undefined {
+  const providerUi = uiSchema && typeof uiSchema === 'object' ? (uiSchema as any).providers?.[providerKey] : undefined;
+  const options = providerUi?.['ui:options']?.enumOptions;
+
+  if (Array.isArray(options)) {
+    const match = options.find(
+      (option: any) => option && typeof option === 'object' && option.value === providerValue
+    );
+    if (match) {
+      const label = typeof match.label === 'string' ? match.label : undefined;
+      if (label && label.trim()) {
+        return label;
+      }
+    }
+  }
+
+  return undefined;
+}
+
+function getProviderLabel(
+  providerKey: string,
+  providerValue: string,
+  schema: JsonSchema | undefined,
+  uiSchema?: UiSchema
+): string {
+  if (!providerValue) {
+    return 'Not configured';
+  }
+
+  const uiLabel = getEnumLabelFromUiSchema(providerKey, providerValue, uiSchema);
+  if (uiLabel) {
+    return uiLabel;
+  }
+
+  const providerSchema = schema?.properties?.providers?.properties?.[providerKey] as any;
+
+  if (providerSchema) {
+    const enumLabels = providerSchema?.['x-enum-labels'];
+    if (enumLabels && typeof enumLabels === 'object') {
+      const label = enumLabels[providerValue];
+      if (typeof label === 'string' && label.trim()) {
+        return label;
+      }
+    }
+
+    const enumValues: unknown[] = Array.isArray(providerSchema?.enum) ? providerSchema.enum : [];
+    const enumNames: unknown[] = Array.isArray(providerSchema?.enumNames) ? providerSchema.enumNames : [];
+    const index = enumValues.indexOf(providerValue);
+    if (index >= 0) {
+      const label = enumNames[index];
+      if (typeof label === 'string' && label.trim()) {
+        return label;
+      }
+    }
+  }
+
+  return humanize(providerValue);
+}
+
+export function ConfigurationSummary({ formData, schema, uiSchema }: ConfigurationSummaryProps) {
+  const featureDefinitions = useMemo(() => getFeatureDefinitions(schema), [schema]);
+  const featureProviderMap = useMemo(() => buildFeatureProviderMap(schema), [schema]);
+
   const enabledFeatures = useMemo(() => {
     const features: EnabledFeature[] = [];
     const featuresData = (formData.features as Record<string, boolean>) || {};
@@ -189,20 +210,23 @@ export function ConfigurationSummary({ formData, schema }: ConfigurationSummaryP
     // Check each feature
     Object.entries(featuresData).forEach(([key, enabled]) => {
       if (enabled) {
+        const definition = featureDefinitions.get(key);
         const feature: EnabledFeature = {
           key,
-          label: getFeatureLabel(key),
+          label: definition?.title ?? humanize(key),
           icon: getFeatureIcon(key),
         };
 
         // Add provider info if applicable
-        const providerKeys = featureProviderMap[key];
+        const providerKeys = featureProviderMap.get(key);
         if (providerKeys && providerKeys.length > 0) {
-          const primaryProvider = providerKeys[0];
-          const providerValue = providersData[primaryProvider];
-          if (providerValue) {
-            feature.provider = primaryProvider;
-            feature.providerLabel = getProviderLabel(primaryProvider, providerValue);
+          for (const providerKey of providerKeys) {
+            const providerValue = providersData[providerKey];
+            if (typeof providerValue === 'string' && providerValue) {
+              feature.provider = providerKey;
+              feature.providerLabel = getProviderLabel(providerKey, providerValue, schema, uiSchema);
+              break;
+            }
           }
         }
 
@@ -211,17 +235,17 @@ export function ConfigurationSummary({ formData, schema }: ConfigurationSummaryP
     });
 
     return features;
-  }, [formData]);
+  }, [featureDefinitions, featureProviderMap, formData, schema, uiSchema]);
 
   const storageProvider = useMemo(() => {
     const provider = getValueAtPath(formData, 'providers.storage_provider') as string;
-    return getProviderLabel('storage_provider', provider || '');
-  }, [formData]);
+    return getProviderLabel('storage_provider', provider || '', schema, uiSchema);
+  }, [formData, schema, uiSchema]);
 
   const authProvider = useMemo(() => {
     const provider = getValueAtPath(formData, 'providers.auth_provider') as string;
-    return getProviderLabel('auth_provider', provider || '');
-  }, [formData]);
+    return getProviderLabel('auth_provider', provider || '', schema, uiSchema);
+  }, [formData, schema, uiSchema]);
 
   if (enabledFeatures.length === 0) {
     return (
