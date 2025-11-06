@@ -22,13 +22,39 @@ import { Label } from '@/components/ui/label';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useModelStore } from '@/hooks/use-model-store';
+import { useMarketplace } from '@/hooks/use-marketplace';
 import { useSecrets } from '@/hooks/use-secrets';
 import { toast } from 'sonner';
 import type { Provider } from '@/types/model-store';
+import type { ServiceVariable } from '@/types/marketplace';
 import { resolveIconPath } from '@/assets/icons';
 
+function inferEnvVarName(variable: ServiceVariable): string | null {
+  if (typeof variable.default === 'string') {
+    const envMatch = variable.default.match(/^\$\{([A-Z0-9_]+)\}$/);
+    if (envMatch) {
+      return envMatch[1];
+    }
+  }
+
+  if (/API|TOKEN|SECRET|KEY/.test(variable.name)) {
+    return variable.name.toUpperCase();
+  }
+
+  return null;
+}
+
+function humanizeEnvVar(value: string): string {
+  return value
+    .toLowerCase()
+    .split('_')
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ');
+}
+
 export function ProvidersPage() {
-  const { providers, isLoading: isLoadingModelStore } = useModelStore();
+  const { providers: llmProviders, isLoading: isLoadingModelStore } = useModelStore();
+  const { services, isLoading: isLoadingMarketplace } = useMarketplace();
   const { secrets, isLoading: isLoadingSecrets, upsertSecret } = useSecrets();
 
   const [search, setSearch] = useState('');
@@ -42,7 +68,49 @@ export function ProvidersPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [configuredProviders, setConfiguredProviders] = useState<Set<string>>(new Set());
 
-  const isLoading = isLoadingModelStore || isLoadingSecrets;
+  const providers = useMemo<Provider[]>(() => {
+    const combined = [...llmProviders];
+    const envVarMap = new Map<string, Provider>();
+
+    llmProviders.forEach((provider) => {
+      if (provider.requires_api_key) {
+        envVarMap.set(provider.requires_api_key, provider);
+      }
+    });
+
+    services.forEach((service) => {
+      const seenForService = new Set<string>();
+
+      service.openwebui_variables.forEach((variable) => {
+        const envVar = inferEnvVarName(variable);
+        if (!envVar || seenForService.has(envVar)) {
+          return;
+        }
+
+        seenForService.add(envVar);
+
+        if (!envVarMap.has(envVar)) {
+          const entry: Provider = {
+            id: `marketplace-${envVar.toLowerCase()}`,
+            name: humanizeEnvVar(envVar),
+            icon: service.logo || '',
+            website: '',
+            requires_api_key: envVar,
+            api_key_register_url: undefined,
+            description: `Credentials for ${service.name}`,
+            provider_type: 'api',
+          };
+
+          envVarMap.set(envVar, entry);
+          combined.push(entry);
+        }
+      });
+    });
+
+    return combined;
+  }, [llmProviders, services]);
+
+  const isLoading = isLoadingModelStore || isLoadingMarketplace || isLoadingSecrets;
 
   // Determine which providers are configured
   useEffect(() => {
