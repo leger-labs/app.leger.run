@@ -1,0 +1,10 @@
+{
+  "id": "deepinfra",
+  "name": "DeepInfra",
+  "icon": "@/assets/icons/deepinfra.svg",
+  "website": "https://deepinfra.com/",
+  "requires_api_key": "DEEPINFRA_API_KEY",
+  "api_key_register_url": "https://deepinfra.com/signup",
+  "description": "Serverless GPU inference for open-source models",
+  "provider_type": "api"
+}

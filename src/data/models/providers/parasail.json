@@ -1,0 +1,10 @@
+{
+  "id": "parasail",
+  "name": "Parasail",
+  "icon": "@/assets/icons/parasail.svg",
+  "website": "https://parasail.ai/",
+  "requires_api_key": "PARASAIL_API_KEY",
+  "api_key_register_url": "https://app.parasail.ai/",
+  "description": "Low-latency API access to leading open-source models",
+  "provider_type": "api"
+}

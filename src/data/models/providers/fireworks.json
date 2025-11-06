@@ -1,0 +1,10 @@
+{
+  "id": "fireworks",
+  "name": "Fireworks AI",
+  "icon": "@/assets/icons/fireworks.svg",
+  "website": "https://fireworks.ai/",
+  "requires_api_key": "FIREWORKS_API_KEY",
+  "api_key_register_url": "https://app.fireworks.ai/",
+  "description": "High-performance inference APIs for open and proprietary models",
+  "provider_type": "api"
+}

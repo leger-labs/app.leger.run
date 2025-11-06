@@ -1,0 +1,10 @@
+{
+  "id": "cerebras",
+  "name": "Cerebras",
+  "icon": "@/assets/icons/cerebras.svg",
+  "website": "https://inference.cerebras.ai/",
+  "requires_api_key": "CEREBRAS_API_KEY",
+  "api_key_register_url": "https://inference.cerebras.ai/signup",
+  "description": "High-performance inference on Cerebras CS hardware",
+  "provider_type": "api"
+}

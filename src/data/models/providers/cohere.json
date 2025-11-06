@@ -1,0 +1,10 @@
+{
+  "id": "cohere",
+  "name": "Cohere",
+  "icon": "@/assets/icons/cohere.svg",
+  "website": "https://cohere.com/",
+  "requires_api_key": "COHERE_API_KEY",
+  "api_key_register_url": "https://dashboard.cohere.com/signup",
+  "description": "Enterprise-grade language model APIs from Cohere",
+  "provider_type": "api"
+}
