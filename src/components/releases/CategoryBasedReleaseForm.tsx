@@ -308,7 +308,7 @@ export function CategoryBasedReleaseForm({
         {/* Review step */}
         <CategoryTabPanel key="review" value="review">
           <div className="space-y-6">
-            <ConfigurationSummary formData={formData} schema={schema} />
+            <ConfigurationSummary formData={formData} schema={schema} uiSchema={uiSchema} />
 
             {/* Navigation buttons */}
             <div className="flex items-center justify-between pt-4 border-t">
