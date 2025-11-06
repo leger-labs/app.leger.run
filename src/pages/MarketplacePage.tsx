@@ -28,6 +28,7 @@ import { filterServices } from '@/services/marketplace-service';
 import { toast } from 'sonner';
 import type { Service, ServiceVariable, ServiceFilters } from '@/types/marketplace';
 import { cn } from '@/lib/utils';
+import { resolveIconPath } from '@/assets/icons';
 
 // Category display names
 const CATEGORY_LABELS: Record<string, string> = {
@@ -225,7 +226,7 @@ export function MarketplacePage() {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-3">
               <img
-                src={selectedService?.logo}
+                src={resolveIconPath(selectedService?.logo)}
                 alt={selectedService?.name}
                 className="h-8 w-8 rounded"
               />
@@ -275,7 +276,7 @@ function ServiceCard({ service, onInstall }: ServiceCardProps) {
       <CardContent className="p-6">
         {/* Header with logo and API key badge */}
         <div className="flex items-start justify-between mb-4">
-          <img src={service.logo} alt={service.name} className="h-12 w-12 rounded" />
+          <img src={resolveIconPath(service.logo)} alt={service.name} className="h-12 w-12 rounded" />
           {service.requires_api_key && (
             <Badge variant="secondary" className="flex items-center gap-1">
               <Key className="h-3 w-3" />

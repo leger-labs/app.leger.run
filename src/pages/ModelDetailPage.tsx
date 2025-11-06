@@ -32,6 +32,7 @@ import { isCloudModel } from '@/types/model-store';
 import { toast } from 'sonner';
 import { Skeleton } from '@/components/ui/skeleton';
 import type { Provider } from '@/types/model-store';
+import { resolveIconPath } from '@/assets/icons';
 
 export function ModelDetailPage() {
   const { modelId } = useParams<{ modelId: string }>();
@@ -134,7 +135,7 @@ export function ModelDetailPage() {
         </Button>
 
         <div className="flex items-start gap-4">
-          <img src={`/${model.icon}`} alt={model.name} className="h-16 w-16 rounded" />
+          <img src={resolveIconPath(model.icon)} alt={model.name} className="h-16 w-16 rounded" />
           <div className="flex-1">
             <h1 className="text-3xl font-bold mb-2">{model.name}</h1>
             <div className="flex items-center gap-2">
@@ -268,7 +269,7 @@ export function ModelDetailPage() {
                       <div className="flex items-center justify-between w-full pr-4">
                         <div className="flex items-center gap-3">
                           <img
-                            src={`/${provider.icon}`}
+                            src={resolveIconPath(provider.icon)}
                             alt={provider.name}
                             className="h-8 w-8 rounded"
                           />
@@ -454,7 +455,7 @@ export function ModelDetailPage() {
                       <CardContent className="p-4">
                         <div className="flex items-center gap-3 mb-2">
                           <img
-                            src={`/${relatedModel.icon}`}
+                            src={resolveIconPath(relatedModel.icon)}
                             alt={relatedModel.name}
                             className="h-6 w-6 rounded"
                           />

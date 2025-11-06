@@ -27,6 +27,7 @@ import { filterModels } from '@/services/model-store-service';
 import type { ModelFilters, Model } from '@/types/model-store';
 import { isCloudModel } from '@/types/model-store';
 import { cn } from '@/lib/utils';
+import { resolveIconPath } from '@/assets/icons';
 
 type ViewMode = 'cards' | 'table';
 
@@ -290,7 +291,7 @@ function ModelTable({ models, onModelClick }: ModelTableProps) {
                 {/* Model Column */}
                 <TableCell>
                   <div className="flex items-center gap-3">
-                    <img src={`/${model.icon}`} alt={model.name} className="h-8 w-8 rounded" />
+                    <img src={resolveIconPath(model.icon)} alt={model.name} className="h-8 w-8 rounded" />
                     <div className="min-w-0">
                       <div className="font-semibold truncate">{model.name}</div>
                       <div className="text-xs text-muted-foreground truncate font-mono">
@@ -329,7 +330,7 @@ function ModelTable({ models, onModelClick }: ModelTableProps) {
                     {modelProviders.slice(0, 3).map((provider) => (
                       <img
                         key={provider.id}
-                        src={`/${provider.icon}`}
+                        src={resolveIconPath(provider.icon)}
                         alt={provider.name}
                         className="h-5 w-5 rounded"
                         title={provider.name}
@@ -368,7 +369,7 @@ function ModelCard({ model, onClick }: ModelCardProps) {
       <CardContent className="p-6">
         {/* Model Icon and Name */}
         <div className="flex items-start gap-3 mb-4">
-          <img src={`/${model.icon}`} alt={model.name} className="h-8 w-8 rounded" />
+          <img src={resolveIconPath(model.icon)} alt={model.name} className="h-8 w-8 rounded" />
           <div className="flex-1 min-w-0">
             <h3 className="font-semibold text-base truncate">{model.name}</h3>
             <p className="text-xs text-muted-foreground truncate font-mono">
@@ -431,7 +432,7 @@ function ModelCard({ model, onClick }: ModelCardProps) {
           {modelProviders.slice(0, 4).map((provider) => (
             <img
               key={provider.id}
-              src={`/${provider.icon}`}
+              src={resolveIconPath(provider.icon)}
               alt={provider.name}
               className="h-5 w-5 rounded"
               title={provider.name}

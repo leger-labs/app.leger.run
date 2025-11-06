@@ -1,13 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-  <!-- AWS S3 inspired icon with vector representation -->
-  <rect x="5" y="8" width="30" height="24" rx="2" fill="#569A31" opacity="0.2"/>
-  <path d="M8 12 L20 8 L32 12 L20 16 Z" fill="#569A31"/>
-  <path d="M8 12 L8 20 L20 24 L20 16 Z" fill="#569A31" opacity="0.7"/>
-  <path d="M32 12 L32 20 L20 24 L20 16 Z" fill="#569A31" opacity="0.8"/>
-  <path d="M8 22 L20 26 L32 22 L20 28 Z" fill="#569A31"/>
-  <path d="M8 22 L8 30 L20 34 L20 28 Z" fill="#569A31" opacity="0.7"/>
-  <path d="M32 22 L32 30 L20 34 L20 28 Z" fill="#569A31" opacity="0.8"/>
-  <!-- Vector arrows -->
-  <path d="M25 18 L28 18" stroke="#FF9900" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M28 18 L27 17 M28 18 L27 19" stroke="#FF9900" stroke-width="1.5" stroke-linecap="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 40 40"><rect width="30" height="24" x="5" y="8" fill="#569a31" opacity=".2" rx="2"/><path fill="#569a31" d="m8 12 12-4 12 4-12 4Z"/><path fill="#569a31" d="M8 12v8l12 4v-8Z" opacity=".7"/><path fill="#569a31" d="M32 12v8l-12 4v-8Z" opacity=".8"/><path fill="#569a31" d="m8 22 12 4 12-4-12 6Z"/><path fill="#569a31" d="M8 22v8l12 4v-6Z" opacity=".7"/><path fill="#569a31" d="M32 22v8l-12 4v-6Z" opacity=".8"/><path stroke="#f90" stroke-linecap="round" stroke-width="1.5" d="M25 18h3m0 0-1-1m1 1-1 1"/></svg>
