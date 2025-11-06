@@ -1,0 +1,38 @@
+{
+  "id": "qwen3-8b",
+  "name": "Qwen3 8B",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://Qwen/Qwen3-8B-GGUF/qwen3-8b-q4_k_m.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q4_K_M",
+  "ram_required_gb": 6,
+  "context_window": 32768,
+  "group": "task",
+  "icon": "@/assets/icons/qwen.svg",
+  "description": "High-quality task model - complex reasoning",
+  "family": "qwen",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "ctx_size": 8192,
+  "ttl": 600,
+  "hf_repo": "Qwen/Qwen3-8B-GGUF",
+  "hf_file": "qwen3-8b-q4_k_m.gguf",
+  "shortname": "qwen3-large",
+  "vulkan_driver": "RADV",
+  "flash_attn": true,
+  "enabled": false,
+  "use_cases": [
+    "Complex task automation",
+    "Advanced summarization",
+    "Multi-step reasoning",
+    "Higher quality chat interactions"
+  ],
+  "notes": "Enable when you need stronger reasoning for on-device workloads"
+}

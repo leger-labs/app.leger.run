@@ -1,0 +1,40 @@
+{
+  "id": "nomic-embed-text-v1.5",
+  "name": "Nomic Embed Text v1.5",
+  "maker": "nomic",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://nomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q8_0.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q8_0",
+  "ram_required_gb": 1,
+  "context_window": 8192,
+  "group": "embeddings",
+  "icon": "@/assets/icons/huggingface.svg",
+  "description": "OpenAI-compatible embedding (text-embedding-3-small alternative)",
+  "family": "nomic",
+  "capabilities": [
+    "embeddings"
+  ],
+  "ctx_size": 8192,
+  "ttl": 0,
+  "hf_repo": "nomic-ai/nomic-embed-text-v1.5-GGUF",
+  "hf_file": "nomic-embed-text-v1.5.Q8_0.gguf",
+  "aliases": [
+    "text-embedding-3-small"
+  ],
+  "embedding_dimension": 768,
+  "vulkan_driver": "RADV",
+  "flash_attn": false,
+  "enabled": false,
+  "use_cases": [
+    "Drop-in OpenAI embedding replacement",
+    "Lightweight semantic search",
+    "Metadata enrichment",
+    "Vector database experimentation"
+  ],
+  "notes": "Ideal when you want OpenAI-compatible embeddings without leaving the stack"
+}
