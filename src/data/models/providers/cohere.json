@@ -6,5 +6,21 @@
   "requires_api_key": "COHERE_API_KEY",
   "api_key_register_url": "https://dashboard.cohere.com/signup",
   "description": "Enterprise-grade language model APIs from Cohere",
-  "provider_type": "api"
+  "provider_type": "api",
+  "models": [
+    {
+      "id": "cohere/command-a",
+      "maker": "cohere",
+      "context": 256000,
+      "input_cost_per_million": 2.5,
+      "output_cost_per_million": 10.0
+    },
+    {
+      "id": "cohere/embed-v4.0",
+      "maker": "cohere",
+      "context": null,
+      "input_cost_per_million": 0.12,
+      "output_cost_per_million": null
+    }
+  ]
 }

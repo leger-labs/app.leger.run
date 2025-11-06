@@ -1,7 +1,18 @@
 {
   "id": "meta",
-  "name": "Meta",
+  "name": "Meta AI",
   "icon": "@/assets/icons/meta.svg",
-  "website": "https://www.llama.com/",
-  "description": "Creator of the Llama open-source model family"
+  "website": "https://ai.meta.com/",
+  "description": "Meta AI research organization behind Llama models",
+  "models": [
+    "meta/llama-3.1-70b",
+    "meta/llama-3.1-8b",
+    "meta/llama-3.2-11b",
+    "meta/llama-3.2-1b",
+    "meta/llama-3.2-3b",
+    "meta/llama-3.2-90b",
+    "meta/llama-3.3-70b",
+    "meta/llama-4-maverick",
+    "meta/llama-4-scout"
+  ]
 }

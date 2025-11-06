@@ -3,5 +3,23 @@
   "name": "Mistral AI",
   "icon": "@/assets/icons/mistral.svg",
   "website": "https://mistral.ai/",
-  "description": "European AI company creating open and commercial models"
+  "description": "European AI company creating efficient language models",
+  "models": [
+    "mistral/codestral",
+    "mistral/codestral-embed",
+    "mistral/devstral-small",
+    "mistral/magistral-medium",
+    "mistral/magistral-medium-2506",
+    "mistral/magistral-small",
+    "mistral/magistral-small-2506",
+    "mistral/ministral-3b",
+    "mistral/ministral-8b",
+    "mistral/mistral-embed",
+    "mistral/mistral-large",
+    "mistral/mistral-medium",
+    "mistral/mistral-small",
+    "mistral/mixtral-8x22b-instruct",
+    "mistral/pixtral-12b",
+    "mistral/pixtral-large"
+  ]
 }

@@ -6,5 +6,70 @@
   "requires_api_key": "ANTHROPIC_API_KEY",
   "api_key_register_url": "https://console.anthropic.com/",
   "description": "Official Anthropic API for Claude models",
-  "provider_type": "api"
+  "provider_type": "api",
+  "models": [
+    {
+      "id": "anthropic/claude-3-haiku",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 0.25,
+      "output_cost_per_million": 1.25
+    },
+    {
+      "id": "anthropic/claude-3-opus",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 15.0,
+      "output_cost_per_million": 75.0
+    },
+    {
+      "id": "anthropic/claude-3.5-haiku",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 0.8,
+      "output_cost_per_million": 4.0
+    },
+    {
+      "id": "anthropic/claude-3.7-sonnet",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 3.0,
+      "output_cost_per_million": 15.0
+    },
+    {
+      "id": "anthropic/claude-haiku-4.5",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 1.0,
+      "output_cost_per_million": 5.0
+    },
+    {
+      "id": "anthropic/claude-opus-4",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 15.0,
+      "output_cost_per_million": 75.0
+    },
+    {
+      "id": "anthropic/claude-opus-4.1",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 15.0,
+      "output_cost_per_million": 75.0
+    },
+    {
+      "id": "anthropic/claude-sonnet-4",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 3.0,
+      "output_cost_per_million": 15.0
+    },
+    {
+      "id": "anthropic/claude-sonnet-4.5",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 3.0,
+      "output_cost_per_million": 15.0
+    }
+  ]
 }

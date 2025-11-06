@@ -6,5 +6,28 @@
   "requires_api_key": "MOONSHOT_API_KEY",
   "api_key_register_url": "https://moonshot.cn/",
   "description": "Access to Moonshot AI's Kimi large language models",
-  "provider_type": "api"
+  "provider_type": "api",
+  "models": [
+    {
+      "id": "moonshotai/kimi-k2",
+      "maker": "moonshotai",
+      "context": 131000,
+      "input_cost_per_million": 0.5,
+      "output_cost_per_million": 2.0
+    },
+    {
+      "id": "moonshotai/kimi-k2-0905",
+      "maker": "moonshotai",
+      "context": 131000,
+      "input_cost_per_million": 0.6,
+      "output_cost_per_million": 2.5
+    },
+    {
+      "id": "moonshotai/kimi-k2-turbo",
+      "maker": "moonshotai",
+      "context": 256000,
+      "input_cost_per_million": 2.4,
+      "output_cost_per_million": 10.0
+    }
+  ]
 }

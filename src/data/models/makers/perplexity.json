@@ -1,0 +1,13 @@
+{
+  "id": "perplexity",
+  "name": "Perplexity AI",
+  "icon": "@/assets/icons/perplexity.svg",
+  "website": "https://www.perplexity.ai/",
+  "description": "AI search company offering Sonar reasoning models",
+  "models": [
+    "perplexity/sonar",
+    "perplexity/sonar-pro",
+    "perplexity/sonar-reasoning",
+    "perplexity/sonar-reasoning-pro"
+  ]
+}

@@ -6,5 +6,70 @@
   "requires_api_key": "GROQ_API_KEY",
   "api_key_register_url": "https://console.groq.com/keys",
   "description": "Ultra-fast inference on Groq LPU hardware",
-  "provider_type": "api"
+  "provider_type": "api",
+  "models": [
+    {
+      "id": "alibaba/qwen-3-32b",
+      "maker": "qwen",
+      "context": 128000,
+      "input_cost_per_million": 0.1,
+      "output_cost_per_million": 0.3
+    },
+    {
+      "id": "meta/llama-3.1-8b",
+      "maker": "meta",
+      "context": 128000,
+      "input_cost_per_million": 0.05,
+      "output_cost_per_million": 0.08
+    },
+    {
+      "id": "meta/llama-3.3-70b",
+      "maker": "meta",
+      "context": 128000,
+      "input_cost_per_million": 0.72,
+      "output_cost_per_million": 0.72
+    },
+    {
+      "id": "meta/llama-4-scout",
+      "maker": "meta",
+      "context": 128000,
+      "input_cost_per_million": 0.08,
+      "output_cost_per_million": 0.3
+    },
+    {
+      "id": "moonshotai/kimi-k2",
+      "maker": "moonshotai",
+      "context": 131000,
+      "input_cost_per_million": 0.5,
+      "output_cost_per_million": 2.0
+    },
+    {
+      "id": "moonshotai/kimi-k2-0905",
+      "maker": "moonshotai",
+      "context": 131000,
+      "input_cost_per_million": 0.6,
+      "output_cost_per_million": 2.5
+    },
+    {
+      "id": "openai/gpt-oss-120b",
+      "maker": "openai",
+      "context": 131000,
+      "input_cost_per_million": 0.1,
+      "output_cost_per_million": 0.5
+    },
+    {
+      "id": "openai/gpt-oss-20b",
+      "maker": "openai",
+      "context": 128000,
+      "input_cost_per_million": 0.07,
+      "output_cost_per_million": 0.3
+    },
+    {
+      "id": "openai/gpt-oss-safeguard-20b",
+      "maker": "openai",
+      "context": 131000,
+      "input_cost_per_million": 0.07,
+      "output_cost_per_million": 0.3
+    }
+  ]
 }

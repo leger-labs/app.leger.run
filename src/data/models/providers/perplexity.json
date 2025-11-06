@@ -6,5 +6,35 @@
   "requires_api_key": "PERPLEXITY_API_KEY",
   "api_key_register_url": "https://www.perplexity.ai/hub",
   "description": "Perplexity's conversational search and answer API",
-  "provider_type": "api"
+  "provider_type": "api",
+  "models": [
+    {
+      "id": "perplexity/sonar",
+      "maker": "perplexity",
+      "context": 127000,
+      "input_cost_per_million": 1.0,
+      "output_cost_per_million": 1.0
+    },
+    {
+      "id": "perplexity/sonar-pro",
+      "maker": "perplexity",
+      "context": 200000,
+      "input_cost_per_million": 3.0,
+      "output_cost_per_million": 15.0
+    },
+    {
+      "id": "perplexity/sonar-reasoning",
+      "maker": "perplexity",
+      "context": 127000,
+      "input_cost_per_million": 1.0,
+      "output_cost_per_million": 5.0
+    },
+    {
+      "id": "perplexity/sonar-reasoning-pro",
+      "maker": "perplexity",
+      "context": 127000,
+      "input_cost_per_million": 2.0,
+      "output_cost_per_million": 8.0
+    }
+  ]
 }

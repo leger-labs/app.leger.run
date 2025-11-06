@@ -12,6 +12,7 @@ export interface Maker {
   icon: string; // path to asset (e.g., "assets/makers/anthropic.svg")
   website: string;
   description: string;
+  models?: string[];
 }
 
 /**
@@ -25,7 +26,16 @@ export interface Provider {
   requires_api_key: string | null; // env var name (e.g., "ANTHROPIC_API_KEY") or null for llama-cpp
   api_key_register_url?: string;
   description: string;
-  provider_type: 'api' | 'local';
+  provider_type: 'api' | 'cloud' | 'local';
+  models?: ProviderModelDetails[];
+}
+
+export interface ProviderModelDetails {
+  id: string;
+  maker: string;
+  context: number | null;
+  input_cost_per_million: number | null;
+  output_cost_per_million: number | null;
 }
 
 /**

@@ -3,5 +3,13 @@
   "name": "DeepSeek",
   "icon": "@/assets/icons/deepseek.svg",
   "website": "https://www.deepseek.com/",
-  "description": "Creator of DeepSeek reasoning models"
+  "description": "DeepSeek research lab focused on large language models",
+  "models": [
+    "deepseek/deepseek-r1",
+    "deepseek/deepseek-v3",
+    "deepseek/deepseek-v3.1",
+    "deepseek/deepseek-v3.1-terminus",
+    "deepseek/deepseek-v3.2-exp",
+    "deepseek/deepseek-v3.2-exp-thinking"
+  ]
 }

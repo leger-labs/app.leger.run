@@ -1,0 +1,11 @@
+{
+  "id": "cohere",
+  "name": "Cohere",
+  "icon": "@/assets/icons/cohere.svg",
+  "website": "https://cohere.com/",
+  "description": "Enterprise AI company providing Command and Embed models",
+  "models": [
+    "cohere/command-a",
+    "cohere/embed-v4.0"
+  ]
+}

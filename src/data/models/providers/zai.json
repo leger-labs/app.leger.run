@@ -6,5 +6,35 @@
   "requires_api_key": "ZAI_API_KEY",
   "api_key_register_url": "https://z.ai/",
   "description": "Z.ai's unified API for leading frontier models",
-  "provider_type": "api"
+  "provider_type": "api",
+  "models": [
+    {
+      "id": "zai/glm-4.5",
+      "maker": "zai",
+      "context": 128000,
+      "input_cost_per_million": 0.6,
+      "output_cost_per_million": 2.2
+    },
+    {
+      "id": "zai/glm-4.5-air",
+      "maker": "zai",
+      "context": 128000,
+      "input_cost_per_million": 0.2,
+      "output_cost_per_million": 1.1
+    },
+    {
+      "id": "zai/glm-4.5v",
+      "maker": "zai",
+      "context": 66000,
+      "input_cost_per_million": 0.6,
+      "output_cost_per_million": 1.8
+    },
+    {
+      "id": "zai/glm-4.6",
+      "maker": "zai",
+      "context": 200000,
+      "input_cost_per_million": 0.45,
+      "output_cost_per_million": 1.8
+    }
+  ]
 }
