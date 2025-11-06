@@ -1,5 +1,5 @@
 /**
- * AI Gateway Models Page
+ * Models Page
  * Browse and explore available AI models
  */
 
@@ -30,7 +30,7 @@ import { resolveIconPath } from '@/assets/icons';
 
 type ViewMode = 'cards' | 'table';
 
-export function AIGatewayModelsPage() {
+export function ModelsPage() {
   const { models, providers, isLoading } = useModelStore();
   const navigate = useNavigate();
 
@@ -79,7 +79,7 @@ export function AIGatewayModelsPage() {
   }, [models, providers]);
 
   const handleModelClick = (modelId: string) => {
-    navigate(`/ai-gateway/models/${modelId}`);
+    navigate(`/models/${modelId}`);
   };
 
   const handleClearFilters = () => {
