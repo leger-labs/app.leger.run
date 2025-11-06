@@ -1,5 +1,5 @@
 /**
- * AI Gateway Providers Page
+ * Providers Page
  * Manage AI provider connections and credentials
  */
 
@@ -27,7 +27,7 @@ import { toast } from 'sonner';
 import type { Provider } from '@/types/model-store';
 import { resolveIconPath } from '@/assets/icons';
 
-export function AIGatewayProvidersPage() {
+export function ProvidersPage() {
   const { providers, isLoading: isLoadingModelStore } = useModelStore();
   const { secrets, isLoading: isLoadingSecrets, upsertSecret } = useSecrets();
 
