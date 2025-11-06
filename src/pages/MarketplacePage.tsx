@@ -11,7 +11,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Skeleton } from '@/components/ui/skeleton';
 import {
   Dialog,
@@ -46,6 +45,16 @@ const CATEGORY_LABELS: Record<string, string> = {
   'content-extraction': 'Content Extraction',
 };
 
+function formatCategoryLabel(id: string) {
+  if (id === 'all') return 'All Categories';
+  if (CATEGORY_LABELS[id]) return CATEGORY_LABELS[id];
+
+  return id
+    .split(/[-_]/)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ');
+}
+
 export function MarketplacePage() {
   const { services, isLoading, getCategories } = useMarketplace();
 
@@ -60,7 +69,7 @@ export function MarketplacePage() {
     const cats = getCategories();
     return [
       { id: 'all', count: services.length },
-      ...cats.sort((a, b) => a.id.localeCompare(b.id)),
+      ...cats.sort((a, b) => formatCategoryLabel(a.id).localeCompare(formatCategoryLabel(b.id))),
     ];
   }, [services, getCategories]);
 
@@ -163,18 +172,50 @@ export function MarketplacePage() {
         </a>
       </div>
 
-      {/* Search and Filters */}
-      <div className="mb-8 space-y-4">
-        <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold">Browse Services</h3>
-          <div className="text-sm text-muted-foreground">
-            {filteredServices.length} service{filteredServices.length !== 1 ? 's' : ''}
+      <div className="lg:flex lg:items-start lg:gap-8">
+        {/* Category Sidebar */}
+        <aside className="mb-8 lg:mb-0 lg:w-64 lg:shrink-0">
+          <div className="rounded-lg border bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 p-3 lg:sticky lg:top-24">
+            <h4 className="mb-2 px-2 text-xs font-semibold uppercase text-muted-foreground tracking-wide">
+              Categories
+            </h4>
+            <nav className="flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:gap-1 lg:overflow-visible lg:pb-0">
+              {categories.map((cat) => {
+                const isActive = selectedCategory === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    onClick={() => setSelectedCategory(cat.id)}
+                    className={cn(
+                      'flex min-w-[160px] items-center justify-between gap-3 rounded-md px-3 py-2 text-sm transition-colors lg:min-w-0',
+                      isActive
+                        ? 'bg-primary/10 text-primary font-medium'
+                        : 'hover:bg-muted text-muted-foreground'
+                    )}
+                  >
+                    <span className="truncate">{formatCategoryLabel(cat.id)}</span>
+                    <span className={cn('text-xs', isActive ? 'text-primary' : 'text-muted-foreground')}>
+                      {cat.count}
+                    </span>
+                  </button>
+                );
+              })}
+            </nav>
           </div>
-        </div>
+        </aside>
 
-        <div className="flex flex-col sm:flex-row gap-4">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        {/* Search and Results */}
+        <div className="flex-1 space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-lg font-semibold">Browse Services</h3>
+            <div className="text-sm text-muted-foreground">
+              {filteredServices.length} service{filteredServices.length !== 1 ? 's' : ''}
+            </div>
+          </div>
+
+          <div className="relative">
+            <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               placeholder="Search services..."
               value={search}
@@ -182,43 +223,32 @@ export function MarketplacePage() {
               className="pl-9"
             />
           </div>
-        </div>
 
-        {/* Category Filters */}
-        <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
-          <TabsList className="flex-wrap h-auto">
-            {categories.map((cat) => (
-              <TabsTrigger key={cat.id} value={cat.id}>
-                {cat.id === 'all' ? 'All' : CATEGORY_LABELS[cat.id] || cat.id} ({cat.count})
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
+          {/* Service Grid */}
+          {filteredServices.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-16 text-center">
+              <SearchX className="h-16 w-16 text-muted-foreground mb-4" />
+              <h3 className="text-lg font-semibold mb-2">No services found</h3>
+              <p className="text-sm text-muted-foreground mb-6 max-w-sm">
+                Try adjusting your filters or search term to find what you're looking for.
+              </p>
+              <Button variant="outline" onClick={handleClearFilters}>
+                Clear filters
+              </Button>
+            </div>
+          ) : (
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {filteredServices.map((service) => (
+                <ServiceCard
+                  key={service.id}
+                  service={service}
+                  onInstall={handleInstall}
+                />
+              ))}
+            </div>
+          )}
+        </div>
       </div>
-
-      {/* Service Grid */}
-      {filteredServices.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-16 text-center">
-          <SearchX className="h-16 w-16 text-muted-foreground mb-4" />
-          <h3 className="text-lg font-semibold mb-2">No services found</h3>
-          <p className="text-sm text-muted-foreground mb-6 max-w-sm">
-            Try adjusting your filters or search term to find what you're looking for.
-          </p>
-          <Button variant="outline" onClick={handleClearFilters}>
-            Clear filters
-          </Button>
-        </div>
-      ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {filteredServices.map((service) => (
-            <ServiceCard
-              key={service.id}
-              service={service}
-              onInstall={handleInstall}
-            />
-          ))}
-        </div>
-      )}
 
       {/* Install Service Dialog */}
       <Dialog open={!!selectedService} onOpenChange={handleCloseDialog}>
