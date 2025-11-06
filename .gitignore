@@ -57,6 +57,5 @@ src/_future/
 src/_future/
 dist-storybook/
 
-# Generated copies from submodules
-public/model-store/
-public/marketplace/
+# Generated files
+public/generated/

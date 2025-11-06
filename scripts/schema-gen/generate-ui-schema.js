@@ -15,7 +15,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const SCHEMA_PATH = join(__dirname, '../../schemas/releases/latest/schema.json');
+const SCHEMA_PATH = join(__dirname, '../../src/data/core/schema.json');
 const UI_SCHEMA_OUTPUT_PATH = join(
   __dirname,
   '../../src/generated/uiSchema.json'
