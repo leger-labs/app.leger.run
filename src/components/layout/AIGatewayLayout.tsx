@@ -6,7 +6,7 @@
 import { Outlet, NavLink, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import type { LucideIcon } from 'lucide-react';
-import { LayoutDashboard, ListTree, Layers, KeyRound, Blocks } from 'lucide-react';
+import { LayoutDashboard, ListTree, Layers, KeyRound, Boxes } from 'lucide-react';
 
 interface NavItem {
   label: string;
@@ -20,7 +20,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Models', to: '/ai-gateway/models', icon: Layers },
   { label: 'Providers', to: '/ai-gateway/providers', icon: ListTree },
   { label: 'API Keys', to: '/ai-gateway/api-keys', icon: KeyRound, disabled: true },
-  { label: 'Templates', to: '/ai-gateway/templates', icon: Blocks, disabled: true },
+  { label: 'Templates', to: '/ai-gateway/templates', icon: Boxes, disabled: true },
 ];
 
 export function AIGatewayLayout() {
