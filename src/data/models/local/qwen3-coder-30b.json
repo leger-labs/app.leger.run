@@ -5,12 +5,12 @@
   "providers": [
     {
       "id": "llama-cpp",
-      "model_uri": "huggingface://unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF/Qwen3-Coder-30B-A3B-Instruct-BF16.gguf",
+      "model_uri": "huggingface://unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF/Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf",
       "is_default": true
     }
   ],
-  "quantization": "BF16",
-  "ram_required_gb": 60,
+  "quantization": "Q4_K_M",
+  "ram_required_gb": 32,
   "context_window": 8192,
   "group": "heavy",
   "icon": "@/assets/icons/qwen.svg",
@@ -23,7 +23,7 @@
   "ctx_size": 8192,
   "ttl": 900,
   "hf_repo": "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF",
-  "hf_file": "Qwen3-Coder-30B-A3B-Instruct-BF16.gguf",
+  "hf_file": "Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf",
   "vulkan_driver": "RADV",
   "flash_attn": true,
   "enabled": false,
@@ -33,5 +33,132 @@
     "Code review and analysis",
     "Algorithm implementation"
   ],
-  "notes": "Specialized for coding tasks with BF16 precision for maximum accuracy"
+  "quantization_options": [
+    {
+      "level": "Q4_K_M",
+      "hf_file": "Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf",
+      "ram_required_gb": 32,
+      "recommended_backend": "vulkan_radv",
+      "benchmarks": {
+        "prompt_processing": {
+          "context": "pp512",
+          "metric": "tokens_per_second",
+          "winner": "vulkan_radv",
+          "backends": [
+            {
+              "id": "rocm6_4_4-rocwmma",
+              "throughput": 662.07,
+              "stddev": 2.63
+            },
+            {
+              "id": "rocm7_rc-rocwmma",
+              "throughput": 652.79,
+              "stddev": 5.72
+            },
+            {
+              "id": "vulkan_amdvlk",
+              "throughput": 773.64,
+              "stddev": 3.79
+            },
+            {
+              "id": "vulkan_radv",
+              "throughput": 832.99,
+              "stddev": 3.06
+            }
+          ]
+        },
+        "text_generation": {
+          "context": "tg128",
+          "metric": "tokens_per_second",
+          "winner": "vulkan_radv",
+          "backends": [
+            {
+              "id": "rocm6_4_4-rocwmma",
+              "throughput": 68.4,
+              "stddev": 0.02
+            },
+            {
+              "id": "rocm7_rc-rocwmma",
+              "throughput": 68.7,
+              "stddev": 0.02
+            },
+            {
+              "id": "vulkan_amdvlk",
+              "throughput": 77.82,
+              "stddev": 0.06
+            },
+            {
+              "id": "vulkan_radv",
+              "throughput": 81.4,
+              "stddev": 0.12
+            }
+          ]
+        }
+      }
+    },
+    {
+      "level": "BF16",
+      "hf_file": "Qwen3-Coder-30B-A3B-Instruct-BF16.gguf",
+      "ram_required_gb": 60,
+      "recommended_backend": "rocm6_4_4-rocwmma",
+      "notes": "Full-precision variant for maximum quality"
+    }
+  ],
+  "benchmarks": {
+    "prompt_processing": {
+      "context": "pp512",
+      "metric": "tokens_per_second",
+      "winner": "vulkan_radv",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 662.07,
+          "stddev": 2.63
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 652.79,
+          "stddev": 5.72
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 773.64,
+          "stddev": 3.79
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 832.99,
+          "stddev": 3.06
+        }
+      ]
+    },
+    "text_generation": {
+      "context": "tg128",
+      "metric": "tokens_per_second",
+      "winner": "vulkan_radv",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 68.4,
+          "stddev": 0.02
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 68.7,
+          "stddev": 0.02
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 77.82,
+          "stddev": 0.06
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 81.4,
+          "stddev": 0.12
+        }
+      ]
+    }
+  },
+  "notes": "Specialized for coding tasks. Default Q4_K_M variant aligns with latest benchmark results."
 }

@@ -1,0 +1,102 @@
+{
+  "id": "llama-3.3-70b-instruct",
+  "name": "Llama 3.3 70B Instruct",
+  "maker": "meta",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://meta-llama/Llama-3.3-70B-Instruct-GGUF/llama-3.3-70b-instruct-q8_k_xl.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q8_K_XL",
+  "ram_required_gb": 72,
+  "context_window": 8192,
+  "group": "heavy",
+  "icon": "@/assets/icons/meta.svg",
+  "description": "Latest 70B Llama 3.3 instruct tuned for premium local assistants",
+  "family": "llama",
+  "capabilities": [
+    "chat",
+    "code",
+    "reasoning"
+  ],
+  "ctx_size": 8192,
+  "ttl": 1200,
+  "hf_repo": "meta-llama/Llama-3.3-70B-Instruct-GGUF",
+  "hf_file": "llama-3.3-70b-instruct-q8_k_xl.gguf",
+  "vulkan_driver": "AMDVLK",
+  "flash_attn": true,
+  "enabled": false,
+  "use_cases": [
+    "Executive copilots",
+    "Strategic planning",
+    "Advanced development workflows",
+    "High-quality multilingual chat"
+  ],
+  "quantization_options": [
+    {
+      "level": "Q8_K_XL",
+      "hf_file": "llama-3.3-70b-instruct-q8_k_xl.gguf",
+      "ram_required_gb": 72,
+      "recommended_backend": "rocm6_4_4-rocwmma"
+    }
+  ],
+  "benchmarks": {
+    "prompt_processing": {
+      "context": "pp512",
+      "metric": "tokens_per_second",
+      "winner": "rocm6_4_4-rocwmma",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 103.65,
+          "stddev": 0.17
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 103.05,
+          "stddev": 0.09
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 98.46,
+          "stddev": 0.54
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 86.06,
+          "stddev": 1.83
+        }
+      ]
+    },
+    "text_generation": {
+      "context": "tg128",
+      "metric": "tokens_per_second",
+      "winner": "rocm6_4_4-rocwmma",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 2.79,
+          "stddev": 0.0
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 2.78,
+          "stddev": 0.01
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 2.8,
+          "stddev": 0.0
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 2.78,
+          "stddev": 0.0
+        }
+      ]
+    }
+  },
+  "notes": "All backends perform similarly for generation; ROCm edges out for prompt processing."
+}

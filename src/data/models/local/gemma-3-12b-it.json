@@ -1,0 +1,102 @@
+{
+  "id": "gemma-3-12b-it",
+  "name": "Gemma 3 12B Instruct",
+  "maker": "google",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://google/gemma-3-12b-it-GGUF/gemma-3-12b-it-Q8_K_XL.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q8_K_XL",
+  "ram_required_gb": 28,
+  "context_window": 8192,
+  "group": "reasoning",
+  "icon": "@/assets/icons/gemma.svg",
+  "description": "Balanced Gemma 3 instruction model for higher-quality on-device reasoning",
+  "family": "gemma",
+  "capabilities": [
+    "chat",
+    "code",
+    "reasoning"
+  ],
+  "ctx_size": 8192,
+  "ttl": 900,
+  "hf_repo": "google/gemma-3-12b-it-GGUF",
+  "hf_file": "gemma-3-12b-it-Q8_K_XL.gguf",
+  "vulkan_driver": "AMDVLK",
+  "flash_attn": true,
+  "enabled": false,
+  "use_cases": [
+    "Productivity copilots",
+    "Analytical writing",
+    "Intermediate software design",
+    "Multilingual chat"
+  ],
+  "quantization_options": [
+    {
+      "level": "Q8_K_XL",
+      "hf_file": "gemma-3-12b-it-Q8_K_XL.gguf",
+      "ram_required_gb": 28,
+      "recommended_backend": "vulkan_amdvlk"
+    }
+  ],
+  "benchmarks": {
+    "prompt_processing": {
+      "context": "pp512",
+      "metric": "tokens_per_second",
+      "winner": "rocm6_4_4-rocwmma",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 809.2,
+          "stddev": 0.75
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 799.43,
+          "stddev": 1.14
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 648.34,
+          "stddev": 0.61
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 532.11,
+          "stddev": 3.15
+        }
+      ]
+    },
+    "text_generation": {
+      "context": "tg128",
+      "metric": "tokens_per_second",
+      "winner": "vulkan_amdvlk",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 14.11,
+          "stddev": 0.0
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 14.11,
+          "stddev": 0.0
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 14.52,
+          "stddev": 0.0
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 13.98,
+          "stddev": 0.0
+        }
+      ]
+    }
+  },
+  "notes": "Consistent throughput across ROCm and Vulkan backends; data collected with pp512/tg128 workloads."
+}

@@ -1,0 +1,101 @@
+{
+  "id": "gemma-3-4b-it",
+  "name": "Gemma 3 4B Instruct",
+  "maker": "google",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://google/gemma-3-4b-it-GGUF/gemma-3-4b-it-Q3_K_S.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q3_K_S",
+  "ram_required_gb": 5,
+  "context_window": 8192,
+  "group": "task",
+  "icon": "@/assets/icons/gemma.svg",
+  "description": "Compact Gemma 3 assistant fine-tune for fast on-device reasoning and chat",
+  "family": "gemma",
+  "capabilities": [
+    "chat",
+    "code"
+  ],
+  "ctx_size": 8192,
+  "ttl": 600,
+  "hf_repo": "google/gemma-3-4b-it-GGUF",
+  "hf_file": "gemma-3-4b-it-Q3_K_S.gguf",
+  "vulkan_driver": "RADV",
+  "flash_attn": true,
+  "enabled": false,
+  "use_cases": [
+    "Snappy personal assistants",
+    "Edge deployments with tight VRAM budgets",
+    "Lightweight code comprehension",
+    "Conversational agents for quick answers"
+  ],
+  "quantization_options": [
+    {
+      "level": "Q3_K_S",
+      "hf_file": "gemma-3-4b-it-Q3_K_S.gguf",
+      "ram_required_gb": 5,
+      "recommended_backend": "rocm6_4_4-rocwmma"
+    }
+  ],
+  "benchmarks": {
+    "prompt_processing": {
+      "context": "pp512",
+      "metric": "tokens_per_second",
+      "winner": "rocm6_4_4-rocwmma",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 2278.78,
+          "stddev": 8.79
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 2249.97,
+          "stddev": 8.38
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 1193.42,
+          "stddev": 154.0
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 1150.84,
+          "stddev": 174.29
+        }
+      ]
+    },
+    "text_generation": {
+      "context": "tg128",
+      "metric": "tokens_per_second",
+      "winner": "vulkan_radv",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 76.94,
+          "stddev": 0.01
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 77.23,
+          "stddev": 0.02
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 82.87,
+          "stddev": 1.37
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 85.89,
+          "stddev": 0.11
+        }
+      ]
+    }
+  },
+  "notes": "Benchmark data captured from pp512/tg128 tests; ideal for ultra-fast responses with ROCm or RADV backends."
+}

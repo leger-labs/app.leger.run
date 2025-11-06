@@ -10,11 +10,11 @@
     }
   ],
   "quantization": "Q4_K_XL",
-  "ram_required_gb": 58,
+  "ram_required_gb": 32,
   "context_window": 10485760,
   "group": "heavy",
   "icon": "@/assets/icons/meta.svg",
-  "description": "Extended context specialist - 10M token capability",
+  "description": "Extended-context Llama 4 Scout 17B (16E) tuned for huge transcripts and strong coding",
   "family": "llama",
   "capabilities": [
     "chat",
@@ -34,5 +34,249 @@
     "Multi-document synthesis",
     "Extended conversations"
   ],
-  "notes": "Can theoretically do 10M context, but 65k is much more practical for speed. Better with AMDVLK for long prompts"
+  "quantization_options": [
+    {
+      "level": "Q4_K_XL",
+      "hf_file": "Llama-4-Scout-17B-16E-Instruct-UD-Q4_K_XL.gguf",
+      "ram_required_gb": 32,
+      "recommended_backend": "rocm6_4_4-rocwmma",
+      "benchmarks": {
+        "prompt_processing": {
+          "context": "pp512",
+          "metric": "tokens_per_second",
+          "winner": "rocm6_4_4-rocwmma (tie with rocm7_rc-rocwmma)",
+          "backends": [
+            {
+              "id": "rocm6_4_4-rocwmma",
+              "throughput": 305.77,
+              "stddev": 1.56
+            },
+            {
+              "id": "rocm7_rc-rocwmma",
+              "throughput": 305.36,
+              "stddev": 1.78
+            },
+            {
+              "id": "vulkan_amdvlk",
+              "throughput": 194.33,
+              "stddev": 1.56
+            },
+            {
+              "id": "vulkan_radv",
+              "throughput": 228.13,
+              "stddev": 3.26
+            }
+          ]
+        },
+        "text_generation": {
+          "context": "tg128",
+          "metric": "tokens_per_second",
+          "winner": "vulkan_radv (close tie with vulkan_amdvlk)",
+          "backends": [
+            {
+              "id": "rocm6_4_4-rocwmma",
+              "throughput": 17.97,
+              "stddev": 0.0
+            },
+            {
+              "id": "rocm7_rc-rocwmma",
+              "throughput": 17.97,
+              "stddev": 0.0
+            },
+            {
+              "id": "vulkan_amdvlk",
+              "throughput": 20.64,
+              "stddev": 0.01
+            },
+            {
+              "id": "vulkan_radv",
+              "throughput": 20.88,
+              "stddev": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "level": "Q6_K",
+      "hf_file": "Llama-4-Scout-17B-16E-Instruct-UD-Q6_K.gguf",
+      "ram_required_gb": 40,
+      "recommended_backend": "rocm7_rc-rocwmma",
+      "benchmarks": {
+        "prompt_processing": {
+          "context": "pp512",
+          "metric": "tokens_per_second",
+          "winner": "rocm7_rc-rocwmma (tie with rocm6_4_4-rocwmma)",
+          "backends": [
+            {
+              "id": "rocm6_4_4-rocwmma",
+              "throughput": 282.95,
+              "stddev": 5.18
+            },
+            {
+              "id": "rocm7_rc-rocwmma",
+              "throughput": 288.92,
+              "stddev": 3.51
+            },
+            {
+              "id": "vulkan_amdvlk",
+              "throughput": 224.57,
+              "stddev": 3.64
+            },
+            {
+              "id": "vulkan_radv",
+              "throughput": 212.38,
+              "stddev": 2.39
+            }
+          ]
+        },
+        "text_generation": {
+          "context": "tg128",
+          "metric": "tokens_per_second",
+          "winner": "vulkan_amdvlk (tie with vulkan_radv)",
+          "backends": [
+            {
+              "id": "rocm6_4_4-rocwmma",
+              "throughput": 14.77,
+              "stddev": 0.06
+            },
+            {
+              "id": "rocm7_rc-rocwmma",
+              "throughput": 14.81,
+              "stddev": 0.0
+            },
+            {
+              "id": "vulkan_amdvlk",
+              "throughput": 15.76,
+              "stddev": 0.01
+            },
+            {
+              "id": "vulkan_radv",
+              "throughput": 15.76,
+              "stddev": 0.01
+            }
+          ]
+        }
+      }
+    },
+    {
+      "level": "Q8_0",
+      "hf_file": "Llama-4-Scout-17B-16E-Instruct-UD-Q8_0.gguf",
+      "ram_required_gb": 56,
+      "recommended_backend": "vulkan_amdvlk",
+      "benchmarks": {
+        "prompt_processing": {
+          "context": "pp512",
+          "metric": "tokens_per_second",
+          "winner": "vulkan_amdvlk",
+          "backends": [
+            {
+              "id": "rocm6_4_4-rocwmma",
+              "throughput": 293.68,
+              "stddev": 3.72
+            },
+            {
+              "id": "rocm7_rc-rocwmma",
+              "throughput": 296.04,
+              "stddev": 2.16
+            },
+            {
+              "id": "vulkan_amdvlk",
+              "throughput": 346.93,
+              "stddev": 1.5
+            },
+            {
+              "id": "vulkan_radv",
+              "throughput": 280.38,
+              "stddev": 1.48
+            }
+          ]
+        },
+        "text_generation": {
+          "context": "tg128",
+          "metric": "tokens_per_second",
+          "winner": "vulkan_radv",
+          "backends": [
+            {
+              "id": "rocm6_4_4-rocwmma",
+              "throughput": 11.96,
+              "stddev": 0.02
+            },
+            {
+              "id": "rocm7_rc-rocwmma",
+              "throughput": 11.98,
+              "stddev": 0.0
+            },
+            {
+              "id": "vulkan_amdvlk",
+              "throughput": 12.44,
+              "stddev": 0.0
+            },
+            {
+              "id": "vulkan_radv",
+              "throughput": 12.58,
+              "stddev": 0.0
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "benchmarks": {
+    "prompt_processing": {
+      "context": "pp512",
+      "metric": "tokens_per_second",
+      "winner": "rocm6_4_4-rocwmma (tie with rocm7_rc-rocwmma)",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 305.77,
+          "stddev": 1.56
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 305.36,
+          "stddev": 1.78
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 194.33,
+          "stddev": 1.56
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 228.13,
+          "stddev": 3.26
+        }
+      ]
+    },
+    "text_generation": {
+      "context": "tg128",
+      "metric": "tokens_per_second",
+      "winner": "vulkan_radv (close tie with vulkan_amdvlk)",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 17.97,
+          "stddev": 0.0
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 17.97,
+          "stddev": 0.0
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 20.64,
+          "stddev": 0.01
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 20.88,
+          "stddev": 0.0
+        }
+      ]
+    }
+  },
+  "notes": "Can theoretically do 10M context; use Q4_K_XL for VRAM savings, Q6_K for balance, or Q8_0 for maximum quality."
 }

@@ -1,73 +1,69 @@
 {
-  "id": "gpt-oss-20b",
-  "name": "GPT-OSS 20B",
-  "maker": "openai",
+  "id": "glm-4.5-air",
+  "name": "GLM 4.5 Air",
+  "maker": "zai",
   "providers": [
     {
       "id": "llama-cpp",
-      "model_uri": "huggingface://openai/gpt-oss-20b-GGUF/gpt-oss-20b-mxfp4.gguf",
+      "model_uri": "huggingface://ZhipuAI/glm-4.5-air-GGUF/glm-4.5-air-Q4_K_XL.gguf",
       "is_default": true
     }
   ],
-  "quantization": "MXFP4",
-  "ram_required_gb": 24,
-  "context_window": 8192,
+  "quantization": "Q4_K_XL",
+  "ram_required_gb": 72,
+  "context_window": 131072,
   "group": "heavy",
-  "icon": "@/assets/icons/openai.svg",
-  "description": "OpenAI's 20B parameter model - fast general tasks with MXFP4 precision",
-  "family": "gpt-oss",
+  "icon": "@/assets/icons/zai.svg",
+  "description": "Zhipu AI's flagship GLM 4.5 Air model tuned for fast local inference",
+  "family": "glm",
   "capabilities": [
     "chat",
-    "code",
     "reasoning"
   ],
-  "ctx_size": 8192,
-  "ttl": 600,
-  "hf_repo": "openai/gpt-oss-20b-GGUF",
-  "hf_file": "gpt-oss-20b-mxfp4.gguf",
-  "aliases": [
-    "gpt-oss"
-  ],
+  "ctx_size": 65536,
+  "ttl": 1200,
+  "hf_repo": "ZhipuAI/glm-4.5-air-GGUF",
+  "hf_file": "glm-4.5-air-Q4_K_XL.gguf",
   "vulkan_driver": "RADV",
   "flash_attn": true,
-  "enabled": true,
+  "enabled": false,
   "use_cases": [
-    "General conversation",
-    "Code generation",
-    "Problem solving",
-    "Content creation"
+    "Enterprise research assistants",
+    "Deep analytical reasoning",
+    "Large-context summarization",
+    "Planning and strategy agents"
   ],
   "quantization_options": [
     {
-      "level": "MXFP4",
-      "hf_file": "gpt-oss-20b-mxfp4.gguf",
-      "ram_required_gb": 24,
+      "level": "Q4_K_XL",
+      "hf_file": "glm-4.5-air-Q4_K_XL.gguf",
+      "ram_required_gb": 72,
       "recommended_backend": "vulkan_radv",
       "benchmarks": {
         "prompt_processing": {
           "context": "pp512",
           "metric": "tokens_per_second",
-          "winner": "vulkan_amdvlk",
+          "winner": "vulkan_radv",
           "backends": [
             {
               "id": "rocm6_4_4-rocwmma",
-              "throughput": 1529.26,
-              "stddev": 3.68
+              "throughput": 134.2,
+              "stddev": 0.28
             },
             {
               "id": "rocm7_rc-rocwmma",
-              "throughput": 1506.28,
-              "stddev": 15.62
+              "throughput": 67.08,
+              "stddev": 0.15
             },
             {
               "id": "vulkan_amdvlk",
-              "throughput": 1908.57,
-              "stddev": 17.12
+              "throughput": 218.68,
+              "stddev": 0.54
             },
             {
               "id": "vulkan_radv",
-              "throughput": 1340.77,
-              "stddev": 10.85
+              "throughput": 236.02,
+              "stddev": 2.6
             }
           ]
         },
@@ -78,123 +74,118 @@
           "backends": [
             {
               "id": "rocm6_4_4-rocwmma",
-              "throughput": 68.05,
+              "throughput": 21.04,
               "stddev": 0.01
             },
             {
               "id": "rocm7_rc-rocwmma",
-              "throughput": 67.98,
-              "stddev": 0.03
+              "throughput": 21.07,
+              "stddev": 0.0
             },
             {
               "id": "vulkan_amdvlk",
-              "throughput": 72.91,
-              "stddev": 0.04
+              "throughput": 24.27,
+              "stddev": 0.01
             },
             {
               "id": "vulkan_radv",
-              "throughput": 75.19,
-              "stddev": 0.11
+              "throughput": 24.51,
+              "stddev": 0.01
             }
           ]
         }
       }
     },
     {
-      "level": "F32",
-      "hf_file": "gpt-oss-20b-f32.gguf",
-      "ram_required_gb": 48,
-      "recommended_backend": "rocm6_4_4-rocwmma",
+      "level": "Q6_K_XL",
+      "hf_file": "glm-4.5-air-Q6_K_XL.gguf",
+      "ram_required_gb": 96,
+      "recommended_backend": "vulkan_amdvlk",
       "benchmarks": {
         "prompt_processing": {
           "context": "pp512",
           "metric": "tokens_per_second",
-          "winner": "rocm6_4_4-rocwmma",
+          "winner": "vulkan_amdvlk",
           "backends": [
             {
               "id": "rocm6_4_4-rocwmma",
-              "throughput": 1493.11,
-              "stddev": 16.19
+              "throughput": 128.51,
+              "stddev": 0.51
             },
             {
               "id": "rocm7_rc-rocwmma",
-              "throughput": 1470.86,
-              "stddev": 14.39
+              "throughput": 69.91,
+              "stddev": 0.44
             },
             {
               "id": "vulkan_amdvlk",
-              "throughput": 609.37,
-              "stddev": 2.58
+              "throughput": 262.18,
+              "stddev": 1.19
             },
             {
               "id": "vulkan_radv",
-              "throughput": 451.11,
-              "stddev": 2.96
+              "throughput": 233.21,
+              "stddev": 6.28
             }
           ]
         },
         "text_generation": {
           "context": "tg128",
           "metric": "tokens_per_second",
-          "winner": "rocm6_4_4-rocwmma",
+          "winner": "vulkan_radv",
           "backends": [
             {
               "id": "rocm6_4_4-rocwmma",
-              "throughput": 27.3,
-              "stddev": 0.0
+              "throughput": 16.13,
+              "stddev": 0.16
             },
             {
               "id": "rocm7_rc-rocwmma",
-              "throughput": 27.29,
-              "stddev": 0.0
+              "throughput": 16.13,
+              "stddev": 0.11
             },
             {
               "id": "vulkan_amdvlk",
-              "throughput": 18.25,
+              "throughput": 17.3,
               "stddev": 0.01
             },
             {
               "id": "vulkan_radv",
-              "throughput": 16.83,
+              "throughput": 17.65,
               "stddev": 0.01
             }
           ]
         }
       }
-    },
-    {
-      "level": "Q4_K_M",
-      "hf_file": "gpt-oss-20b-q4_k_m.gguf",
-      "ram_required_gb": 16,
-      "recommended_backend": "vulkan_radv",
-      "notes": "Legacy quantization retained for compatibility"
     }
   ],
   "benchmarks": {
+    "context": "pp512/tg128",
+    "quantization": "Q4_K_XL",
     "prompt_processing": {
       "context": "pp512",
       "metric": "tokens_per_second",
-      "winner": "vulkan_amdvlk",
+      "winner": "vulkan_radv",
       "backends": [
         {
           "id": "rocm6_4_4-rocwmma",
-          "throughput": 1529.26,
-          "stddev": 3.68
+          "throughput": 134.2,
+          "stddev": 0.28
         },
         {
           "id": "rocm7_rc-rocwmma",
-          "throughput": 1506.28,
-          "stddev": 15.62
+          "throughput": 67.08,
+          "stddev": 0.15
         },
         {
           "id": "vulkan_amdvlk",
-          "throughput": 1908.57,
-          "stddev": 17.12
+          "throughput": 218.68,
+          "stddev": 0.54
         },
         {
           "id": "vulkan_radv",
-          "throughput": 1340.77,
-          "stddev": 10.85
+          "throughput": 236.02,
+          "stddev": 2.6
         }
       ]
     },
@@ -205,26 +196,26 @@
       "backends": [
         {
           "id": "rocm6_4_4-rocwmma",
-          "throughput": 68.05,
+          "throughput": 21.04,
           "stddev": 0.01
         },
         {
           "id": "rocm7_rc-rocwmma",
-          "throughput": 67.98,
-          "stddev": 0.03
+          "throughput": 21.07,
+          "stddev": 0.0
         },
         {
           "id": "vulkan_amdvlk",
-          "throughput": 72.91,
-          "stddev": 0.04
+          "throughput": 24.27,
+          "stddev": 0.01
         },
         {
           "id": "vulkan_radv",
-          "throughput": 75.19,
-          "stddev": 0.11
+          "throughput": 24.51,
+          "stddev": 0.01
         }
       ]
     }
   },
-  "notes": "Auto-swaps after 10 minutes of inactivity. MXFP4 delivers the best balance of quality and throughput on Vulkan."
+  "notes": "Dual quantization coverage with ROCm and Vulkan tuning; Q6_K_XL delivers higher quality if VRAM allows."
 }

@@ -1,0 +1,102 @@
+{
+  "id": "qwen3-30b-a3b-instruct-2507",
+  "name": "Qwen3 30B A3B Instruct 2507",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://Qwen/Qwen3-30B-A3B-Instruct-2507-GGUF/Qwen3-30B-A3B-Instruct-2507-Q6_K_XL.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q6_K_XL",
+  "ram_required_gb": 48,
+  "context_window": 32768,
+  "group": "heavy",
+  "icon": "@/assets/icons/qwen.svg",
+  "description": "Instruction-tuned Qwen3 30B (July 2025) optimized for high-throughput local inference",
+  "family": "qwen",
+  "capabilities": [
+    "chat",
+    "code",
+    "reasoning"
+  ],
+  "ctx_size": 32768,
+  "ttl": 900,
+  "hf_repo": "Qwen/Qwen3-30B-A3B-Instruct-2507-GGUF",
+  "hf_file": "Qwen3-30B-A3B-Instruct-2507-Q6_K_XL.gguf",
+  "vulkan_driver": "AMDVLK",
+  "flash_attn": true,
+  "enabled": true,
+  "use_cases": [
+    "Powerful local assistant",
+    "Agentic reasoning",
+    "Large document summarization",
+    "Application copilots"
+  ],
+  "quantization_options": [
+    {
+      "level": "Q6_K_XL",
+      "hf_file": "Qwen3-30B-A3B-Instruct-2507-Q6_K_XL.gguf",
+      "ram_required_gb": 48,
+      "recommended_backend": "vulkan_amdvlk"
+    }
+  ],
+  "benchmarks": {
+    "prompt_processing": {
+      "context": "pp512",
+      "metric": "tokens_per_second",
+      "winner": "vulkan_amdvlk",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 626.72,
+          "stddev": 6.27
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 623.1,
+          "stddev": 4.22
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 1020.41,
+          "stddev": 5.76
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 857.47,
+          "stddev": 4.38
+        }
+      ]
+    },
+    "text_generation": {
+      "context": "tg128",
+      "metric": "tokens_per_second",
+      "winner": "vulkan_radv",
+      "backends": [
+        {
+          "id": "rocm6_4_4-rocwmma",
+          "throughput": 57.04,
+          "stddev": 0.01
+        },
+        {
+          "id": "rocm7_rc-rocwmma",
+          "throughput": 56.95,
+          "stddev": 0.01
+        },
+        {
+          "id": "vulkan_amdvlk",
+          "throughput": 59.42,
+          "stddev": 0.04
+        },
+        {
+          "id": "vulkan_radv",
+          "throughput": 63.41,
+          "stddev": 0.08
+        }
+      ]
+    }
+  },
+  "notes": "Q6_K_XL balances VRAM footprint and throughput; AMDVLK excels for prompt ingestion while RADV leads generation."
+}
