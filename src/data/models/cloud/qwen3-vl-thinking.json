@@ -1,0 +1,36 @@
+{
+  "id": "qwen3-vl-thinking",
+  "name": "Qwen3 VL Thinking",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "alibabacloud",
+      "litellm_model_name": "alibabacloud/alibaba/qwen3-vl-thinking",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/qwen.svg",
+  "description": "Alibaba Qwen's Qwen3 VL Thinking model with a 131K tokens context window available via Alibaba Cloud",
+  "capabilities": [
+    "chat",
+    "vision",
+    "multimodal",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.70",
+    "output_per_1m": "$8.40",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Multimodal assistants and copilots",
+    "Document and image understanding",
+    "Visual reasoning and analysis",
+    "Complex analysis and planning tasks",
+    "Decision support and strategy"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 131000,
+  "max_output": 32750
+}

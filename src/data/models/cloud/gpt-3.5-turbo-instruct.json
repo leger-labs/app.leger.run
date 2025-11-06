@@ -1,0 +1,34 @@
+{
+  "id": "gpt-3.5-turbo-instruct",
+  "name": "GPT-3.5 Turbo Instruct",
+  "maker": "openai",
+  "providers": [
+    {
+      "id": "openai",
+      "litellm_model_name": "openai/gpt-3.5-turbo-instruct",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/openai.svg",
+  "description": "OpenAI's GPT-3.5 Turbo Instruct model with a 8K tokens context window available via OpenAI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$1.50",
+    "output_per_1m": "$2.00",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 8000,
+  "max_output": 2000
+}

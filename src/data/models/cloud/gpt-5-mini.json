@@ -7,6 +7,11 @@
       "id": "openai",
       "litellm_model_name": "openai/gpt-5-mini-2025-08-07",
       "is_default": true
+    },
+    {
+      "id": "azure",
+      "litellm_model_name": "azure/gpt-5-mini",
+      "is_default": false
     }
   ],
   "context_window": 400000,

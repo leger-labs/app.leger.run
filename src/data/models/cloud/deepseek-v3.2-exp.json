@@ -1,0 +1,39 @@
+{
+  "id": "deepseek-v3.2-exp",
+  "name": "Deepseek V3.2 Exp",
+  "maker": "deepseek",
+  "providers": [
+    {
+      "id": "deepseek",
+      "litellm_model_name": "deepseek/deepseek-v3.2-exp",
+      "is_default": true
+    },
+    {
+      "id": "novita",
+      "litellm_model_name": "novita/deepseek/deepseek-v3.2-exp",
+      "is_default": false
+    }
+  ],
+  "icon": "@/assets/icons/deepseek.svg",
+  "description": "DeepSeek's Deepseek V3.2 Exp model with a 164K tokens context window available via DeepSeek, Novita AI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.27",
+    "output_per_1m": "$0.41",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 164000,
+  "max_output": 41000
+}

@@ -1,0 +1,49 @@
+{
+  "id": "qwen-3-32b",
+  "name": "Qwen 3 32B",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "aws-bedrock",
+      "litellm_model_name": "bedrock/alibaba.qwen-3-32b",
+      "is_default": true
+    },
+    {
+      "id": "cerebras",
+      "litellm_model_name": "cerebras/alibaba/qwen-3-32b",
+      "is_default": false
+    },
+    {
+      "id": "deepinfra",
+      "litellm_model_name": "deepinfra/alibaba/qwen-3-32b",
+      "is_default": false
+    },
+    {
+      "id": "groq",
+      "litellm_model_name": "groq/alibaba/qwen-3-32b",
+      "is_default": false
+    }
+  ],
+  "icon": "@/assets/icons/qwen.svg",
+  "description": "Alibaba Qwen's Qwen 3 32B model with a 128K tokens context window available via AWS Bedrock, Cerebras, DeepInfra, Groq",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.10",
+    "output_per_1m": "$0.30",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 128000,
+  "max_output": 32000
+}

@@ -1,0 +1,29 @@
+{
+  "id": "codestral-embed",
+  "name": "Codestral Embed",
+  "maker": "mistral",
+  "providers": [
+    {
+      "id": "mistral",
+      "litellm_model_name": "mistral/codestral-embed",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/mistral.svg",
+  "description": "Mistral AI's Codestral Embed model available via Mistral AI",
+  "capabilities": [
+    "embeddings"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.15",
+    "output_per_1m": "—",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Semantic search and retrieval",
+    "Vector database indexing",
+    "Personalization and recommendations"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true
+}

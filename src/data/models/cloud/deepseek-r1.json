@@ -1,0 +1,39 @@
+{
+  "id": "deepseek-r1",
+  "name": "Deepseek R1",
+  "maker": "deepseek",
+  "providers": [
+    {
+      "id": "aws-bedrock",
+      "litellm_model_name": "bedrock/deepseek.deepseek-r1",
+      "is_default": true
+    },
+    {
+      "id": "parasail",
+      "litellm_model_name": "parasail/deepseek/deepseek-r1",
+      "is_default": false
+    }
+  ],
+  "icon": "@/assets/icons/deepseek.svg",
+  "description": "DeepSeek's Deepseek R1 model with a 164K tokens context window available via AWS Bedrock, Parasail",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.79",
+    "output_per_1m": "$4.00",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 164000,
+  "max_output": 41000
+}

@@ -1,0 +1,35 @@
+{
+  "id": "codestral",
+  "name": "Codestral",
+  "maker": "mistral",
+  "providers": [
+    {
+      "id": "mistral",
+      "litellm_model_name": "mistral/codestral",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/mistral.svg",
+  "description": "Mistral AI's Codestral model with a 256K tokens context window available via Mistral AI",
+  "capabilities": [
+    "chat",
+    "code",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.30",
+    "output_per_1m": "$0.90",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Developer copilots and IDE integrations",
+    "Automated code review and refactoring",
+    "Scripting and workflow automation",
+    "Complex analysis and planning tasks",
+    "Decision support and strategy"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 256000,
+  "max_output": 64000
+}

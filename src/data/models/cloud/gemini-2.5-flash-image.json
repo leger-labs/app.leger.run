@@ -1,0 +1,36 @@
+{
+  "id": "gemini-2.5-flash-image",
+  "name": "Gemini 2.5 Flash Image",
+  "maker": "google",
+  "providers": [
+    {
+      "id": "vertex-ai",
+      "litellm_model_name": "vertex_ai/gemini-2.5-flash-image",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/google.svg",
+  "description": "Google DeepMind's Gemini 2.5 Flash Image model with a 33K tokens context window available via Vertex AI",
+  "capabilities": [
+    "chat",
+    "vision",
+    "multimodal",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.30",
+    "output_per_1m": "$2.50",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Multimodal assistants and copilots",
+    "Document and image understanding",
+    "Visual reasoning and analysis",
+    "Complex analysis and planning tasks",
+    "Decision support and strategy"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 33000,
+  "max_output": 8250
+}

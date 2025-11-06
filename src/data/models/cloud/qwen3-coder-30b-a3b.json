@@ -1,0 +1,35 @@
+{
+  "id": "qwen3-coder-30b-a3b",
+  "name": "Qwen3 Coder 30B A3b",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "aws-bedrock",
+      "litellm_model_name": "bedrock/alibaba.qwen3-coder-30b-a3b",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/qwen.svg",
+  "description": "Alibaba Qwen's Qwen3 Coder 30B A3b model with a 262K tokens context window available via AWS Bedrock",
+  "capabilities": [
+    "chat",
+    "code",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.15",
+    "output_per_1m": "$0.60",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Developer copilots and IDE integrations",
+    "Automated code review and refactoring",
+    "Scripting and workflow automation",
+    "Complex analysis and planning tasks",
+    "Decision support and strategy"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 262000,
+  "max_output": 65500
+}

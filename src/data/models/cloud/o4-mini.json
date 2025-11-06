@@ -1,0 +1,39 @@
+{
+  "id": "o4-mini",
+  "name": "O4 Mini",
+  "maker": "openai",
+  "providers": [
+    {
+      "id": "azure",
+      "litellm_model_name": "azure/o4-mini",
+      "is_default": false
+    },
+    {
+      "id": "openai",
+      "litellm_model_name": "openai/o4-mini",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/openai.svg",
+  "description": "OpenAI's O4 Mini model with a 200K tokens context window available via Azure OpenAI, OpenAI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$1.10",
+    "output_per_1m": "$4.40",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 200000,
+  "max_output": 50000
+}

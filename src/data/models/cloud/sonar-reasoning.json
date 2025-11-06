@@ -1,0 +1,34 @@
+{
+  "id": "sonar-reasoning",
+  "name": "Sonar Reasoning",
+  "maker": "perplexity",
+  "providers": [
+    {
+      "id": "perplexity",
+      "litellm_model_name": "perplexity/sonar-reasoning",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/perplexity.svg",
+  "description": "Perplexity AI's Sonar Reasoning model with a 127K tokens context window available via Perplexity",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$1.00",
+    "output_per_1m": "$5.00",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 127000,
+  "max_output": 31750
+}

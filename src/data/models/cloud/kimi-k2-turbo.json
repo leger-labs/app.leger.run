@@ -1,0 +1,34 @@
+{
+  "id": "kimi-k2-turbo",
+  "name": "Kimi K2 Turbo",
+  "maker": "moonshotai",
+  "providers": [
+    {
+      "id": "moonshot",
+      "litellm_model_name": "moonshotai/kimi-k2-turbo",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/moonshot.svg",
+  "description": "Moonshot AI's Kimi K2 Turbo model with a 256K tokens context window available via Moonshot AI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$2.40",
+    "output_per_1m": "$10.00",
+    "tier": "premium"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 256000,
+  "max_output": 64000
+}

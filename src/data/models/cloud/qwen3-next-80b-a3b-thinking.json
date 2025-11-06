@@ -1,0 +1,39 @@
+{
+  "id": "qwen3-next-80b-a3b-thinking",
+  "name": "Qwen3 Next 80B A3b Thinking",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "alibabacloud",
+      "litellm_model_name": "alibabacloud/alibaba/qwen3-next-80b-a3b-thinking",
+      "is_default": true
+    },
+    {
+      "id": "novita",
+      "litellm_model_name": "novita/alibaba/qwen3-next-80b-a3b-thinking",
+      "is_default": false
+    }
+  ],
+  "icon": "@/assets/icons/qwen.svg",
+  "description": "Alibaba Qwen's Qwen3 Next 80B A3b Thinking model with a 131K tokens context window available via Alibaba Cloud, Novita AI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.15",
+    "output_per_1m": "$1.50",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 131000,
+  "max_output": 32750
+}

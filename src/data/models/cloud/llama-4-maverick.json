@@ -1,0 +1,44 @@
+{
+  "id": "llama-4-maverick",
+  "name": "Llama 4 Maverick",
+  "maker": "meta",
+  "providers": [
+    {
+      "id": "aws-bedrock",
+      "litellm_model_name": "bedrock/meta.llama-4-maverick",
+      "is_default": true
+    },
+    {
+      "id": "deepinfra",
+      "litellm_model_name": "deepinfra/meta/llama-4-maverick",
+      "is_default": false
+    },
+    {
+      "id": "vertex-ai",
+      "litellm_model_name": "vertex_ai/llama-4-maverick",
+      "is_default": false
+    }
+  ],
+  "icon": "@/assets/icons/meta.svg",
+  "description": "Meta AI's Llama 4 Maverick model with a 1.3M tokens context window available via AWS Bedrock, DeepInfra, Vertex AI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.15",
+    "output_per_1m": "$0.60",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 1300000,
+  "max_output": 325000
+}

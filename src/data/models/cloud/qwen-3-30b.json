@@ -1,0 +1,34 @@
+{
+  "id": "qwen-3-30b",
+  "name": "Qwen 3 30B",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "deepinfra",
+      "litellm_model_name": "deepinfra/alibaba/qwen-3-30b",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/qwen.svg",
+  "description": "Alibaba Qwen's Qwen 3 30B model with a 41K tokens context window available via DeepInfra",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.08",
+    "output_per_1m": "$0.29",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 41000,
+  "max_output": 10250
+}

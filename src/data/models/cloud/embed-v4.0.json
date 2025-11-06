@@ -1,0 +1,29 @@
+{
+  "id": "embed-v4.0",
+  "name": "Embed V4.0",
+  "maker": "cohere",
+  "providers": [
+    {
+      "id": "cohere",
+      "litellm_model_name": "cohere/embed-v4.0",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/cohere.svg",
+  "description": "Cohere's Embed V4.0 model available via Cohere",
+  "capabilities": [
+    "embeddings"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.12",
+    "output_per_1m": "—",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Semantic search and retrieval",
+    "Vector database indexing",
+    "Personalization and recommendations"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true
+}

@@ -1,0 +1,39 @@
+{
+  "id": "gpt-4o-mini",
+  "name": "GPT-4o Mini",
+  "maker": "openai",
+  "providers": [
+    {
+      "id": "azure",
+      "litellm_model_name": "azure/gpt-4o-mini",
+      "is_default": false
+    },
+    {
+      "id": "openai",
+      "litellm_model_name": "openai/gpt-4o-mini",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/openai.svg",
+  "description": "OpenAI's GPT-4o Mini model with a 128K tokens context window available via Azure OpenAI, OpenAI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.15",
+    "output_per_1m": "$0.60",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 128000,
+  "max_output": 32000
+}

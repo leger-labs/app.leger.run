@@ -1,0 +1,50 @@
+{
+  "id": "qwen3-coder",
+  "name": "Qwen3 Coder",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "baseten",
+      "litellm_model_name": "baseten/alibaba/qwen3-coder",
+      "is_default": true
+    },
+    {
+      "id": "cerebras",
+      "litellm_model_name": "cerebras/alibaba/qwen3-coder",
+      "is_default": false
+    },
+    {
+      "id": "deepinfra",
+      "litellm_model_name": "deepinfra/alibaba/qwen3-coder",
+      "is_default": false
+    },
+    {
+      "id": "novita",
+      "litellm_model_name": "novita/alibaba/qwen3-coder",
+      "is_default": false
+    }
+  ],
+  "icon": "@/assets/icons/qwen.svg",
+  "description": "Alibaba Qwen's Qwen3 Coder model with a 131K tokens context window available via Baseten, Cerebras, DeepInfra, Novita AI",
+  "capabilities": [
+    "chat",
+    "code",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.40",
+    "output_per_1m": "$1.60",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Developer copilots and IDE integrations",
+    "Automated code review and refactoring",
+    "Scripting and workflow automation",
+    "Complex analysis and planning tasks",
+    "Decision support and strategy"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 131000,
+  "max_output": 32750
+}

@@ -1,0 +1,34 @@
+{
+  "id": "grok-4-fast-non-reasoning",
+  "name": "Grok 4 Fast Non Reasoning",
+  "maker": "xai",
+  "providers": [
+    {
+      "id": "xai",
+      "litellm_model_name": "xai/grok-4-fast-non-reasoning",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/xai.svg",
+  "description": "xAI's Grok 4 Fast Non Reasoning model with a 2M tokens context window available via xAI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.20",
+    "output_per_1m": "$0.50",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 2000000,
+  "max_output": 500000
+}

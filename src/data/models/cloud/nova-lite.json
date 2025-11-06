@@ -1,0 +1,34 @@
+{
+  "id": "nova-lite",
+  "name": "Nova Lite",
+  "maker": "amazon",
+  "providers": [
+    {
+      "id": "aws-bedrock",
+      "litellm_model_name": "bedrock/amazon.nova-lite",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/amazon.svg",
+  "description": "Amazon's Nova Lite model with a 300K tokens context window available via AWS Bedrock",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.06",
+    "output_per_1m": "$0.24",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 300000,
+  "max_output": 75000
+}

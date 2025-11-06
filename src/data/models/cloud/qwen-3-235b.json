@@ -1,0 +1,49 @@
+{
+  "id": "qwen-3-235b",
+  "name": "Qwen 3 235B",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "baseten",
+      "litellm_model_name": "baseten/alibaba/qwen-3-235b",
+      "is_default": true
+    },
+    {
+      "id": "deepinfra",
+      "litellm_model_name": "deepinfra/alibaba/qwen-3-235b",
+      "is_default": false
+    },
+    {
+      "id": "fireworks",
+      "litellm_model_name": "fireworks/alibaba/qwen-3-235b",
+      "is_default": false
+    },
+    {
+      "id": "novita",
+      "litellm_model_name": "novita/alibaba/qwen-3-235b",
+      "is_default": false
+    }
+  ],
+  "icon": "@/assets/icons/qwen.svg",
+  "description": "Alibaba Qwen's Qwen 3 235B model with a 262K tokens context window available via Baseten, DeepInfra, Fireworks AI, Novita AI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.13",
+    "output_per_1m": "$0.60",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 262000,
+  "max_output": 65500
+}

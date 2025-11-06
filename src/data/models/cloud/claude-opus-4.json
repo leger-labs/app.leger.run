@@ -1,0 +1,44 @@
+{
+  "id": "claude-opus-4",
+  "name": "Claude Opus 4",
+  "maker": "anthropic",
+  "providers": [
+    {
+      "id": "anthropic",
+      "litellm_model_name": "anthropic/claude-opus-4",
+      "is_default": true
+    },
+    {
+      "id": "aws-bedrock",
+      "litellm_model_name": "bedrock/anthropic.claude-opus-4",
+      "is_default": false
+    },
+    {
+      "id": "vertex-ai",
+      "litellm_model_name": "vertex_ai/claude-opus-4",
+      "is_default": false
+    }
+  ],
+  "icon": "@/assets/icons/anthropic.svg",
+  "description": "Anthropic's Claude Opus 4 model with a 200K tokens context window available via Anthropic, AWS Bedrock, Vertex AI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$15.00",
+    "output_per_1m": "$75.00",
+    "tier": "premium"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 200000,
+  "max_output": 50000
+}
