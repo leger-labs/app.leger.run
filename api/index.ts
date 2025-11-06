@@ -9,6 +9,8 @@ import {
   handleGetSecret,
   handleUpsertSecret,
   handleDeleteSecret,
+  handleSetProviderSelection,
+  handleGetProviderSelections,
 } from './routes/secrets'
 import {
   handleListReleases,
@@ -176,8 +178,24 @@ export default {
           return addCorsHeaders(await handleListSecrets(request, env))
         }
 
+        if (
+          normalizedPath === '/secrets/select-provider' &&
+          request.method === 'POST'
+        ) {
+          return addCorsHeaders(await handleSetProviderSelection(request, env))
+        }
+
+        if (
+          normalizedPath === '/secrets/selections' &&
+          request.method === 'GET'
+        ) {
+          return addCorsHeaders(await handleGetProviderSelections(request, env))
+        }
+
         if (normalizedPath.startsWith('/secrets/')) {
-          const secretName = normalizedPath.substring('/secrets/'.length)
+          const secretName = decodeURIComponent(
+            normalizedPath.substring('/secrets/'.length)
+          )
 
           if (request.method === 'GET') {
             return addCorsHeaders(await handleGetSecret(request, env, secretName))
@@ -277,7 +295,9 @@ export default {
         }
 
         if (normalizedPath.startsWith('/test/secrets/')) {
-          const secretName = normalizedPath.substring('/test/secrets/'.length)
+          const secretName = decodeURIComponent(
+            normalizedPath.substring('/test/secrets/'.length)
+          )
 
           if (request.method === 'GET') {
             return addCorsHeaders(await handleTestGetSecret(request, env, secretName))

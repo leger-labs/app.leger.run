@@ -58,6 +58,7 @@ export async function listSecrets(
 
         return {
           name: secret.name,
+          label: secret.label ?? undefined,
           value,
           version: secret.version,
           created_at: secret.created_at,
@@ -68,6 +69,7 @@ export async function listSecrets(
     // Return metadata only for web UI
     return validSecrets.map((secret) => ({
       name: secret.name,
+      label: secret.label ?? undefined,
       created_at: secret.created_at,
       updated_at: secret.updated_at,
       version: secret.version,
@@ -109,6 +111,7 @@ export async function getSecret(
 
     return {
       name: secret.name,
+      label: secret.label ?? undefined,
       value,
       version: secret.version,
       created_at: secret.created_at,
@@ -116,6 +119,7 @@ export async function getSecret(
   } else {
     return {
       name: secret.name,
+      label: secret.label ?? undefined,
       created_at: secret.created_at,
       updated_at: secret.updated_at,
       version: secret.version,
@@ -136,7 +140,7 @@ export async function upsertSecret(
   const name = secretName || (input as CreateSecretInput).name
   if (!isValidSecretName(name)) {
     throw new Error(
-      'Invalid secret name. Must be alphanumeric with underscores/hyphens, 1-64 characters'
+      'Invalid secret name. Must be alphanumeric with underscores/hyphens/colons, 1-64 characters'
     )
   }
 
@@ -153,6 +157,17 @@ export async function upsertSecret(
 
   let secret: SecretRecord
 
+  const normalizeLabel = (
+    source: CreateSecretInput | UpdateSecretInput,
+    fallback: string | null
+  ): string | null => {
+    if ('label' in source && source.label !== undefined) {
+      const trimmed = source.label?.trim() ?? ''
+      return trimmed.length > 0 ? trimmed : null
+    }
+    return fallback
+  }
+
   if (existing) {
     // Update existing secret
     const existingRecord = existing as SecretRecord
@@ -166,6 +181,7 @@ export async function upsertSecret(
       version: existingRecord.version + 1,
       updated_at: now,
       last_accessed: null,
+      label: normalizeLabel(input, existingRecord.label ?? null),
     }
   } else {
     // Create new secret
@@ -182,6 +198,7 @@ export async function upsertSecret(
       created_at: now,
       updated_at: now,
       last_accessed: null,
+      label: normalizeLabel(input, null),
     }
   }
 
@@ -190,6 +207,7 @@ export async function upsertSecret(
 
   return {
     name: secret.name,
+    label: secret.label ?? undefined,
     created_at: secret.created_at,
     updated_at: secret.updated_at,
     version: secret.version,

@@ -3,8 +3,17 @@
  * Manage AI provider connections and credentials
  */
 
-import { useState, useEffect, useMemo } from 'react';
-import { Loader2, ExternalLink, Check, Plus, Eye, EyeOff, Search, FileX } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import {
+  Check,
+  Eye,
+  EyeOff,
+  FileX,
+  Loader2,
+  Plus,
+  Search,
+  ExternalLink,
+} from 'lucide-react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { Button } from '@/components/ui/button';
@@ -23,124 +32,188 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useModelStore } from '@/hooks/use-model-store';
 import { useSecrets } from '@/hooks/use-secrets';
-import { toast } from 'sonner';
 import type { Provider } from '@/types/model-store';
+import type { SecretWithValue } from '@/types';
 import { resolveIconPath } from '@/assets/icons';
+import { cn } from '@/lib/utils';
 
 export function ProvidersPage() {
   const { providers, isLoading: isLoadingModelStore } = useModelStore();
-  const { secrets, isLoading: isLoadingSecrets, upsertSecret } = useSecrets();
+  const {
+    secrets,
+    selections,
+    isLoading: isLoadingSecrets,
+    isSaving,
+    isDeleting,
+    upsertSecret,
+    deleteSecret,
+    setProviderSelection,
+  } = useSecrets();
 
   const [search, setSearch] = useState('');
   const [filterTab, setFilterTab] = useState<'all' | 'configured' | 'available'>('all');
   const [selectedProvider, setSelectedProvider] = useState<Provider | null>(null);
-  const [apiKeyValue, setApiKeyValue] = useState('');
-  const [isEditMode, setIsEditMode] = useState(false);
-  const [isSaving, setIsSaving] = useState(false);
-  const [isTesting, setIsTesting] = useState(false);
-  const [testResult, setTestResult] = useState<'success' | 'error' | null>(null);
+  const [showKeyForm, setShowKeyForm] = useState(false);
+  const [editingSecret, setEditingSecret] = useState<SecretWithValue | null>(null);
+  const [keyLabel, setKeyLabel] = useState('');
+  const [keyValue, setKeyValue] = useState('');
+  const [setAsDefault, setSetAsDefault] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [configuredProviders, setConfiguredProviders] = useState<Set<string>>(new Set());
 
   const isLoading = isLoadingModelStore || isLoadingSecrets;
 
-  // Determine which providers are configured
-  useEffect(() => {
+  const providerSecretMap = useMemo(() => {
+    const map: Record<string, SecretWithValue[]> = {};
+    providers.forEach((provider) => {
+      if (!provider.requires_api_key) {
+        map[provider.id] = [];
+        return;
+      }
+
+      const base = provider.requires_api_key;
+      map[provider.id] = secrets.filter(
+        (secret) => secret.name === base || secret.name.startsWith(`${base}:`)
+      );
+    });
+    return map;
+  }, [providers, secrets]);
+
+  const configuredProviders = useMemo(() => {
     const configured = new Set<string>();
     providers.forEach((provider) => {
-      // Local providers don't need API keys
       if (!provider.requires_api_key) {
         configured.add(provider.id);
         return;
       }
 
-      // Check if secret exists for this provider
-      if (secrets.some((s) => s.name === provider.requires_api_key)) {
+      const keys = providerSecretMap[provider.id] ?? [];
+      if (keys.length > 0) {
         configured.add(provider.id);
       }
     });
-    setConfiguredProviders(configured);
-  }, [providers, secrets]);
+    return configured;
+  }, [providers, providerSecretMap]);
 
-  const handleAddProvider = (provider: Provider) => {
+  const providerKeys = selectedProvider
+    ? providerSecretMap[selectedProvider.id] ?? []
+    : [];
+  const effectiveSelection = selectedProvider
+    ? selections[selectedProvider.id] || providerKeys[0]?.name
+    : undefined;
+
+  const handleOpenProvider = (provider: Provider) => {
+    const keys = providerSecretMap[provider.id] ?? [];
     setSelectedProvider(provider);
-    setApiKeyValue('');
-    setIsEditMode(false);
+    setEditingSecret(null);
+    setKeyLabel('');
+    setKeyValue('');
     setShowPassword(false);
-    setTestResult(null);
-  };
-
-  const handleEditProvider = (provider: Provider) => {
-    setSelectedProvider(provider);
-    // Load existing API key value
-    const existingSecret = secrets.find((s) => s.name === provider.requires_api_key);
-    setApiKeyValue(existingSecret?.value || '');
-    setIsEditMode(true);
-    setShowPassword(false);
-    setTestResult(null);
-  };
-
-  const handleTestApiKey = async () => {
-    if (!apiKeyValue || !selectedProvider) return;
-
-    setIsTesting(true);
-    setTestResult(null);
-
-    // Simulate API key validation with basic format checking
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // Basic validation by provider
-    let isValid = false;
-    const key = apiKeyValue.trim();
-
-    if (selectedProvider.id === 'anthropic' && key.startsWith('sk-ant-')) {
-      isValid = true;
-    } else if (selectedProvider.id === 'openai' && key.startsWith('sk-')) {
-      isValid = true;
-    } else if (selectedProvider.id === 'gemini' && key.length > 20) {
-      isValid = true;
-    } else if (key.length > 10) {
-      // Generic validation for other providers
-      isValid = true;
-    }
-
-    if (isValid) {
-      setTestResult('success');
-      toast.success('API key format is valid', {
-        description: 'The API key appears to be correctly formatted.',
-      });
-    } else {
-      setTestResult('error');
-      toast.error('Invalid API key format', {
-        description: 'Please check the API key format for this provider.',
-      });
-    }
-
-    setIsTesting(false);
-  };
-
-  const handleSaveApiKey = async () => {
-    if (!selectedProvider || !selectedProvider.requires_api_key) return;
-
-    setIsSaving(true);
-    const success = await upsertSecret(selectedProvider.requires_api_key, apiKeyValue);
-    setIsSaving(false);
-
-    if (success) {
-      setConfiguredProviders((prev) => new Set([...prev, selectedProvider.id]));
-      setSelectedProvider(null);
-      setApiKeyValue('');
-      setShowPassword(false);
-      setTestResult(null);
-    }
+    const shouldOpenForm = keys.length === 0;
+    setSetAsDefault(shouldOpenForm);
+    setShowKeyForm(shouldOpenForm);
   };
 
   const handleCloseDialog = () => {
     setSelectedProvider(null);
-    setApiKeyValue('');
-    setIsEditMode(false);
+    setShowKeyForm(false);
+    setEditingSecret(null);
+    setKeyLabel('');
+    setKeyValue('');
+    setSetAsDefault(false);
     setShowPassword(false);
-    setTestResult(null);
+  };
+
+  const handleKeyFormOpenChange = (open: boolean) => {
+    if (!open) {
+      setShowKeyForm(false);
+      setEditingSecret(null);
+      setKeyLabel('');
+      setKeyValue('');
+      setSetAsDefault(false);
+      setShowPassword(false);
+      return;
+    }
+
+    setShowKeyForm(true);
+  };
+
+  const openAddKeyForm = () => {
+    if (!selectedProvider) return;
+    setEditingSecret(null);
+    setKeyLabel('');
+    setKeyValue('');
+    setSetAsDefault(providerKeys.length === 0);
+    setShowPassword(false);
+    setShowKeyForm(true);
+  };
+
+  const handleEditKey = (secret: SecretWithValue) => {
+    if (!selectedProvider) return;
+    setEditingSecret(secret);
+    setKeyLabel(secret.label ?? '');
+    setKeyValue(secret.value);
+    setSetAsDefault(effectiveSelection === secret.name);
+    setShowPassword(false);
+    setShowKeyForm(true);
+  };
+
+  const handleSaveKey = async () => {
+    if (!selectedProvider || !selectedProvider.requires_api_key) return;
+
+    const value = keyValue.trim();
+    if (!value) return;
+
+    const label = keyLabel.trim();
+    const baseName = selectedProvider.requires_api_key;
+
+    let secretName = editingSecret?.name;
+    if (!secretName) {
+      secretName = buildSecretName(baseName, label, secrets);
+    }
+
+    const saved = await upsertSecret(secretName, value, label || undefined);
+
+    if (saved) {
+      const shouldSelect = (() => {
+        if (!selectedProvider) return false;
+        if (!editingSecret) {
+          return setAsDefault || providerKeys.length === 0;
+        }
+        return setAsDefault;
+      })();
+
+      if (shouldSelect) {
+        await setProviderSelection(selectedProvider.id, secretName);
+      }
+
+      setShowKeyForm(false);
+      setEditingSecret(null);
+      setKeyLabel('');
+      setKeyValue('');
+      setSetAsDefault(false);
+      setShowPassword(false);
+    }
+  };
+
+  const handleSelectKey = async (secretName: string) => {
+    if (!selectedProvider) return;
+    await setProviderSelection(selectedProvider.id, secretName);
+  };
+
+  const handleDeleteKey = async (secretName: string) => {
+    if (!selectedProvider) return;
+    if (!window.confirm('Delete this API key?')) return;
+
+    const deleted = await deleteSecret(secretName);
+
+    if (deleted) {
+      const wasSelected = effectiveSelection === secretName;
+      const remainingKeys = providerKeys.filter((key) => key.name !== secretName);
+
+      if (wasSelected && remainingKeys.length > 0) {
+        await setProviderSelection(selectedProvider.id, remainingKeys[0].name);
+      }
+    }
   };
 
   const handleClearFilters = () => {
@@ -148,18 +221,15 @@ export function ProvidersPage() {
     setFilterTab('all');
   };
 
-  // Filter providers based on search and filter tab
   const filteredProviders = useMemo(() => {
     let filtered = providers;
 
-    // Filter by tab
     if (filterTab === 'configured') {
       filtered = filtered.filter((p) => configuredProviders.has(p.id));
     } else if (filterTab === 'available') {
       filtered = filtered.filter((p) => !configuredProviders.has(p.id));
     }
 
-    // Filter by search
     if (search) {
       const searchLower = search.toLowerCase();
       filtered = filtered.filter(
@@ -213,7 +283,6 @@ export function ProvidersPage() {
         {configuredProviders.size} provider{configuredProviders.size !== 1 ? 's' : ''} configured
       </div>
 
-      {/* Search and Filters */}
       <div className="mb-6 space-y-4">
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
@@ -240,15 +309,14 @@ export function ProvidersPage() {
         </Tabs>
       </div>
 
-      {/* Provider List */}
       {filteredProviders.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-center">
           <FileX className="h-16 w-16 text-muted-foreground mb-4" />
           <h3 className="text-lg font-semibold mb-2">No providers found</h3>
           <p className="text-sm text-muted-foreground mb-6 max-w-sm">
             {filterTab === 'configured'
-              ? 'You haven\'t configured any providers yet. Add an integration to get started.'
-              : 'Try adjusting your search or filter to find what you\'re looking for.'}
+              ? "You haven't configured any providers yet. Add an integration to get started."
+              : "Try adjusting your search or filter to find what you're looking for."}
           </p>
           <Button variant="outline" onClick={handleClearFilters}>
             Clear filters
@@ -257,6 +325,8 @@ export function ProvidersPage() {
       ) : (
         <div className="space-y-1.5">
           {filteredProviders.map((provider) => {
+            const keys = providerSecretMap[provider.id] ?? [];
+            const keyCount = keys.length;
             const isConfigured = configuredProviders.has(provider.id);
 
             return (
@@ -264,7 +334,6 @@ export function ProvidersPage() {
                 key={provider.id}
                 className="flex items-center justify-between px-4 py-3 border rounded-lg hover:bg-accent/50 transition-colors"
               >
-                {/* Left: Logo */}
                 <div className="flex items-center gap-4 flex-1 min-w-0">
                   <img
                     src={resolveIconPath(provider.icon)}
@@ -272,39 +341,26 @@ export function ProvidersPage() {
                     className="h-8 w-8 rounded flex-shrink-0"
                   />
 
-                  {/* Center: Name and Badge */}
                   <div className="flex items-center gap-3 flex-1 min-w-0">
                     <span className="font-medium text-sm truncate">{provider.name}</span>
-                    {isConfigured && (
-                      <Badge variant="secondary" className="flex items-center gap-1 flex-shrink-0">
+                    {keyCount > 0 && (
+                      <Badge variant="secondary" className="flex items-center gap-1">
                         <Check className="h-3 w-3" />
-                        Configured
+                        {keyCount} key{keyCount === 1 ? '' : 's'}
                       </Badge>
                     )}
                   </div>
                 </div>
 
-                {/* Right: Add/Edit Button */}
                 <div className="flex-shrink-0">
                   {provider.requires_api_key && (
-                    isConfigured ? (
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => handleEditProvider(provider)}
-                      >
-                        Edit
-                      </Button>
-                    ) : (
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => handleAddProvider(provider)}
-                      >
-                        <Plus className="h-4 w-4 mr-1" />
-                        Add
-                      </Button>
-                    )
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleOpenProvider(provider)}
+                    >
+                      {isConfigured ? 'Manage' : 'Add'}
+                    </Button>
                   )}
                 </div>
               </div>
@@ -313,15 +369,14 @@ export function ProvidersPage() {
         </div>
       )}
 
-      {/* Add Provider Dialog */}
-      <Dialog open={!!selectedProvider} onOpenChange={handleCloseDialog}>
-        <DialogContent>
+      <Dialog open={!!selectedProvider} onOpenChange={(open) => !open && handleCloseDialog()}>
+        <DialogContent className="max-w-2xl">
           <DialogHeader>
             <DialogTitle>
-              {isEditMode ? 'Edit' : 'Add'} {selectedProvider?.name} Integration
+              Manage {selectedProvider?.name} API Keys
             </DialogTitle>
             <DialogDescription>
-              Enter your API key to enable {selectedProvider?.name} provider.
+              Add multiple API keys and select which one to use by default.
               {selectedProvider?.api_key_register_url && (
                 <>
                   {' '}
@@ -340,27 +395,104 @@ export function ProvidersPage() {
             </DialogDescription>
           </DialogHeader>
 
+          <div className="space-y-3 py-4">
+            {providerKeys.length === 0 ? (
+              <div className="rounded-lg border border-dashed p-6 text-center text-sm text-muted-foreground">
+                No API keys yet. Add your first key to start using {selectedProvider?.name}.
+              </div>
+            ) : (
+              <div className="space-y-2">
+                {providerKeys.map((secret) => {
+                  const selected = secret.name === effectiveSelection;
+                  return (
+                    <div
+                      key={secret.name}
+                      className={cn(
+                        'flex items-center justify-between p-3 border rounded-lg',
+                        selected && 'border-primary bg-accent/50'
+                      )}
+                    >
+                      <div className="flex items-center gap-3">
+                        {selected && <Check className="h-4 w-4 text-primary" />}
+                        <div>
+                          <div className="font-medium">
+                            {secret.label || 'Unnamed key'}
+                          </div>
+                          <div className="text-xs text-muted-foreground">
+                            {maskApiKey(secret.value)}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {!selected && (
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => handleSelectKey(secret.name)}
+                          >
+                            Select
+                          </Button>
+                        )}
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => handleEditKey(secret)}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          disabled={isDeleting}
+                          onClick={() => handleDeleteKey(secret.name)}
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          <Button variant="outline" className="w-full" onClick={openAddKeyForm}>
+            <Plus className="h-4 w-4 mr-2" />
+            Add API Key
+          </Button>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={showKeyForm} onOpenChange={handleKeyFormOpenChange}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{editingSecret ? 'Edit API Key' : 'Add API Key'}</DialogTitle>
+          </DialogHeader>
           <div className="space-y-4 py-4">
-            <div className="space-y-2">
-              <Label htmlFor="api-key">API Key</Label>
+            <div>
+              <Label htmlFor="api-key-label">Label</Label>
+              <Input
+                id="api-key-label"
+                placeholder="e.g., Personal, Work, Client A"
+                value={keyLabel}
+                onChange={(e) => setKeyLabel(e.target.value)}
+              />
+            </div>
+            <div>
+              <Label htmlFor="api-key-value">API Key</Label>
               <div className="relative">
                 <Input
-                  id="api-key"
+                  id="api-key-value"
                   type={showPassword ? 'text' : 'password'}
-                  value={apiKeyValue}
-                  onChange={(e) => {
-                    setApiKeyValue(e.target.value);
-                    setTestResult(null); // Reset test result when key changes
-                  }}
-                  placeholder="Enter your API key"
-                  className="pr-10"
+                  value={keyValue}
+                  onChange={(e) => setKeyValue(e.target.value)}
                 />
                 <Button
                   type="button"
                   variant="ghost"
                   size="sm"
                   className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                  onClick={() => setShowPassword(!showPassword)}
+                  onClick={() => setShowPassword((prev) => !prev)}
                 >
                   {showPassword ? (
                     <EyeOff className="h-4 w-4 text-muted-foreground" />
@@ -369,53 +501,71 @@ export function ProvidersPage() {
                   )}
                 </Button>
               </div>
-              <p className="text-xs text-muted-foreground">
-                Your API key is stored securely and only used for requests to{' '}
-                {selectedProvider?.name}
+              <p className="text-xs text-muted-foreground mt-1">
+                Your API key is stored securely and only used for requests to {selectedProvider?.name}.
               </p>
             </div>
-
-            {/* Test Result */}
-            {testResult && (
-              <div
-                className={`text-sm flex items-center gap-2 ${
-                  testResult === 'success' ? 'text-green-600' : 'text-red-600'
-                }`}
-              >
-                {testResult === 'success' ? (
-                  <>
-                    <Check className="h-4 w-4" />
-                    <span>API key format is valid</span>
-                  </>
-                ) : (
-                  <span>Invalid API key format</span>
-                )}
-              </div>
-            )}
+            <div className="flex items-center gap-2">
+              <input
+                id="set-as-default"
+                type="checkbox"
+                className="h-4 w-4"
+                checked={setAsDefault}
+                onChange={(e) => setSetAsDefault(e.target.checked)}
+              />
+              <Label htmlFor="set-as-default" className="text-sm">
+                Set as selected key
+              </Label>
+            </div>
           </div>
-
-          <DialogFooter className="gap-2">
-            <Button variant="outline" onClick={handleCloseDialog}>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => handleKeyFormOpenChange(false)}>
               Cancel
             </Button>
-            <Button
-              variant="secondary"
-              onClick={handleTestApiKey}
-              disabled={!apiKeyValue || isTesting}
-            >
-              {isTesting && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
-              Test API Key
-            </Button>
-            <Button
-              onClick={handleSaveApiKey}
-              disabled={!apiKeyValue || isSaving}
-            >
+            <Button onClick={handleSaveKey} disabled={!keyValue.trim() || isSaving}>
               {isSaving && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
-              Save
+              Save Key
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
     </PageLayout>
   );
+}
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 48);
+}
+
+function buildSecretName(
+  base: string,
+  label: string,
+  existingSecrets: SecretWithValue[]
+): string {
+  const slug = slugify(label || 'default');
+  const initial = `${base}:${slug}`.slice(0, 64);
+  let candidate = initial;
+  let counter = 2;
+  const existingNames = new Set(existingSecrets.map((secret) => secret.name));
+
+  while (existingNames.has(candidate)) {
+    const suffix = `-${counter}`;
+    const maxLength = 64 - suffix.length;
+    candidate = `${initial.slice(0, maxLength)}${suffix}`;
+    counter += 1;
+  }
+
+  return candidate;
+}
+
+function maskApiKey(value: string): string {
+  if (value.length < 8) {
+    return '••••••••';
+  }
+
+  return `${value.slice(0, 4)}••••••••${value.slice(-4)}`;
 }
