@@ -1,11 +1,11 @@
 /**
- * AI Gateway Page
+ * AI Gateway Models Page
  * Browse and explore available AI models
  */
 
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Loader2, Search, ExternalLink, LayoutGrid, Table as TableIcon, SearchX } from 'lucide-react';
+import { Search, ExternalLink, LayoutGrid, Table as TableIcon, SearchX } from 'lucide-react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { Card, CardContent } from '@/components/ui/card';
@@ -26,12 +26,11 @@ import { useModelStore } from '@/hooks/use-model-store';
 import { filterModels } from '@/services/model-store-service';
 import type { ModelFilters, Model } from '@/types/model-store';
 import { isCloudModel } from '@/types/model-store';
-import { cn } from '@/lib/utils';
 import { resolveIconPath } from '@/assets/icons';
 
 type ViewMode = 'cards' | 'table';
 
-export function AIGatewayPage() {
+export function AIGatewayModelsPage() {
   const { models, providers, isLoading } = useModelStore();
   const navigate = useNavigate();
 
@@ -80,7 +79,7 @@ export function AIGatewayPage() {
   }, [models, providers]);
 
   const handleModelClick = (modelId: string) => {
-    navigate(`/models/${modelId}`);
+    navigate(`/ai-gateway/models/${modelId}`);
   };
 
   const handleClearFilters = () => {
@@ -93,8 +92,8 @@ export function AIGatewayPage() {
     return (
       <PageLayout>
         <PageHeader
-          title="AI Gateway"
-          description="Seamlessly integrate AI models into your Vercel project."
+          title="Models"
+          description="Explore the model catalog, compare capabilities, and find the right fit for your AI workloads."
         />
         <div className="mb-8">
           <Skeleton className="h-6 w-48 mb-4" />
@@ -135,8 +134,8 @@ export function AIGatewayPage() {
   return (
     <PageLayout>
       <PageHeader
-        title="AI Gateway"
-        description="Seamlessly integrate AI models into your Vercel project."
+        title="Models"
+        description="Explore the model catalog, compare capabilities, and find the right fit for your AI workloads."
       />
 
       <div className="mb-6 text-sm text-muted-foreground">
@@ -248,11 +247,6 @@ interface ModelTableProps {
 
 function ModelTable({ models, onModelClick }: ModelTableProps) {
   const { getProvidersForModel } = useModelStore();
-
-  const formatTokens = (value: string | undefined) => {
-    if (!value) return 'N/A';
-    return value;
-  };
 
   const formatContextWindow = (tokens: number): string => {
     if (tokens >= 1000000) {

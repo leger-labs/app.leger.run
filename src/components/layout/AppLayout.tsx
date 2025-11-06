@@ -163,9 +163,8 @@ export function AppLayout() {
         {/* Row 2: Primary Navigation (sticky) */}
         <div className="sticky top-0 bg-background z-10 px-4 py-2 border-b">
           <nav className="flex items-center gap-6">
-            <NavLink to="/releases">Releases</NavLink>
             <NavLink to="/ai-gateway">AI Gateway</NavLink>
-            <NavLink to="/integrations">Integrations</NavLink>
+            <NavLink to="/releases">Releases</NavLink>
             <NavLink to="/marketplace">Marketplace</NavLink>
             <NavLink to="/settings">Settings</NavLink>
           </nav>

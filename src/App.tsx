@@ -4,15 +4,17 @@
  */
 
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import { ThemeProvider } from '@/components/theme-provider';
 import { AppLayout } from '@/components/layout/AppLayout';
+import { AIGatewayLayout } from '@/components/layout/AIGatewayLayout';
 import { AuthPage } from '@/pages/AuthPage';
 import { AuthErrorPage } from '@/pages/AuthErrorPage';
 import { TestAuthPage } from '@/pages/TestAuthPage';
-import { IntegrationsPage } from '@/pages/IntegrationsPage';
-import { AIGatewayPage } from '@/pages/AIGatewayPage';
+import { AIGatewayOverviewPage } from '@/pages/AIGatewayOverviewPage';
+import { AIGatewayModelsPage } from '@/pages/AIGatewayModelsPage';
+import { AIGatewayProvidersPage } from '@/pages/AIGatewayProvidersPage';
 import { ModelDetailPage } from '@/pages/ModelDetailPage';
 import { MarketplacePage } from '@/pages/MarketplacePage';
 import { ReleasesPage } from '@/pages/ReleasesPage';
@@ -92,6 +94,16 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
+function LegacyModelRedirect() {
+  const { modelId } = useParams<{ modelId: string }>();
+
+  if (!modelId) {
+    return <Navigate to="/ai-gateway/models" replace />;
+  }
+
+  return <Navigate to={`/ai-gateway/models/${modelId}`} replace />;
+}
+
 export default function App() {
   return (
     <ErrorBoundary>
@@ -115,16 +127,21 @@ export default function App() {
               }
             >
               {/* Default redirect to AI Gateway */}
-              <Route index element={<Navigate to="/ai-gateway" replace />} />
+              <Route index element={<Navigate to="/ai-gateway/overview" replace />} />
 
-              {/* Integrations (replaces API Keys) */}
-              <Route path="integrations" element={<IntegrationsPage />} />
-              {/* Keep old API Keys route for backwards compatibility */}
-              <Route path="api-keys" element={<Navigate to="/integrations" replace />} />
+              {/* Legacy routes */}
+              <Route path="integrations" element={<Navigate to="/ai-gateway/providers" replace />} />
+              <Route path="api-keys" element={<Navigate to="/ai-gateway/providers" replace />} />
+              <Route path="models/:modelId" element={<LegacyModelRedirect />} />
 
               {/* AI Gateway */}
-              <Route path="ai-gateway" element={<AIGatewayPage />} />
-              <Route path="models/:modelId" element={<ModelDetailPage />} />
+              <Route path="ai-gateway" element={<AIGatewayLayout />}>
+                <Route index element={<Navigate to="overview" replace />} />
+                <Route path="overview" element={<AIGatewayOverviewPage />} />
+                <Route path="models" element={<AIGatewayModelsPage />} />
+                <Route path="models/:modelId" element={<ModelDetailPage />} />
+                <Route path="providers" element={<AIGatewayProvidersPage />} />
+              </Route>
 
               {/* Releases */}
               <Route path="releases" element={<ReleasesPage />} />

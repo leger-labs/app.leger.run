@@ -96,9 +96,9 @@ export function ModelDetailPage() {
       <PageLayout>
         <div className="text-center py-12">
           <p className="text-muted-foreground mb-4">Model not found</p>
-          <Button onClick={() => navigate('/ai-gateway')}>
+          <Button onClick={() => navigate('/ai-gateway/models')}>
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to AI Gateway
+            Back to Models
           </Button>
         </div>
       </PageLayout>
@@ -112,7 +112,7 @@ export function ModelDetailPage() {
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link to="/ai-gateway">Browse Models</Link>
+              <Link to="/ai-gateway/models">Browse Models</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
@@ -127,7 +127,7 @@ export function ModelDetailPage() {
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => navigate('/ai-gateway')}
+          onClick={() => navigate('/ai-gateway/models')}
           className="mb-4"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
