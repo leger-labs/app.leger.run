@@ -1,0 +1,34 @@
+{
+  "id": "text-embedding-ada-002",
+  "name": "Text Embedding Ada 002",
+  "maker": "openai",
+  "providers": [
+    {
+      "id": "azure",
+      "litellm_model_name": "azure/text-embedding-ada-002",
+      "is_default": false
+    },
+    {
+      "id": "openai",
+      "litellm_model_name": "openai/text-embedding-ada-002",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/openai.svg",
+  "description": "OpenAI's Text Embedding Ada 002 model available via Azure OpenAI, OpenAI",
+  "capabilities": [
+    "embeddings"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.10",
+    "output_per_1m": "—",
+    "tier": "budget"
+  },
+  "use_cases": [
+    "Semantic search and retrieval",
+    "Vector database indexing",
+    "Personalization and recommendations"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true
+}

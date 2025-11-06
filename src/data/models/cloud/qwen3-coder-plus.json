@@ -1,0 +1,35 @@
+{
+  "id": "qwen3-coder-plus",
+  "name": "Qwen3 Coder Plus",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "alibabacloud",
+      "litellm_model_name": "alibabacloud/alibaba/qwen3-coder-plus",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/qwen.svg",
+  "description": "Alibaba Qwen's Qwen3 Coder Plus model with a 1M tokens context window available via Alibaba Cloud",
+  "capabilities": [
+    "chat",
+    "code",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$1.00",
+    "output_per_1m": "$5.00",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Developer copilots and IDE integrations",
+    "Automated code review and refactoring",
+    "Scripting and workflow automation",
+    "Complex analysis and planning tasks",
+    "Decision support and strategy"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 1000000,
+  "max_output": 250000
+}

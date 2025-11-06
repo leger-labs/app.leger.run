@@ -1,0 +1,34 @@
+{
+  "id": "deepseek-v3.2-exp-thinking",
+  "name": "Deepseek V3.2 Exp Thinking",
+  "maker": "deepseek",
+  "providers": [
+    {
+      "id": "deepseek",
+      "litellm_model_name": "deepseek/deepseek-v3.2-exp-thinking",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/deepseek.svg",
+  "description": "DeepSeek's Deepseek V3.2 Exp Thinking model with a 164K tokens context window available via DeepSeek",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.28",
+    "output_per_1m": "$0.42",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 164000,
+  "max_output": 41000
+}

@@ -1,0 +1,44 @@
+{
+  "id": "gpt-oss-20b-cloud",
+  "name": "GPT-OSS 20B (Cloud)",
+  "maker": "openai",
+  "providers": [
+    {
+      "id": "aws-bedrock",
+      "litellm_model_name": "bedrock/openai.gpt-oss-20b",
+      "is_default": true
+    },
+    {
+      "id": "fireworks",
+      "litellm_model_name": "fireworks/openai/gpt-oss-20b",
+      "is_default": false
+    },
+    {
+      "id": "groq",
+      "litellm_model_name": "groq/openai/gpt-oss-20b",
+      "is_default": false
+    }
+  ],
+  "icon": "@/assets/icons/openai.svg",
+  "description": "OpenAI's GPT-OSS 20B deployments with a 128K token context window available via AWS Bedrock, Fireworks AI, and Groq",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.07",
+    "output_per_1m": "$0.30",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 128000,
+  "max_output": 32000
+}

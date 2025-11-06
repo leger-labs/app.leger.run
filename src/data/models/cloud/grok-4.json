@@ -1,0 +1,34 @@
+{
+  "id": "grok-4",
+  "name": "Grok 4",
+  "maker": "xai",
+  "providers": [
+    {
+      "id": "xai",
+      "litellm_model_name": "xai/grok-4",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/xai.svg",
+  "description": "xAI's Grok 4 model with a 256K tokens context window available via xAI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$3.00",
+    "output_per_1m": "$15.00",
+    "tier": "premium"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 256000,
+  "max_output": 64000
+}

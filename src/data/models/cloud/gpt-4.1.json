@@ -1,0 +1,39 @@
+{
+  "id": "gpt-4.1",
+  "name": "GPT-4.1",
+  "maker": "openai",
+  "providers": [
+    {
+      "id": "azure",
+      "litellm_model_name": "azure/gpt-4.1",
+      "is_default": false
+    },
+    {
+      "id": "openai",
+      "litellm_model_name": "openai/gpt-4.1",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/openai.svg",
+  "description": "OpenAI's GPT-4.1 model with a 1M tokens context window available via Azure OpenAI, OpenAI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$2.00",
+    "output_per_1m": "$8.00",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 1000000,
+  "max_output": 250000
+}

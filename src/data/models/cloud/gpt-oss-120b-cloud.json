@@ -1,0 +1,59 @@
+{
+  "id": "gpt-oss-120b-cloud",
+  "name": "GPT-OSS 120B (Cloud)",
+  "maker": "openai",
+  "providers": [
+    {
+      "id": "aws-bedrock",
+      "litellm_model_name": "bedrock/openai.gpt-oss-120b",
+      "is_default": true
+    },
+    {
+      "id": "baseten",
+      "litellm_model_name": "baseten/openai/gpt-oss-120b",
+      "is_default": false
+    },
+    {
+      "id": "cerebras",
+      "litellm_model_name": "cerebras/openai/gpt-oss-120b",
+      "is_default": false
+    },
+    {
+      "id": "fireworks",
+      "litellm_model_name": "fireworks/openai/gpt-oss-120b",
+      "is_default": false
+    },
+    {
+      "id": "groq",
+      "litellm_model_name": "groq/openai/gpt-oss-120b",
+      "is_default": false
+    },
+    {
+      "id": "parasail",
+      "litellm_model_name": "parasail/openai/gpt-oss-120b",
+      "is_default": false
+    }
+  ],
+  "icon": "@/assets/icons/openai.svg",
+  "description": "OpenAI's GPT-OSS 120B deployments with a 131K token context window available via AWS Bedrock, Baseten, Cerebras, Fireworks AI, Groq, and Parasail",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.10",
+    "output_per_1m": "$0.50",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 131000,
+  "max_output": 32750
+}

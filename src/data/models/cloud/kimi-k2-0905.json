@@ -1,0 +1,49 @@
+{
+  "id": "kimi-k2-0905",
+  "name": "Kimi K2 0905",
+  "maker": "moonshotai",
+  "providers": [
+    {
+      "id": "baseten",
+      "litellm_model_name": "baseten/moonshotai/kimi-k2-0905",
+      "is_default": false
+    },
+    {
+      "id": "fireworks",
+      "litellm_model_name": "fireworks/moonshotai/kimi-k2-0905",
+      "is_default": false
+    },
+    {
+      "id": "groq",
+      "litellm_model_name": "groq/moonshotai/kimi-k2-0905",
+      "is_default": false
+    },
+    {
+      "id": "moonshot",
+      "litellm_model_name": "moonshotai/kimi-k2-0905",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/moonshot.svg",
+  "description": "Moonshot AI's Kimi K2 0905 model with a 131K tokens context window available via Baseten, Fireworks AI, Groq, Moonshot AI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.60",
+    "output_per_1m": "$2.50",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 131000,
+  "max_output": 32750
+}

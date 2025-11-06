@@ -1,0 +1,34 @@
+{
+  "id": "gemini-2.0-flash",
+  "name": "Gemini 2.0 Flash",
+  "maker": "google",
+  "providers": [
+    {
+      "id": "vertex-ai",
+      "litellm_model_name": "vertex_ai/gemini-2.0-flash",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/google.svg",
+  "description": "Google DeepMind's Gemini 2.0 Flash model with a 1M tokens context window available via Vertex AI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.10",
+    "output_per_1m": "$0.40",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 1000000,
+  "max_output": 250000
+}

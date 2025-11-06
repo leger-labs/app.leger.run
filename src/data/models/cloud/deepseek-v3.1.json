@@ -1,0 +1,49 @@
+{
+  "id": "deepseek-v3.1",
+  "name": "Deepseek V3.1",
+  "maker": "deepseek",
+  "providers": [
+    {
+      "id": "baseten",
+      "litellm_model_name": "baseten/deepseek/deepseek-v3.1",
+      "is_default": true
+    },
+    {
+      "id": "deepinfra",
+      "litellm_model_name": "deepinfra/deepseek/deepseek-v3.1",
+      "is_default": false
+    },
+    {
+      "id": "fireworks",
+      "litellm_model_name": "fireworks/deepseek/deepseek-v3.1",
+      "is_default": false
+    },
+    {
+      "id": "novita",
+      "litellm_model_name": "novita/deepseek/deepseek-v3.1",
+      "is_default": false
+    }
+  ],
+  "icon": "@/assets/icons/deepseek.svg",
+  "description": "DeepSeek's Deepseek V3.1 model with a 164K tokens context window available via Baseten, DeepInfra, Fireworks AI, Novita AI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.30",
+    "output_per_1m": "$1.00",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 164000,
+  "max_output": 41000
+}

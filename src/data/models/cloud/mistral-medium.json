@@ -1,0 +1,34 @@
+{
+  "id": "mistral-medium",
+  "name": "Mistral Medium",
+  "maker": "mistral",
+  "providers": [
+    {
+      "id": "mistral",
+      "litellm_model_name": "mistral/mistral-medium",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/mistral.svg",
+  "description": "Mistral AI's Mistral Medium model with a 128K tokens context window available via Mistral AI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.40",
+    "output_per_1m": "$2.00",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 128000,
+  "max_output": 32000
+}

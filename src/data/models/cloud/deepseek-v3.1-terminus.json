@@ -1,0 +1,34 @@
+{
+  "id": "deepseek-v3.1-terminus",
+  "name": "Deepseek V3.1 Terminus",
+  "maker": "deepseek",
+  "providers": [
+    {
+      "id": "novita",
+      "litellm_model_name": "novita/deepseek/deepseek-v3.1-terminus",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/deepseek.svg",
+  "description": "DeepSeek's Deepseek V3.1 Terminus model with a 131K tokens context window available via Novita AI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.27",
+    "output_per_1m": "$1.00",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 131000,
+  "max_output": 32750
+}

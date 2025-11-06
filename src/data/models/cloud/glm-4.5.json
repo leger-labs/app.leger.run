@@ -1,0 +1,39 @@
+{
+  "id": "glm-4.5",
+  "name": "GLM 4.5",
+  "maker": "zai",
+  "providers": [
+    {
+      "id": "novita",
+      "litellm_model_name": "novita/zai/glm-4.5",
+      "is_default": false
+    },
+    {
+      "id": "zai",
+      "litellm_model_name": "zai/glm-4.5",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/zai.svg",
+  "description": "Zhipu AI's GLM 4.5 model with a 128K tokens context window available via Novita AI, Z.ai",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.60",
+    "output_per_1m": "$2.20",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 128000,
+  "max_output": 32000
+}

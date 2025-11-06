@@ -1,0 +1,40 @@
+{
+  "id": "gpt-5-codex",
+  "name": "GPT-5 Codex",
+  "maker": "openai",
+  "providers": [
+    {
+      "id": "azure",
+      "litellm_model_name": "azure/gpt-5-codex",
+      "is_default": false
+    },
+    {
+      "id": "openai",
+      "litellm_model_name": "openai/gpt-5-codex",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/openai.svg",
+  "description": "OpenAI's GPT-5 Codex model with a 400K tokens context window available via Azure OpenAI, OpenAI",
+  "capabilities": [
+    "chat",
+    "code",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$1.25",
+    "output_per_1m": "$10.00",
+    "tier": "premium"
+  },
+  "use_cases": [
+    "Developer copilots and IDE integrations",
+    "Automated code review and refactoring",
+    "Scripting and workflow automation",
+    "Complex analysis and planning tasks",
+    "Decision support and strategy"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 400000,
+  "max_output": 100000
+}

@@ -1,0 +1,34 @@
+{
+  "id": "sonar-pro",
+  "name": "Sonar Pro",
+  "maker": "perplexity",
+  "providers": [
+    {
+      "id": "perplexity",
+      "litellm_model_name": "perplexity/sonar-pro",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/perplexity.svg",
+  "description": "Perplexity AI's Sonar Pro model with a 200K tokens context window available via Perplexity",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$3.00",
+    "output_per_1m": "$15.00",
+    "tier": "premium"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 200000,
+  "max_output": 50000
+}

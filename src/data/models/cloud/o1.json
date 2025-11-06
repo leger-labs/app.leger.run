@@ -1,0 +1,39 @@
+{
+  "id": "o1",
+  "name": "O1",
+  "maker": "openai",
+  "providers": [
+    {
+      "id": "azure",
+      "litellm_model_name": "azure/o1",
+      "is_default": false
+    },
+    {
+      "id": "openai",
+      "litellm_model_name": "openai/o1",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/openai.svg",
+  "description": "OpenAI's O1 model with a 200K tokens context window available via Azure OpenAI, OpenAI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$15.00",
+    "output_per_1m": "$60.00",
+    "tier": "premium"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 200000,
+  "max_output": 50000
+}

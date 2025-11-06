@@ -1,0 +1,39 @@
+{
+  "id": "deepseek-v3",
+  "name": "Deepseek V3",
+  "maker": "deepseek",
+  "providers": [
+    {
+      "id": "baseten",
+      "litellm_model_name": "baseten/deepseek/deepseek-v3",
+      "is_default": true
+    },
+    {
+      "id": "novita",
+      "litellm_model_name": "novita/deepseek/deepseek-v3",
+      "is_default": false
+    }
+  ],
+  "icon": "@/assets/icons/deepseek.svg",
+  "description": "DeepSeek's Deepseek V3 model with a 164K tokens context window available via Baseten, Novita AI",
+  "capabilities": [
+    "chat",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.77",
+    "output_per_1m": "$0.77",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Complex analysis and planning tasks",
+    "Decision support and strategy",
+    "Conversational AI assistants",
+    "Knowledge base Q&A",
+    "Content generation and summarization"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 164000,
+  "max_output": 41000
+}

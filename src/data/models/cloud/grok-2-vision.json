@@ -1,0 +1,36 @@
+{
+  "id": "grok-2-vision",
+  "name": "Grok 2 Vision",
+  "maker": "xai",
+  "providers": [
+    {
+      "id": "xai",
+      "litellm_model_name": "xai/grok-2-vision",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/xai.svg",
+  "description": "xAI's Grok 2 Vision model with a 33K tokens context window available via xAI",
+  "capabilities": [
+    "chat",
+    "vision",
+    "multimodal",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$2.00",
+    "output_per_1m": "$10.00",
+    "tier": "premium"
+  },
+  "use_cases": [
+    "Multimodal assistants and copilots",
+    "Document and image understanding",
+    "Visual reasoning and analysis",
+    "Complex analysis and planning tasks",
+    "Decision support and strategy"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true,
+  "context_window": 33000,
+  "max_output": 8250
+}
