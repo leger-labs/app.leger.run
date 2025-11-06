@@ -17,6 +17,7 @@ export interface SecretRecord {
   created_at: string // ISO 8601 timestamp
   updated_at: string // Last modification time
   last_accessed: string | null // Last retrieval time (for audit)
+  label?: string | null // Optional user friendly label
 }
 
 /**
@@ -24,6 +25,7 @@ export interface SecretRecord {
  */
 export interface SecretMetadata {
   name: string
+  label?: string
   created_at: string
   updated_at: string
   version: number
@@ -34,6 +36,7 @@ export interface SecretMetadata {
  */
 export interface SecretWithValue {
   name: string
+  label?: string
   value: string // Decrypted plaintext
   version: number
   created_at: string
@@ -45,6 +48,7 @@ export interface SecretWithValue {
 export interface CreateSecretInput {
   name: string
   value: string // Plaintext value to encrypt
+  label?: string
 }
 
 /**
@@ -52,14 +56,15 @@ export interface CreateSecretInput {
  */
 export interface UpdateSecretInput {
   value: string // New plaintext value
+  label?: string
 }
 
 /**
  * Validate secret name format
- * Rules: alphanumeric, underscore, hyphen only; 1-64 characters
+ * Rules: alphanumeric, underscore, hyphen, colon only; 1-64 characters
  */
 export function isValidSecretName(name: string): boolean {
-  return /^[a-zA-Z0-9_-]{1,64}$/.test(name)
+  return /^[a-zA-Z0-9:_-]{1,64}$/.test(name)
 }
 
 /**

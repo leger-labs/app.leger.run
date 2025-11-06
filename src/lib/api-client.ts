@@ -150,16 +150,27 @@ class APIClient {
    * Get a specific secret by name
    */
   async getSecret(name: string): Promise<SecretWithValue> {
-    return this.request<SecretWithValue>(`/secrets/${name}`);
+    const encodedName = encodeURIComponent(name);
+    return this.request<SecretWithValue>(`/secrets/${encodedName}`);
   }
 
   /**
    * Create or update a secret
    */
-  async upsertSecret(name: string, value: string): Promise<SecretMetadata> {
-    return this.request<SecretMetadata>(`/secrets/${name}`, {
+  async upsertSecret(
+    name: string,
+    value: string,
+    label?: string
+  ): Promise<SecretMetadata> {
+    const encodedName = encodeURIComponent(name);
+    const body: Record<string, unknown> = { value };
+    if (label !== undefined) {
+      body.label = label;
+    }
+
+    return this.request<SecretMetadata>(`/secrets/${encodedName}`, {
       method: 'POST',
-      body: JSON.stringify({ value }),
+      body: JSON.stringify(body),
     });
   }
 
@@ -167,9 +178,33 @@ class APIClient {
    * Delete a secret
    */
   async deleteSecret(name: string): Promise<void> {
-    await this.request<void>(`/secrets/${name}`, {
+    const encodedName = encodeURIComponent(name);
+    await this.request<void>(`/secrets/${encodedName}`, {
       method: 'DELETE',
     });
+  }
+
+  /**
+   * Set which secret is selected for a provider
+   */
+  async setProviderSelection(providerId: string, secretName: string): Promise<void> {
+    await this.request(`/secrets/select-provider`, {
+      method: 'POST',
+      body: JSON.stringify({
+        provider_id: providerId,
+        secret_name: secretName,
+      }),
+    });
+  }
+
+  /**
+   * Get all provider selections for the current user
+   */
+  async getProviderSelections(): Promise<Record<string, string>> {
+    const response = await this.request<{ selections: Record<string, string> }>(
+      `/secrets/selections`
+    );
+    return response.selections;
   }
 
   /**

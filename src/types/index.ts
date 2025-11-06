@@ -21,6 +21,7 @@ export interface UserProfile {
  */
 export interface SecretMetadata {
   name: string;
+  label?: string;
   created_at: string;
   updated_at: string;
   version: number;
@@ -32,6 +33,7 @@ export interface SecretMetadata {
  */
 export interface SecretWithValue {
   name: string;
+  label?: string;
   value: string; // Decrypted plaintext
   version: number;
   created_at: string;

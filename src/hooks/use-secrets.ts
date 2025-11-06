@@ -10,6 +10,7 @@ import type { SecretWithValue } from '@/types';
 
 export function useSecrets() {
   const [secrets, setSecrets] = useState<SecretWithValue[]>([]);
+  const [selections, setSelections] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -17,8 +18,12 @@ export function useSecrets() {
   const fetchSecrets = async () => {
     try {
       setIsLoading(true);
-      const response = await apiClient.listSecrets(true);
-      setSecrets(response.secrets);
+      const [secretsResponse, selectionsResponse] = await Promise.all([
+        apiClient.listSecrets(true),
+        apiClient.getProviderSelections(),
+      ]);
+      setSecrets(secretsResponse.secrets);
+      setSelections(selectionsResponse);
     } catch (error) {
       // Error already toasted by API client
       console.error('Failed to fetch secrets:', error);
@@ -31,17 +36,18 @@ export function useSecrets() {
     fetchSecrets();
   }, []);
 
-  const upsertSecret = async (name: string, value: string): Promise<boolean> => {
+  const upsertSecret = async (
+    name: string,
+    value: string,
+    label?: string
+  ): Promise<boolean> => {
     setIsSaving(true);
     try {
-      await apiClient.upsertSecret(name, value);
-      toast.success('Secret saved', {
-        description: `${name} has been updated successfully.`,
-      });
-      await fetchSecrets(); // Refetch to get updated data
+      await apiClient.upsertSecret(name, value, label);
+      toast.success('API key saved');
+      await fetchSecrets();
       return true;
     } catch (error) {
-      // Error already toasted by API client
       console.error('Failed to save secret:', error);
       return false;
     } finally {
@@ -53,13 +59,10 @@ export function useSecrets() {
     setIsDeleting(true);
     try {
       await apiClient.deleteSecret(name);
-      toast.success('Secret deleted', {
-        description: `${name} has been removed.`,
-      });
-      await fetchSecrets(); // Refetch to get updated list
+      toast.success('API key deleted');
+      await fetchSecrets();
       return true;
     } catch (error) {
-      // Error already toasted by API client
       console.error('Failed to delete secret:', error);
       return false;
     } finally {
@@ -67,13 +70,30 @@ export function useSecrets() {
     }
   };
 
+  const setProviderSelection = async (
+    providerId: string,
+    secretName: string
+  ): Promise<boolean> => {
+    try {
+      await apiClient.setProviderSelection(providerId, secretName);
+      setSelections((prev) => ({ ...prev, [providerId]: secretName }));
+      toast.success('Default key updated');
+      return true;
+    } catch (error) {
+      console.error('Failed to set selection:', error);
+      return false;
+    }
+  };
+
   return {
     secrets,
+    selections,
     isLoading,
     isSaving,
     isDeleting,
     upsertSecret,
     deleteSecret,
+    setProviderSelection,
     refetch: fetchSecrets,
   };
 }

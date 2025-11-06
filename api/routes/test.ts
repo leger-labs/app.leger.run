@@ -139,7 +139,14 @@ export async function handleTestUpsertSecret(
       return errorResponse('validation_error', 'Missing required field: value', 400)
     }
 
-    const secret = await upsertSecret(env, TEST_USER_ID, { value: body.value }, secretName)
+    const label = typeof body.label === 'string' ? body.label : undefined
+
+    const secret = await upsertSecret(
+      env,
+      TEST_USER_ID,
+      { value: body.value, label },
+      secretName
+    )
 
     return successResponse(secret)
   } catch (error) {
