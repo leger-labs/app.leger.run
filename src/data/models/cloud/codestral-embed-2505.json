@@ -1,0 +1,29 @@
+{
+  "id": "codestral-embed-2505",
+  "name": "Codestral Embed 2505",
+  "maker": "mistral",
+  "providers": [
+    {
+      "id": "openrouter",
+      "litellm_model_name": "openrouter/mistralai/codestral-embed-2505",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/mistral.svg",
+  "description": "Mistral AI's Codestral Embed 2505 model available via OpenRouter",
+  "capabilities": [
+    "embeddings"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.15",
+    "output_per_1m": "—",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Semantic search and retrieval",
+    "Vector database indexing",
+    "Personalization and recommendations"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true
+}

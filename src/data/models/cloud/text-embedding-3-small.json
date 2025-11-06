@@ -12,10 +12,15 @@
       "id": "openai",
       "litellm_model_name": "openai/text-embedding-3-small",
       "is_default": true
+    },
+    {
+      "id": "openrouter",
+      "litellm_model_name": "openrouter/openai/text-embedding-3-small",
+      "is_default": false
     }
   ],
   "icon": "@/assets/icons/openai.svg",
-  "description": "OpenAI's Text Embedding 3 Small model available via Azure OpenAI, OpenAI",
+  "description": "OpenAI's Text Embedding 3 Small model available via Azure OpenAI, OpenAI, OpenRouter",
   "capabilities": [
     "embeddings"
   ],
