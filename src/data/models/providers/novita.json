@@ -1,0 +1,10 @@
+{
+  "id": "novita",
+  "name": "Novita AI",
+  "icon": "@/assets/icons/novita.svg",
+  "website": "https://novita.ai/",
+  "requires_api_key": "NOVITA_API_KEY",
+  "api_key_register_url": "https://novita.ai/",
+  "description": "Pay-as-you-go APIs for popular open-source models",
+  "provider_type": "api"
+}

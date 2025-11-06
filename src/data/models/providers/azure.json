@@ -1,0 +1,10 @@
+{
+  "id": "azure",
+  "name": "Azure OpenAI",
+  "icon": "@/assets/icons/azure.svg",
+  "website": "https://azure.microsoft.com/en-us/products/ai-services/openai-service",
+  "requires_api_key": "AZURE_OPENAI_API_KEY",
+  "api_key_register_url": "https://portal.azure.com/",
+  "description": "Microsoft's managed OpenAI service on Azure",
+  "provider_type": "cloud"
+}

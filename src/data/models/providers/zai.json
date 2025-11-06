@@ -1,0 +1,10 @@
+{
+  "id": "zai",
+  "name": "Z.ai",
+  "icon": "@/assets/icons/zai.svg",
+  "website": "https://z.ai/",
+  "requires_api_key": "ZAI_API_KEY",
+  "api_key_register_url": "https://z.ai/",
+  "description": "Z.ai's unified API for leading frontier models",
+  "provider_type": "api"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "alibabacloud",
+  "name": "Alibaba Cloud",
+  "icon": "@/assets/icons/alibabacloud.svg",
+  "website": "https://www.alibabacloud.com/",
+  "requires_api_key": "ALIBABACLOUD_ACCESS_KEY_ID",
+  "api_key_register_url": "https://account.alibabacloud.com/register",
+  "description": "Alibaba Cloud's AI and model hosting services",
+  "provider_type": "cloud"
+}

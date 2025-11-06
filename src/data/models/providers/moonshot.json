@@ -1,0 +1,10 @@
+{
+  "id": "moonshot",
+  "name": "Moonshot AI",
+  "icon": "@/assets/icons/moonshot.svg",
+  "website": "https://moonshot.cn/",
+  "requires_api_key": "MOONSHOT_API_KEY",
+  "api_key_register_url": "https://moonshot.cn/",
+  "description": "Access to Moonshot AI's Kimi large language models",
+  "provider_type": "api"
+}

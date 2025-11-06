@@ -1,0 +1,10 @@
+{
+  "id": "baseten",
+  "name": "Baseten",
+  "icon": "@/assets/icons/baseten.svg",
+  "website": "https://www.baseten.co/",
+  "requires_api_key": "BASETEN_API_KEY",
+  "api_key_register_url": "https://www.baseten.co/",
+  "description": "Managed platform for deploying and scaling AI models",
+  "provider_type": "api"
+}
