@@ -1,0 +1,10 @@
+{
+  "id": "gemini",
+  "name": "Google Gemini",
+  "icon": "assets/providers/gemini.svg",
+  "website": "https://ai.google.dev/",
+  "requires_api_key": "GEMINI_API_KEY",
+  "api_key_register_url": "https://makersuite.google.com/app/apikey",
+  "description": "Official Google Gemini API",
+  "provider_type": "api"
+}

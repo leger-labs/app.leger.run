@@ -1,0 +1,10 @@
+{
+  "id": "aws-bedrock",
+  "name": "AWS Bedrock",
+  "icon": "assets/providers/aws-bedrock.svg",
+  "website": "https://aws.amazon.com/bedrock/",
+  "requires_api_key": "AWS_ACCESS_KEY_ID",
+  "api_key_register_url": "https://aws.amazon.com/bedrock/",
+  "description": "Amazon's managed AI service with multiple models",
+  "provider_type": "cloud"
+}

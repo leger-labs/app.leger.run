@@ -1,0 +1,40 @@
+{
+  "id": "qwen3-235b",
+  "name": "Qwen3 235B",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://unsloth/Qwen3-235B-A22B-Instruct-2507-GGUF/Qwen3-235B-A22B-Instruct-2507-UD-Q3_K_XL.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q3_K_XL",
+  "ram_required_gb": 97,
+  "context_window": 131072,
+  "group": "heavy",
+  "icon": "assets/makers/qwen.svg",
+  "description": "Flagship model - incredible capability, fits in 128GB",
+  "family": "qwen",
+  "capabilities": [
+    "chat",
+    "code",
+    "reasoning",
+    "long-context"
+  ],
+  "ctx_size": 65536,
+  "ttl": 1800,
+  "hf_repo": "unsloth/Qwen3-235B-A22B-Instruct-2507-GGUF",
+  "hf_file": "Qwen3-235B-A22B-Instruct-2507-UD-Q3_K_XL.gguf",
+  "vulkan_driver": "AMDVLK",
+  "flash_attn": true,
+  "batch_size": 2048,
+  "enabled": false,
+  "use_cases": [
+    "Most challenging reasoning tasks",
+    "Complex software architecture",
+    "Research-grade analysis",
+    "Long-form content creation"
+  ],
+  "notes": "This is HUGE but fits in 128GB with Q3_K quantization. Expect slower inference but incredible quality. Conservative 65k context (can do 130k max)"
+}

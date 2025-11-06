@@ -1,0 +1,42 @@
+{
+  "id": "granite-4.0-h-micro",
+  "name": "Granite 4.0 H-Micro",
+  "maker": "ibm",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://unsloth/granite-4.0-h-micro-GGUF/granite-4.0-h-micro-UD-Q4_K_XL.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q4_K_XL",
+  "ram_required_gb": 3,
+  "context_window": 131072,
+  "group": "task",
+  "icon": "assets/makers/ibm.svg",
+  "description": "IBM's 3B enterprise model - Fast, efficient for edge use",
+  "family": "granite",
+  "capabilities": [
+    "chat",
+    "code"
+  ],
+  "ctx_size": 8192,
+  "ttl": 600,
+  "hf_repo": "unsloth/granite-4.0-h-micro-GGUF",
+  "hf_file": "granite-4.0-h-micro-UD-Q4_K_XL.gguf",
+  "aliases": [
+    "granite-micro",
+    "granite-3b"
+  ],
+  "shortname": "granite-micro",
+  "vulkan_driver": "RADV",
+  "flash_attn": true,
+  "enabled": false,
+  "use_cases": [
+    "Enterprise workflows",
+    "Edge deployment",
+    "Fast task completion",
+    "Business applications"
+  ],
+  "notes": "IBM's enterprise-focused model with strong business use case support"
+}

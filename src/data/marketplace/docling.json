@@ -1,0 +1,30 @@
+{
+  "id": "docling",
+  "name": "Docling",
+  "category": "content-extraction",
+  "requires_api_key": false,
+  "logo": "/assets/docling.png",
+  "openwebui_variables": [
+    {
+      "name": "DOCLING_OCR_ENGINE",
+      "type": "str",
+      "default": "tesseract",
+      "description": "Specifies the OCR engine used by Docling.\n  Supported values include: `tesseract` (default), `easyocr`, `ocrmac`, `rapidocr`, and `tesserocr`.",
+      "options": []
+    },
+    {
+      "name": "DOCLING_OCR_LANG",
+      "type": "str",
+      "default": "eng,fra,deu,spa",
+      "description": "Specifies the OCR language(s) to be used with the configured `DOCLING_OCR_ENGINE`.\n  The format and available language codes depend on the selected OCR engine.",
+      "options": []
+    },
+    {
+      "name": "DOCLING_SERVER_URL",
+      "type": "str",
+      "default": "http://docling:5001",
+      "description": "Specifies the URL for the Docling server. Requires Docling version 1.0.0 or later.",
+      "options": []
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "external-loader",
+  "name": "External Document Loader",
+  "category": "content-extraction",
+  "requires_api_key": false,
+  "logo": "/assets/external-loader.png",
+  "openwebui_variables": [
+    {
+      "name": "EXTERNAL_DOCUMENT_LOADER_API_KEY",
+      "type": "str",
+      "default": "None",
+      "description": "Sets the API key for authenticating with the external document loader service.",
+      "options": []
+    },
+    {
+      "name": "EXTERNAL_DOCUMENT_LOADER_URL",
+      "type": "str",
+      "default": "None",
+      "description": "Sets the URL for the external document loader service.",
+      "options": []
+    }
+  ]
+}

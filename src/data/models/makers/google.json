@@ -1,0 +1,7 @@
+{
+  "id": "google",
+  "name": "Google",
+  "icon": "assets/makers/google.svg",
+  "website": "https://ai.google.dev/",
+  "description": "Creator of Gemini models"
+}

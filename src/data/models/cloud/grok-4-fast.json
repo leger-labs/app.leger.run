@@ -1,0 +1,37 @@
+{
+  "id": "grok-4-fast",
+  "name": "Grok 4 Fast",
+  "maker": "xai",
+  "providers": [
+    {
+      "id": "openrouter",
+      "litellm_model_name": "openrouter/x-ai/grok-4-fast:free",
+      "is_default": true
+    }
+  ],
+  "context_window": 2000000,
+  "max_output": 32000,
+  "icon": "assets/makers/xai.svg",
+  "description": "X.AI's fast reasoning model - 2M token context, currently FREE",
+  "capabilities": [
+    "reasoning",
+    "chat",
+    "long-context"
+  ],
+  "pricing": {
+    "input_per_1m": "FREE (limited time)",
+    "output_per_1m": "FREE (limited time)",
+    "tier": "free"
+  },
+  "use_cases": [
+    "Experimental workflows",
+    "High-volume testing",
+    "Cost-sensitive applications"
+  ],
+  "release_date": "2025",
+  "notes": "Supports reasoning_enabled parameter. FREE promotion may be limited time",
+  "parameters": {
+    "reasoning_enabled": "boolean"
+  },
+  "enabled": false
+}

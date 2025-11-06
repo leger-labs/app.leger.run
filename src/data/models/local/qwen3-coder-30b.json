@@ -1,0 +1,37 @@
+{
+  "id": "qwen3-coder-30b",
+  "name": "Qwen3 Coder 30B",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF/Qwen3-Coder-30B-A3B-Instruct-BF16.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "BF16",
+  "ram_required_gb": 60,
+  "context_window": 8192,
+  "group": "heavy",
+  "icon": "assets/makers/qwen.svg",
+  "description": "Advanced code model - great for complex refactoring",
+  "family": "qwen",
+  "capabilities": [
+    "code",
+    "chat"
+  ],
+  "ctx_size": 8192,
+  "ttl": 900,
+  "hf_repo": "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF",
+  "hf_file": "Qwen3-Coder-30B-A3B-Instruct-BF16.gguf",
+  "vulkan_driver": "RADV",
+  "flash_attn": true,
+  "enabled": false,
+  "use_cases": [
+    "Complex code refactoring",
+    "Software architecture design",
+    "Code review and analysis",
+    "Algorithm implementation"
+  ],
+  "notes": "Specialized for coding tasks with BF16 precision for maximum accuracy"
+}

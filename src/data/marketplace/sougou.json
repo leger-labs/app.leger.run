@@ -1,0 +1,23 @@
+{
+  "id": "sougou",
+  "name": "Sougou Search",
+  "category": "web-search",
+  "requires_api_key": true,
+  "logo": "/assets/sougou.png",
+  "openwebui_variables": [
+    {
+      "name": "SOUGOU_API_SID",
+      "type": "str",
+      "default": "None",
+      "description": "Sets the Sogou API SID.",
+      "options": []
+    },
+    {
+      "name": "SOUGOU_API_SK",
+      "type": "str",
+      "default": "None",
+      "description": "Sets the Sogou API SK.",
+      "options": []
+    }
+  ]
+}

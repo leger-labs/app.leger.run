@@ -1,0 +1,41 @@
+{
+  "id": "sentencetransformers",
+  "name": "SentenceTransformers (Local)",
+  "category": "rag",
+  "requires_api_key": false,
+  "logo": "/assets/sentencetransformers.png",
+  "openwebui_variables": [
+    {
+      "name": "RAG_EMBEDDING_ENGINE",
+      "type": "str",
+      "default": null,
+      "description": "Selects an embedding engine to use for RAG.",
+      "options": [
+        "ollama",
+        "openai",
+        "azure_openai"
+      ]
+    },
+    {
+      "name": "RAG_EMBEDDING_MODEL",
+      "type": "str",
+      "default": "sentence-transformers/all-MiniLM-L6-v2",
+      "description": "Sets a model for embeddings. Locally, a Sentence-Transformer model is used.",
+      "options": []
+    },
+    {
+      "name": "RAG_EMBEDDING_MODEL_AUTO_UPDATE",
+      "type": "bool",
+      "default": "True",
+      "description": "Toggles automatic update of the Sentence-Transformer model.",
+      "options": []
+    },
+    {
+      "name": "RAG_EMBEDDING_MODEL_TRUST_REMOTE_CODE",
+      "type": "bool",
+      "default": "False",
+      "description": "Determines whether to allow custom models defined on the Hub in their own modeling files.",
+      "options": []
+    }
+  ]
+}

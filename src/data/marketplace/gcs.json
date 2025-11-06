@@ -1,0 +1,34 @@
+{
+  "id": "gcs",
+  "name": "Google Cloud Storage",
+  "category": "storage",
+  "requires_api_key": true,
+  "logo": "/assets/gcs.png",
+  "openwebui_variables": [
+    {
+      "name": "GCS_BUCKET_NAME",
+      "type": "str",
+      "default": null,
+      "description": "Sets the bucket name for Google Cloud Storage. Bucket must already exist.",
+      "options": []
+    },
+    {
+      "name": "GOOGLE_APPLICATION_CREDENTIALS_JSON",
+      "type": "str",
+      "default": null,
+      "description": "Contents of Google Application Credentials JSON file.\n  - Optional - if not provided, credentials will be taken from the environment. User credentials if run locally and Google Metadata server if run on a Google Compute Engine.\n  - A file can be generated for a service account following this [guide.](https://developers.google.com/workspace/guides/create-credentials#service-account)",
+      "options": []
+    },
+    {
+      "name": "STORAGE_PROVIDER",
+      "type": "str",
+      "default": null,
+      "description": "Sets the storage provider.",
+      "options": [
+        "s3",
+        "gcs",
+        "azure"
+      ]
+    }
+  ]
+}

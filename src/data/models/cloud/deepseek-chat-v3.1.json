@@ -1,0 +1,42 @@
+{
+  "id": "deepseek-chat-v3.1",
+  "name": "DeepSeek V3.1",
+  "maker": "deepseek",
+  "providers": [
+    {
+      "id": "openrouter",
+      "litellm_model_name": "openrouter/deepseek/deepseek-chat-v3.1:free",
+      "is_default": true
+    }
+  ],
+  "context_window": 128000,
+  "max_output": 8192,
+  "icon": "assets/makers/deepseek.svg",
+  "description": "DeepSeek's hybrid reasoning model - 671B params, 37B active, FREE tier",
+  "capabilities": [
+    "reasoning",
+    "chat",
+    "code"
+  ],
+  "pricing": {
+    "input_per_1m": "FREE",
+    "output_per_1m": "FREE",
+    "tier": "free"
+  },
+  "use_cases": [
+    "Budget-conscious reasoning",
+    "Experimental workflows",
+    "High-volume applications"
+  ],
+  "release_date": "2025",
+  "notes": "Supports reasoning_enabled boolean parameter",
+  "parameters": {
+    "reasoning_enabled": "boolean"
+  },
+  "performance": {
+    "total_params": "671B",
+    "active_params": "37B",
+    "architecture": "MoE"
+  },
+  "enabled": false
+}

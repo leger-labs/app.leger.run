@@ -1,0 +1,54 @@
+{
+  "id": "claude-opus-4-1",
+  "name": "Claude Opus 4.1",
+  "maker": "anthropic",
+  "providers": [
+    {
+      "id": "anthropic",
+      "litellm_model_name": "anthropic/claude-opus-4-1-20250805",
+      "is_default": true
+    },
+    {
+      "id": "aws-bedrock",
+      "litellm_model_name": "bedrock/anthropic.claude-opus-4-1-v2",
+      "is_default": false
+    },
+    {
+      "id": "vertex-ai",
+      "litellm_model_name": "vertex_ai/claude-opus-4-1",
+      "is_default": false
+    }
+  ],
+  "context_window": 200000,
+  "max_output": 64000,
+  "icon": "assets/makers/anthropic.svg",
+  "description": "Latest and most powerful Opus model - 7-hour memory span with extended thinking",
+  "capabilities": [
+    "reasoning",
+    "code",
+    "chat",
+    "tool_calling",
+    "vision"
+  ],
+  "pricing": {
+    "input_per_1m": "Premium tier",
+    "output_per_1m": "Premium tier",
+    "tier": "premium"
+  },
+  "use_cases": [
+    "Most challenging reasoning tasks",
+    "Complex software architecture",
+    "Advanced research",
+    "Strategic planning",
+    "Long-form content creation"
+  ],
+  "release_date": "2025-08-05",
+  "notes": "Claude Opus 4.5 does NOT exist - Opus 4.1 is the latest Opus model",
+  "features": [
+    "7-hour memory span",
+    "Extended thinking mode",
+    "Improved agentic search",
+    "Enhanced coding"
+  ],
+  "enabled": true
+}

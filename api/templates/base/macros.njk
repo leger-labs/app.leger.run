@@ -1,0 +1,340 @@
+{# ═════════════════════════════════════════════════════════════════════════ #}
+{# MACROS LIBRARY - Reusable Components                                      #}
+{# Import this file to use these macros across all templates                 #}
+{# Usage: {% import "macros.njk" as m %}                                     #}
+{# ═════════════════════════════════════════════════════════════════════════ #}
+
+{# ═════════════════════════════════════════════════════════════════════════ #}
+{# SYSTEMD UNIT MACROS                                                        #}
+{# ═════════════════════════════════════════════════════════════════════════ #}
+
+{# Generate Unit section with dependencies #}
+{% macro unitSection(service, network_name, requires=[]) %}
+[Unit]
+Description={{ service.description }}
+After=network-online.target {{ network_name }}.network.service
+{% for dep in requires %}
+After={{ dep }}.service
+{% endfor %}
+Requires={{ network_name }}.network.service
+{% for dep in requires %}
+Wants={{ dep }}.service
+{% endfor %}
+{% endmacro %}
+
+{# ═════════════════════════════════════════════════════════════════════════ #}
+{# CONTAINER MACROS                                                           #}
+{# ═════════════════════════════════════════════════════════════════════════ #}
+
+{# Publish a port (with optional bind address) #}
+{% macro publishPort(service) %}
+{% if service.published_port %}
+PublishPort={{ service.bind | default("127.0.0.1") }}:{{ service.published_port }}:{{ service.port }}
+{% endif %}
+{% endmacro %}
+
+{# Mount a volume #}
+{% macro volumeMount(volume, container_path, options="Z") %}
+Volume={{ volume }}:{{ container_path }}:{{ options }}
+{% endmacro %}
+
+{# Host directory mount #}
+{% macro hostMount(host_path, container_path, readonly=false, options="Z") %}
+Volume={{ host_path }}:{{ container_path }}:{% if readonly %}ro,{% endif %}{{ options }}
+{% endmacro %}
+
+{# Standard health check #}
+{% macro healthCheck(port, endpoint="/health", interval="30s") %}
+HealthCmd=curl -f http://localhost:{{ port }}{{ endpoint }} || exit 1
+HealthInterval={{ interval }}
+HealthTimeout=5s
+HealthRetries=3
+HealthStartPeriod=30s
+{% endmacro %}
+
+{# Advanced health check with wget #}
+{% macro healthCheckWget(port, endpoint="/") %}
+HealthCmd=wget --no-verbose --tries=1 --spider http://localhost:{{ port }}{{ endpoint }} || exit 1
+HealthInterval=30s
+HealthTimeout=5s
+HealthRetries=3
+HealthStartPeriod=30s
+{% endmacro %}
+
+{# GPU access for AMD #}
+{% macro amdGPU() %}
+# AMD GPU devices for Vulkan acceleration
+AddDevice=/dev/dri
+AddDevice=/dev/kfd
+
+# Security options for GPU access
+PodmanArgs=--security-opt=label=disable
+{% endmacro %}
+
+{# ═════════════════════════════════════════════════════════════════════════ #}
+{# DATABASE MACROS                                                            #}
+{# ═════════════════════════════════════════════════════════════════════════ #}
+
+{# PostgreSQL health check #}
+{% macro postgresHealthCheck(db_user, start_period="10s") %}
+HealthCmd=pg_isready -U {{ db_user }}
+HealthInterval=30s
+HealthTimeout=5s
+HealthRetries=5
+HealthStartPeriod={{ start_period }}
+{% endmacro %}
+
+{# Redis health check #}
+{% macro redisHealthCheck(start_period="10s") %}
+HealthCmd=redis-cli ping || exit 1
+HealthInterval=30s
+HealthTimeout=5s
+HealthRetries=3
+HealthStartPeriod={{ start_period }}
+{% endmacro %}
+
+{# PostgreSQL environment variables (trustauth for internal-only databases) #}
+{% macro postgresEnv(db_name, db_user, enable_vector=true) %}
+Environment=POSTGRES_DB={{ db_name }}
+Environment=POSTGRES_USER={{ db_user }}
+Environment=POSTGRES_HOST_AUTH_METHOD=trust
+{% if enable_vector %}
+
+# Enable pgvector extension and set connection pool
+Exec=-c shared_preload_libraries=vector -c max_connections=200
+{% endif %}
+{% endmacro %}
+
+{# Redis environment variables #}
+{% macro redisEnv() %}
+Environment=REDIS_ARGS=--save 60 1 --loglevel warning
+{% endmacro %}
+
+{# ═════════════════════════════════════════════════════════════════════════ #}
+{# SECRETS MACROS - Real External Cloud Provider API Keys Only                #}
+{# These macros generate Secret= directives for Podman Quadlet                #}
+{# Only for REAL secrets (external cloud APIs users register for)             #}
+{# Internal keys (litellm master, openwebui secret, etc.) are hardcoded       #}
+{# ═════════════════════════════════════════════════════════════════════════ #}
+
+{# Single secret injection as environment variable #}
+{# Usage: {{ m.secret("openai_api_key", "OPENAI_API_KEY") }} #}
+{% macro secret(secret_name, env_target) %}
+Secret={{ secret_name }},type=env,target={{ env_target }}
+{% endmacro %}
+
+{# Single secret injection as file mount #}
+{# Usage: {{ m.secretFile("tls_cert", "/etc/ssl/cert.pem") }} #}
+{% macro secretFile(secret_name, file_target) %}
+Secret={{ secret_name }},type=mount,target={{ file_target }}
+{% endmacro %}
+
+{# Inject LiteLLM external API provider secrets (all LLM cloud provider keys) #}
+{# Usage: {{ m.litellmSecrets() }} #}
+{% macro litellmSecrets() %}
+# External LLM Provider API Keys (registered at cloud providers)
+Secret=openai_api_key,type=env,target=OPENAI_API_KEY
+Secret=anthropic_api_key,type=env,target=ANTHROPIC_API_KEY
+Secret=gemini_api_key,type=env,target=GEMINI_API_KEY
+Secret=groq_api_key,type=env,target=GROQ_API_KEY
+Secret=mistral_api_key,type=env,target=MISTRAL_API_KEY
+Secret=openrouter_api_key,type=env,target=OPENROUTER_API_KEY
+Secret=perplexity_api_key,type=env,target=PERPLEXITY_API_KEY
+{% endmacro %}
+
+{# Inject ComfyUI external model download tokens #}
+{# Usage: {{ m.comfyuiSecrets() }} #}
+{% macro comfyuiSecrets() %}
+# External Model Registries (registered at external services)
+Secret=hf_token,type=env,target=HF_TOKEN
+Secret=civitai_token,type=env,target=CIVITAI_TOKEN
+{% endmacro %}
+
+{# ═════════════════════════════════════════════════════════════════════════ #}
+{# ENVIRONMENT MACROS                                                         #}
+{# ═════════════════════════════════════════════════════════════════════════ #}
+
+{# Database URL #}
+{% macro databaseURL(service, db_name=null) %}
+Environment=DATABASE_URL=postgresql://{{ service.db_user }}@{{ service.hostname }}:{{ service.port }}/{{ db_name | default(service.db_name) }}
+{% endmacro %}
+
+{# Redis URL #}
+{% macro redisURL(service, db=0) %}
+Environment=REDIS_URL=redis://{{ service.hostname }}:{{ service.port }}/{{ db }}
+{% endmacro %}
+
+{# OpenAI-compatible endpoint (NEVER use for API keys - use secrets instead) #}
+{% macro openaiEndpoint(service) %}
+Environment=OPENAI_API_BASE_URL=http://{{ service.hostname }}:{{ service.port }}/v1
+{% endmacro %}
+
+{# ═════════════════════════════════════════════════════════════════════════ #}
+{# CADDY MACROS                                                               #}
+{# ═════════════════════════════════════════════════════════════════════════ #}
+
+{# Standard reverse proxy block #}
+{% macro reverseProxy(service, tailscale_hostname) %}
+https://{{ service.external_subdomain }}.{{ tailscale_hostname }} {
+    reverse_proxy {{ service.hostname }}:{{ service.port }} {
+        # Standard headers
+        header_up Host {host}
+        header_up X-Real-IP {remote_host}
+        header_up X-Forwarded-For {remote_host}
+        header_up X-Forwarded-Proto {scheme}
+        header_up X-Forwarded-Host {host}
+        
+        {% if service.websocket %}
+        # WebSocket support
+        header_up Connection {>Connection}
+        header_up Upgrade {>Upgrade}
+        {% endif %}
+    }
+    
+    # Logging
+    log {
+        output file /var/log/caddy/{{ service.container_name }}.log {
+            roll_size 50mb
+            roll_keep 3
+        }
+        format console
+        level ERROR
+    }
+}
+{% endmacro %}
+
+{# ═════════════════════════════════════════════════════════════════════════ #}
+{# SERVICE SECTION MACROS                                                     #}
+{# ═════════════════════════════════════════════════════════════════════════ #}
+
+{# Standard service section #}
+{% macro serviceSection(slice="llm.slice", timeout=300, restart="on-failure") %}
+[Service]
+Slice={{ slice }}
+TimeoutStartSec={{ timeout }}
+Restart={{ restart }}
+RestartSec=10
+{% endmacro %}
+
+{# Service with pre-start validation #}
+{% macro serviceWithValidation(config_path, container_name) %}
+[Service]
+Slice=llm.slice
+TimeoutStartSec=300
+Restart=on-failure
+RestartSec=10
+
+# Validate config before starting
+ExecStartPre=-/usr/bin/sh -c '\
+  echo "{{ container_name }}: Validating configuration..."; \
+  if ! /usr/bin/validate-config {{ config_path }}; then \
+    echo "{{ container_name }}: ❌ Configuration invalid!"; \
+    exit 1; \
+  fi; \
+  echo "{{ container_name }}: ✅ Configuration valid"'
+{% endmacro %}
+
+{# ═════════════════════════════════════════════════════════════════════════ #}
+{# CONDITIONAL RENDERING MACROS                                               #}
+{# ═════════════════════════════════════════════════════════════════════════ #}
+
+{# Render block only if service is enabled #}
+{% macro ifEnabled(service) %}
+{% if service.enabled %}{{ caller() }}{% endif %}
+{% endmacro %}
+
+{# Render block only if feature flag is true #}
+{% macro ifFeature(features, feature_name) %}
+{% if features[feature_name] %}{{ caller() }}{% endif %}
+{% endmacro %}
+
+{# Render block only if provider matches #}
+{% macro ifProvider(providers, provider_type, provider_name) %}
+{% if providers[provider_type] == provider_name %}{{ caller() }}{% endif %}
+{% endmacro %}
+
+{# ═════════════════════════════════════════════════════════════════════════ #}
+{# HELPER MACROS                                                              #}
+{# ═════════════════════════════════════════════════════════════════════════ #}
+
+{# Generate a list of dependencies for After= #}
+{% macro afterDependencies(deps) %}
+{% for dep in deps %}After={{ dep }}.service
+{% endfor %}
+{% endmacro %}
+
+{# Generate a list of dependencies for Wants= #}
+{% macro wantsDependencies(deps) %}
+{% for dep in deps %}Wants={{ dep }}.service
+{% endfor %}
+{% endmacro %}
+
+{# Generate service name from infrastructure.services key #}
+{% macro serviceName(services, key) %}
+{{ services[key].container_name }}
+{% endmacro %}
+
+{# ═════════════════════════════════════════════════════════════════════════ #}
+{# USAGE EXAMPLES                                                             #}
+{# ═════════════════════════════════════════════════════════════════════════ #}
+
+{#
+Import this file at the top of your template:
+{% import "macros.njk" as m %}
+
+Use macros in your templates:
+
+1. Unit Section:
+{{ m.unitSection(service, network.name, ["postgres", "redis"]) }}
+
+2. Publish Port:
+{{ m.publishPort(service) }}
+
+3. Volume Mount:
+{{ m.volumeMount("litellm-data.volume", "/data") }}
+{{ m.hostMount("%h/.config/litellm", "/config", readonly=true) }}
+
+4. Health Check:
+{{ m.healthCheck(4000, "/health/readiness") }}
+
+5. Secrets (CRITICAL - Use for ALL sensitive data):
+# Single secret
+{{ m.secret("openai_api_key", "OPENAI_API_KEY") }}
+
+# Service-specific secret bundles
+{{ m.litellmSecrets() }}
+{{ m.openwebuiSecrets() }}
+{{ m.searxngSecrets() }}
+{{ m.mcpSecrets() }}
+{{ m.comfyuiSecrets() }}
+
+# PostgreSQL password
+{{ m.postgresSecret("openwebui_postgres_password") }}
+
+# File-based secret (TLS cert, SSH key, etc.)
+{{ m.secretFile("tls_cert", "/etc/ssl/cert.pem") }}
+
+6. Environment Variables (Non-sensitive only):
+{{ m.databaseURL(postgres_service) }}
+{{ m.redisURL(redis_service, db=2) }}
+{{ m.openaiEndpoint(litellm_service) }}
+
+7. Caddy Reverse Proxy:
+{{ m.reverseProxy(service, tailscale.full_hostname) }}
+
+8. Service Section:
+{{ m.serviceSection(timeout=600) }}
+
+9. Conditional Rendering:
+{% call m.ifEnabled(service) %}
+  # This only renders if service.enabled is true
+  [Container]
+  Image={{ service.image }}
+{% endcall %}
+
+{% call m.ifProvider(providers, "vector_db", "qdrant") %}
+  # This only renders if providers.vector_db == "qdrant"
+  Environment=QDRANT_URL=...
+{% endcall %}
+
+#}

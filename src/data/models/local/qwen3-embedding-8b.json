@@ -1,0 +1,42 @@
+{
+  "id": "qwen3-embedding-8b",
+  "name": "Qwen3 Embedding 8B",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://Qwen/Qwen3-Embedding-8B-GGUF/qwen3-embedding-8b-q8_0.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q8_0",
+  "ram_required_gb": 9,
+  "context_window": 8192,
+  "group": "embeddings",
+  "icon": "assets/makers/qwen.svg",
+  "description": "High-quality embedding model - 8B parameters (DEFAULT)",
+  "family": "qwen",
+  "capabilities": [
+    "embeddings"
+  ],
+  "ctx_size": 8192,
+  "ttl": 0,
+  "hf_repo": "Qwen/Qwen3-Embedding-8B-GGUF",
+  "hf_file": "qwen3-embedding-8b-q8_0.gguf",
+  "aliases": [
+    "qwen-embed",
+    "default-embedding"
+  ],
+  "shortname": "qwen3-emb-large",
+  "embedding_dimension": 4096,
+  "vulkan_driver": "RADV",
+  "flash_attn": false,
+  "enabled": true,
+  "use_cases": [
+    "RAG document embedding",
+    "Semantic search",
+    "Document similarity",
+    "Vector database indexing"
+  ],
+  "notes": "Default embedding model - never unloads, always ready"
+}

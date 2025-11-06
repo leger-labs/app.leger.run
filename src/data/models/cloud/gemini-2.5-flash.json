@@ -1,0 +1,41 @@
+{
+  "id": "gemini-2.5-flash",
+  "name": "Gemini 2.5 Flash",
+  "maker": "google",
+  "providers": [
+    {
+      "id": "gemini",
+      "litellm_model_name": "gemini/gemini-2.5-flash",
+      "is_default": true
+    }
+  ],
+  "context_window": 1048576,
+  "max_output": 8192,
+  "icon": "assets/makers/google.svg",
+  "description": "Google's fast multimodal model - 1M+ token context with reasoning control",
+  "capabilities": [
+    "chat",
+    "multimodal",
+    "vision",
+    "code",
+    "long-context"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.30",
+    "output_per_1m": "$2.50",
+    "tier": "budget"
+  },
+  "use_cases": [
+    "Long document analysis",
+    "Video understanding",
+    "Code repository analysis",
+    "Multi-document synthesis",
+    "Real-time applications"
+  ],
+  "release_date": "2025",
+  "notes": "Supports reasoning_effort parameter for controlling reasoning depth",
+  "parameters": {
+    "reasoning_effort": ["low", "medium", "high"]
+  },
+  "enabled": true
+}

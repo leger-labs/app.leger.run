@@ -1,0 +1,39 @@
+{
+  "id": "qwen3-14b",
+  "name": "Qwen3 14B",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://Qwen/Qwen3-14B-GGUF/qwen3-14b-q4_k_m.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q4_K_M",
+  "ram_required_gb": 10,
+  "context_window": 32768,
+  "group": "task",
+  "icon": "assets/makers/qwen.svg",
+  "description": "Premium task model - advanced reasoning",
+  "family": "qwen",
+  "capabilities": [
+    "chat",
+    "code",
+    "reasoning"
+  ],
+  "ctx_size": 8192,
+  "ttl": 600,
+  "hf_repo": "Qwen/Qwen3-14B-GGUF",
+  "hf_file": "qwen3-14b-q4_k_m.gguf",
+  "shortname": "qwen3-xlarge",
+  "vulkan_driver": "RADV",
+  "flash_attn": true,
+  "enabled": false,
+  "use_cases": [
+    "Advanced reasoning tasks",
+    "Complex code generation",
+    "Detailed analysis",
+    "High-quality content"
+  ],
+  "notes": "Auto-unloads after 10 minutes when not in use"
+}

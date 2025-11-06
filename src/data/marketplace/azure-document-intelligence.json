@@ -1,0 +1,23 @@
+{
+  "id": "azure-document-intelligence",
+  "name": "Azure Document Intelligence",
+  "category": "content-extraction",
+  "requires_api_key": true,
+  "logo": "/assets/azure-document-intelligence.png",
+  "openwebui_variables": [
+    {
+      "name": "DOCUMENT_INTELLIGENCE_ENDPOINT",
+      "type": "str",
+      "default": "None",
+      "description": "Specifies the endpoint for document intelligence.",
+      "options": []
+    },
+    {
+      "name": "DOCUMENT_INTELLIGENCE_KEY",
+      "type": "str",
+      "default": "None",
+      "description": "Specifies the key for document intelligence.",
+      "options": []
+    }
+  ]
+}

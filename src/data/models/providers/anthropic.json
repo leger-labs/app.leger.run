@@ -1,0 +1,10 @@
+{
+  "id": "anthropic",
+  "name": "Anthropic",
+  "icon": "assets/providers/anthropic.svg",
+  "website": "https://console.anthropic.com/",
+  "requires_api_key": "ANTHROPIC_API_KEY",
+  "api_key_register_url": "https://console.anthropic.com/",
+  "description": "Official Anthropic API for Claude models",
+  "provider_type": "api"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "tika",
+  "name": "Apache Tika",
+  "category": "content-extraction",
+  "requires_api_key": false,
+  "logo": "/assets/tika.png",
+  "openwebui_variables": [
+    {
+      "name": "TIKA_SERVER_URL",
+      "type": "str",
+      "default": "http://localhost:9998",
+      "description": "Sets the URL for the Apache Tika server.",
+      "options": []
+    }
+  ]
+}

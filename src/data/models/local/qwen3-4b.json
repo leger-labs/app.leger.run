@@ -1,0 +1,35 @@
+{
+  "id": "qwen3-4b",
+  "name": "Qwen3 4B",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://Qwen/Qwen3-4B-GGUF/qwen3-4b-q4_k_m.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q4_K_M",
+  "ram_required_gb": 3,
+  "context_window": 32768,
+  "group": "task",
+  "icon": "assets/makers/qwen.svg",
+  "description": "Balanced task model - tags, queries, analysis",
+  "family": "qwen",
+  "capabilities": ["chat", "code"],
+  "ctx_size": 8192,
+  "ttl": 0,
+  "hf_repo": "Qwen/Qwen3-4B-GGUF",
+  "hf_file": "qwen3-4b-q4_k_m.gguf",
+  "vulkan_driver": "RADV",
+  "flash_attn": true,
+  "shortname": "qwen3-medium",
+  "use_cases": [
+    "Tag generation",
+    "Query rewriting",
+    "Text analysis",
+    "Simple coding tasks"
+  ],
+  "notes": "Never unloads - always ready for multi-step operations",
+  "enabled": true
+}

@@ -1,0 +1,10 @@
+{
+  "id": "deepseek",
+  "name": "DeepSeek",
+  "icon": "assets/providers/deepseek.svg",
+  "website": "https://platform.deepseek.com/",
+  "requires_api_key": "DEEPSEEK_API_KEY",
+  "api_key_register_url": "https://platform.deepseek.com/",
+  "description": "Official DeepSeek API",
+  "provider_type": "api"
+}

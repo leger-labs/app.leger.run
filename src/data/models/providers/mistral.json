@@ -1,0 +1,10 @@
+{
+  "id": "mistral",
+  "name": "Mistral AI",
+  "icon": "assets/providers/mistral.svg",
+  "website": "https://console.mistral.ai/",
+  "requires_api_key": "MISTRAL_API_KEY",
+  "api_key_register_url": "https://console.mistral.ai/",
+  "description": "Official Mistral AI API",
+  "provider_type": "api"
+}

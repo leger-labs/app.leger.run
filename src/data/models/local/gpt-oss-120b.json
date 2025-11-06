@@ -1,0 +1,38 @@
+{
+  "id": "gpt-oss-120b",
+  "name": "GPT-OSS 120B",
+  "maker": "openai",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://openai/gpt-oss-120b-GGUF/gpt-oss-120b-q4_k_m.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q4_K_M",
+  "ram_required_gb": 80,
+  "context_window": 8192,
+  "group": "heavy",
+  "icon": "assets/makers/openai.svg",
+  "description": "OpenAI's 120B parameter model - Complex reasoning",
+  "family": "gpt-oss",
+  "capabilities": [
+    "chat",
+    "code",
+    "reasoning"
+  ],
+  "ctx_size": 8192,
+  "ttl": 900,
+  "hf_repo": "openai/gpt-oss-120b-GGUF",
+  "hf_file": "gpt-oss-120b-q4_k_m.gguf",
+  "vulkan_driver": "AMDVLK",
+  "flash_attn": true,
+  "enabled": true,
+  "use_cases": [
+    "Complex reasoning tasks",
+    "Advanced code generation",
+    "Research and analysis",
+    "Long-form content"
+  ],
+  "notes": "Auto-swaps after 15 minutes. Better for long prompts with AMDVLK driver"
+}

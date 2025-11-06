@@ -1,0 +1,38 @@
+{
+  "id": "llama-4-scout-17b",
+  "name": "Llama 4 Scout 17B",
+  "maker": "meta",
+  "providers": [
+    {
+      "id": "llama-cpp",
+      "model_uri": "huggingface://unsloth/Llama-4-Scout-17B-16E-Instruct-GGUF/Llama-4-Scout-17B-16E-Instruct-UD-Q4_K_XL.gguf",
+      "is_default": true
+    }
+  ],
+  "quantization": "Q4_K_XL",
+  "ram_required_gb": 58,
+  "context_window": 10485760,
+  "group": "heavy",
+  "icon": "assets/makers/meta.svg",
+  "description": "Extended context specialist - 10M token capability",
+  "family": "llama",
+  "capabilities": [
+    "chat",
+    "long-context",
+    "code"
+  ],
+  "ctx_size": 65536,
+  "ttl": 900,
+  "hf_repo": "unsloth/Llama-4-Scout-17B-16E-Instruct-GGUF",
+  "hf_file": "Llama-4-Scout-17B-16E-Instruct-UD-Q4_K_XL.gguf",
+  "vulkan_driver": "AMDVLK",
+  "flash_attn": true,
+  "enabled": false,
+  "use_cases": [
+    "Entire codebase analysis",
+    "Very long document processing",
+    "Multi-document synthesis",
+    "Extended conversations"
+  ],
+  "notes": "Can theoretically do 10M context, but 65k is much more practical for speed. Better with AMDVLK for long prompts"
+}

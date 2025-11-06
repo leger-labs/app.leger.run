@@ -1,0 +1,42 @@
+{
+  "id": "gpt-oss-120b-groq",
+  "name": "GPT-OSS 120B (Groq)",
+  "maker": "openai",
+  "providers": [
+    {
+      "id": "groq",
+      "litellm_model_name": "groq/openai/gpt-oss-120b",
+      "is_default": true
+    }
+  ],
+  "context_window": 128000,
+  "max_output": 32000,
+  "icon": "assets/makers/openai.svg",
+  "description": "OpenAI's open-weight 120B model on Groq's infrastructure - 500 tokens/sec",
+  "capabilities": [
+    "chat",
+    "code",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.15",
+    "output_per_1m": "$0.75",
+    "tier": "budget"
+  },
+  "use_cases": [
+    "Real-time applications",
+    "Low-latency requirements",
+    "High-throughput processing"
+  ],
+  "release_date": "2025",
+  "notes": "Groq's LPU infrastructure enables 500 tokens/second throughput",
+  "performance": {
+    "speed": "500 tokens/second",
+    "vs_model": "Near-parity with o4-mini",
+    "total_params": "120B",
+    "active_params": "5.1B per token",
+    "architecture": "MoE",
+    "license": "Apache 2.0"
+  },
+  "enabled": false
+}

@@ -1,0 +1,10 @@
+{
+  "id": "openai",
+  "name": "OpenAI",
+  "icon": "assets/providers/openai.svg",
+  "website": "https://platform.openai.com/",
+  "requires_api_key": "OPENAI_API_KEY",
+  "api_key_register_url": "https://platform.openai.com/signup",
+  "description": "Official OpenAI API for GPT models",
+  "provider_type": "api"
+}

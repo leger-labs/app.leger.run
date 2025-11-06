@@ -1,0 +1,93 @@
+{
+  "id": "oracle23ai",
+  "name": "Oracle 23ai Vector Search",
+  "category": "rag",
+  "requires_api_key": false,
+  "logo": "/assets/oracle23ai.png",
+  "openwebui_variables": [
+    {
+      "name": "ORACLE_DB_DSN",
+      "type": null,
+      "default": null,
+      "description": null,
+      "options": []
+    },
+    {
+      "name": "ORACLE_DB_PASSWORD",
+      "type": null,
+      "default": null,
+      "description": null,
+      "options": []
+    },
+    {
+      "name": "ORACLE_DB_POOL_INCREMENT",
+      "type": null,
+      "default": null,
+      "description": null,
+      "options": []
+    },
+    {
+      "name": "ORACLE_DB_POOL_MAX",
+      "type": null,
+      "default": null,
+      "description": null,
+      "options": []
+    },
+    {
+      "name": "ORACLE_DB_POOL_MIN",
+      "type": null,
+      "default": null,
+      "description": null,
+      "options": []
+    },
+    {
+      "name": "ORACLE_DB_USER",
+      "type": null,
+      "default": null,
+      "description": null,
+      "options": []
+    },
+    {
+      "name": "ORACLE_DB_USE_WALLET",
+      "type": null,
+      "default": null,
+      "description": null,
+      "options": []
+    },
+    {
+      "name": "ORACLE_VECTOR_LENGTH",
+      "type": null,
+      "default": null,
+      "description": null,
+      "options": []
+    },
+    {
+      "name": "ORACLE_WALLET_DIR",
+      "type": null,
+      "default": null,
+      "description": null,
+      "options": []
+    },
+    {
+      "name": "ORACLE_WALLET_PASSWORD",
+      "type": null,
+      "default": null,
+      "description": null,
+      "options": []
+    },
+    {
+      "name": "PGVECTOR_DB_URL",
+      "type": "str",
+      "default": null,
+      "description": "Sets the database URL for model storage.",
+      "options": []
+    },
+    {
+      "name": "VECTOR_DB",
+      "type": "str",
+      "default": "chroma",
+      "description": "Specifies which vector database system to use. This setting determines which vector storage system will be used for managing embeddings.\n\n:::note\n\nPostgreSQL Dependencies\nTo use `pgvector`, ensure you have PostgreSQL dependencies installed:\n\n```bash\npip install open-webui[all]\n```\n\n:::\n\n### ChromaDB",
+      "options": []
+    }
+  ]
+}

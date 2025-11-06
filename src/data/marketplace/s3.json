@@ -1,0 +1,48 @@
+{
+  "id": "s3",
+  "name": "Amazon S3",
+  "category": "storage",
+  "requires_api_key": true,
+  "logo": "/assets/s3.png",
+  "openwebui_variables": [
+    {
+      "name": "S3_ACCESS_KEY_ID",
+      "type": "str",
+      "default": null,
+      "description": "Sets the access key ID for S3 storage.",
+      "options": []
+    },
+    {
+      "name": "S3_BUCKET_NAME",
+      "type": "str",
+      "default": null,
+      "description": "Sets the bucket name for S3 storage.",
+      "options": []
+    },
+    {
+      "name": "S3_ENDPOINT_URL",
+      "type": "str",
+      "default": null,
+      "description": "Sets the endpoint URL for S3 storage.\n\n:::info\n\nIf the endpoint is an S3-compatible provider like MinIO that uses a TLS certificate signed by a private CA, set the environment variable `AWS_CA_BUNDLE` to the path of your PEM-encoded CA certificates file. See the [Amazon SDK Docs](https://docs.aws.amazon.com/sdkref/latest/guide/feature-gen-config.html) for more information.\n\n:::",
+      "options": []
+    },
+    {
+      "name": "S3_SECRET_ACCESS_KEY",
+      "type": "str",
+      "default": null,
+      "description": "Sets the secret access key for S3 storage.",
+      "options": []
+    },
+    {
+      "name": "STORAGE_PROVIDER",
+      "type": "str",
+      "default": null,
+      "description": "Sets the storage provider.",
+      "options": [
+        "s3",
+        "gcs",
+        "azure"
+      ]
+    }
+  ]
+}

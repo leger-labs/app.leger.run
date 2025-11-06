@@ -1,0 +1,23 @@
+{
+  "id": "google-pse",
+  "name": "Google Programmable Search Engine",
+  "category": "web-search",
+  "requires_api_key": true,
+  "logo": "/assets/google-pse.png",
+  "openwebui_variables": [
+    {
+      "name": "GOOGLE_PSE_API_KEY",
+      "type": "str",
+      "default": null,
+      "description": "Sets the API key for the Google Programmable Search Engine (PSE) service.",
+      "options": []
+    },
+    {
+      "name": "GOOGLE_PSE_ENGINE_ID",
+      "type": "str",
+      "default": null,
+      "description": "The engine ID for the Google Programmable Search Engine (PSE) service.",
+      "options": []
+    }
+  ]
+}

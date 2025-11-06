@@ -1,0 +1,16 @@
+{
+  "id": "searxng",
+  "name": "SearXNG",
+  "category": "web-search",
+  "requires_api_key": false,
+  "logo": "/assets/searxng.png",
+  "openwebui_variables": [
+    {
+      "name": "SEARXNG_QUERY_URL",
+      "type": "str",
+      "default": null,
+      "description": "The [SearXNG search API](https://docs.searxng.org/dev/search_api.html) URL supporting JSON output. `<query>` is replaced with\nthe search query. Example: `http://searxng.local/search?q=<query>`",
+      "options": []
+    }
+  ]
+}

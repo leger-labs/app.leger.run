@@ -1,0 +1,43 @@
+{
+  "id": "gemini-2.5-pro",
+  "name": "Gemini 2.5 Pro",
+  "maker": "google",
+  "providers": [
+    {
+      "id": "gemini",
+      "litellm_model_name": "gemini/gemini-2.5-pro",
+      "is_default": true
+    }
+  ],
+  "context_window": 2000000,
+  "max_output": 8192,
+  "icon": "assets/makers/google.svg",
+  "description": "Google's most powerful model - 2M token context with thinking budget",
+  "capabilities": [
+    "reasoning",
+    "chat",
+    "multimodal",
+    "vision",
+    "code",
+    "long-context"
+  ],
+  "pricing": {
+    "input_per_1m": "Premium tier",
+    "output_per_1m": "Premium tier",
+    "tier": "premium"
+  },
+  "use_cases": [
+    "Entire codebase analysis",
+    "Large-scale research",
+    "Multi-source synthesis",
+    "Complex reasoning tasks",
+    "Advanced code generation"
+  ],
+  "release_date": "2025",
+  "notes": "Supports max_tokens_for_reasoning parameter for thinking budget control",
+  "parameters": {
+    "reasoning_effort": ["low", "medium", "high"],
+    "max_tokens_for_reasoning": "configurable"
+  },
+  "enabled": true
+}
