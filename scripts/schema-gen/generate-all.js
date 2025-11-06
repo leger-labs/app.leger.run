@@ -16,8 +16,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const SCHEMA_PATH = join(__dirname, '../../schemas/releases/latest/schema.json');
-const MODEL_STORE_PATH = join(__dirname, '../../model-store');
+const SCHEMA_PATH = join(__dirname, '../../src/data/core/schema.json');
+const MODEL_STORE_PATH = join(__dirname, '../../src/data/models');
 
 /**
  * Check if required directories exist
@@ -28,14 +28,14 @@ function checkPrerequisites() {
   if (!existsSync(SCHEMA_PATH)) {
     errors.push(
       `Schema file not found at: ${SCHEMA_PATH}\n` +
-      `  Run: git submodule update --init --recursive`
+      `  Expected location: src/data/core/schema.json`
     );
   }
 
   if (!existsSync(MODEL_STORE_PATH)) {
     errors.push(
       `Model store not found at: ${MODEL_STORE_PATH}\n` +
-      `  Run: git submodule update --init --recursive`
+      `  Expected location: src/data/models/`
     );
   }
 

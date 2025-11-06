@@ -12,36 +12,22 @@ import type {
   ModelStoreData,
   ModelFilters,
 } from '@/types/model-store';
+import {
+  loadAllMakers,
+  loadAllProviders,
+  loadAllCloudModels,
+  loadAllLocalModels,
+} from '@/data/models';
 
 /**
  * Load all makers from the model-store
  */
 async function fetchMakers(): Promise<Map<string, Maker>> {
   const makers = new Map<string, Maker>();
+  const makerList = await loadAllMakers();
 
-  // List of known maker IDs (based on current model-store structure)
-  const makerIds = [
-    'anthropic',
-    'deepseek',
-    'google',
-    'ibm',
-    'meta',
-    'mistral',
-    'openai',
-    'qwen',
-    'xai',
-  ];
-
-  for (const id of makerIds) {
-    try {
-      const response = await fetch(`/model-store/makers/${id}.json`);
-      if (response.ok) {
-        const maker: Maker = await response.json();
-        makers.set(maker.id, maker);
-      }
-    } catch (error) {
-      console.error(`Failed to load maker ${id}:`, error);
-    }
+  for (const maker of makerList) {
+    makers.set(maker.id, maker);
   }
 
   return makers;
@@ -52,32 +38,10 @@ async function fetchMakers(): Promise<Map<string, Maker>> {
  */
 async function fetchProviders(): Promise<Map<string, Provider>> {
   const providers = new Map<string, Provider>();
+  const providerList = await loadAllProviders();
 
-  // List of known provider IDs (based on current model-store structure)
-  const providerIds = [
-    'anthropic',
-    'aws-bedrock',
-    'deepseek',
-    'gemini',
-    'groq',
-    'llama-cpp',
-    'mistral',
-    'openai',
-    'openrouter',
-    'vertex-ai',
-    'xai',
-  ];
-
-  for (const id of providerIds) {
-    try {
-      const response = await fetch(`/model-store/providers/${id}.json`);
-      if (response.ok) {
-        const provider: Provider = await response.json();
-        providers.set(provider.id, provider);
-      }
-    } catch (error) {
-      console.error(`Failed to load provider ${id}:`, error);
-    }
+  for (const provider of providerList) {
+    providers.set(provider.id, provider);
   }
 
   return providers;
@@ -87,71 +51,14 @@ async function fetchProviders(): Promise<Map<string, Provider>> {
  * Load all cloud models from the model-store
  */
 async function fetchCloudModels(): Promise<CloudModel[]> {
-  const cloudModels: CloudModel[] = [];
-
-  // List of known cloud model IDs (based on current model-store structure)
-  const modelIds = [
-    'claude-opus-4-1',
-    'claude-sonnet-4-5',
-    'deepseek-chat-v3.1',
-    'gemini-2.5-flash',
-    'gemini-2.5-pro',
-    'gpt-5-mini',
-    'gpt-5-nano',
-    'gpt-5-pro',
-    'gpt-5',
-    'gpt-oss-120b-groq',
-    'grok-4-fast',
-  ];
-
-  for (const id of modelIds) {
-    try {
-      const response = await fetch(`/model-store/cloud/${id}.json`);
-      if (response.ok) {
-        const model: CloudModel = await response.json();
-        cloudModels.push(model);
-      }
-    } catch (error) {
-      console.error(`Failed to load cloud model ${id}:`, error);
-    }
-  }
-
-  return cloudModels;
+  return await loadAllCloudModels();
 }
 
 /**
  * Load all local models from the model-store
  */
 async function fetchLocalModels(): Promise<LocalModel[]> {
-  const localModels: LocalModel[] = [];
-
-  // List of known local model IDs (based on current model-store structure)
-  const modelIds = [
-    'gpt-oss-120b',
-    'gpt-oss-20b',
-    'granite-4.0-h-micro',
-    'llama-4-scout-17b',
-    'qwen3-0.6b',
-    'qwen3-14b',
-    'qwen3-235b',
-    'qwen3-4b',
-    'qwen3-coder-30b',
-    'qwen3-embedding-8b',
-  ];
-
-  for (const id of modelIds) {
-    try {
-      const response = await fetch(`/model-store/local/${id}.json`);
-      if (response.ok) {
-        const model: LocalModel = await response.json();
-        localModels.push(model);
-      }
-    } catch (error) {
-      console.error(`Failed to load local model ${id}:`, error);
-    }
-  }
-
-  return localModels;
+  return await loadAllLocalModels();
 }
 
 /**

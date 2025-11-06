@@ -14,7 +14,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const MODEL_STORE_PATH = join(__dirname, '../../model-store');
+const MODEL_STORE_PATH = join(__dirname, '../../src/data/models');
 const OUTPUT_PATH = join(__dirname, '../../src/generated/model-options.json');
 
 /**

@@ -8,33 +8,7 @@ import type {
   MarketplaceData,
   ServiceFilters,
 } from '@/types/marketplace';
-
-/**
- * Marketplace index structure
- */
-interface MarketplaceIndex {
-  version: string;
-  generated: string;
-  count: number;
-  services: string[];
-}
-
-/**
- * Load marketplace index
- */
-async function fetchMarketplaceIndex(): Promise<MarketplaceIndex> {
-  try {
-    const response = await fetch('/marketplace/index.json');
-    if (!response.ok) {
-      throw new Error(`Failed to load marketplace index: ${response.statusText}`);
-    }
-    const index: MarketplaceIndex = await response.json();
-    return index;
-  } catch (error) {
-    console.error('Failed to load marketplace index:', error);
-    throw error;
-  }
-}
+import { loadAllServices } from '@/data/marketplace';
 
 /**
  * Load all services from the marketplace
@@ -42,23 +16,14 @@ async function fetchMarketplaceIndex(): Promise<MarketplaceIndex> {
 async function fetchServices(): Promise<Map<string, Service>> {
   const services = new Map<string, Service>();
 
-  // Load the marketplace index to get list of available services
-  const index = await fetchMarketplaceIndex();
-  const serviceIds = index.services;
+  // Load services using the data loader
+  const serviceList = await loadAllServices();
 
-  console.log(`Loading ${serviceIds.length} marketplace services...`);
+  console.log(`Loading ${serviceList.length} marketplace services...`);
 
-  // Load each service definition
-  for (const id of serviceIds) {
-    try {
-      const response = await fetch(`/marketplace/services/services/${id}.json`);
-      if (response.ok) {
-        const service: Service = await response.json();
-        services.set(service.id, service);
-      }
-    } catch (error) {
-      console.error(`Failed to load service ${id}:`, error);
-    }
+  // Convert to map
+  for (const service of serviceList) {
+    services.set(service.id, service);
   }
 
   console.log(`Loaded ${services.size} marketplace services`);
