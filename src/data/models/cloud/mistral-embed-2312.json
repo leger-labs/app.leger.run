@@ -1,0 +1,29 @@
+{
+  "id": "mistral-embed-2312",
+  "name": "Mistral Embed 2312",
+  "maker": "mistral",
+  "providers": [
+    {
+      "id": "openrouter",
+      "litellm_model_name": "openrouter/mistralai/mistral-embed-2312",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/mistral.svg",
+  "description": "Mistral AI's Mistral Embed 2312 model available via OpenRouter",
+  "capabilities": [
+    "embeddings"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.10",
+    "output_per_1m": "—",
+    "tier": "budget"
+  },
+  "use_cases": [
+    "Semantic search and retrieval",
+    "Vector database indexing",
+    "Personalization and recommendations"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true
+}

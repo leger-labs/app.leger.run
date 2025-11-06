@@ -7,10 +7,15 @@
       "id": "vertex-ai",
       "litellm_model_name": "vertex_ai/gemini-embedding-001",
       "is_default": true
+    },
+    {
+      "id": "openrouter",
+      "litellm_model_name": "openrouter/google/gemini-embedding-001",
+      "is_default": false
     }
   ],
   "icon": "@/assets/icons/google.svg",
-  "description": "Google DeepMind's Gemini Embedding 001 model available via Vertex AI",
+  "description": "Google DeepMind's Gemini Embedding 001 model available via Vertex AI, OpenRouter",
   "capabilities": [
     "embeddings"
   ],

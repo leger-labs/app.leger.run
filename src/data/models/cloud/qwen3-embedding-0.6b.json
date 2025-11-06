@@ -1,0 +1,29 @@
+{
+  "id": "qwen3-embedding-0.6b",
+  "name": "Qwen3 Embedding 0.6B",
+  "maker": "qwen",
+  "providers": [
+    {
+      "id": "openrouter",
+      "litellm_model_name": "openrouter/qwen/qwen-3-embedding-0.6b",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/qwen.svg",
+  "description": "Qwen's Qwen3 Embedding 0.6B model available via OpenRouter",
+  "capabilities": [
+    "embeddings"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.01",
+    "output_per_1m": "—",
+    "tier": "budget"
+  },
+  "use_cases": [
+    "Semantic search and retrieval",
+    "Vector database indexing",
+    "Personalization and recommendations"
+  ],
+  "notes": "Pricing and availability aggregated from provider catalogs.",
+  "enabled": true
+}
