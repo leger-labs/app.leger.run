@@ -3,7 +3,7 @@
   "name": "Mojeek Search",
   "category": "web-search",
   "requires_api_key": true,
-  "logo": "/assets/mojeek.png",
+  "logo": "@/assets/icons/mojeek.svg",
   "openwebui_variables": [
     {
       "name": "MOJEEK_SEARCH_API_KEY",

@@ -21,7 +21,7 @@
   ],
   "context_window": 200000,
   "max_output": 64000,
-  "icon": "assets/makers/anthropic.svg",
+  "icon": "@/assets/icons/anthropic.svg",
   "description": "Latest and most powerful Opus model - 7-hour memory span with extended thinking",
   "capabilities": [
     "reasoning",

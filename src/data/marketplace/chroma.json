@@ -3,7 +3,7 @@
   "name": "ChromaDB",
   "category": "rag",
   "requires_api_key": false,
-  "logo": "/assets/chroma.png",
+  "logo": "@/assets/icons/chromadb.svg",
   "openwebui_variables": [
     {
       "name": "CHROMA_CLIENT_AUTH_CREDENTIALS",

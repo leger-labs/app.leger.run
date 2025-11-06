@@ -3,7 +3,7 @@
   "name": "Ollama Cloud Search",
   "category": "web-search",
   "requires_api_key": true,
-  "logo": "/assets/ollama-cloud-search.png",
+  "logo": "@/assets/icons/ollama.svg",
   "openwebui_variables": [
     {
       "name": "OLLAMA_CLOUD_WEB_SEARCH_API_KEY",

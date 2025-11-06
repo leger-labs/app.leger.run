@@ -3,7 +3,7 @@
   "name": "Azure Document Intelligence",
   "category": "content-extraction",
   "requires_api_key": true,
-  "logo": "/assets/azure-document-intelligence.png",
+  "logo": "@/assets/icons/azure.svg",
   "openwebui_variables": [
     {
       "name": "DOCUMENT_INTELLIGENCE_ENDPOINT",

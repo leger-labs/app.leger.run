@@ -13,10 +13,13 @@
   "ram_required_gb": 3,
   "context_window": 32768,
   "group": "task",
-  "icon": "assets/makers/qwen.svg",
+  "icon": "@/assets/icons/qwen.svg",
   "description": "Balanced task model - tags, queries, analysis",
   "family": "qwen",
-  "capabilities": ["chat", "code"],
+  "capabilities": [
+    "chat",
+    "code"
+  ],
   "ctx_size": 8192,
   "ttl": 0,
   "hf_repo": "Qwen/Qwen3-4B-GGUF",

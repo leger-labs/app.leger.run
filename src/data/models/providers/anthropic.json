@@ -1,7 +1,7 @@
 {
   "id": "anthropic",
   "name": "Anthropic",
-  "icon": "assets/providers/anthropic.svg",
+  "icon": "@/assets/icons/anthropic.svg",
   "website": "https://console.anthropic.com/",
   "requires_api_key": "ANTHROPIC_API_KEY",
   "api_key_register_url": "https://console.anthropic.com/",

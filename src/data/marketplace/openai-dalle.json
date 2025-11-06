@@ -3,7 +3,7 @@
   "name": "OpenAI DALL-E",
   "category": "image-generation",
   "requires_api_key": true,
-  "logo": "/assets/openai-dalle.png",
+  "logo": "@/assets/icons/dalle.svg",
   "openwebui_variables": [
     {
       "name": "IMAGES_OPENAI_API_BASE_URL",

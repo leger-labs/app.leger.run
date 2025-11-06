@@ -3,7 +3,7 @@
   "name": "Whisper (Local)",
   "category": "speech-to-text",
   "requires_api_key": false,
-  "logo": "/assets/whisper-local.png",
+  "logo": "@/assets/icons/openai.svg",
   "openwebui_variables": [
     {
       "name": "AUDIO_STT_ENGINE",

@@ -3,7 +3,7 @@
   "name": "Google Programmable Search Engine",
   "category": "web-search",
   "requires_api_key": true,
-  "logo": "/assets/google-pse.png",
+  "logo": "@/assets/icons/google.svg",
   "openwebui_variables": [
     {
       "name": "GOOGLE_PSE_API_KEY",

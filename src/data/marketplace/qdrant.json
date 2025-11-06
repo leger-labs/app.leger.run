@@ -3,7 +3,7 @@
   "name": "Qdrant",
   "category": "rag",
   "requires_api_key": false,
-  "logo": "/assets/qdrant.png",
+  "logo": "@/assets/icons/qdrant.svg",
   "openwebui_variables": [
     {
       "name": "ENABLE_QDRANT_MULTITENANCY_MODE",

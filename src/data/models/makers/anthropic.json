@@ -1,7 +1,7 @@
 {
   "id": "anthropic",
   "name": "Anthropic",
-  "icon": "assets/makers/anthropic.svg",
+  "icon": "@/assets/icons/anthropic.svg",
   "website": "https://www.anthropic.com/",
   "description": "AI safety company creating Claude models"
 }

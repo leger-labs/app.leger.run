@@ -3,7 +3,7 @@
   "name": "Bing Search",
   "category": "web-search",
   "requires_api_key": true,
-  "logo": "/assets/bing.png",
+  "logo": "@/assets/icons/bing.svg",
   "openwebui_variables": [
     {
       "name": "BING_SEARCH_V7_ENDPOINT",

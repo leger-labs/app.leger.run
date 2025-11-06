@@ -3,7 +3,7 @@
   "name": "SQLCipher (Encrypted SQLite)",
   "category": "database",
   "requires_api_key": false,
-  "logo": "/assets/sqlcipher.png",
+  "logo": "@/assets/icons/sqlite.svg",
   "openwebui_variables": [
     {
       "name": "DATABASE_PASSWORD",

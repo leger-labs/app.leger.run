@@ -3,7 +3,7 @@
   "name": "Pinecone",
   "category": "rag",
   "requires_api_key": true,
-  "logo": "/assets/pinecone.png",
+  "logo": "@/assets/icons/pinecone.svg",
   "openwebui_variables": [
     {
       "name": "PGVECTOR_DB_URL",

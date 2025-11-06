@@ -3,7 +3,7 @@
   "name": "PostgreSQL",
   "category": "database",
   "requires_api_key": false,
-  "logo": "/assets/postgresql.png",
+  "logo": "@/assets/icons/postgresql.svg",
   "openwebui_variables": [
     {
       "name": "DATABASE_HOST",

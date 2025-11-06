@@ -3,7 +3,7 @@
   "name": "Playwright",
   "category": "web-search",
   "requires_api_key": false,
-  "logo": "/assets/playwright.png",
+  "logo": "@/assets/icons/playwright.svg",
   "openwebui_variables": [
     {
       "name": "PLAYWRIGHT_TIMEOUT",

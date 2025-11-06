@@ -3,7 +3,7 @@
   "name": "Milvus",
   "category": "rag",
   "requires_api_key": false,
-  "logo": "/assets/milvus.png",
+  "logo": "@/assets/icons/milvus.svg",
   "openwebui_variables": [
     {
       "name": "ENABLE_MILVUS_MULTITENANCY_MODE",

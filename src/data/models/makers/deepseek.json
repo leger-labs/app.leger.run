@@ -1,7 +1,7 @@
 {
   "id": "deepseek",
   "name": "DeepSeek",
-  "icon": "assets/makers/deepseek.svg",
+  "icon": "@/assets/icons/deepseek.svg",
   "website": "https://www.deepseek.com/",
   "description": "Creator of DeepSeek reasoning models"
 }

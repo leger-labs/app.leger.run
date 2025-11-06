@@ -3,7 +3,7 @@
   "name": "Azure Text-to-Speech",
   "category": "text-to-speech",
   "requires_api_key": true,
-  "logo": "/assets/azure-tts.png",
+  "logo": "@/assets/icons/azure.svg",
   "openwebui_variables": [
     {
       "name": "AUDIO_TTS_AZURE_SPEECH_OUTPUT_FORMAT",

@@ -3,7 +3,7 @@
   "name": "Deepgram",
   "category": "speech-to-text",
   "requires_api_key": true,
-  "logo": "/assets/deepgram.png",
+  "logo": "@/assets/icons/deepgram.svg",
   "openwebui_variables": [
     {
       "name": "AUDIO_STT_ENGINE",

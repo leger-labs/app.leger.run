@@ -1,7 +1,7 @@
 {
   "id": "llama-cpp",
   "name": "llama.cpp",
-  "icon": "assets/providers/llama-cpp.svg",
+  "icon": "@/assets/icons/llama-cpp.svg",
   "website": "https://github.com/ggerganov/llama.cpp",
   "description": "Local inference engine for GGUF models",
   "provider_type": "local"

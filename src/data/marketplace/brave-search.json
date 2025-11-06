@@ -3,7 +3,7 @@
   "name": "Brave Search",
   "category": "web-search",
   "requires_api_key": true,
-  "logo": "/assets/brave-search.png",
+  "logo": "@/assets/icons/brave-search.svg",
   "openwebui_variables": [
     {
       "name": "BRAVE_SEARCH_API_KEY",

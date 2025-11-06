@@ -1,7 +1,7 @@
 {
   "id": "aws-bedrock",
   "name": "AWS Bedrock",
-  "icon": "assets/providers/aws-bedrock.svg",
+  "icon": "@/assets/icons/aws.svg",
   "website": "https://aws.amazon.com/bedrock/",
   "requires_api_key": "AWS_ACCESS_KEY_ID",
   "api_key_register_url": "https://aws.amazon.com/bedrock/",

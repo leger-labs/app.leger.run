@@ -3,7 +3,7 @@
   "name": "DuckDuckGo",
   "category": "web-search",
   "requires_api_key": false,
-  "logo": "/assets/duckduckgo.png",
+  "logo": "@/assets/icons/duckduckgo.svg",
   "openwebui_variables": [
     {
       "name": "WEB_SEARCH_ENGINE",

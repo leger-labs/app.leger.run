@@ -11,7 +11,7 @@
   ],
   "context_window": 2000000,
   "max_output": 8192,
-  "icon": "assets/makers/google.svg",
+  "icon": "@/assets/icons/google.svg",
   "description": "Google's most powerful model - 2M token context with thinking budget",
   "capabilities": [
     "reasoning",
@@ -36,7 +36,11 @@
   "release_date": "2025",
   "notes": "Supports max_tokens_for_reasoning parameter for thinking budget control",
   "parameters": {
-    "reasoning_effort": ["low", "medium", "high"],
+    "reasoning_effort": [
+      "low",
+      "medium",
+      "high"
+    ],
     "max_tokens_for_reasoning": "configurable"
   },
   "enabled": true

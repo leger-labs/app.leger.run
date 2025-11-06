@@ -11,7 +11,7 @@
   ],
   "context_window": 2000000,
   "max_output": 32000,
-  "icon": "assets/makers/xai.svg",
+  "icon": "@/assets/icons/xai.svg",
   "description": "X.AI's fast reasoning model - 2M token context, currently FREE",
   "capabilities": [
     "reasoning",

@@ -3,7 +3,7 @@
   "name": "Google Gemini Image Generation",
   "category": "image-generation",
   "requires_api_key": true,
-  "logo": "/assets/gemini-images.png",
+  "logo": "@/assets/icons/gemini.svg",
   "openwebui_variables": [
     {
       "name": "GEMINI_API_BASE_URL",

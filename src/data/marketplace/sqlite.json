@@ -3,7 +3,7 @@
   "name": "SQLite",
   "category": "database",
   "requires_api_key": false,
-  "logo": "/assets/sqlite.png",
+  "logo": "@/assets/icons/sqlite.svg",
   "openwebui_variables": [
     {
       "name": "DATABASE_TYPE",

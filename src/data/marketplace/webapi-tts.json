@@ -3,7 +3,7 @@
   "name": "Web API TTS (Browser)",
   "category": "text-to-speech",
   "requires_api_key": false,
-  "logo": "/assets/webapi-tts.png",
+  "logo": "@/assets/icons/playwright.svg",
   "openwebui_variables": [
     {
       "name": "AUDIO_TTS_ENGINE",

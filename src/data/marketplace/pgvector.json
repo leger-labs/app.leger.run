@@ -3,7 +3,7 @@
   "name": "PGVector (PostgreSQL)",
   "category": "rag",
   "requires_api_key": false,
-  "logo": "/assets/pgvector.png",
+  "logo": "@/assets/icons/postgresql.svg",
   "openwebui_variables": [
     {
       "name": "PGVECTOR_CREATE_EXTENSION",

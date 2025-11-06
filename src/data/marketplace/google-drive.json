@@ -3,7 +3,7 @@
   "name": "Google Drive",
   "category": "document-integration",
   "requires_api_key": true,
-  "logo": "/assets/google-drive.png",
+  "logo": "@/assets/icons/google.svg",
   "openwebui_variables": [
     {
       "name": "ENABLE_GOOGLE_DRIVE_INTEGRATION",

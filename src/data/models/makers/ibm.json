@@ -1,7 +1,7 @@
 {
   "id": "ibm",
   "name": "IBM",
-  "icon": "assets/makers/ibm.svg",
+  "icon": "@/assets/icons/ibm.svg",
   "website": "https://www.ibm.com/granite",
   "description": "Creator of Granite enterprise models"
 }

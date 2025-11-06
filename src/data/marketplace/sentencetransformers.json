@@ -3,7 +3,7 @@
   "name": "SentenceTransformers (Local)",
   "category": "rag",
   "requires_api_key": false,
-  "logo": "/assets/sentencetransformers.png",
+  "logo": "@/assets/icons/huggingface.svg",
   "openwebui_variables": [
     {
       "name": "RAG_EMBEDDING_ENGINE",

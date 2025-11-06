@@ -1,7 +1,7 @@
 {
   "id": "xai",
   "name": "xAI",
-  "icon": "assets/providers/xai.svg",
+  "icon": "@/assets/icons/xai.svg",
   "website": "https://x.ai/api",
   "requires_api_key": "XAI_API_KEY",
   "api_key_register_url": "https://x.ai/api",

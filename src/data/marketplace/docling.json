@@ -3,7 +3,7 @@
   "name": "Docling",
   "category": "content-extraction",
   "requires_api_key": false,
-  "logo": "/assets/docling.png",
+  "logo": "@/assets/icons/docling.svg",
   "openwebui_variables": [
     {
       "name": "DOCLING_OCR_ENGINE",

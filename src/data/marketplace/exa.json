@@ -3,7 +3,7 @@
   "name": "Exa",
   "category": "web-search",
   "requires_api_key": true,
-  "logo": "/assets/exa.png",
+  "logo": "@/assets/icons/exa.svg",
   "openwebui_variables": [
     {
       "name": "EXA_API_KEY",

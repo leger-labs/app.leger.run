@@ -3,7 +3,7 @@
   "name": "Serpstack",
   "category": "web-search",
   "requires_api_key": true,
-  "logo": "/assets/serpstack.png",
+  "logo": "@/assets/icons/searchapi.svg",
   "openwebui_variables": [
     {
       "name": "SERPSTACK_API_KEY",

@@ -1,7 +1,7 @@
 {
   "id": "openrouter",
   "name": "OpenRouter",
-  "icon": "assets/providers/openrouter.svg",
+  "icon": "@/assets/icons/openrouter.svg",
   "website": "https://openrouter.ai/",
   "requires_api_key": "OPENROUTER_API_KEY",
   "api_key_register_url": "https://openrouter.ai/keys",

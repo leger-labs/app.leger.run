@@ -3,7 +3,7 @@
   "name": "ElevenLabs",
   "category": "text-to-speech",
   "requires_api_key": true,
-  "logo": "/assets/elevenlabs.png",
+  "logo": "@/assets/icons/elevenlabs.svg",
   "openwebui_variables": [
     {
       "name": "AUDIO_TTS_API_KEY",

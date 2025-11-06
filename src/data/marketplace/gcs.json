@@ -3,7 +3,7 @@
   "name": "Google Cloud Storage",
   "category": "storage",
   "requires_api_key": true,
-  "logo": "/assets/gcs.png",
+  "logo": "@/assets/icons/googlecloud.svg",
   "openwebui_variables": [
     {
       "name": "GCS_BUCKET_NAME",
