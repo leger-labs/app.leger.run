@@ -1,6 +1,6 @@
 /**
- * Integrations Page
- * Manage AI provider integrations and API keys
+ * AI Gateway Providers Page
+ * Manage AI provider connections and credentials
  */
 
 import { useState, useEffect, useMemo } from 'react';
@@ -27,7 +27,7 @@ import { toast } from 'sonner';
 import type { Provider } from '@/types/model-store';
 import { resolveIconPath } from '@/assets/icons';
 
-export function IntegrationsPage() {
+export function AIGatewayProvidersPage() {
   const { providers, isLoading: isLoadingModelStore } = useModelStore();
   const { secrets, isLoading: isLoadingSecrets, upsertSecret } = useSecrets();
 
@@ -176,8 +176,8 @@ export function IntegrationsPage() {
     return (
       <PageLayout>
         <PageHeader
-          title="Integrations"
-          description="Use your own provider API keys to access AI Gateway with automatic fallback."
+          title="Providers"
+          description="Connect external AI providers and manage credentials for automatic routing and fallbacks."
         />
         <div className="mb-8">
           <Skeleton className="h-4 w-48 mb-4" />
@@ -205,8 +205,8 @@ export function IntegrationsPage() {
   return (
     <PageLayout>
       <PageHeader
-        title="Integrations"
-        description="Use your own provider API keys to access AI Gateway with automatic fallback."
+        title="Providers"
+        description="Connect external AI providers and manage credentials for automatic routing and fallbacks."
       />
 
       <div className="mb-6 text-sm text-muted-foreground">
