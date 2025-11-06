@@ -6,5 +6,56 @@
   "requires_api_key": "FIREWORKS_API_KEY",
   "api_key_register_url": "https://app.fireworks.ai/",
   "description": "High-performance inference APIs for open and proprietary models",
-  "provider_type": "api"
+  "provider_type": "api",
+  "models": [
+    {
+      "id": "alibaba/qwen-3-235b",
+      "maker": "qwen",
+      "context": 262000,
+      "input_cost_per_million": 0.13,
+      "output_cost_per_million": 0.6
+    },
+    {
+      "id": "deepseek/deepseek-v3.1",
+      "maker": "deepseek",
+      "context": 164000,
+      "input_cost_per_million": 0.3,
+      "output_cost_per_million": 1.0
+    },
+    {
+      "id": "mistral/mixtral-8x22b-instruct",
+      "maker": "mistral",
+      "context": 66000,
+      "input_cost_per_million": 1.2,
+      "output_cost_per_million": 1.2
+    },
+    {
+      "id": "moonshotai/kimi-k2",
+      "maker": "moonshotai",
+      "context": 131000,
+      "input_cost_per_million": 0.5,
+      "output_cost_per_million": 2.0
+    },
+    {
+      "id": "moonshotai/kimi-k2-0905",
+      "maker": "moonshotai",
+      "context": 131000,
+      "input_cost_per_million": 0.6,
+      "output_cost_per_million": 2.5
+    },
+    {
+      "id": "openai/gpt-oss-120b",
+      "maker": "openai",
+      "context": 131000,
+      "input_cost_per_million": 0.1,
+      "output_cost_per_million": 0.5
+    },
+    {
+      "id": "openai/gpt-oss-20b",
+      "maker": "openai",
+      "context": 128000,
+      "input_cost_per_million": 0.07,
+      "output_cost_per_million": 0.3
+    }
+  ]
 }

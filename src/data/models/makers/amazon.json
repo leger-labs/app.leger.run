@@ -1,0 +1,13 @@
+{
+  "id": "amazon",
+  "name": "Amazon",
+  "icon": "@/assets/icons/amazon.svg",
+  "website": "https://aws.amazon.com/bedrock/nova/",
+  "description": "Amazon Nova and Titan foundation models",
+  "models": [
+    "amazon/nova-lite",
+    "amazon/nova-micro",
+    "amazon/nova-pro",
+    "amazon/titan-embed-text-v2"
+  ]
+}

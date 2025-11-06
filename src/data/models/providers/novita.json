@@ -6,5 +6,84 @@
   "requires_api_key": "NOVITA_API_KEY",
   "api_key_register_url": "https://novita.ai/",
   "description": "Pay-as-you-go APIs for popular open-source models",
-  "provider_type": "api"
+  "provider_type": "api",
+  "models": [
+    {
+      "id": "alibaba/qwen-3-235b",
+      "maker": "qwen",
+      "context": 262000,
+      "input_cost_per_million": 0.13,
+      "output_cost_per_million": 0.6
+    },
+    {
+      "id": "alibaba/qwen3-coder",
+      "maker": "qwen",
+      "context": 131000,
+      "input_cost_per_million": 0.4,
+      "output_cost_per_million": 1.6
+    },
+    {
+      "id": "alibaba/qwen3-next-80b-a3b-instruct",
+      "maker": "qwen",
+      "context": 131000,
+      "input_cost_per_million": 0.15,
+      "output_cost_per_million": 1.5
+    },
+    {
+      "id": "alibaba/qwen3-next-80b-a3b-thinking",
+      "maker": "qwen",
+      "context": 131000,
+      "input_cost_per_million": 0.15,
+      "output_cost_per_million": 1.5
+    },
+    {
+      "id": "deepseek/deepseek-v3",
+      "maker": "deepseek",
+      "context": 164000,
+      "input_cost_per_million": 0.77,
+      "output_cost_per_million": 0.77
+    },
+    {
+      "id": "deepseek/deepseek-v3.1",
+      "maker": "deepseek",
+      "context": 164000,
+      "input_cost_per_million": 0.3,
+      "output_cost_per_million": 1.0
+    },
+    {
+      "id": "deepseek/deepseek-v3.1-terminus",
+      "maker": "deepseek",
+      "context": 131000,
+      "input_cost_per_million": 0.27,
+      "output_cost_per_million": 1.0
+    },
+    {
+      "id": "deepseek/deepseek-v3.2-exp",
+      "maker": "deepseek",
+      "context": 164000,
+      "input_cost_per_million": 0.27,
+      "output_cost_per_million": 0.41
+    },
+    {
+      "id": "moonshotai/kimi-k2",
+      "maker": "moonshotai",
+      "context": 131000,
+      "input_cost_per_million": 0.5,
+      "output_cost_per_million": 2.0
+    },
+    {
+      "id": "zai/glm-4.5",
+      "maker": "zai",
+      "context": 128000,
+      "input_cost_per_million": 0.6,
+      "output_cost_per_million": 2.2
+    },
+    {
+      "id": "zai/glm-4.5v",
+      "maker": "zai",
+      "context": 66000,
+      "input_cost_per_million": 0.6,
+      "output_cost_per_million": 1.8
+    }
+  ]
 }

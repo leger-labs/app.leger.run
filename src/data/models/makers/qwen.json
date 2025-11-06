@@ -3,5 +3,20 @@
   "name": "Alibaba Qwen",
   "icon": "@/assets/icons/qwen.svg",
   "website": "https://qwenlm.github.io/",
-  "description": "Alibaba's open-source large language model family"
+  "description": "Alibaba's Qwen model family",
+  "models": [
+    "alibaba/qwen-3-14b",
+    "alibaba/qwen-3-235b",
+    "alibaba/qwen-3-30b",
+    "alibaba/qwen-3-32b",
+    "alibaba/qwen3-coder",
+    "alibaba/qwen3-coder-30b-a3b",
+    "alibaba/qwen3-coder-plus",
+    "alibaba/qwen3-max",
+    "alibaba/qwen3-max-preview",
+    "alibaba/qwen3-next-80b-a3b-instruct",
+    "alibaba/qwen3-next-80b-a3b-thinking",
+    "alibaba/qwen3-vl-instruct",
+    "alibaba/qwen3-vl-thinking"
+  ]
 }

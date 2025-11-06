@@ -1,0 +1,13 @@
+{
+  "id": "zai",
+  "name": "Zhipu AI",
+  "icon": "@/assets/icons/zai.svg",
+  "website": "https://www.zhipuai.cn/",
+  "description": "Zhipu AI GLM model family",
+  "models": [
+    "zai/glm-4.5",
+    "zai/glm-4.5-air",
+    "zai/glm-4.5v",
+    "zai/glm-4.6"
+  ]
+}

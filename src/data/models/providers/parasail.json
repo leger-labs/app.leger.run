@@ -6,5 +6,28 @@
   "requires_api_key": "PARASAIL_API_KEY",
   "api_key_register_url": "https://app.parasail.ai/",
   "description": "Low-latency API access to leading open-source models",
-  "provider_type": "api"
+  "provider_type": "api",
+  "models": [
+    {
+      "id": "deepseek/deepseek-r1",
+      "maker": "deepseek",
+      "context": 164000,
+      "input_cost_per_million": 0.79,
+      "output_cost_per_million": 4.0
+    },
+    {
+      "id": "moonshotai/kimi-k2",
+      "maker": "moonshotai",
+      "context": 131000,
+      "input_cost_per_million": 0.5,
+      "output_cost_per_million": 2.0
+    },
+    {
+      "id": "openai/gpt-oss-120b",
+      "maker": "openai",
+      "context": 131000,
+      "input_cost_per_million": 0.1,
+      "output_cost_per_million": 0.5
+    }
+  ]
 }

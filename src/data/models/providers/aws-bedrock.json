@@ -6,5 +6,210 @@
   "requires_api_key": "AWS_ACCESS_KEY_ID",
   "api_key_register_url": "https://aws.amazon.com/bedrock/",
   "description": "Amazon's managed AI service with multiple models",
-  "provider_type": "cloud"
+  "provider_type": "cloud",
+  "models": [
+    {
+      "id": "alibaba/qwen-3-32b",
+      "maker": "qwen",
+      "context": 128000,
+      "input_cost_per_million": 0.1,
+      "output_cost_per_million": 0.3
+    },
+    {
+      "id": "alibaba/qwen3-coder-30b-a3b",
+      "maker": "qwen",
+      "context": 262000,
+      "input_cost_per_million": 0.15,
+      "output_cost_per_million": 0.6
+    },
+    {
+      "id": "amazon/nova-lite",
+      "maker": "amazon",
+      "context": 300000,
+      "input_cost_per_million": 0.06,
+      "output_cost_per_million": 0.24
+    },
+    {
+      "id": "amazon/nova-micro",
+      "maker": "amazon",
+      "context": 128000,
+      "input_cost_per_million": 0.04,
+      "output_cost_per_million": 0.14
+    },
+    {
+      "id": "amazon/nova-pro",
+      "maker": "amazon",
+      "context": 300000,
+      "input_cost_per_million": 0.8,
+      "output_cost_per_million": 3.2
+    },
+    {
+      "id": "amazon/titan-embed-text-v2",
+      "maker": "amazon",
+      "context": null,
+      "input_cost_per_million": 0.02,
+      "output_cost_per_million": null
+    },
+    {
+      "id": "anthropic/claude-3-haiku",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 0.25,
+      "output_cost_per_million": 1.25
+    },
+    {
+      "id": "anthropic/claude-3-opus",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 15.0,
+      "output_cost_per_million": 75.0
+    },
+    {
+      "id": "anthropic/claude-3.5-haiku",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 0.8,
+      "output_cost_per_million": 4.0
+    },
+    {
+      "id": "anthropic/claude-3.5-sonnet",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 3.0,
+      "output_cost_per_million": 15.0
+    },
+    {
+      "id": "anthropic/claude-3.5-sonnet-20240620",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 3.0,
+      "output_cost_per_million": 15.0
+    },
+    {
+      "id": "anthropic/claude-3.7-sonnet",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 3.0,
+      "output_cost_per_million": 15.0
+    },
+    {
+      "id": "anthropic/claude-haiku-4.5",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 1.0,
+      "output_cost_per_million": 5.0
+    },
+    {
+      "id": "anthropic/claude-opus-4",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 15.0,
+      "output_cost_per_million": 75.0
+    },
+    {
+      "id": "anthropic/claude-opus-4.1",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 15.0,
+      "output_cost_per_million": 75.0
+    },
+    {
+      "id": "anthropic/claude-sonnet-4",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 3.0,
+      "output_cost_per_million": 15.0
+    },
+    {
+      "id": "anthropic/claude-sonnet-4.5",
+      "maker": "anthropic",
+      "context": 200000,
+      "input_cost_per_million": 3.0,
+      "output_cost_per_million": 15.0
+    },
+    {
+      "id": "deepseek/deepseek-r1",
+      "maker": "deepseek",
+      "context": 164000,
+      "input_cost_per_million": 0.79,
+      "output_cost_per_million": 4.0
+    },
+    {
+      "id": "meta/llama-3.1-70b",
+      "maker": "meta",
+      "context": 128000,
+      "input_cost_per_million": 0.72,
+      "output_cost_per_million": 0.72
+    },
+    {
+      "id": "meta/llama-3.1-8b",
+      "maker": "meta",
+      "context": 128000,
+      "input_cost_per_million": 0.05,
+      "output_cost_per_million": 0.08
+    },
+    {
+      "id": "meta/llama-3.2-11b",
+      "maker": "meta",
+      "context": 128000,
+      "input_cost_per_million": 0.16,
+      "output_cost_per_million": 0.16
+    },
+    {
+      "id": "meta/llama-3.2-1b",
+      "maker": "meta",
+      "context": 128000,
+      "input_cost_per_million": 0.1,
+      "output_cost_per_million": 0.1
+    },
+    {
+      "id": "meta/llama-3.2-3b",
+      "maker": "meta",
+      "context": 128000,
+      "input_cost_per_million": 0.15,
+      "output_cost_per_million": 0.15
+    },
+    {
+      "id": "meta/llama-3.2-90b",
+      "maker": "meta",
+      "context": 128000,
+      "input_cost_per_million": 0.72,
+      "output_cost_per_million": 0.72
+    },
+    {
+      "id": "meta/llama-3.3-70b",
+      "maker": "meta",
+      "context": 128000,
+      "input_cost_per_million": 0.72,
+      "output_cost_per_million": 0.72
+    },
+    {
+      "id": "meta/llama-4-maverick",
+      "maker": "meta",
+      "context": 1300000,
+      "input_cost_per_million": 0.15,
+      "output_cost_per_million": 0.6
+    },
+    {
+      "id": "meta/llama-4-scout",
+      "maker": "meta",
+      "context": 128000,
+      "input_cost_per_million": 0.08,
+      "output_cost_per_million": 0.3
+    },
+    {
+      "id": "openai/gpt-oss-120b",
+      "maker": "openai",
+      "context": 131000,
+      "input_cost_per_million": 0.1,
+      "output_cost_per_million": 0.5
+    },
+    {
+      "id": "openai/gpt-oss-20b",
+      "maker": "openai",
+      "context": 128000,
+      "input_cost_per_million": 0.07,
+      "output_cost_per_million": 0.3
+    }
+  ]
 }

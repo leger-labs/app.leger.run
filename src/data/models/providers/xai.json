@@ -6,5 +6,77 @@
   "requires_api_key": "XAI_API_KEY",
   "api_key_register_url": "https://x.ai/api",
   "description": "Official xAI API for Grok models",
-  "provider_type": "api"
+  "provider_type": "api",
+  "models": [
+    {
+      "id": "xai/grok-2",
+      "maker": "xai",
+      "context": 131000,
+      "input_cost_per_million": 2.0,
+      "output_cost_per_million": 10.0
+    },
+    {
+      "id": "xai/grok-2-vision",
+      "maker": "xai",
+      "context": 33000,
+      "input_cost_per_million": 2.0,
+      "output_cost_per_million": 10.0
+    },
+    {
+      "id": "xai/grok-3",
+      "maker": "xai",
+      "context": 131000,
+      "input_cost_per_million": 3.0,
+      "output_cost_per_million": 15.0
+    },
+    {
+      "id": "xai/grok-3-fast",
+      "maker": "xai",
+      "context": 131000,
+      "input_cost_per_million": 5.0,
+      "output_cost_per_million": 25.0
+    },
+    {
+      "id": "xai/grok-3-mini",
+      "maker": "xai",
+      "context": 131000,
+      "input_cost_per_million": 0.3,
+      "output_cost_per_million": 0.5
+    },
+    {
+      "id": "xai/grok-3-mini-fast",
+      "maker": "xai",
+      "context": 131000,
+      "input_cost_per_million": 0.6,
+      "output_cost_per_million": 4.0
+    },
+    {
+      "id": "xai/grok-4",
+      "maker": "xai",
+      "context": 256000,
+      "input_cost_per_million": 3.0,
+      "output_cost_per_million": 15.0
+    },
+    {
+      "id": "xai/grok-4-fast-non-reasoning",
+      "maker": "xai",
+      "context": 2000000,
+      "input_cost_per_million": 0.2,
+      "output_cost_per_million": 0.5
+    },
+    {
+      "id": "xai/grok-4-fast-reasoning",
+      "maker": "xai",
+      "context": 2000000,
+      "input_cost_per_million": 0.2,
+      "output_cost_per_million": 0.5
+    },
+    {
+      "id": "xai/grok-code-fast-1",
+      "maker": "xai",
+      "context": 256000,
+      "input_cost_per_million": 0.2,
+      "output_cost_per_million": 1.5
+    }
+  ]
 }

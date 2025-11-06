@@ -6,5 +6,21 @@
   "requires_api_key": "DEEPSEEK_API_KEY",
   "api_key_register_url": "https://platform.deepseek.com/",
   "description": "Official DeepSeek API",
-  "provider_type": "api"
+  "provider_type": "api",
+  "models": [
+    {
+      "id": "deepseek/deepseek-v3.2-exp",
+      "maker": "deepseek",
+      "context": 164000,
+      "input_cost_per_million": 0.27,
+      "output_cost_per_million": 0.41
+    },
+    {
+      "id": "deepseek/deepseek-v3.2-exp-thinking",
+      "maker": "deepseek",
+      "context": 164000,
+      "input_cost_per_million": 0.28,
+      "output_cost_per_million": 0.42
+    }
+  ]
 }

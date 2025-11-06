@@ -6,5 +6,112 @@
   "requires_api_key": "MISTRAL_API_KEY",
   "api_key_register_url": "https://console.mistral.ai/",
   "description": "Official Mistral AI API",
-  "provider_type": "api"
+  "provider_type": "api",
+  "models": [
+    {
+      "id": "mistral/codestral",
+      "maker": "mistral",
+      "context": 256000,
+      "input_cost_per_million": 0.3,
+      "output_cost_per_million": 0.9
+    },
+    {
+      "id": "mistral/codestral-embed",
+      "maker": "mistral",
+      "context": null,
+      "input_cost_per_million": 0.15,
+      "output_cost_per_million": null
+    },
+    {
+      "id": "mistral/devstral-small",
+      "maker": "mistral",
+      "context": 128000,
+      "input_cost_per_million": 0.1,
+      "output_cost_per_million": 0.3
+    },
+    {
+      "id": "mistral/magistral-medium",
+      "maker": "mistral",
+      "context": 128000,
+      "input_cost_per_million": 2.0,
+      "output_cost_per_million": 5.0
+    },
+    {
+      "id": "mistral/magistral-medium-2506",
+      "maker": "mistral",
+      "context": 128000,
+      "input_cost_per_million": 2.0,
+      "output_cost_per_million": 5.0
+    },
+    {
+      "id": "mistral/magistral-small",
+      "maker": "mistral",
+      "context": 128000,
+      "input_cost_per_million": 0.5,
+      "output_cost_per_million": 1.5
+    },
+    {
+      "id": "mistral/magistral-small-2506",
+      "maker": "mistral",
+      "context": 128000,
+      "input_cost_per_million": 0.5,
+      "output_cost_per_million": 1.5
+    },
+    {
+      "id": "mistral/ministral-3b",
+      "maker": "mistral",
+      "context": 128000,
+      "input_cost_per_million": 0.04,
+      "output_cost_per_million": 0.04
+    },
+    {
+      "id": "mistral/ministral-8b",
+      "maker": "mistral",
+      "context": 128000,
+      "input_cost_per_million": 0.1,
+      "output_cost_per_million": 0.1
+    },
+    {
+      "id": "mistral/mistral-embed",
+      "maker": "mistral",
+      "context": null,
+      "input_cost_per_million": 0.1,
+      "output_cost_per_million": null
+    },
+    {
+      "id": "mistral/mistral-large",
+      "maker": "mistral",
+      "context": 32000,
+      "input_cost_per_million": 2.0,
+      "output_cost_per_million": 6.0
+    },
+    {
+      "id": "mistral/mistral-medium",
+      "maker": "mistral",
+      "context": 128000,
+      "input_cost_per_million": 0.4,
+      "output_cost_per_million": 2.0
+    },
+    {
+      "id": "mistral/mistral-small",
+      "maker": "mistral",
+      "context": 32000,
+      "input_cost_per_million": 0.1,
+      "output_cost_per_million": 0.3
+    },
+    {
+      "id": "mistral/pixtral-12b",
+      "maker": "mistral",
+      "context": 128000,
+      "input_cost_per_million": 0.15,
+      "output_cost_per_million": 0.15
+    },
+    {
+      "id": "mistral/pixtral-large",
+      "maker": "mistral",
+      "context": 128000,
+      "input_cost_per_million": 2.0,
+      "output_cost_per_million": 6.0
+    }
+  ]
 }

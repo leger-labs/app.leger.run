@@ -6,5 +6,70 @@
   "requires_api_key": "DEEPINFRA_API_KEY",
   "api_key_register_url": "https://deepinfra.com/signup",
   "description": "Serverless GPU inference for open-source models",
-  "provider_type": "api"
+  "provider_type": "api",
+  "models": [
+    {
+      "id": "alibaba/qwen-3-14b",
+      "maker": "qwen",
+      "context": 41000,
+      "input_cost_per_million": 0.06,
+      "output_cost_per_million": 0.24
+    },
+    {
+      "id": "alibaba/qwen-3-235b",
+      "maker": "qwen",
+      "context": 262000,
+      "input_cost_per_million": 0.13,
+      "output_cost_per_million": 0.6
+    },
+    {
+      "id": "alibaba/qwen-3-30b",
+      "maker": "qwen",
+      "context": 41000,
+      "input_cost_per_million": 0.08,
+      "output_cost_per_million": 0.29
+    },
+    {
+      "id": "alibaba/qwen-3-32b",
+      "maker": "qwen",
+      "context": 128000,
+      "input_cost_per_million": 0.1,
+      "output_cost_per_million": 0.3
+    },
+    {
+      "id": "alibaba/qwen3-coder",
+      "maker": "qwen",
+      "context": 131000,
+      "input_cost_per_million": 0.4,
+      "output_cost_per_million": 1.6
+    },
+    {
+      "id": "deepseek/deepseek-v3.1",
+      "maker": "deepseek",
+      "context": 164000,
+      "input_cost_per_million": 0.3,
+      "output_cost_per_million": 1.0
+    },
+    {
+      "id": "meta/llama-4-maverick",
+      "maker": "meta",
+      "context": 1300000,
+      "input_cost_per_million": 0.15,
+      "output_cost_per_million": 0.6
+    },
+    {
+      "id": "meta/llama-4-scout",
+      "maker": "meta",
+      "context": 128000,
+      "input_cost_per_million": 0.08,
+      "output_cost_per_million": 0.3
+    },
+    {
+      "id": "moonshotai/kimi-k2",
+      "maker": "moonshotai",
+      "context": 131000,
+      "input_cost_per_million": 0.5,
+      "output_cost_per_million": 2.0
+    }
+  ]
 }

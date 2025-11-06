@@ -3,5 +3,17 @@
   "name": "xAI",
   "icon": "@/assets/icons/xai.svg",
   "website": "https://x.ai/",
-  "description": "Creator of Grok models"
+  "description": "xAI research company building Grok models",
+  "models": [
+    "xai/grok-2",
+    "xai/grok-2-vision",
+    "xai/grok-3",
+    "xai/grok-3-fast",
+    "xai/grok-3-mini",
+    "xai/grok-3-mini-fast",
+    "xai/grok-4",
+    "xai/grok-4-fast-non-reasoning",
+    "xai/grok-4-fast-reasoning",
+    "xai/grok-code-fast-1"
+  ]
 }
