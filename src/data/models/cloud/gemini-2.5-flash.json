@@ -11,7 +11,7 @@
   ],
   "context_window": 1048576,
   "max_output": 8192,
-  "icon": "assets/makers/google.svg",
+  "icon": "@/assets/icons/google.svg",
   "description": "Google's fast multimodal model - 1M+ token context with reasoning control",
   "capabilities": [
     "chat",
@@ -35,7 +35,11 @@
   "release_date": "2025",
   "notes": "Supports reasoning_effort parameter for controlling reasoning depth",
   "parameters": {
-    "reasoning_effort": ["low", "medium", "high"]
+    "reasoning_effort": [
+      "low",
+      "medium",
+      "high"
+    ]
   },
   "enabled": true
 }

@@ -3,7 +3,7 @@
   "name": "OpenSearch",
   "category": "rag",
   "requires_api_key": false,
-  "logo": "/assets/opensearch.png",
+  "logo": "@/assets/icons/opensearch.svg",
   "openwebui_variables": [
     {
       "name": "OPENSEARCH_CERT_VERIFY",

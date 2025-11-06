@@ -1,7 +1,7 @@
 {
   "id": "qwen",
   "name": "Alibaba Qwen",
-  "icon": "assets/makers/qwen.svg",
+  "icon": "@/assets/icons/qwen.svg",
   "website": "https://qwenlm.github.io/",
   "description": "Alibaba's open-source large language model family"
 }

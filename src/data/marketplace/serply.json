@@ -3,7 +3,7 @@
   "name": "Serply",
   "category": "web-search",
   "requires_api_key": true,
-  "logo": "/assets/serply.png",
+  "logo": "@/assets/icons/searchapi.svg",
   "openwebui_variables": [
     {
       "name": "SERPLY_API_KEY",

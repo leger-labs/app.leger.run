@@ -3,7 +3,7 @@
   "name": "Bocha Search",
   "category": "web-search",
   "requires_api_key": true,
-  "logo": "/assets/bocha.png",
+  "logo": "@/assets/icons/bocha.svg",
   "openwebui_variables": [
     {
       "name": "BOCHA_SEARCH_API_KEY",

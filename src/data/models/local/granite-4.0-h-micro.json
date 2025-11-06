@@ -13,7 +13,7 @@
   "ram_required_gb": 3,
   "context_window": 131072,
   "group": "task",
-  "icon": "assets/makers/ibm.svg",
+  "icon": "@/assets/icons/ibm.svg",
   "description": "IBM's 3B enterprise model - Fast, efficient for edge use",
   "family": "granite",
   "capabilities": [

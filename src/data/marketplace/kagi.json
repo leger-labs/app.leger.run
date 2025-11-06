@@ -3,7 +3,7 @@
   "name": "Kagi Search",
   "category": "web-search",
   "requires_api_key": true,
-  "logo": "/assets/kagi.png",
+  "logo": "@/assets/icons/kagi.svg",
   "openwebui_variables": [
     {
       "name": "KAGI_SEARCH_API_KEY",

@@ -3,7 +3,7 @@
   "name": "Redis",
   "category": "cache",
   "requires_api_key": false,
-  "logo": "/assets/redis.png",
+  "logo": "@/assets/icons/redis.svg",
   "openwebui_variables": [
     {
       "name": "REDIS_KEY_PREFIX",

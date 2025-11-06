@@ -3,7 +3,7 @@
   "name": "Mistral OCR",
   "category": "content-extraction",
   "requires_api_key": true,
-  "logo": "/assets/mistral-ocr.png",
+  "logo": "@/assets/icons/mistral.svg",
   "openwebui_variables": [
     {
       "name": "MISTRAL_OCR_API_KEY",

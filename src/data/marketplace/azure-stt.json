@@ -3,7 +3,7 @@
   "name": "Azure Speech-to-Text",
   "category": "speech-to-text",
   "requires_api_key": true,
-  "logo": "/assets/azure-stt.png",
+  "logo": "@/assets/icons/azure.svg",
   "openwebui_variables": [
     {
       "name": "AUDIO_STT_AZURE_API_KEY",

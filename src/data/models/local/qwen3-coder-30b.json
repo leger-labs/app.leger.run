@@ -13,7 +13,7 @@
   "ram_required_gb": 60,
   "context_window": 8192,
   "group": "heavy",
-  "icon": "assets/makers/qwen.svg",
+  "icon": "@/assets/icons/qwen.svg",
   "description": "Advanced code model - great for complex refactoring",
   "family": "qwen",
   "capabilities": [

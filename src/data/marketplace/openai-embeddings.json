@@ -3,7 +3,7 @@
   "name": "OpenAI Embeddings",
   "category": "rag",
   "requires_api_key": true,
-  "logo": "/assets/openai-embeddings.png",
+  "logo": "@/assets/icons/openai.svg",
   "openwebui_variables": [
     {
       "name": "RAG_EMBEDDING_ENGINE",

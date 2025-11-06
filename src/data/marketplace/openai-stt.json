@@ -3,7 +3,7 @@
   "name": "OpenAI Speech-to-Text",
   "category": "speech-to-text",
   "requires_api_key": true,
-  "logo": "/assets/openai-stt.png",
+  "logo": "@/assets/icons/openai.svg",
   "openwebui_variables": [
     {
       "name": "AUDIO_STT_ENGINE",

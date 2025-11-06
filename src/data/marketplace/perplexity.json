@@ -3,7 +3,7 @@
   "name": "Perplexity AI",
   "category": "web-search",
   "requires_api_key": true,
-  "logo": "/assets/perplexity.png",
+  "logo": "@/assets/icons/perplexity.svg",
   "openwebui_variables": [
     {
       "name": "PERPLEXITY_API_KEY",

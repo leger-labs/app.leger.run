@@ -21,7 +21,7 @@
   ],
   "context_window": 200000,
   "max_output": 64000,
-  "icon": "assets/makers/anthropic.svg",
+  "icon": "@/assets/icons/anthropic.svg",
   "description": "Anthropic's most advanced Sonnet model - Hybrid reasoning with 30+ hour autonomy",
   "capabilities": [
     "chat",

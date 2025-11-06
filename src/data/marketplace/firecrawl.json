@@ -3,7 +3,7 @@
   "name": "Firecrawl",
   "category": "web-search",
   "requires_api_key": true,
-  "logo": "/assets/firecrawl.png",
+  "logo": "@/assets/icons/firecrawl.svg",
   "openwebui_variables": [
     {
       "name": "FIRECRAWL_API_BASE_URL",

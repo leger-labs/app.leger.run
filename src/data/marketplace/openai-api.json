@@ -3,7 +3,7 @@
   "name": "OpenAI API",
   "category": "llm",
   "requires_api_key": true,
-  "logo": "/assets/openai-api.png",
+  "logo": "@/assets/icons/openai.svg",
   "openwebui_variables": [
     {
       "name": "AUDIO_STT_OPENAI_API_BASE_URL",

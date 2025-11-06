@@ -1,7 +1,7 @@
 {
   "id": "mistral",
   "name": "Mistral AI",
-  "icon": "assets/makers/mistral.svg",
+  "icon": "@/assets/icons/mistral.svg",
   "website": "https://mistral.ai/",
   "description": "European AI company creating open and commercial models"
 }

@@ -1,7 +1,7 @@
 {
   "id": "xai",
   "name": "xAI",
-  "icon": "assets/makers/xai.svg",
+  "icon": "@/assets/icons/xai.svg",
   "website": "https://x.ai/",
   "description": "Creator of Grok models"
 }

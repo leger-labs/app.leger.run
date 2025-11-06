@@ -3,7 +3,6 @@
   "name": "Oracle 23ai Vector Search",
   "category": "rag",
   "requires_api_key": false,
-  "logo": "/assets/oracle23ai.png",
   "openwebui_variables": [
     {
       "name": "ORACLE_DB_DSN",

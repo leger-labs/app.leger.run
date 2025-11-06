@@ -13,7 +13,7 @@
   "ram_required_gb": 58,
   "context_window": 10485760,
   "group": "heavy",
-  "icon": "assets/makers/meta.svg",
+  "icon": "@/assets/icons/meta.svg",
   "description": "Extended context specialist - 10M token capability",
   "family": "llama",
   "capabilities": [

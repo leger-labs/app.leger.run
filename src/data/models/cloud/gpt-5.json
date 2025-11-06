@@ -11,7 +11,7 @@
   ],
   "context_window": 400000,
   "max_output": 128000,
-  "icon": "assets/makers/openai.svg",
+  "icon": "@/assets/icons/openai.svg",
   "description": "OpenAI's flagship GPT-5 model - Advanced reasoning, multimodal processing, tool calling",
   "capabilities": [
     "chat",

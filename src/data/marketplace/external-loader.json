@@ -3,7 +3,7 @@
   "name": "External Document Loader",
   "category": "content-extraction",
   "requires_api_key": false,
-  "logo": "/assets/external-loader.png",
+  "logo": "@/assets/icons/mcp.svg",
   "openwebui_variables": [
     {
       "name": "EXTERNAL_DOCUMENT_LOADER_API_KEY",

@@ -3,7 +3,7 @@
   "name": "ComfyUI",
   "category": "image-generation",
   "requires_api_key": false,
-  "logo": "/assets/comfyui.png",
+  "logo": "@/assets/icons/comfyui.svg",
   "openwebui_variables": [
     {
       "name": "COMFYUI_API_KEY",

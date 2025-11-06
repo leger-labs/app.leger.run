@@ -3,7 +3,7 @@
   "name": "Pyodide (WebAssembly)",
   "category": "code-execution",
   "requires_api_key": false,
-  "logo": "/assets/pyodide.png",
+  "logo": "@/assets/icons/pyodide.svg",
   "openwebui_variables": [
     {
       "name": "CODE_EXECUTION_ENGINE",

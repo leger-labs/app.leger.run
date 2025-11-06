@@ -1,7 +1,7 @@
 {
   "id": "openai",
   "name": "OpenAI",
-  "icon": "assets/makers/openai.svg",
+  "icon": "@/assets/icons/openai.svg",
   "website": "https://openai.com/",
   "description": "Creator of GPT models and ChatGPT"
 }

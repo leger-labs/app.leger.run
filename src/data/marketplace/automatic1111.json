@@ -3,7 +3,7 @@
   "name": "AUTOMATIC1111 (Stable Diffusion)",
   "category": "image-generation",
   "requires_api_key": false,
-  "logo": "/assets/automatic1111.png",
+  "logo": "@/assets/icons/automatic.svg",
   "openwebui_variables": [
     {
       "name": "AUTOMATIC1111_API_AUTH",

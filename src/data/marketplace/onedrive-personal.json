@@ -3,7 +3,7 @@
   "name": "OneDrive Personal",
   "category": "document-integration",
   "requires_api_key": true,
-  "logo": "/assets/onedrive-personal.png",
+  "logo": "@/assets/icons/microsoft.svg",
   "openwebui_variables": [
     {
       "name": "ENABLE_ONEDRIVE_INTEGRATION",

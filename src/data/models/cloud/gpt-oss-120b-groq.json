@@ -11,7 +11,7 @@
   ],
   "context_window": 128000,
   "max_output": 32000,
-  "icon": "assets/makers/openai.svg",
+  "icon": "@/assets/icons/openai.svg",
   "description": "OpenAI's open-weight 120B model on Groq's infrastructure - 500 tokens/sec",
   "capabilities": [
     "chat",

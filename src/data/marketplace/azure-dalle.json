@@ -3,7 +3,7 @@
   "name": "Azure OpenAI DALL-E",
   "category": "image-generation",
   "requires_api_key": true,
-  "logo": "/assets/azure-dalle.png",
+  "logo": "@/assets/icons/azure.svg",
   "openwebui_variables": [
     {
       "name": "IMAGES_OPENAI_API_BASE_URL",

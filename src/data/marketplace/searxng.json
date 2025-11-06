@@ -3,7 +3,7 @@
   "name": "SearXNG",
   "category": "web-search",
   "requires_api_key": false,
-  "logo": "/assets/searxng.png",
+  "logo": "@/assets/icons/searxng.svg",
   "openwebui_variables": [
     {
       "name": "SEARXNG_QUERY_URL",

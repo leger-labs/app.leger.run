@@ -3,7 +3,7 @@
   "name": "Elasticsearch",
   "category": "rag",
   "requires_api_key": false,
-  "logo": "/assets/elasticsearch.png",
+  "logo": "@/assets/icons/elasticsearch.svg",
   "openwebui_variables": [
     {
       "name": "ELASTICSEARCH_API_KEY",

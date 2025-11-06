@@ -3,7 +3,7 @@
   "name": "Ollama",
   "category": "llm",
   "requires_api_key": false,
-  "logo": "/assets/ollama.png",
+  "logo": "@/assets/icons/ollama.svg",
   "openwebui_variables": [
     {
       "name": "ENABLE_OLLAMA_API",

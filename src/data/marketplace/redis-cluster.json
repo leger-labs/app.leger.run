@@ -3,7 +3,7 @@
   "name": "Redis Cluster",
   "category": "cache",
   "requires_api_key": false,
-  "logo": "/assets/redis-cluster.png",
+  "logo": "@/assets/icons/redis.svg",
   "openwebui_variables": [
     {
       "name": "REDIS_CLUSTER",

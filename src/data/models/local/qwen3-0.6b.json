@@ -13,7 +13,7 @@
   "ram_required_gb": 1,
   "context_window": 32768,
   "group": "task",
-  "icon": "assets/makers/qwen.svg",
+  "icon": "@/assets/icons/qwen.svg",
   "description": "Ultra-fast task model - title generation",
   "family": "qwen",
   "capabilities": [

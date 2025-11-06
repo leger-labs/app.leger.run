@@ -3,7 +3,7 @@
   "name": "Azure Blob Storage",
   "category": "storage",
   "requires_api_key": true,
-  "logo": "/assets/azure-storage.png",
+  "logo": "@/assets/icons/azure.svg",
   "openwebui_variables": [
     {
       "name": "AZURE_STORAGE_CONTAINER_NAME",

@@ -3,7 +3,7 @@
   "name": "Redis Sentinel",
   "category": "cache",
   "requires_api_key": false,
-  "logo": "/assets/redis-sentinel.png",
+  "logo": "@/assets/icons/redis.svg",
   "openwebui_variables": [
     {
       "name": "REDIS_SENTINEL_HOSTS",

@@ -3,7 +3,7 @@
   "name": "Sougou Search",
   "category": "web-search",
   "requires_api_key": true,
-  "logo": "/assets/sougou.png",
+  "logo": "@/assets/icons/sougou.svg",
   "openwebui_variables": [
     {
       "name": "SOUGOU_API_SID",

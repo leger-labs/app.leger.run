@@ -3,7 +3,7 @@
   "name": "Jupyter Kernel",
   "category": "code-execution",
   "requires_api_key": false,
-  "logo": "/assets/jupyter.png",
+  "logo": "@/assets/icons/jupyter.svg",
   "openwebui_variables": [
     {
       "name": "CODE_EXECUTION_ENGINE",

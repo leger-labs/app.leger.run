@@ -3,7 +3,7 @@
   "name": "Ollama Embeddings",
   "category": "rag",
   "requires_api_key": false,
-  "logo": "/assets/ollama-embeddings.png",
+  "logo": "@/assets/icons/ollama.svg",
   "openwebui_variables": [
     {
       "name": "RAG_EMBEDDING_ENGINE",

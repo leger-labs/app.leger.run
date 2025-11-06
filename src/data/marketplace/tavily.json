@@ -3,7 +3,7 @@
   "name": "Tavily",
   "category": "web-search",
   "requires_api_key": true,
-  "logo": "/assets/tavily.png",
+  "logo": "@/assets/icons/tavily.svg",
   "openwebui_variables": [
     {
       "name": "TAVILY_API_KEY",

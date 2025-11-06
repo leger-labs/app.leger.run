@@ -1,7 +1,7 @@
 {
   "id": "groq",
   "name": "Groq",
-  "icon": "assets/providers/groq.svg",
+  "icon": "@/assets/icons/groq.svg",
   "website": "https://console.groq.com/",
   "requires_api_key": "GROQ_API_KEY",
   "api_key_register_url": "https://console.groq.com/keys",

@@ -3,7 +3,7 @@
   "name": "SearchAPI",
   "category": "web-search",
   "requires_api_key": true,
-  "logo": "/assets/searchapi.png",
+  "logo": "@/assets/icons/searchapi.svg",
   "openwebui_variables": [
     {
       "name": "SEARCHAPI_API_KEY",

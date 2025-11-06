@@ -13,7 +13,7 @@
   "ram_required_gb": 97,
   "context_window": 131072,
   "group": "heavy",
-  "icon": "assets/makers/qwen.svg",
+  "icon": "@/assets/icons/qwen.svg",
   "description": "Flagship model - incredible capability, fits in 128GB",
   "family": "qwen",
   "capabilities": [

@@ -3,7 +3,7 @@
   "name": "S3 Vector Bucket",
   "category": "rag",
   "requires_api_key": true,
-  "logo": "/assets/s3vector.png",
+  "logo": "@/assets/icons/s3vectors.svg",
   "openwebui_variables": [
     {
       "name": "PGVECTOR_DB_URL",

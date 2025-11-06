@@ -3,7 +3,7 @@
   "name": "Apache Tika",
   "category": "content-extraction",
   "requires_api_key": false,
-  "logo": "/assets/tika.png",
+  "logo": "@/assets/icons/tika.svg",
   "openwebui_variables": [
     {
       "name": "TIKA_SERVER_URL",

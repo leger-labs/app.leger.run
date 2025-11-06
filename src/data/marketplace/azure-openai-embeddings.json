@@ -3,7 +3,7 @@
   "name": "Azure OpenAI Embeddings",
   "category": "rag",
   "requires_api_key": true,
-  "logo": "/assets/azure-openai-embeddings.png",
+  "logo": "@/assets/icons/azure.svg",
   "openwebui_variables": [
     {
       "name": "RAG_AZURE_OPENAI_API_KEY",

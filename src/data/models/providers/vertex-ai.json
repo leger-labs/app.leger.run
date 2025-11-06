@@ -1,7 +1,7 @@
 {
   "id": "vertex-ai",
   "name": "Vertex AI",
-  "icon": "assets/providers/vertex-ai.svg",
+  "icon": "@/assets/icons/vertexai.svg",
   "website": "https://cloud.google.com/vertex-ai",
   "requires_api_key": "GOOGLE_APPLICATION_CREDENTIALS",
   "api_key_register_url": "https://cloud.google.com/vertex-ai",
