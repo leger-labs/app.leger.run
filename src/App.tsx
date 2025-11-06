@@ -12,7 +12,6 @@ import { AIGatewayLayout } from '@/components/layout/AIGatewayLayout';
 import { AuthPage } from '@/pages/AuthPage';
 import { AuthErrorPage } from '@/pages/AuthErrorPage';
 import { TestAuthPage } from '@/pages/TestAuthPage';
-import { AIGatewayOverviewPage } from '@/pages/AIGatewayOverviewPage';
 import { AIGatewayModelsPage } from '@/pages/AIGatewayModelsPage';
 import { AIGatewayProvidersPage } from '@/pages/AIGatewayProvidersPage';
 import { ModelDetailPage } from '@/pages/ModelDetailPage';
@@ -127,7 +126,7 @@ export default function App() {
               }
             >
               {/* Default redirect to AI Gateway */}
-              <Route index element={<Navigate to="/ai-gateway/overview" replace />} />
+              <Route index element={<Navigate to="/ai-gateway/models" replace />} />
 
               {/* Legacy routes */}
               <Route path="integrations" element={<Navigate to="/ai-gateway/providers" replace />} />
@@ -136,8 +135,8 @@ export default function App() {
 
               {/* AI Gateway */}
               <Route path="ai-gateway" element={<AIGatewayLayout />}>
-                <Route index element={<Navigate to="overview" replace />} />
-                <Route path="overview" element={<AIGatewayOverviewPage />} />
+                <Route index element={<Navigate to="models" replace />} />
+                <Route path="overview" element={<Navigate to="/ai-gateway/models" replace />} />
                 <Route path="models" element={<AIGatewayModelsPage />} />
                 <Route path="models/:modelId" element={<ModelDetailPage />} />
                 <Route path="providers" element={<AIGatewayProvidersPage />} />
