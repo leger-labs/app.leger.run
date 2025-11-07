@@ -1,83 +1,5 @@
 [
   {
-    "name": "Features",
-    "order": 10,
-    "fields": [
-      {
-        "path": "features.rag",
-        "name": "rag",
-        "title": "RAG (Retrieval-Augmented Generation)",
-        "type": "boolean",
-        "required": false,
-        "order": 100
-      },
-      {
-        "path": "features.web_search",
-        "name": "web_search",
-        "title": "Web Search",
-        "type": "boolean",
-        "required": false,
-        "order": 101
-      },
-      {
-        "path": "features.image_generation",
-        "name": "image_generation",
-        "title": "Image Generation",
-        "type": "boolean",
-        "required": false,
-        "order": 102
-      },
-      {
-        "path": "features.speech_to_text",
-        "name": "speech_to_text",
-        "title": "Speech-to-Text",
-        "type": "boolean",
-        "required": false,
-        "order": 103
-      },
-      {
-        "path": "features.text_to_speech",
-        "name": "text_to_speech",
-        "title": "Text-to-Speech",
-        "type": "boolean",
-        "required": false,
-        "order": 104
-      },
-      {
-        "path": "features.code_execution",
-        "name": "code_execution",
-        "title": "Code Execution",
-        "type": "boolean",
-        "required": false,
-        "order": 105
-      },
-      {
-        "path": "features.code_interpreter",
-        "name": "code_interpreter",
-        "title": "Code Interpreter",
-        "type": "boolean",
-        "required": false,
-        "order": 106
-      },
-      {
-        "path": "features.google_drive",
-        "name": "google_drive",
-        "title": "Google Drive Integration",
-        "type": "boolean",
-        "required": false,
-        "order": 107
-      },
-      {
-        "path": "features.onedrive",
-        "name": "onedrive",
-        "title": "OneDrive Integration",
-        "type": "boolean",
-        "required": false,
-        "order": 108
-      }
-    ]
-  },
-  {
     "name": "Providers",
     "order": 20,
     "fields": [
@@ -92,7 +14,7 @@
       {
         "path": "providers.vector_db",
         "name": "vector_db",
-        "title": "Vector Database",
+        "title": "Vector Database (enables RAG)",
         "type": "string",
         "required": false,
         "order": 100
@@ -180,7 +102,7 @@
       {
         "path": "providers.web_search_engine",
         "name": "web_search_engine",
-        "title": "Web Search Engine",
+        "title": "Web Search Engine (enables Web Search)",
         "type": "string",
         "required": false,
         "order": 110
@@ -212,7 +134,7 @@
       {
         "path": "providers.image_engine",
         "name": "image_engine",
-        "title": "Image Generation Engine",
+        "title": "Image Generation Engine (enables Image Generation)",
         "type": "string",
         "required": false,
         "order": 120
@@ -236,47 +158,23 @@
       {
         "path": "providers.stt_engine",
         "name": "stt_engine",
-        "title": "Speech-to-Text Engine",
+        "title": "Speech-to-Text Engine (enables STT)",
         "type": "string",
         "required": false,
         "order": 130
       },
       {
-        "path": "provider_config.searxng_base_url",
-        "name": "searxng_base_url",
-        "title": "SearXNG Base URL",
-        "type": "string",
-        "required": false,
-        "order": 131
-      },
-      {
         "path": "providers.tts_engine",
         "name": "tts_engine",
-        "title": "Text-to-Speech Engine",
+        "title": "Text-to-Speech Engine (enables TTS)",
         "type": "string",
         "required": false,
         "order": 131
-      },
-      {
-        "path": "provider_config.searxng_safe_search",
-        "name": "searxng_safe_search",
-        "title": "Safe Search Level",
-        "type": "integer",
-        "required": false,
-        "order": 132
-      },
-      {
-        "path": "provider_config.searxng_autocomplete",
-        "name": "searxng_autocomplete",
-        "title": "Autocomplete Provider",
-        "type": "string",
-        "required": false,
-        "order": 133
       },
       {
         "path": "providers.code_execution_engine",
         "name": "code_execution_engine",
-        "title": "Code Execution Engine",
+        "title": "Code Execution Engine (enables Code Execution)",
         "type": "string",
         "required": false,
         "order": 140
@@ -288,14 +186,6 @@
         "type": "string",
         "required": false,
         "order": 140
-      },
-      {
-        "path": "providers.code_interpreter_engine",
-        "name": "code_interpreter_engine",
-        "title": "Code Interpreter Engine",
-        "type": "string",
-        "required": false,
-        "order": 141
       },
       {
         "path": "provider_config.brave_api_key",
@@ -314,46 +204,6 @@
         "order": 150
       },
       {
-        "path": "provider_config.comfyui_workspace",
-        "name": "comfyui_workspace",
-        "title": "ComfyUI Workspace Path",
-        "type": "string",
-        "required": false,
-        "order": 160
-      },
-      {
-        "path": "provider_config.comfyui_auto_update",
-        "name": "comfyui_auto_update",
-        "title": "ComfyUI Auto-Update",
-        "type": "boolean",
-        "required": false,
-        "order": 161
-      },
-      {
-        "path": "provider_config.comfyui_web_enable_auth",
-        "name": "comfyui_web_enable_auth",
-        "title": "ComfyUI Web Authentication",
-        "type": "boolean",
-        "required": false,
-        "order": 162
-      },
-      {
-        "path": "provider_config.whisper_model",
-        "name": "whisper_model",
-        "title": "Whisper Model",
-        "type": "string",
-        "required": false,
-        "order": 170
-      },
-      {
-        "path": "provider_config.whisper_language",
-        "name": "whisper_language",
-        "title": "Whisper Language",
-        "type": "string",
-        "required": false,
-        "order": 171
-      },
-      {
         "path": "provider_config.stt_api_key",
         "name": "stt_api_key",
         "title": "STT API Key",
@@ -368,30 +218,6 @@
         "type": "string",
         "required": false,
         "order": 181
-      },
-      {
-        "path": "provider_config.edgetts_response_format",
-        "name": "edgetts_response_format",
-        "title": "Edge TTS Response Format",
-        "type": "string",
-        "required": false,
-        "order": 190
-      },
-      {
-        "path": "provider_config.edgetts_speed",
-        "name": "edgetts_speed",
-        "title": "Edge TTS Speech Speed",
-        "type": "number",
-        "required": false,
-        "order": 191
-      },
-      {
-        "path": "provider_config.edgetts_voice",
-        "name": "edgetts_voice",
-        "title": "Edge TTS Voice",
-        "type": "string",
-        "required": false,
-        "order": 192
       },
       {
         "path": "provider_config.elevenlabs_api_key",
@@ -424,14 +250,6 @@
         "type": "string",
         "required": false,
         "order": 212
-      },
-      {
-        "path": "provider_config.jupyter_auth_type",
-        "name": "jupyter_auth_type",
-        "title": "Jupyter Auth Type",
-        "type": "string",
-        "required": false,
-        "order": 221
       },
       {
         "path": "provider_config.e2b_api_key",
@@ -499,110 +317,6 @@
     "name": "Advanced",
     "order": 50,
     "fields": [
-      {
-        "path": "provider_config.tika_heap_size",
-        "name": "tika_heap_size",
-        "title": "Tika Heap Size",
-        "type": "string",
-        "required": false,
-        "order": 121
-      },
-      {
-        "path": "provider_config.searxng_max_page",
-        "name": "searxng_max_page",
-        "title": "Maximum Pages",
-        "type": "integer",
-        "required": false,
-        "order": 134
-      },
-      {
-        "path": "provider_config.comfyui_log_level",
-        "name": "comfyui_log_level",
-        "title": "ComfyUI Log Level",
-        "type": "string",
-        "required": false,
-        "order": 163
-      },
-      {
-        "path": "provider_config.comfyui_args",
-        "name": "comfyui_args",
-        "title": "ComfyUI Additional Arguments",
-        "type": "string",
-        "required": false,
-        "order": 164
-      },
-      {
-        "path": "provider_config.comfyui_startup_timeout",
-        "name": "comfyui_startup_timeout",
-        "title": "ComfyUI Startup Timeout",
-        "type": "integer",
-        "required": false,
-        "order": 165
-      },
-      {
-        "path": "provider_config.whisper_beam_size",
-        "name": "whisper_beam_size",
-        "title": "Beam Size",
-        "type": "integer",
-        "required": false,
-        "order": 172
-      },
-      {
-        "path": "provider_config.whisper_compute_type",
-        "name": "whisper_compute_type",
-        "title": "Compute Type",
-        "type": "string",
-        "required": false,
-        "order": 173
-      },
-      {
-        "path": "provider_config.whisper_device",
-        "name": "whisper_device",
-        "title": "Device",
-        "type": "string",
-        "required": false,
-        "order": 174
-      },
-      {
-        "path": "provider_config.whisper_cache_dir",
-        "name": "whisper_cache_dir",
-        "title": "Cache Directory",
-        "type": "string",
-        "required": false,
-        "order": 175
-      },
-      {
-        "path": "provider_config.edgetts_log_level",
-        "name": "edgetts_log_level",
-        "title": "Edge TTS Log Level",
-        "type": "string",
-        "required": false,
-        "order": 193
-      },
-      {
-        "path": "provider_config.edgetts_startup_timeout",
-        "name": "edgetts_startup_timeout",
-        "title": "Edge TTS Startup Timeout",
-        "type": "integer",
-        "required": false,
-        "order": 194
-      },
-      {
-        "path": "provider_config.jupyter_disable_execute_tool",
-        "name": "jupyter_disable_execute_tool",
-        "title": "Disable Jupyter Notebook Execute Tool",
-        "type": "boolean",
-        "required": false,
-        "order": 220
-      },
-      {
-        "path": "provider_config.jupyter_timeout",
-        "name": "jupyter_timeout",
-        "title": "Jupyter Timeout (seconds)",
-        "type": "integer",
-        "required": false,
-        "order": 222
-      },
       {
         "path": "provider_config.task_model_title",
         "name": "task_model_title",
