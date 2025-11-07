@@ -6,6 +6,9 @@
  * PUT /api/releases/:id - Update release
  * DELETE /api/releases/:id - Delete release
  * POST /api/releases/:id/configuration - Save configuration
+ * GET /api/releases/:id/configuration - Get configuration
+ * POST /api/releases/:id/validate - Validate release configuration
+ * POST /api/releases/:id/generate-config - Generate user-config.json
  * POST /api/releases/:id/deploy - Deploy release
  * GET /api/releases/:id/deployment - Get deployment status
  */
@@ -25,8 +28,11 @@ import {
   updateRelease,
   deleteRelease,
 } from '../services/releases'
-import { saveConfiguration } from '../services/configurations'
+import { saveConfiguration, getParsedConfiguration } from '../services/configurations'
 import { orchestrateDeployment, getDeploymentStatus } from '../services/deployment-orchestrator'
+import { generateUserConfig, validateReleaseConfig } from '../services/config-generator'
+import { isValidReleaseConfig } from '../models/configuration'
+import type { ReleaseConfig } from '../models/release-config'
 
 /**
  * GET /api/releases
@@ -245,6 +251,105 @@ export async function handleGetDeployment(
     const status = await getDeploymentStatus(env, payload.sub, releaseId)
 
     return successResponse(status)
+  } catch (error) {
+    return handleError(error)
+  }
+}
+
+/**
+ * GET /api/releases/:id/configuration
+ * Get configuration for a release
+ */
+export async function handleGetConfiguration(
+  request: Request,
+  env: Env,
+  releaseId: string
+): Promise<Response> {
+  try {
+    const payload = await authenticateRequest(request, env)
+
+    // Verify release exists and belongs to user
+    const release = await getRelease(env, payload.sub, releaseId)
+    if (!release) {
+      return errorResponse('not_found', `Release '${releaseId}' not found`, 404)
+    }
+
+    // Get configuration
+    const config = await getParsedConfiguration(env, payload.sub, releaseId)
+
+    if (!config) {
+      return errorResponse('not_found', 'Configuration not found for this release', 404)
+    }
+
+    return successResponse({ config_data: config })
+  } catch (error) {
+    return handleError(error)
+  }
+}
+
+/**
+ * POST /api/releases/:id/validate
+ * Validate release configuration
+ */
+export async function handleValidateConfiguration(
+  request: Request,
+  env: Env,
+  releaseId: string
+): Promise<Response> {
+  try {
+    const payload = await authenticateRequest(request, env)
+
+    // Verify release exists and belongs to user
+    const release = await getRelease(env, payload.sub, releaseId)
+    if (!release) {
+      return errorResponse('not_found', `Release '${releaseId}' not found`, 404)
+    }
+
+    // Parse request body
+    const body = await request.json()
+
+    if (!body.config_data) {
+      return errorResponse('validation_error', 'Missing required field: config_data', 400)
+    }
+
+    // Validate structure
+    if (!isValidReleaseConfig(body.config_data)) {
+      return errorResponse('validation_error', 'Invalid release configuration structure', 400)
+    }
+
+    const releaseConfig = body.config_data as ReleaseConfig
+
+    // Validate against dependencies
+    const validation = await validateReleaseConfig(env, payload.sub, releaseConfig)
+
+    return successResponse(validation)
+  } catch (error) {
+    return handleError(error)
+  }
+}
+
+/**
+ * POST /api/releases/:id/generate-config
+ * Generate complete user-config.json for a release
+ */
+export async function handleGenerateConfig(
+  request: Request,
+  env: Env,
+  releaseId: string
+): Promise<Response> {
+  try {
+    const payload = await authenticateRequest(request, env)
+
+    // Verify release exists and belongs to user
+    const release = await getRelease(env, payload.sub, releaseId)
+    if (!release) {
+      return errorResponse('not_found', `Release '${releaseId}' not found`, 404)
+    }
+
+    // Generate user config
+    const userConfig = await generateUserConfig(env, payload.sub, releaseId)
+
+    return successResponse({ user_config: userConfig })
   } catch (error) {
     return handleError(error)
   }

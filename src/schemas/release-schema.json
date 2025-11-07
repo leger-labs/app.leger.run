@@ -1,0 +1,468 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://leger.run/schemas/release-schema-v1.json",
+  "title": "Leger Release Configuration Schema",
+  "description": "The 'last mile' release schema - compose a deployment by selecting from pre-configured providers and models",
+  "schema_version": "1.0.0",
+  "type": "object",
+  "required": ["release_metadata", "core_services", "caddy_routes", "infrastructure"],
+  "properties": {
+    "release_metadata": {
+      "type": "object",
+      "title": "Release Information",
+      "description": "Basic release metadata",
+      "x-category": "Release Info",
+      "x-display-order": 1,
+      "required": ["name", "version"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Release Name",
+          "description": "Unique name for this release (e.g., 'production-v1', 'dev-stack')",
+          "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+          "x-display-order": 1
+        },
+        "version": {
+          "type": "string",
+          "title": "Version",
+          "description": "Semantic version for this release (e.g., '1.0.0', '2.1.3')",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "default": "1.0.0",
+          "x-display-order": 2
+        },
+        "description": {
+          "type": "string",
+          "title": "Description",
+          "description": "Optional description of this release",
+          "x-display-order": 3
+        },
+        "tags": {
+          "type": "array",
+          "title": "Tags",
+          "description": "Tags for organizing releases (e.g., 'production', 'staging', 'development')",
+          "items": {
+            "type": "string"
+          },
+          "x-display-order": 4
+        }
+      }
+    },
+    "core_services": {
+      "type": "object",
+      "title": "Core Service Configuration",
+      "description": "Configuration for core services (always included in deployment)",
+      "x-category": "Core Services",
+      "x-display-order": 2,
+      "properties": {
+        "openwebui": {
+          "type": "object",
+          "title": "OpenWebUI Configuration",
+          "description": "Complete OpenWebUI configuration (~200 variables)",
+          "properties": {
+            "webui_name": {
+              "type": "string",
+              "title": "WebUI Instance Name",
+              "description": "The name displayed in the interface header",
+              "default": "Leger AI"
+            },
+            "custom_name": {
+              "type": "string",
+              "title": "Custom Instance Label",
+              "description": "Optional label for the instance (e.g., 'Dev', 'Staging', 'Production')",
+              "default": ""
+            },
+            "enable_signup": {
+              "type": "boolean",
+              "title": "Enable User Signup",
+              "description": "Allow new users to create accounts",
+              "default": true
+            },
+            "enable_community_sharing": {
+              "type": "boolean",
+              "title": "Enable Community Sharing",
+              "description": "Allow users to share prompts and models with the community",
+              "default": false
+            },
+            "enable_message_rating": {
+              "type": "boolean",
+              "title": "Enable Message Rating",
+              "description": "Allow users to rate AI responses",
+              "default": true
+            },
+            "rag_top_k": {
+              "type": "integer",
+              "title": "RAG Top K Results",
+              "description": "Number of top results to return from vector search",
+              "default": 5,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "chunk_size": {
+              "type": "integer",
+              "title": "Document Chunk Size",
+              "description": "Size of text chunks for document processing",
+              "default": 1500,
+              "minimum": 100,
+              "maximum": 10000
+            },
+            "chunk_overlap": {
+              "type": "integer",
+              "title": "Chunk Overlap",
+              "description": "Overlap between document chunks",
+              "default": 100,
+              "minimum": 0,
+              "maximum": 1000
+            },
+            "pdf_extract_images": {
+              "type": "boolean",
+              "title": "Extract Images from PDFs",
+              "description": "Extract and process images from PDF documents",
+              "default": false
+            },
+            "enable_image_generation": {
+              "type": "boolean",
+              "title": "Enable Image Generation",
+              "description": "Enable image generation features",
+              "default": false
+            },
+            "enable_web_search": {
+              "type": "boolean",
+              "title": "Enable Web Search",
+              "description": "Enable web search capabilities",
+              "default": false
+            },
+            "enable_rag": {
+              "type": "boolean",
+              "title": "Enable RAG",
+              "description": "Enable Retrieval-Augmented Generation",
+              "default": false
+            },
+            "task_model_title": {
+              "type": "string",
+              "title": "Task Model: Title Generation",
+              "description": "Model ID for generating chat titles (ultra-fast, <1B params)",
+              "default": "qwen3-0.6b"
+            },
+            "task_model_tags": {
+              "type": "string",
+              "title": "Task Model: Tags Generation",
+              "description": "Model ID for generating conversation tags (balanced, 3-4B params)",
+              "default": "qwen3-4b"
+            },
+            "task_model_autocomplete": {
+              "type": "string",
+              "title": "Task Model: Autocomplete",
+              "description": "Model ID for autocomplete suggestions (ultra-fast, <1B params)",
+              "default": "qwen3-0.6b"
+            },
+            "task_model_query": {
+              "type": "string",
+              "title": "Task Model: RAG Query Rewriting",
+              "description": "Model ID for RAG query rewriting (balanced, 3-4B params)",
+              "default": "qwen3-4b"
+            },
+            "task_model_search_query": {
+              "type": "string",
+              "title": "Task Model: Search Query Generation",
+              "description": "Model ID for web search query generation",
+              "default": "qwen3-4b"
+            },
+            "task_model_rag_template": {
+              "type": "string",
+              "title": "Task Model: RAG Template",
+              "description": "Model ID for RAG template generation",
+              "default": "qwen3-4b"
+            },
+            "log_level": {
+              "type": "string",
+              "title": "Log Level",
+              "description": "Logging verbosity",
+              "default": "INFO",
+              "enum": ["DEBUG", "INFO", "WARNING", "ERROR"]
+            },
+            "redis_key_prefix": {
+              "type": "string",
+              "title": "Redis Key Prefix",
+              "description": "Redis namespace prefix",
+              "default": "open-webui"
+            },
+            "timeout_start": {
+              "type": "integer",
+              "title": "Startup Timeout (seconds)",
+              "description": "Maximum time to wait for OpenWebUI to start",
+              "default": 900,
+              "minimum": 60,
+              "maximum": 1800
+            }
+          }
+        },
+        "litellm": {
+          "type": "object",
+          "title": "LiteLLM Configuration",
+          "description": "LiteLLM proxy configuration",
+          "properties": {
+            "enable_prometheus": {
+              "type": "boolean",
+              "title": "Enable Prometheus Metrics",
+              "description": "Export metrics for Prometheus",
+              "default": false
+            },
+            "enable_request_logging": {
+              "type": "boolean",
+              "title": "Enable Request Logging",
+              "description": "Log all API requests",
+              "default": true
+            },
+            "cache_type": {
+              "type": "string",
+              "title": "Cache Type",
+              "description": "Type of cache to use",
+              "enum": ["redis", "none"],
+              "default": "redis"
+            }
+          }
+        },
+        "llama_swap": {
+          "type": "object",
+          "title": "Llama-Swap Configuration",
+          "description": "Local model router configuration",
+          "properties": {
+            "auto_unload_enabled": {
+              "type": "boolean",
+              "title": "Enable Auto-Unload",
+              "description": "Automatically unload inactive models to free memory",
+              "default": true
+            },
+            "auto_unload_timeout": {
+              "type": "integer",
+              "title": "Auto-Unload Timeout (seconds)",
+              "description": "Time before unloading inactive models",
+              "default": 300,
+              "minimum": 60,
+              "maximum": 3600
+            },
+            "max_concurrent_models": {
+              "type": "integer",
+              "title": "Max Concurrent Models",
+              "description": "Maximum number of models loaded simultaneously",
+              "default": 2,
+              "minimum": 1,
+              "maximum": 10
+            },
+            "gpu_memory_fraction": {
+              "type": "number",
+              "title": "GPU Memory Fraction",
+              "description": "Fraction of GPU memory to allocate (0.0-1.0)",
+              "default": 0.9,
+              "minimum": 0.1,
+              "maximum": 1.0
+            }
+          }
+        }
+      }
+    },
+    "caddy_routes": {
+      "type": "object",
+      "title": "Caddy Route Configuration",
+      "description": "Subdomain configuration for each service",
+      "x-category": "Routing",
+      "x-display-order": 3,
+      "required": ["openwebui_subdomain", "litellm_subdomain", "llama_swap_subdomain"],
+      "properties": {
+        "openwebui_subdomain": {
+          "type": "string",
+          "title": "OpenWebUI Subdomain",
+          "description": "Subdomain for OpenWebUI (e.g., 'ai' for ai.yourdomain.ts.net)",
+          "default": "ai",
+          "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$"
+        },
+        "litellm_subdomain": {
+          "type": "string",
+          "title": "LiteLLM Subdomain",
+          "description": "Subdomain for LiteLLM proxy",
+          "default": "llm",
+          "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$"
+        },
+        "llama_swap_subdomain": {
+          "type": "string",
+          "title": "Llama-Swap Subdomain",
+          "description": "Subdomain for Llama-Swap router",
+          "default": "llama",
+          "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$"
+        },
+        "cockpit_subdomain": {
+          "type": "string",
+          "title": "Cockpit Subdomain",
+          "description": "Subdomain for Cockpit web console",
+          "default": "cockpit",
+          "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$"
+        },
+        "qdrant_subdomain": {
+          "type": "string",
+          "title": "Qdrant Subdomain",
+          "description": "Subdomain for Qdrant (only if RAG provider is qdrant)",
+          "default": "qdrant",
+          "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$"
+        },
+        "searxng_subdomain": {
+          "type": "string",
+          "title": "SearXNG Subdomain",
+          "description": "Subdomain for SearXNG (only if search provider is searxng)",
+          "default": "search",
+          "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$"
+        },
+        "comfyui_subdomain": {
+          "type": "string",
+          "title": "ComfyUI Subdomain",
+          "description": "Subdomain for ComfyUI (only if image provider is comfyui)",
+          "default": "comfy",
+          "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$"
+        },
+        "whisper_subdomain": {
+          "type": "string",
+          "title": "Whisper Subdomain",
+          "description": "Subdomain for Whisper STT (only if STT provider is whisper)",
+          "default": "whisper",
+          "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$"
+        },
+        "jupyter_subdomain": {
+          "type": "string",
+          "title": "Jupyter Subdomain",
+          "description": "Subdomain for Jupyter (only if code execution is jupyter)",
+          "default": "jupyter",
+          "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$"
+        }
+      }
+    },
+    "service_selections": {
+      "type": "object",
+      "title": "Service Provider Selections",
+      "description": "Select ONE provider per category from configured marketplace providers",
+      "x-category": "Service Selection",
+      "x-display-order": 4,
+      "properties": {
+        "rag_provider": {
+          "type": "string",
+          "title": "RAG / Vector Database Provider",
+          "description": "Select one RAG provider (or empty for none). Options populated from marketplace.",
+          "default": "",
+          "x-dynamic-enum": "marketplace:rag"
+        },
+        "web_search_provider": {
+          "type": "string",
+          "title": "Web Search Provider",
+          "description": "Select one web search provider (or empty for none). Options populated from marketplace.",
+          "default": "",
+          "x-dynamic-enum": "marketplace:web-search"
+        },
+        "image_generation_provider": {
+          "type": "string",
+          "title": "Image Generation Provider",
+          "description": "Select one image generation provider (or empty for none). Options populated from marketplace.",
+          "default": "",
+          "x-dynamic-enum": "marketplace:image-generation"
+        },
+        "stt_provider": {
+          "type": "string",
+          "title": "Speech-to-Text Provider",
+          "description": "Select one STT provider (or empty for none). Options populated from marketplace.",
+          "default": "",
+          "x-dynamic-enum": "marketplace:speech-to-text"
+        },
+        "tts_provider": {
+          "type": "string",
+          "title": "Text-to-Speech Provider",
+          "description": "Select one TTS provider (or empty for none). Options populated from marketplace.",
+          "default": "",
+          "x-dynamic-enum": "marketplace:text-to-speech"
+        },
+        "code_execution_provider": {
+          "type": "string",
+          "title": "Code Execution Provider",
+          "description": "Select one code execution provider (or empty for none). Options populated from marketplace.",
+          "default": "",
+          "x-dynamic-enum": "marketplace:code-execution"
+        },
+        "storage_provider": {
+          "type": "string",
+          "title": "External Storage Provider",
+          "description": "Select one storage provider (or empty for none). Options populated from marketplace.",
+          "default": "",
+          "x-dynamic-enum": "marketplace:storage"
+        },
+        "extraction_provider": {
+          "type": "string",
+          "title": "Content Extraction Provider",
+          "description": "Select one extraction provider (or empty for none). Options populated from marketplace.",
+          "default": "",
+          "x-dynamic-enum": "marketplace:content-extraction"
+        }
+      }
+    },
+    "model_assignments": {
+      "type": "object",
+      "title": "Model Assignments",
+      "description": "Select models from the model store for various purposes",
+      "x-category": "Models",
+      "x-display-order": 5,
+      "required": ["primary_chat_models"],
+      "properties": {
+        "primary_chat_models": {
+          "type": "array",
+          "title": "Primary Chat Models",
+          "description": "Select one or more chat models from model store. First model becomes default.",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "x-model-reference": true,
+          "x-model-filter": "type=chat"
+        },
+        "embedding_models": {
+          "type": "array",
+          "title": "Embedding Models",
+          "description": "Select embedding models from model store (required if RAG is enabled)",
+          "items": {
+            "type": "string"
+          },
+          "x-model-reference": true,
+          "x-model-filter": "type=embeddings",
+          "x-depends-on": {
+            "service_selections.rag_provider": "!="
+          }
+        }
+      }
+    },
+    "infrastructure": {
+      "type": "object",
+      "title": "Infrastructure Configuration",
+      "description": "Base infrastructure settings",
+      "x-category": "Infrastructure",
+      "x-display-order": 6,
+      "required": ["network"],
+      "properties": {
+        "network": {
+          "type": "object",
+          "title": "Network Configuration",
+          "required": ["name", "subnet"],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "Network Name",
+              "description": "Name for the Podman network",
+              "default": "llm",
+              "pattern": "^[a-z0-9-]+$"
+            },
+            "subnet": {
+              "type": "string",
+              "title": "Network Subnet",
+              "description": "Subnet for the Podman network (CIDR notation)",
+              "default": "10.89.0.0/24",
+              "pattern": "^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/\\d{1,2}$"
+            }
+          }
+        }
+      }
+    }
+  }
+}
