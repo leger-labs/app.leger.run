@@ -60,15 +60,6 @@ export function ModelsPage() {
     return Array.from(caps).sort();
   }, [models]);
 
-  // Count models per capability
-  const capabilityCounts = useMemo(() => {
-    const counts: Record<string, number> = {};
-    allCapabilities.forEach((cap) => {
-      counts[cap] = models.filter((m) => m.capabilities.includes(cap)).length;
-    });
-    return counts;
-  }, [models, allCapabilities]);
-
   // Count models per provider
   const providerCounts = useMemo(() => {
     const counts: Record<string, number> = {};
@@ -176,43 +167,57 @@ export function ModelsPage() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search models..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="pl-9"
-            />
+        <div className="flex flex-col gap-3">
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="relative flex-1 min-w-[220px]">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Search models..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="h-10 pl-9"
+              />
+            </div>
+
+            <Select value={selectedProvider} onValueChange={setSelectedProvider}>
+              <SelectTrigger className="h-10 w-full min-w-[200px] sm:w-[220px] lg:w-[240px]">
+                <SelectValue placeholder="All Providers" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Providers ({models.length})</SelectItem>
+                {providers.map((p) => (
+                  <SelectItem key={p.id} value={p.id}>
+                    {p.name} ({providerCounts[p.id] || 0})
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <Tabs
+              value={selectedCapability}
+              onValueChange={setSelectedCapability}
+              className="flex-1 min-w-[220px]"
+            >
+              <TabsList className="flex h-10 flex-wrap items-center gap-2 rounded-md border border-input bg-background px-1 py-1">
+                <TabsTrigger
+                  value="all"
+                  className="rounded-sm px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                >
+                  All
+                </TabsTrigger>
+                {allCapabilities.map((cap) => (
+                  <TabsTrigger
+                    key={cap}
+                    value={cap}
+                    className="rounded-sm px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                  >
+                    {cap.charAt(0).toUpperCase() + cap.slice(1)}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </Tabs>
           </div>
-
-          <Select value={selectedProvider} onValueChange={setSelectedProvider}>
-            <SelectTrigger className="w-full sm:w-[240px]">
-              <SelectValue placeholder="All Providers" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Providers ({models.length})</SelectItem>
-              {providers.map((p) => (
-                <SelectItem key={p.id} value={p.id}>
-                  {p.name} ({providerCounts[p.id] || 0})
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
         </div>
-
-        {/* Capability Filters */}
-        <Tabs value={selectedCapability} onValueChange={setSelectedCapability}>
-          <TabsList>
-            <TabsTrigger value="all">All ({models.length})</TabsTrigger>
-            {allCapabilities.map((cap) => (
-              <TabsTrigger key={cap} value={cap}>
-                {cap.charAt(0).toUpperCase() + cap.slice(1)} ({capabilityCounts[cap] || 0})
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
       </div>
 
       {/* Model Display */}
