@@ -5,25 +5,32 @@
 
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Copy, Check } from 'lucide-react';
 import { apiClient } from '@/lib/api-client';
 import { setSession } from '@/lib/session';
+import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 
 export function AuthPage() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText('leger auth login');
+      setCopied(true);
+      toast.success('Command copied to clipboard');
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      toast.error('Failed to copy command');
+    }
+  };
 
   useEffect(() => {
     const validateToken = async () => {
       const token = searchParams.get('token');
-      const errorParam = searchParams.get('error');
-
-      // If error parameter exists, redirect to error page
-      if (errorParam) {
-        navigate(`/auth-error?error=${errorParam}`);
-        return;
-      }
 
       if (!token) {
         setError('No authentication token provided');
@@ -40,12 +47,7 @@ export function AuthPage() {
         navigate('/api-keys');
       } catch (error) {
         console.error('Authentication failed:', error);
-        // Check if it's a network error
-        if (error instanceof TypeError) {
-          navigate('/auth-error?error=network_error');
-        } else {
-          navigate('/auth-error?error=invalid_token');
-        }
+        setError('Authentication failed. Please try again.');
       }
     };
 
@@ -68,17 +70,31 @@ export function AuthPage() {
           />
 
           <h1 className="text-2xl font-bold text-foreground mb-4">
-            Authentication Error
+            Leger Auth
           </h1>
           <p className="text-muted-foreground">{error}</p>
 
           <div className="mt-8 p-4 bg-muted rounded-lg text-left">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground mb-3">
               To authenticate, run this command in your terminal:
             </p>
-            <code className="block mt-2 p-2 bg-background rounded text-xs font-mono">
-              leger auth login
-            </code>
+            <div className="flex items-center gap-2">
+              <code className="flex-1 p-2 bg-background rounded text-xs font-mono">
+                leger auth login
+              </code>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleCopy}
+                className="shrink-0"
+              >
+                {copied ? (
+                  <Check className="h-4 w-4" />
+                ) : (
+                  <Copy className="h-4 w-4" />
+                )}
+              </Button>
+            </div>
           </div>
         </div>
       </div>

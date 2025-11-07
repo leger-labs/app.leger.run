@@ -56,7 +56,7 @@ class APIClient {
       // Handle 401 specially (don't toast, just redirect)
       if (response.status === 401) {
         clearSession();
-        window.location.href = '/auth?error=session_expired';
+        window.location.href = '/auth';
         throw new Error('Unauthorized');
       }
 

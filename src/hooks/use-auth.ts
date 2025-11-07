@@ -26,7 +26,7 @@ export function useAuth() {
     clearSession();
     setUser(null);
     setIsAuthenticated(false);
-    navigate('/auth?error=session_expired');
+    navigate('/auth');
   };
 
   return {
