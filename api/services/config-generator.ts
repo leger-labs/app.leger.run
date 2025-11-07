@@ -154,7 +154,7 @@ function buildInfrastructureServices(
       description: 'Open WebUI - LLM Chat Interface',
       ...releaseConfig.core_services.openwebui,
     },
-    openwebui_postgres: {
+    'openwebui-postgres': {
       container_name: 'openwebui-postgres',
       hostname: 'openwebui-postgres',
       port: 5432,
@@ -163,7 +163,7 @@ function buildInfrastructureServices(
       db_user: 'openwebui',
       description: 'PostgreSQL for OpenWebUI',
     },
-    openwebui_redis: {
+    'openwebui-redis': {
       container_name: 'openwebui-redis',
       hostname: 'openwebui-redis',
       port: 6379,
@@ -180,7 +180,7 @@ function buildInfrastructureServices(
       description: 'LiteLLM - Unified LLM Proxy',
       ...releaseConfig.core_services.litellm,
     },
-    litellm_postgres: {
+    'litellm-postgres': {
       container_name: 'litellm-postgres',
       hostname: 'litellm-postgres',
       port: 5432,
@@ -189,14 +189,14 @@ function buildInfrastructureServices(
       db_user: 'litellm',
       description: 'PostgreSQL for LiteLLM',
     },
-    litellm_redis: {
+    'litellm-redis': {
       container_name: 'litellm-redis',
       hostname: 'litellm-redis',
       port: 6379,
       volume: 'litellm-redis.volume',
       description: 'Redis for LiteLLM',
     },
-    llama_swap: {
+    'llama-swap': {
       container_name: 'llama-swap',
       hostname: 'llama-swap',
       port: 8000,
