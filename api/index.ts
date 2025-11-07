@@ -19,6 +19,9 @@ import {
   handleUpdateRelease,
   handleDeleteRelease,
   handleSaveConfiguration,
+  handleGetConfiguration,
+  handleValidateConfiguration,
+  handleGenerateConfig,
   handleDeployRelease,
   handleGetDeployment,
 } from './routes/releases'
@@ -254,8 +257,23 @@ export default {
           const action = pathParts[1] || null
 
           // Handle /releases/:id/configuration
-          if (action === 'configuration' && request.method === 'POST') {
-            return addCorsHeaders(await handleSaveConfiguration(request, env, releaseId))
+          if (action === 'configuration') {
+            if (request.method === 'GET') {
+              return addCorsHeaders(await handleGetConfiguration(request, env, releaseId))
+            }
+            if (request.method === 'POST') {
+              return addCorsHeaders(await handleSaveConfiguration(request, env, releaseId))
+            }
+          }
+
+          // Handle /releases/:id/validate
+          if (action === 'validate' && request.method === 'POST') {
+            return addCorsHeaders(await handleValidateConfiguration(request, env, releaseId))
+          }
+
+          // Handle /releases/:id/generate-config
+          if (action === 'generate-config' && request.method === 'POST') {
+            return addCorsHeaders(await handleGenerateConfig(request, env, releaseId))
           }
 
           // Handle /releases/:id/deploy

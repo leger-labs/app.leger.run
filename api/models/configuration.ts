@@ -3,6 +3,8 @@
  * For storing user configurations (schema.json format) in D1
  */
 
+import type { ReleaseConfig } from './release-config'
+
 /**
  * Configuration record stored in D1
  */
@@ -10,8 +12,8 @@ export interface ConfigurationRecord {
   id: string // UUID v4
   user_uuid: string // Owner
   release_id: string | null // Optional link to release
-  config_data: string // JSON string of user configuration
-  schema_version: string // Schema version (e.g., "0.2.0")
+  config_data: string // JSON string of user configuration or release configuration
+  schema_version: string // Schema version (e.g., "0.2.0", "1.0.0")
   version: number // Auto-increment per release
   created_at: string // ISO 8601 timestamp
 }
@@ -75,12 +77,12 @@ export interface UserConfig {
  */
 export interface CreateConfigurationInput {
   release_id?: string
-  config_data: UserConfig
+  config_data: UserConfig | ReleaseConfig
   schema_version: string
 }
 
 /**
- * Validate configuration data structure
+ * Validate configuration data structure (UserConfig)
  */
 export function isValidConfiguration(config: unknown): config is UserConfig {
   if (!config || typeof config !== 'object') {
@@ -90,4 +92,48 @@ export function isValidConfiguration(config: unknown): config is UserConfig {
   // Basic validation - at minimum should have infrastructure or features
   const cfg = config as UserConfig
   return !!(cfg.infrastructure || cfg.features || cfg.providers)
+}
+
+/**
+ * Validate release configuration structure
+ */
+export function isValidReleaseConfig(config: unknown): config is ReleaseConfig {
+  if (!config || typeof config !== 'object') {
+    return false
+  }
+
+  const cfg = config as any
+
+  // Check required top-level properties
+  if (!cfg.release_metadata || typeof cfg.release_metadata !== 'object') {
+    return false
+  }
+
+  if (!cfg.core_services || typeof cfg.core_services !== 'object') {
+    return false
+  }
+
+  if (!cfg.caddy_routes || typeof cfg.caddy_routes !== 'object') {
+    return false
+  }
+
+  if (!cfg.infrastructure || typeof cfg.infrastructure !== 'object') {
+    return false
+  }
+
+  // Check required metadata fields
+  if (!cfg.release_metadata.name || typeof cfg.release_metadata.name !== 'string') {
+    return false
+  }
+
+  if (!cfg.release_metadata.version || typeof cfg.release_metadata.version !== 'string') {
+    return false
+  }
+
+  // Check required infrastructure fields
+  if (!cfg.infrastructure.network || typeof cfg.infrastructure.network !== 'object') {
+    return false
+  }
+
+  return true
 }
