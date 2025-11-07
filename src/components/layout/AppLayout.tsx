@@ -51,10 +51,8 @@ export function AppLayout() {
       <Link
         to={to}
         className={cn(
-          'text-sm font-medium transition-colors hover:text-primary',
-          active
-            ? 'text-foreground border-b-2 border-primary pb-2'
-            : 'text-muted-foreground'
+          'text-sm font-medium transition-colors hover:text-primary border-b-2 border-transparent pb-2',
+          active ? 'text-foreground border-primary' : 'text-muted-foreground'
         )}
       >
         {children}
