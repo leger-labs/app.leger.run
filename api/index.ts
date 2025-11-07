@@ -33,6 +33,10 @@ import {
   handleUninstallService,
 } from './routes/marketplace'
 import {
+  handleGetSettings,
+  handleUpdateSettings,
+} from './routes/settings'
+import {
   handleTestAuthLogin,
   handleTestListSecrets,
   handleTestGetSecret,
@@ -147,6 +151,7 @@ export default {
                       validate: '/auth/validate',
                     },
                     secrets: '/secrets',
+                    settings: '/settings',
                     releases: '/releases',
                     marketplace: '/marketplace/services',
                   },
@@ -210,6 +215,17 @@ export default {
 
           if (request.method === 'DELETE') {
             return addCorsHeaders(await handleDeleteSecret(request, env, secretName))
+          }
+        }
+
+        // Settings routes
+        if (normalizedPath === '/settings') {
+          if (request.method === 'GET') {
+            return addCorsHeaders(await handleGetSettings(request, env))
+          }
+
+          if (request.method === 'POST') {
+            return addCorsHeaders(await handleUpdateSettings(request, env))
           }
         }
 

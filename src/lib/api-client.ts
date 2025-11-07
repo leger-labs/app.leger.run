@@ -21,6 +21,14 @@ import type {
   DeploymentStatusResponse,
 } from '@/types';
 
+export interface UserSettings {
+  tailscale?: {
+    full_hostname: string;
+    hostname: string;
+    tailnet: string;
+  };
+}
+
 class APIClient {
   private baseURL = '/api';
 
@@ -293,6 +301,23 @@ class APIClient {
     return this.request<DeploymentStatusResponse>(
       `/releases/${releaseId}/deployment`
     );
+  }
+
+  /**
+   * Get user settings
+   */
+  async getUserSettings(): Promise<{ settings: UserSettings }> {
+    return this.request<{ settings: UserSettings }>('/settings');
+  }
+
+  /**
+   * Update user settings
+   */
+  async updateUserSettings(settings: UserSettings): Promise<{ settings: UserSettings; message: string }> {
+    return this.request<{ settings: UserSettings; message: string }>('/settings', {
+      method: 'POST',
+      body: JSON.stringify({ settings }),
+    });
   }
 }
 
