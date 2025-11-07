@@ -962,85 +962,8 @@
     "features": {
       "type": "object",
       "title": "Feature Toggles",
-      "description": "Enable/disable major capabilities (15 boolean decisions)",
+      "description": "Enable/disable capabilities that have no provider selection (4 boolean decisions). Other features are automatically enabled when their provider is configured.",
       "properties": {
-        "rag": {
-          "type": "boolean",
-          "title": "RAG (Retrieval-Augmented Generation)",
-          "default": false,
-          "x-category": "Features",
-          "x-display-order": 100
-        },
-        "web_search": {
-          "type": "boolean",
-          "title": "Web Search",
-          "default": false,
-          "x-category": "Features",
-          "x-display-order": 101
-        },
-        "image_generation": {
-          "type": "boolean",
-          "title": "Image Generation",
-          "default": false,
-          "x-category": "Features",
-          "x-display-order": 102
-        },
-        "speech_to_text": {
-          "type": "boolean",
-          "title": "Speech-to-Text",
-          "default": false,
-          "x-category": "Features",
-          "x-display-order": 103
-        },
-        "text_to_speech": {
-          "type": "boolean",
-          "title": "Text-to-Speech",
-          "default": false,
-          "x-category": "Features",
-          "x-display-order": 104
-        },
-        "code_execution": {
-          "type": "boolean",
-          "title": "Code Execution",
-          "default": false,
-          "x-category": "Features",
-          "x-display-order": 105
-        },
-        "code_interpreter": {
-          "type": "boolean",
-          "title": "Code Interpreter",
-          "default": false,
-          "x-category": "Features",
-          "x-display-order": 106
-        },
-        "google_drive": {
-          "type": "boolean",
-          "title": "Google Drive Integration",
-          "default": false,
-          "x-category": "Features",
-          "x-display-order": 107
-        },
-        "onedrive": {
-          "type": "boolean",
-          "title": "OneDrive Integration",
-          "default": false,
-          "x-category": "Features",
-          "x-display-order": 108
-        },
-        "oauth_signup": {
-          "type": "boolean",
-          "title": "OAuth Signup",
-          "default": false,
-          "x-category": "Security",
-          "x-display-order": 200
-        },
-        "ldap": {
-          "type": "boolean",
-          "title": "LDAP Authentication",
-          "default": false,
-          "x-category": "Security",
-          "x-display-order": 201
-        },
         "title_generation": {
           "type": "boolean",
           "title": "AI Title Generation",
@@ -1078,50 +1001,46 @@
       "properties": {
         "vector_db": {
           "type": "string",
-          "title": "Vector Database",
+          "title": "Vector Database (enables RAG)",
+          "description": "Selecting a vector database automatically enables RAG functionality",
           "enum": [
+            "",
             "pgvector",
             "qdrant",
             "chroma"
           ],
-          "default": "pgvector",
+          "default": "",
           "x-category": "Providers",
-          "x-display-order": 100,
-          "x-depends-on": {
-            "features.rag": true
-          }
+          "x-display-order": 100
         },
         "rag_embedding": {
           "type": "string",
           "title": "RAG Embedding Model",
+          "description": "Only used when vector_db is configured",
           "enum": [
             "openai",
             "ollama"
           ],
           "default": "openai",
           "x-category": "Providers",
-          "x-display-order": 101,
-          "x-depends-on": {
-            "features.rag": true
-          }
+          "x-display-order": 101
         },
         "content_extraction": {
           "type": "string",
           "title": "Content Extraction Engine",
+          "description": "Only used when vector_db is configured",
           "enum": [
             "tika",
             "docling"
           ],
           "default": "tika",
           "x-category": "Providers",
-          "x-display-order": 102,
-          "x-depends-on": {
-            "features.rag": true
-          }
+          "x-display-order": 102
         },
         "text_splitter": {
           "type": "string",
           "title": "Text Splitter Algorithm",
+          "description": "Only used when vector_db is configured",
           "enum": [
             "character",
             "recursive",
@@ -1130,34 +1049,30 @@
           ],
           "default": "recursive",
           "x-category": "Providers",
-          "x-display-order": 103,
-          "x-depends-on": {
-            "features.rag": true
-          }
+          "x-display-order": 103
         },
         "web_search_engine": {
           "type": "string",
-          "title": "Web Search Engine",
+          "title": "Web Search Engine (enables Web Search)",
+          "description": "Selecting a search engine automatically enables Web Search functionality",
           "enum": [
+            "",
             "searxng",
             "tavily",
             "brave",
             "google_pse",
             "serper",
             "serpapi",
-            "bing",
-            ""
+            "bing"
           ],
-          "default": "searxng",
+          "default": "",
           "x-category": "Providers",
-          "x-display-order": 110,
-          "x-depends-on": {
-            "features.web_search": true
-          }
+          "x-display-order": 110
         },
         "web_loader": {
           "type": "string",
           "title": "Web Page Loader",
+          "description": "Only used when web_search_engine is configured",
           "enum": [
             "requests",
             "selenium",
@@ -1166,89 +1081,65 @@
           ],
           "default": "requests",
           "x-category": "Providers",
-          "x-display-order": 111,
-          "x-depends-on": {
-            "features.web_search": true
-          }
+          "x-display-order": 111
         },
         "image_engine": {
           "type": "string",
-          "title": "Image Generation Engine",
+          "title": "Image Generation Engine (enables Image Generation)",
+          "description": "Selecting an image engine automatically enables Image Generation functionality",
           "enum": [
+            "",
             "openai",
             "automatic1111",
             "comfyui",
-            "gemini",
-            ""
+            "gemini"
           ],
-          "default": "openai",
+          "default": "",
           "x-category": "Providers",
-          "x-display-order": 120,
-          "x-depends-on": {
-            "features.image_generation": true
-          }
+          "x-display-order": 120
         },
         "stt_engine": {
           "type": "string",
-          "title": "Speech-to-Text Engine",
+          "title": "Speech-to-Text Engine (enables STT)",
+          "description": "Selecting a STT engine automatically enables Speech-to-Text functionality",
           "enum": [
+            "",
             "openai",
             "whisper",
             "azure",
-            "deepgram",
-            ""
+            "deepgram"
           ],
-          "default": "openai",
+          "default": "",
           "x-category": "Providers",
-          "x-display-order": 130,
-          "x-depends-on": {
-            "features.speech_to_text": true
-          }
+          "x-display-order": 130
         },
         "tts_engine": {
           "type": "string",
-          "title": "Text-to-Speech Engine",
+          "title": "Text-to-Speech Engine (enables TTS)",
+          "description": "Selecting a TTS engine automatically enables Text-to-Speech functionality",
           "enum": [
+            "",
             "openai",
             "elevenlabs",
             "edgetts",
-            "azure",
-            ""
+            "azure"
           ],
-          "default": "openai",
+          "default": "",
           "x-category": "Providers",
-          "x-display-order": 131,
-          "x-depends-on": {
-            "features.text_to_speech": true
-          }
+          "x-display-order": 131
         },
         "code_execution_engine": {
           "type": "string",
-          "title": "Code Execution Engine",
+          "title": "Code Execution Engine (enables Code Execution)",
+          "description": "Selecting a code execution engine automatically enables Code Execution functionality",
           "enum": [
+            "",
             "jupyter",
             "pyodide"
           ],
-          "default": "jupyter",
+          "default": "",
           "x-category": "Providers",
-          "x-display-order": 140,
-          "x-depends-on": {
-            "features.code_execution": true
-          }
-        },
-        "code_interpreter_engine": {
-          "type": "string",
-          "title": "Code Interpreter Engine",
-          "enum": [
-            "jupyter",
-            "e2b"
-          ],
-          "default": "jupyter",
-          "x-category": "Providers",
-          "x-display-order": 141,
-          "x-depends-on": {
-            "features.code_interpreter": true
-          }
+          "x-display-order": 140
         },
         "storage_provider": {
           "type": "string",
@@ -1387,14 +1278,13 @@
         "rag_embedding_model": {
           "type": "string",
           "title": "RAG Embedding Model",
-          "description": "Model ID for RAG embeddings. Must be an embedding model from model-store.",
+          "description": "Model ID for RAG embeddings. Must be an embedding model from model-store. Only used when vector_db is configured with rag_embedding=openai.",
           "default": "qwen3-embedding-8b",
           "examples": [
             "qwen3-embedding-8b",
             "nomic-embed-text-v1.5"
           ],
           "x-depends-on": {
-            "features.rag": true,
             "providers.rag_embedding": "openai"
           },
           "x-model-reference": true,
@@ -1406,14 +1296,13 @@
         "ollama_embedding_model": {
           "type": "string",
           "title": "Ollama Embedding Model",
-          "description": "Model ID for Ollama embeddings (if using native Ollama daemon).",
+          "description": "Model ID for Ollama embeddings (if using native Ollama daemon). Only used when vector_db is configured with rag_embedding=ollama.",
           "default": "nomic-embed-text-v1.5",
           "examples": [
             "nomic-embed-text-v1.5",
             "qwen3-embedding-8b"
           ],
           "x-depends-on": {
-            "features.rag": true,
             "providers.rag_embedding": "ollama"
           },
           "x-model-reference": true,
@@ -1554,36 +1443,30 @@
         "rag_top_k": {
           "type": "integer",
           "title": "RAG Top K",
+          "description": "Only used when vector_db is configured",
           "default": 5,
           "minimum": 1,
           "maximum": 50,
-          "x-depends-on": {
-            "features.rag": true
-          },
           "x-category": "Advanced",
           "x-display-order": 500
         },
         "chunk_size": {
           "type": "integer",
           "title": "Chunk Size",
+          "description": "Only used when vector_db is configured",
           "default": 1500,
           "minimum": 100,
           "maximum": 10000,
-          "x-depends-on": {
-            "features.rag": true
-          },
           "x-category": "Advanced",
           "x-display-order": 501
         },
         "chunk_overlap": {
           "type": "integer",
           "title": "Chunk Overlap",
+          "description": "Only used when vector_db is configured",
           "default": 100,
           "minimum": 0,
           "maximum": 1000,
-          "x-depends-on": {
-            "features.rag": true
-          },
           "x-category": "Advanced",
           "x-display-order": 502
         },
@@ -1641,15 +1524,12 @@
         "task_model_query": {
           "type": "string",
           "title": "Task Model: Query Generation",
-          "description": "Model ID for RAG query rewriting (balanced, 3-4B params). Must exist in model-store.",
+          "description": "Model ID for RAG query rewriting (balanced, 3-4B params). Must exist in model-store. Only used when vector_db is configured.",
           "default": "qwen3-4b",
           "examples": [
             "qwen3-4b",
             "gpt-5-mini"
           ],
-          "x-depends-on": {
-            "features.rag": true
-          },
           "x-model-reference": true,
           "x-auto-install": true,
           "x-category": "Advanced",
@@ -1658,15 +1538,12 @@
         "task_model_search_query": {
           "type": "string",
           "title": "Task Model: Search Query Generation",
-          "description": "Model ID for web search query generation. Must exist in model-store.",
+          "description": "Model ID for web search query generation. Must exist in model-store. Only used when web_search_engine is configured.",
           "default": "qwen3-4b",
           "examples": [
             "qwen3-4b",
             "gpt-5-mini"
           ],
-          "x-depends-on": {
-            "features.web_search": true
-          },
           "x-model-reference": true,
           "x-auto-install": true,
           "x-category": "Advanced",
@@ -1675,15 +1552,12 @@
         "task_model_rag_template": {
           "type": "string",
           "title": "Task Model: RAG Template Generation",
-          "description": "Model ID for RAG template generation. Must exist in model-store.",
+          "description": "Model ID for RAG template generation. Must exist in model-store. Only used when vector_db is configured.",
           "default": "qwen3-4b",
           "examples": [
             "qwen3-4b",
             "gpt-5-mini"
           ],
-          "x-depends-on": {
-            "features.rag": true
-          },
           "x-model-reference": true,
           "x-auto-install": true,
           "x-category": "Advanced",
