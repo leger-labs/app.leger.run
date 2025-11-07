@@ -267,6 +267,10 @@ export async function handleAuthValidate(request: Request, env: Env): Promise<Re
     // Validate JWT
     const payload = await authenticateRequest(request, env)
 
+    // Extract the token from the Authorization header to return it
+    const authHeader = request.headers.get('Authorization')
+    const token = authHeader ? authHeader.substring(7) : '' // Remove "Bearer " prefix
+
     // Check if user exists
     let user = await getUserByTailscaleId(env, payload.tailscale_user_id)
 
@@ -284,8 +288,9 @@ export async function handleAuthValidate(request: Request, env: Env): Promise<Re
       await updateLastSeen(env, user.user_uuid, 'web')
     }
 
-    // Return user profile
+    // Return user profile with token
     return successResponse({
+      token,
       user: toUserProfile(user),
     })
   } catch (error) {

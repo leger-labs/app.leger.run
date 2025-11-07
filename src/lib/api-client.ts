@@ -95,7 +95,9 @@ class APIClient {
   async validateAuth(token: string): Promise<AuthResponse> {
     return this.request<AuthResponse>('/auth/validate', {
       method: 'POST',
-      body: JSON.stringify({ token }),
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
   }
 
