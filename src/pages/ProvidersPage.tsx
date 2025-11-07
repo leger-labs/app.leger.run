@@ -65,7 +65,16 @@ function humanizeEnvVar(value: string): string {
 export function ProvidersPage() {
   const { providers: llmProviders, isLoading: isLoadingModelStore } = useModelStore();
   const { services, isLoading: isLoadingMarketplace } = useMarketplace();
-  const { secrets, isLoading: isLoadingSecrets, upsertSecret } = useSecrets();
+  const {
+    secrets,
+    selections,
+    isLoading: isLoadingSecrets,
+    isSaving,
+    isDeleting,
+    upsertSecret,
+    deleteSecret,
+    setProviderSelection,
+  } = useSecrets();
 
   const [search, setSearch] = useState('');
   const [filterTab, setFilterTab] = useState<'all' | 'configured' | 'available'>('all');
