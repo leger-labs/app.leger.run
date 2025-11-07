@@ -962,85 +962,8 @@
     "features": {
       "type": "object",
       "title": "Feature Toggles",
-      "description": "Enable/disable major capabilities (15 boolean decisions)",
+      "description": "Enable/disable capabilities that have no provider selection (4 boolean decisions). Other features are automatically enabled when their provider is configured.",
       "properties": {
-        "rag": {
-          "type": "boolean",
-          "title": "RAG (Retrieval-Augmented Generation)",
-          "default": false,
-          "x-category": "Features",
-          "x-display-order": 100
-        },
-        "web_search": {
-          "type": "boolean",
-          "title": "Web Search",
-          "default": false,
-          "x-category": "Features",
-          "x-display-order": 101
-        },
-        "image_generation": {
-          "type": "boolean",
-          "title": "Image Generation",
-          "default": false,
-          "x-category": "Features",
-          "x-display-order": 102
-        },
-        "speech_to_text": {
-          "type": "boolean",
-          "title": "Speech-to-Text",
-          "default": false,
-          "x-category": "Features",
-          "x-display-order": 103
-        },
-        "text_to_speech": {
-          "type": "boolean",
-          "title": "Text-to-Speech",
-          "default": false,
-          "x-category": "Features",
-          "x-display-order": 104
-        },
-        "code_execution": {
-          "type": "boolean",
-          "title": "Code Execution",
-          "default": false,
-          "x-category": "Features",
-          "x-display-order": 105
-        },
-        "code_interpreter": {
-          "type": "boolean",
-          "title": "Code Interpreter",
-          "default": false,
-          "x-category": "Features",
-          "x-display-order": 106
-        },
-        "google_drive": {
-          "type": "boolean",
-          "title": "Google Drive Integration",
-          "default": false,
-          "x-category": "Features",
-          "x-display-order": 107
-        },
-        "onedrive": {
-          "type": "boolean",
-          "title": "OneDrive Integration",
-          "default": false,
-          "x-category": "Features",
-          "x-display-order": 108
-        },
-        "oauth_signup": {
-          "type": "boolean",
-          "title": "OAuth Signup",
-          "default": false,
-          "x-category": "Security",
-          "x-display-order": 200
-        },
-        "ldap": {
-          "type": "boolean",
-          "title": "LDAP Authentication",
-          "default": false,
-          "x-category": "Security",
-          "x-display-order": 201
-        },
         "title_generation": {
           "type": "boolean",
           "title": "AI Title Generation",
@@ -1078,50 +1001,46 @@
       "properties": {
         "vector_db": {
           "type": "string",
-          "title": "Vector Database",
+          "title": "Vector Database (enables RAG)",
+          "description": "Selecting a vector database automatically enables RAG functionality",
           "enum": [
+            "",
             "pgvector",
             "qdrant",
             "chroma"
           ],
-          "default": "pgvector",
+          "default": "",
           "x-category": "Providers",
-          "x-display-order": 100,
-          "x-depends-on": {
-            "features.rag": true
-          }
+          "x-display-order": 100
         },
         "rag_embedding": {
           "type": "string",
           "title": "RAG Embedding Model",
+          "description": "Only used when vector_db is configured",
           "enum": [
             "openai",
             "ollama"
           ],
           "default": "openai",
           "x-category": "Providers",
-          "x-display-order": 101,
-          "x-depends-on": {
-            "features.rag": true
-          }
+          "x-display-order": 101
         },
         "content_extraction": {
           "type": "string",
           "title": "Content Extraction Engine",
+          "description": "Only used when vector_db is configured",
           "enum": [
             "tika",
             "docling"
           ],
           "default": "tika",
           "x-category": "Providers",
-          "x-display-order": 102,
-          "x-depends-on": {
-            "features.rag": true
-          }
+          "x-display-order": 102
         },
         "text_splitter": {
           "type": "string",
           "title": "Text Splitter Algorithm",
+          "description": "Only used when vector_db is configured",
           "enum": [
             "character",
             "recursive",
@@ -1130,34 +1049,30 @@
           ],
           "default": "recursive",
           "x-category": "Providers",
-          "x-display-order": 103,
-          "x-depends-on": {
-            "features.rag": true
-          }
+          "x-display-order": 103
         },
         "web_search_engine": {
           "type": "string",
-          "title": "Web Search Engine",
+          "title": "Web Search Engine (enables Web Search)",
+          "description": "Selecting a search engine automatically enables Web Search functionality",
           "enum": [
+            "",
             "searxng",
             "tavily",
             "brave",
             "google_pse",
             "serper",
             "serpapi",
-            "bing",
-            ""
+            "bing"
           ],
-          "default": "searxng",
+          "default": "",
           "x-category": "Providers",
-          "x-display-order": 110,
-          "x-depends-on": {
-            "features.web_search": true
-          }
+          "x-display-order": 110
         },
         "web_loader": {
           "type": "string",
           "title": "Web Page Loader",
+          "description": "Only used when web_search_engine is configured",
           "enum": [
             "requests",
             "selenium",
@@ -1166,89 +1081,65 @@
           ],
           "default": "requests",
           "x-category": "Providers",
-          "x-display-order": 111,
-          "x-depends-on": {
-            "features.web_search": true
-          }
+          "x-display-order": 111
         },
         "image_engine": {
           "type": "string",
-          "title": "Image Generation Engine",
+          "title": "Image Generation Engine (enables Image Generation)",
+          "description": "Selecting an image engine automatically enables Image Generation functionality",
           "enum": [
+            "",
             "openai",
             "automatic1111",
             "comfyui",
-            "gemini",
-            ""
+            "gemini"
           ],
-          "default": "openai",
+          "default": "",
           "x-category": "Providers",
-          "x-display-order": 120,
-          "x-depends-on": {
-            "features.image_generation": true
-          }
+          "x-display-order": 120
         },
         "stt_engine": {
           "type": "string",
-          "title": "Speech-to-Text Engine",
+          "title": "Speech-to-Text Engine (enables STT)",
+          "description": "Selecting a STT engine automatically enables Speech-to-Text functionality",
           "enum": [
+            "",
             "openai",
             "whisper",
             "azure",
-            "deepgram",
-            ""
+            "deepgram"
           ],
-          "default": "openai",
+          "default": "",
           "x-category": "Providers",
-          "x-display-order": 130,
-          "x-depends-on": {
-            "features.speech_to_text": true
-          }
+          "x-display-order": 130
         },
         "tts_engine": {
           "type": "string",
-          "title": "Text-to-Speech Engine",
+          "title": "Text-to-Speech Engine (enables TTS)",
+          "description": "Selecting a TTS engine automatically enables Text-to-Speech functionality",
           "enum": [
+            "",
             "openai",
             "elevenlabs",
             "edgetts",
-            "azure",
-            ""
+            "azure"
           ],
-          "default": "openai",
+          "default": "",
           "x-category": "Providers",
-          "x-display-order": 131,
-          "x-depends-on": {
-            "features.text_to_speech": true
-          }
+          "x-display-order": 131
         },
         "code_execution_engine": {
           "type": "string",
-          "title": "Code Execution Engine",
+          "title": "Code Execution Engine (enables Code Execution)",
+          "description": "Selecting a code execution engine automatically enables Code Execution functionality",
           "enum": [
+            "",
             "jupyter",
             "pyodide"
           ],
-          "default": "jupyter",
+          "default": "",
           "x-category": "Providers",
-          "x-display-order": 140,
-          "x-depends-on": {
-            "features.code_execution": true
-          }
-        },
-        "code_interpreter_engine": {
-          "type": "string",
-          "title": "Code Interpreter Engine",
-          "enum": [
-            "jupyter",
-            "e2b"
-          ],
-          "default": "jupyter",
-          "x-category": "Providers",
-          "x-display-order": 141,
-          "x-depends-on": {
-            "features.code_interpreter": true
-          }
+          "x-display-order": 140
         },
         "storage_provider": {
           "type": "string",
@@ -1387,14 +1278,13 @@
         "rag_embedding_model": {
           "type": "string",
           "title": "RAG Embedding Model",
-          "description": "Model ID for RAG embeddings. Must be an embedding model from model-store.",
+          "description": "Model ID for RAG embeddings. Must be an embedding model from model-store. Only used when vector_db is configured with rag_embedding=openai.",
           "default": "qwen3-embedding-8b",
           "examples": [
             "qwen3-embedding-8b",
             "nomic-embed-text-v1.5"
           ],
           "x-depends-on": {
-            "features.rag": true,
             "providers.rag_embedding": "openai"
           },
           "x-model-reference": true,
@@ -1406,14 +1296,13 @@
         "ollama_embedding_model": {
           "type": "string",
           "title": "Ollama Embedding Model",
-          "description": "Model ID for Ollama embeddings (if using native Ollama daemon).",
+          "description": "Model ID for Ollama embeddings (if using native Ollama daemon). Only used when vector_db is configured with rag_embedding=ollama.",
           "default": "nomic-embed-text-v1.5",
           "examples": [
             "nomic-embed-text-v1.5",
             "qwen3-embedding-8b"
           ],
           "x-depends-on": {
-            "features.rag": true,
             "providers.rag_embedding": "ollama"
           },
           "x-model-reference": true,
@@ -1433,17 +1322,6 @@
           "x-category": "Providers",
           "x-display-order": 120
         },
-        "tika_heap_size": {
-          "type": "string",
-          "title": "Tika Heap Size",
-          "default": "2g",
-          "pattern": "^[0-9]+[mg]$",
-          "x-depends-on": {
-            "providers.content_extraction": "tika"
-          },
-          "x-category": "Advanced",
-          "x-display-order": 121
-        },
         "searxng_query_url": {
           "type": "string",
           "title": "SearXNG Query URL",
@@ -1454,59 +1332,6 @@
           },
           "x-category": "Providers",
           "x-display-order": 130
-        },
-        "searxng_base_url": {
-          "type": "string",
-          "title": "SearXNG Base URL",
-          "default": "",
-          "x-depends-on": {
-            "providers.web_search_engine": "searxng"
-          },
-          "x-category": "Providers",
-          "x-display-order": 131
-        },
-        "searxng_safe_search": {
-          "type": "integer",
-          "title": "Safe Search Level",
-          "default": 0,
-          "enum": [
-            0,
-            1,
-            2
-          ],
-          "x-depends-on": {
-            "providers.web_search_engine": "searxng"
-          },
-          "x-category": "Providers",
-          "x-display-order": 132
-        },
-        "searxng_autocomplete": {
-          "type": "string",
-          "title": "Autocomplete Provider",
-          "default": "google",
-          "enum": [
-            "google",
-            "duckduckgo",
-            "wikipedia",
-            ""
-          ],
-          "x-depends-on": {
-            "providers.web_search_engine": "searxng"
-          },
-          "x-category": "Providers",
-          "x-display-order": 133
-        },
-        "searxng_max_page": {
-          "type": "integer",
-          "title": "Maximum Pages",
-          "default": 10,
-          "minimum": 1,
-          "maximum": 50,
-          "x-depends-on": {
-            "providers.web_search_engine": "searxng"
-          },
-          "x-category": "Advanced",
-          "x-display-order": 134
         },
         "tavily_api_key": {
           "type": "string",
@@ -1530,153 +1355,6 @@
           "x-category": "Providers",
           "x-display-order": 150
         },
-        "comfyui_workspace": {
-          "type": "string",
-          "title": "ComfyUI Workspace Path",
-          "default": "/workspace",
-          "x-depends-on": {
-            "providers.image_engine": "comfyui"
-          },
-          "x-category": "Providers",
-          "x-display-order": 160
-        },
-        "comfyui_auto_update": {
-          "type": "boolean",
-          "title": "ComfyUI Auto-Update",
-          "default": false,
-          "x-depends-on": {
-            "providers.image_engine": "comfyui"
-          },
-          "x-category": "Providers",
-          "x-display-order": 161
-        },
-        "comfyui_web_enable_auth": {
-          "type": "boolean",
-          "title": "ComfyUI Web Authentication",
-          "default": false,
-          "x-depends-on": {
-            "providers.image_engine": "comfyui"
-          },
-          "x-category": "Providers",
-          "x-display-order": 162
-        },
-        "comfyui_log_level": {
-          "type": "string",
-          "title": "ComfyUI Log Level",
-          "default": "INFO",
-          "enum": [
-            "DEBUG",
-            "INFO",
-            "WARNING",
-            "ERROR"
-          ],
-          "x-depends-on": {
-            "providers.image_engine": "comfyui"
-          },
-          "x-category": "Advanced",
-          "x-display-order": 163
-        },
-        "comfyui_args": {
-          "type": "string",
-          "title": "ComfyUI Additional Arguments",
-          "default": "",
-          "x-depends-on": {
-            "providers.image_engine": "comfyui"
-          },
-          "x-category": "Advanced",
-          "x-display-order": 164
-        },
-        "comfyui_startup_timeout": {
-          "type": "integer",
-          "title": "ComfyUI Startup Timeout",
-          "default": 900,
-          "minimum": 60,
-          "maximum": 1800,
-          "x-depends-on": {
-            "providers.image_engine": "comfyui"
-          },
-          "x-category": "Advanced",
-          "x-display-order": 165
-        },
-        "whisper_model": {
-          "type": "string",
-          "title": "Whisper Model",
-          "default": "base",
-          "enum": [
-            "tiny",
-            "base",
-            "small",
-            "medium",
-            "large"
-          ],
-          "x-depends-on": {
-            "providers.stt_engine": "whisper"
-          },
-          "x-category": "Providers",
-          "x-display-order": 170
-        },
-        "whisper_language": {
-          "type": "string",
-          "title": "Whisper Language",
-          "default": "",
-          "x-depends-on": {
-            "providers.stt_engine": "whisper"
-          },
-          "x-category": "Providers",
-          "x-display-order": 171
-        },
-        "whisper_beam_size": {
-          "type": "integer",
-          "title": "Beam Size",
-          "default": 5,
-          "minimum": 1,
-          "maximum": 10,
-          "x-depends-on": {
-            "providers.stt_engine": "whisper"
-          },
-          "x-category": "Advanced",
-          "x-display-order": 172
-        },
-        "whisper_compute_type": {
-          "type": "string",
-          "title": "Compute Type",
-          "default": "int8",
-          "enum": [
-            "int8",
-            "float16",
-            "float32"
-          ],
-          "x-depends-on": {
-            "providers.stt_engine": "whisper"
-          },
-          "x-category": "Advanced",
-          "x-display-order": 173
-        },
-        "whisper_device": {
-          "type": "string",
-          "title": "Device",
-          "default": "auto",
-          "enum": [
-            "auto",
-            "cpu",
-            "cuda"
-          ],
-          "x-depends-on": {
-            "providers.stt_engine": "whisper"
-          },
-          "x-category": "Advanced",
-          "x-display-order": 174
-        },
-        "whisper_cache_dir": {
-          "type": "string",
-          "title": "Cache Directory",
-          "default": "/var/lib/whisper/cache",
-          "x-depends-on": {
-            "providers.stt_engine": "whisper"
-          },
-          "x-category": "Advanced",
-          "x-display-order": 175
-        },
         "stt_api_key": {
           "type": "string",
           "title": "STT API Key",
@@ -1698,71 +1376,6 @@
           },
           "x-category": "Providers",
           "x-display-order": 181
-        },
-        "edgetts_response_format": {
-          "type": "string",
-          "title": "Edge TTS Response Format",
-          "default": "mp3",
-          "enum": [
-            "mp3",
-            "wav",
-            "opus"
-          ],
-          "x-depends-on": {
-            "providers.tts_engine": "edgetts"
-          },
-          "x-category": "Providers",
-          "x-display-order": 190
-        },
-        "edgetts_speed": {
-          "type": "number",
-          "title": "Edge TTS Speech Speed",
-          "default": 1,
-          "minimum": 0.5,
-          "maximum": 2,
-          "x-depends-on": {
-            "providers.tts_engine": "edgetts"
-          },
-          "x-category": "Providers",
-          "x-display-order": 191
-        },
-        "edgetts_voice": {
-          "type": "string",
-          "title": "Edge TTS Voice",
-          "default": "en-US-AriaNeural",
-          "x-depends-on": {
-            "providers.tts_engine": "edgetts"
-          },
-          "x-category": "Providers",
-          "x-display-order": 192
-        },
-        "edgetts_log_level": {
-          "type": "string",
-          "title": "Edge TTS Log Level",
-          "default": "INFO",
-          "enum": [
-            "DEBUG",
-            "INFO",
-            "WARNING",
-            "ERROR"
-          ],
-          "x-depends-on": {
-            "providers.tts_engine": "edgetts"
-          },
-          "x-category": "Advanced",
-          "x-display-order": 193
-        },
-        "edgetts_startup_timeout": {
-          "type": "integer",
-          "title": "Edge TTS Startup Timeout",
-          "default": 300,
-          "minimum": 30,
-          "maximum": 600,
-          "x-depends-on": {
-            "providers.tts_engine": "edgetts"
-          },
-          "x-category": "Advanced",
-          "x-display-order": 194
         },
         "elevenlabs_api_key": {
           "type": "string",
@@ -1816,45 +1429,6 @@
           "x-category": "Providers",
           "x-display-order": 212
         },
-        "jupyter_disable_execute_tool": {
-          "type": "boolean",
-          "title": "Disable Jupyter Notebook Execute Tool",
-          "default": true,
-          "x-depends-on": {
-            "providers.code_execution_engine": "jupyter"
-          },
-          "x-category": "Advanced",
-          "x-display-order": 220
-        },
-        "jupyter_auth_type": {
-          "type": "string",
-          "title": "Jupyter Auth Type",
-          "description": "Jupyter authentication method",
-          "default": "token",
-          "enum": [
-            "token",
-            "password",
-            "none"
-          ],
-          "x-depends-on": {
-            "providers.code_execution_engine": "jupyter"
-          },
-          "x-category": "Providers",
-          "x-display-order": 221
-        },
-        "jupyter_timeout": {
-          "type": "integer",
-          "title": "Jupyter Timeout (seconds)",
-          "description": "Jupyter execution timeout in seconds",
-          "default": 300,
-          "minimum": 60,
-          "maximum": 1800,
-          "x-depends-on": {
-            "providers.code_execution_engine": "jupyter"
-          },
-          "x-category": "Advanced",
-          "x-display-order": 222
-        },
         "e2b_api_key": {
           "type": "string",
           "title": "E2B API Key",
@@ -1869,36 +1443,30 @@
         "rag_top_k": {
           "type": "integer",
           "title": "RAG Top K",
+          "description": "Only used when vector_db is configured",
           "default": 5,
           "minimum": 1,
           "maximum": 50,
-          "x-depends-on": {
-            "features.rag": true
-          },
           "x-category": "Advanced",
           "x-display-order": 500
         },
         "chunk_size": {
           "type": "integer",
           "title": "Chunk Size",
+          "description": "Only used when vector_db is configured",
           "default": 1500,
           "minimum": 100,
           "maximum": 10000,
-          "x-depends-on": {
-            "features.rag": true
-          },
           "x-category": "Advanced",
           "x-display-order": 501
         },
         "chunk_overlap": {
           "type": "integer",
           "title": "Chunk Overlap",
+          "description": "Only used when vector_db is configured",
           "default": 100,
           "minimum": 0,
           "maximum": 1000,
-          "x-depends-on": {
-            "features.rag": true
-          },
           "x-category": "Advanced",
           "x-display-order": 502
         },
@@ -1956,15 +1524,12 @@
         "task_model_query": {
           "type": "string",
           "title": "Task Model: Query Generation",
-          "description": "Model ID for RAG query rewriting (balanced, 3-4B params). Must exist in model-store.",
+          "description": "Model ID for RAG query rewriting (balanced, 3-4B params). Must exist in model-store. Only used when vector_db is configured.",
           "default": "qwen3-4b",
           "examples": [
             "qwen3-4b",
             "gpt-5-mini"
           ],
-          "x-depends-on": {
-            "features.rag": true
-          },
           "x-model-reference": true,
           "x-auto-install": true,
           "x-category": "Advanced",
@@ -1973,15 +1538,12 @@
         "task_model_search_query": {
           "type": "string",
           "title": "Task Model: Search Query Generation",
-          "description": "Model ID for web search query generation. Must exist in model-store.",
+          "description": "Model ID for web search query generation. Must exist in model-store. Only used when web_search_engine is configured.",
           "default": "qwen3-4b",
           "examples": [
             "qwen3-4b",
             "gpt-5-mini"
           ],
-          "x-depends-on": {
-            "features.web_search": true
-          },
           "x-model-reference": true,
           "x-auto-install": true,
           "x-category": "Advanced",
@@ -1990,15 +1552,12 @@
         "task_model_rag_template": {
           "type": "string",
           "title": "Task Model: RAG Template Generation",
-          "description": "Model ID for RAG template generation. Must exist in model-store.",
+          "description": "Model ID for RAG template generation. Must exist in model-store. Only used when vector_db is configured.",
           "default": "qwen3-4b",
           "examples": [
             "qwen3-4b",
             "gpt-5-mini"
           ],
-          "x-depends-on": {
-            "features.rag": true
-          },
           "x-model-reference": true,
           "x-auto-install": true,
           "x-category": "Advanced",
