@@ -86,7 +86,7 @@ class ErrorBoundary extends React.Component<
  */
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   if (!isSessionValid()) {
-    return <Navigate to="/auth?error=session_expired" replace />;
+    return <Navigate to="/auth" replace />;
   }
 
   return <>{children}</>;
