@@ -5,7 +5,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Plus, Loader2, Search, MoreVertical, Circle, CheckCircle2, XCircle, AlertCircle } from 'lucide-react';
+import { Plus, Loader2, Search, MoreVertical, Circle, CheckCircle2, XCircle, AlertCircle, Upload, Rocket } from 'lucide-react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { Button } from '@/components/ui/button';
@@ -77,6 +77,7 @@ export function ReleasesPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [deploymentStatuses, setDeploymentStatuses] = useState<Record<string, DeploymentStatus | null>>({});
   const [loadingStatuses, setLoadingStatuses] = useState(true);
+  const [deployingReleases, setDeployingReleases] = useState<Set<string>>(new Set());
 
   // Fetch deployment status for all releases
   useEffect(() => {
@@ -117,6 +118,64 @@ export function ReleasesPage() {
       release.version.toString().includes(query)
     );
   }, [releases, searchQuery]);
+
+  // Handle deploy action
+  const handleDeploy = async (releaseId: string) => {
+    try {
+      // Add to deploying set
+      setDeployingReleases(prev => new Set(prev).add(releaseId));
+
+      // Trigger deployment
+      await apiClient.deployRelease(releaseId);
+
+      // Poll for status updates
+      const pollInterval = setInterval(async () => {
+        try {
+          const status = await apiClient.getDeploymentStatus(releaseId);
+
+          setDeploymentStatuses(prev => ({
+            ...prev,
+            [releaseId]: status.deployment?.status || null
+          }));
+
+          // Stop polling if deployment is complete or failed
+          if (status.deployment?.status === 'ready' || status.deployment?.status === 'failed') {
+            clearInterval(pollInterval);
+            setDeployingReleases(prev => {
+              const next = new Set(prev);
+              next.delete(releaseId);
+              return next;
+            });
+          }
+        } catch (error) {
+          console.error('Failed to fetch deployment status:', error);
+          clearInterval(pollInterval);
+          setDeployingReleases(prev => {
+            const next = new Set(prev);
+            next.delete(releaseId);
+            return next;
+          });
+        }
+      }, 2000); // Poll every 2 seconds
+
+      // Clean up after 5 minutes
+      setTimeout(() => {
+        clearInterval(pollInterval);
+        setDeployingReleases(prev => {
+          const next = new Set(prev);
+          next.delete(releaseId);
+          return next;
+        });
+      }, 300000);
+    } catch (error) {
+      console.error('Failed to deploy release:', error);
+      setDeployingReleases(prev => {
+        const next = new Set(prev);
+        next.delete(releaseId);
+        return next;
+      });
+    }
+  };
 
   if (isLoading) {
     return (
@@ -250,7 +309,22 @@ export function ReleasesPage() {
                             <DropdownMenuItem asChild>
                               <Link to={`/releases/${release.id}`}>Configure</Link>
                             </DropdownMenuItem>
-                            <DropdownMenuItem disabled>Deploy</DropdownMenuItem>
+                            <DropdownMenuItem
+                              onClick={() => handleDeploy(release.id)}
+                              disabled={deployingReleases.has(release.id)}
+                            >
+                              {deployingReleases.has(release.id) ? (
+                                <>
+                                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                  Deploying...
+                                </>
+                              ) : (
+                                <>
+                                  <Rocket className="h-4 w-4 mr-2" />
+                                  Deploy to R2
+                                </>
+                              )}
+                            </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
                       </div>
