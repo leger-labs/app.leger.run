@@ -3,7 +3,7 @@
  * Handles user preferences and configuration
  */
 
-import { requireAuth, successResponse, errorResponse } from '../middleware/auth';
+import { authenticateRequest, successResponse, errorResponse } from '../middleware/auth';
 import type { Env } from '../index';
 
 export interface UserSettings {
@@ -19,7 +19,7 @@ export interface UserSettings {
  * Get user settings
  */
 export async function handleGetSettings(request: Request, env: Env): Promise<Response> {
-  const user = await requireAuth(request, env);
+  const user = await authenticateRequest(request, env);
 
   try {
     // Query the database for user settings
@@ -54,7 +54,7 @@ export async function handleGetSettings(request: Request, env: Env): Promise<Res
  * Update user settings (merge with existing)
  */
 export async function handleUpdateSettings(request: Request, env: Env): Promise<Response> {
-  const user = await requireAuth(request, env);
+  const user = await authenticateRequest(request, env);
 
   try {
     const body = await request.json() as { settings: UserSettings };
