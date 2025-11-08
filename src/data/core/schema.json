@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://raw.githubusercontent.com/leger-labs/leger-schema/v0.0.1/schema.json",
+  "$id": "https://raw.githubusercontent.com/leger-labs/leger-schema/v0.1.0/schema.json",
   "title": "Leger Infrastructure Configuration Schema",
-  "description": "Single source of truth for Podman Quadlet generation - v0.0.1",
-  "schema_version": "0.0.1",
+  "description": "Single source of truth for Podman Quadlet generation - v0.1.0",
+  "schema_version": "0.1.0",
   "type": "object",
   "required": [
     "tailscale",
@@ -991,6 +991,38 @@
           "default": true,
           "x-category": "Advanced",
           "x-display-order": 400
+        },
+        "follow_up_generation": {
+          "type": "boolean",
+          "title": "Follow-Up Question Suggestions",
+          "description": "Generate suggested follow-up questions after each response",
+          "default": true,
+          "x-category": "AI Assistance",
+          "x-display-order": 303
+        },
+        "evaluation_arena": {
+          "type": "boolean",
+          "title": "Model Comparison Arena",
+          "description": "Enable side-by-side model comparison for evaluation",
+          "default": true,
+          "x-category": "AI Assistance",
+          "x-display-order": 304
+        },
+        "message_rating": {
+          "type": "boolean",
+          "title": "Message Rating",
+          "description": "Allow rating individual messages for quality feedback",
+          "default": true,
+          "x-category": "AI Assistance",
+          "x-display-order": 305
+        },
+        "community_sharing": {
+          "type": "boolean",
+          "title": "Community Sharing",
+          "description": "Show share-to-community button for conversations",
+          "default": true,
+          "x-category": "Social",
+          "x-display-order": 306
         }
       }
     },
@@ -1187,6 +1219,26 @@
           "default": "",
           "x-category": "Core",
           "x-display-order": 11
+        },
+        "default_locale": {
+          "type": "string",
+          "title": "Default UI Language",
+          "description": "Two-letter ISO 639-1 language code for the interface",
+          "default": "en",
+          "enum": [
+            "en",
+            "es",
+            "fr",
+            "de",
+            "zh",
+            "ja",
+            "ko",
+            "pt",
+            "ru",
+            "ar"
+          ],
+          "x-category": "Core",
+          "x-display-order": 12
         },
         "qdrant_url": {
           "type": "string",
@@ -1470,6 +1522,66 @@
           "x-category": "Advanced",
           "x-display-order": 502
         },
+        "rag_embedding_trust_remote_code": {
+          "type": "boolean",
+          "title": "Trust Remote Code (Embeddings)",
+          "description": "Allow custom HuggingFace embedding models with remote code execution",
+          "default": false,
+          "x-depends-on": {
+            "providers.vector_db": [
+              "pgvector",
+              "qdrant",
+              "chroma"
+            ]
+          },
+          "x-category": "Advanced",
+          "x-display-order": 503
+        },
+        "rag_reranking_trust_remote_code": {
+          "type": "boolean",
+          "title": "Trust Remote Code (Reranking)",
+          "description": "Allow custom HuggingFace reranking models with remote code execution",
+          "default": false,
+          "x-depends-on": {
+            "providers.vector_db": [
+              "pgvector",
+              "qdrant",
+              "chroma"
+            ]
+          },
+          "x-category": "Advanced",
+          "x-display-order": 504
+        },
+        "rag_embedding_auto_update": {
+          "type": "boolean",
+          "title": "Auto-Update Embedding Models",
+          "description": "Automatically update embedding models from HuggingFace",
+          "default": true,
+          "x-depends-on": {
+            "providers.vector_db": [
+              "pgvector",
+              "qdrant",
+              "chroma"
+            ]
+          },
+          "x-category": "Advanced",
+          "x-display-order": 505
+        },
+        "rag_reranking_auto_update": {
+          "type": "boolean",
+          "title": "Auto-Update Reranking Models",
+          "description": "Automatically update reranking models from HuggingFace",
+          "default": true,
+          "x-depends-on": {
+            "providers.vector_db": [
+              "pgvector",
+              "qdrant",
+              "chroma"
+            ]
+          },
+          "x-category": "Advanced",
+          "x-display-order": 506
+        },
         "task_model_title": {
           "type": "string",
           "title": "Task Model: Title Generation",
@@ -1520,6 +1632,19 @@
           "x-auto-install": true,
           "x-category": "Advanced",
           "x-display-order": 303
+        },
+        "autocomplete_input_max_length": {
+          "type": "integer",
+          "title": "Autocomplete Max Input Length",
+          "description": "Maximum input length for autocomplete suggestions (-1 = unlimited)",
+          "default": -1,
+          "minimum": -1,
+          "maximum": 10000,
+          "x-depends-on": {
+            "features.autocomplete_generation": true
+          },
+          "x-category": "Advanced",
+          "x-display-order": 307
         },
         "task_model_query": {
           "type": "string",
@@ -1584,6 +1709,14 @@
           "default": "open-webui",
           "x-category": "Advanced",
           "x-display-order": 610
+        },
+        "cache_control": {
+          "type": "string",
+          "title": "HTTP Cache Control Header",
+          "description": "Set cache control policy for HTTP responses (e.g., 'public, max-age=3600')",
+          "default": "",
+          "x-category": "Advanced",
+          "x-display-order": 611
         },
         "openwebui_timeout_start": {
           "type": "integer",
