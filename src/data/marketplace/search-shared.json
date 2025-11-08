@@ -1,0 +1,64 @@
+{
+  "id": "search-shared",
+  "name": "Web Search Shared Settings",
+  "category": "web-search",
+  "requires_api_key": false,
+  "logo": "@/assets/icons/search.svg",
+  "description": "Shared configuration for web search functionality, automatically available when any search engine is configured",
+  "activation_condition": {
+    "type": "provider_selected",
+    "provider_path": "providers.web_search_engine",
+    "exclude_values": [""]
+  },
+  "openwebui_variables": [
+    {
+      "name": "ENABLE_SEARCH_QUERY_GENERATION",
+      "type": "bool",
+      "default": true,
+      "description": "Enable AI-powered query optimization for web search.",
+      "options": []
+    },
+    {
+      "name": "WEB_SEARCH_TRUST_ENV",
+      "type": "bool",
+      "default": false,
+      "description": "Use http_proxy and https_proxy environment variables for web search requests.",
+      "options": []
+    },
+    {
+      "name": "WEB_SEARCH_RESULT_COUNT",
+      "type": "int",
+      "default": 3,
+      "description": "Maximum number of search results to process and retrieve.",
+      "options": []
+    },
+    {
+      "name": "WEB_LOADER_CONCURRENT_REQUESTS",
+      "type": "int",
+      "default": 10,
+      "description": "Number of concurrent requests for fetching web page content from search results.",
+      "options": []
+    },
+    {
+      "name": "BYPASS_WEB_SEARCH_EMBEDDING_AND_RETRIEVAL",
+      "type": "bool",
+      "default": false,
+      "description": "Skip RAG processing of web search results.",
+      "options": []
+    },
+    {
+      "name": "YOUTUBE_LOADER_PROXY_URL",
+      "type": "str",
+      "default": null,
+      "description": "Proxy URL for YouTube transcript fetching.",
+      "options": []
+    },
+    {
+      "name": "YOUTUBE_LOADER_LANGUAGE",
+      "type": "str",
+      "default": "en",
+      "description": "Comma-separated list of language codes to try when fetching YouTube transcripts, in priority order.",
+      "options": []
+    }
+  ]
+}

@@ -44,6 +44,45 @@
       ]
     },
     {
+      "name": "IMAGE_EDIT_ENGINE",
+      "type": "str",
+      "default": "gemini",
+      "description": "Configures the engine used for image editing operations, enabling modification of existing images using text prompts.",
+      "options": [
+        "openai",
+        "gemini",
+        "comfyui"
+      ]
+    },
+    {
+      "name": "IMAGE_EDIT_MODEL",
+      "type": "str",
+      "default": "",
+      "description": "Specifies the model to use for image editing operations within the selected engine (e.g., gemini-2.5-flash).",
+      "options": []
+    },
+    {
+      "name": "IMAGE_EDIT_SIZE",
+      "type": "str",
+      "default": "",
+      "description": "Defines the output dimensions for edited images in WIDTHxHEIGHT format (e.g., 1024x1024). Leave empty to preserve original dimensions.",
+      "options": []
+    },
+    {
+      "name": "IMAGES_EDIT_GEMINI_API_BASE_URL",
+      "type": "str",
+      "default": "${GEMINI_API_BASE_URL}",
+      "description": "Configures the Gemini API base URL for image editing operations with Gemini models.",
+      "options": []
+    },
+    {
+      "name": "IMAGES_EDIT_GEMINI_API_KEY",
+      "type": "str",
+      "default": "${GEMINI_API_KEY}",
+      "description": "Provides authentication for Gemini image editing API requests.",
+      "options": []
+    },
+    {
       "name": "IMAGE_GENERATION_ENGINE",
       "type": "str",
       "default": "openai",
