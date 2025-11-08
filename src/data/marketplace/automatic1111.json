@@ -41,6 +41,13 @@
       "options": []
     },
     {
+      "name": "AUTOMATIC1111_PARAMS",
+      "type": "str",
+      "default": "{}",
+      "description": "Additional parameters in JSON format to pass to AUTOMATIC1111 API requests (e.g., {\"cfg_scale\": 7, \"sampler_name\": \"Euler a\", \"scheduler\": \"normal\"}).",
+      "options": []
+    },
+    {
       "name": "IMAGE_GENERATION_ENGINE",
       "type": "str",
       "default": "openai",

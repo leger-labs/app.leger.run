@@ -18,6 +18,48 @@
       "default": "sqlite:///${DATA_DIR}/webui.db",
       "description": "Specifies the complete database connection URL, following SQLAlchemy's URL scheme. This variable takes precedence over individual database connection parameters if explicitly set.\n\n:::info\n\n**For PostgreSQL support, ensure you installed with `pip install open-webui[all]` instead of the basic installation.**\nSupports SQLite, Postgres, and encrypted SQLite via SQLCipher.\n**Changing the URL does not migrate data between databases.**\n\nDocumentation on the URL scheme is available [here](https://docs.sqlalchemy.org/en/20/core/engines.html#database-urls).\n\nIf your database password contains special characters, please ensure they are properly URL-encoded. For example, a password like `p@ssword` should be encoded as `p%40ssword`.\n\nFor configuration using individual parameters or encrypted SQLite, see the relevant sections below.\n\n:::",
       "options": []
+    },
+    {
+      "name": "DATABASE_POOL_SIZE",
+      "type": "int",
+      "default": null,
+      "description": "Specifies the pooling strategy and size of the database pool. By default SQLAlchemy will automatically chose the proper pooling strategy for the selected database connection. A value of 0 disables pooling. A value larger 0 will set the pooling strategy to QueuePool and the pool size accordingly.",
+      "options": []
+    },
+    {
+      "name": "DATABASE_POOL_MAX_OVERFLOW",
+      "type": "int",
+      "default": 0,
+      "description": "Specifies the database pool max overflow. More information: https://docs.sqlalchemy.org/en/20/core/pooling.html#sqlalchemy.pool.QueuePool.params.max_overflow",
+      "options": []
+    },
+    {
+      "name": "DATABASE_POOL_TIMEOUT",
+      "type": "int",
+      "default": 30,
+      "description": "Specifies the database pool timeout in seconds to get a connection. More information: https://docs.sqlalchemy.org/en/20/core/pooling.html#sqlalchemy.pool.QueuePool.params.timeout",
+      "options": []
+    },
+    {
+      "name": "DATABASE_POOL_RECYCLE",
+      "type": "int",
+      "default": 3600,
+      "description": "Specifies the database pool recycle time in seconds. More information: https://docs.sqlalchemy.org/en/20/core/pooling.html#setting-pool-recycle",
+      "options": []
+    },
+    {
+      "name": "DATABASE_ENABLE_SQLITE_WAL",
+      "type": "bool",
+      "default": false,
+      "description": "Enables or disables SQLite WAL (Write-Ahead Logging) mode. When enabled, SQLite transactions can be managed more efficiently, allowing multiple readers and one writer concurrently, which can improve database performance, especially under high concurrency. This setting only applies to SQLite databases.",
+      "options": []
+    },
+    {
+      "name": "DATABASE_DEDUPLICATE_INTERVAL",
+      "type": "float",
+      "default": 0.0,
+      "description": "Sets a time interval in seconds during which certain database write operations (e.g., updating a user's last_active_at timestamp) will be deduplicated. If a write operation is attempted within this interval for the same entity, it will be skipped. A value of 0.0 disables deduplication.",
+      "options": []
     }
   ]
 }

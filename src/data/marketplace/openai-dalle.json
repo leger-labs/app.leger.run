@@ -27,6 +27,52 @@
       "options": []
     },
     {
+      "name": "IMAGE_EDIT_ENGINE",
+      "type": "str",
+      "default": "openai",
+      "description": "Configures the engine used for image editing operations, enabling modification of existing images using text prompts.",
+      "options": [
+        "openai",
+        "gemini",
+        "comfyui"
+      ]
+    },
+    {
+      "name": "IMAGE_EDIT_MODEL",
+      "type": "str",
+      "default": "",
+      "description": "Specifies the model to use for image editing operations within the selected engine (e.g., dall-e-2).",
+      "options": []
+    },
+    {
+      "name": "IMAGE_EDIT_SIZE",
+      "type": "str",
+      "default": "",
+      "description": "Defines the output dimensions for edited images in WIDTHxHEIGHT format (e.g., 1024x1024). Leave empty to preserve original dimensions.",
+      "options": []
+    },
+    {
+      "name": "IMAGES_EDIT_OPENAI_API_BASE_URL",
+      "type": "str",
+      "default": "${OPENAI_API_BASE_URL}",
+      "description": "Configures the OpenAI API base URL specifically for image editing operations, allowing separate endpoints from image generation.",
+      "options": []
+    },
+    {
+      "name": "IMAGES_EDIT_OPENAI_API_VERSION",
+      "type": "str",
+      "default": "",
+      "description": "Specifies the OpenAI API version for image editing, enabling support for Azure OpenAI deployments with versioned endpoints.",
+      "options": []
+    },
+    {
+      "name": "IMAGES_EDIT_OPENAI_API_KEY",
+      "type": "str",
+      "default": "${OPENAI_API_KEY}",
+      "description": "Provides authentication for OpenAI image editing API requests, with support for separate keys from image generation.",
+      "options": []
+    },
+    {
       "name": "IMAGE_GENERATION_ENGINE",
       "type": "str",
       "default": "openai",

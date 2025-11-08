@@ -1,0 +1,22 @@
+{
+  "id": "code-shared",
+  "name": "Code Execution Shared Settings",
+  "category": "code-execution",
+  "requires_api_key": false,
+  "logo": "@/assets/icons/code.svg",
+  "description": "Shared configuration for code execution functionality, automatically available when any code execution engine is configured",
+  "activation_condition": {
+    "type": "provider_selected",
+    "provider_path": "providers.code_execution_engine",
+    "exclude_values": [""]
+  },
+  "openwebui_variables": [
+    {
+      "name": "CODE_INTERPRETER_BLACKLISTED_MODULES",
+      "type": "str",
+      "default": null,
+      "description": "Comma-separated list of Python modules that are blacklisted and cannot be imported or used within the code interpreter. Enhances security by preventing access to potentially sensitive or system-level functionalities.",
+      "options": []
+    }
+  ]
+}

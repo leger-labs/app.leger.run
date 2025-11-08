@@ -34,6 +34,59 @@
       "options": []
     },
     {
+      "name": "IMAGE_EDIT_ENGINE",
+      "type": "str",
+      "default": "comfyui",
+      "description": "Configures the engine used for image editing operations, enabling modification of existing images using text prompts.",
+      "options": [
+        "openai",
+        "gemini",
+        "comfyui"
+      ]
+    },
+    {
+      "name": "IMAGE_EDIT_MODEL",
+      "type": "str",
+      "default": "",
+      "description": "Specifies the model to use for image editing operations within the selected engine.",
+      "options": []
+    },
+    {
+      "name": "IMAGE_EDIT_SIZE",
+      "type": "str",
+      "default": "",
+      "description": "Defines the output dimensions for edited images in WIDTHxHEIGHT format (e.g., 1024x1024). Leave empty to preserve original dimensions.",
+      "options": []
+    },
+    {
+      "name": "IMAGES_EDIT_COMFYUI_BASE_URL",
+      "type": "str",
+      "default": "",
+      "description": "Configures the ComfyUI base URL for image editing operations, enabling self-hosted ComfyUI workflows for image manipulation.",
+      "options": []
+    },
+    {
+      "name": "IMAGES_EDIT_COMFYUI_API_KEY",
+      "type": "str",
+      "default": "",
+      "description": "Provides authentication for ComfyUI image editing API requests when the ComfyUI instance requires API key authentication.",
+      "options": []
+    },
+    {
+      "name": "IMAGES_EDIT_COMFYUI_WORKFLOW",
+      "type": "str",
+      "default": "",
+      "description": "Defines the ComfyUI workflow configuration in JSON format for image editing operations. Must include nodes for image input, prompt, and output. Export from ComfyUI using 'Save (API Format)'.",
+      "options": []
+    },
+    {
+      "name": "IMAGES_EDIT_COMFYUI_WORKFLOW_NODES",
+      "type": "list",
+      "default": [],
+      "description": "Specifies the ComfyUI workflow node mappings for image editing, defining which nodes handle image input, prompt, model, dimensions, and other parameters. Configured automatically via the admin UI.",
+      "options": []
+    },
+    {
       "name": "IMAGE_GENERATION_ENGINE",
       "type": "str",
       "default": "openai",

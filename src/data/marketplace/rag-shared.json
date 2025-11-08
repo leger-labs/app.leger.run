@@ -1,0 +1,173 @@
+{
+  "id": "rag-shared",
+  "name": "RAG Shared Settings",
+  "category": "rag",
+  "requires_api_key": false,
+  "logo": "@/assets/icons/rag.svg",
+  "description": "Shared configuration for RAG functionality, automatically available when any vector database is configured",
+  "activation_condition": {
+    "type": "provider_selected",
+    "provider_path": "providers.vector_db",
+    "exclude_values": [""]
+  },
+  "openwebui_variables": [
+    {
+      "name": "RAG_TOP_K",
+      "type": "int",
+      "default": 3,
+      "description": "Number of documents to retrieve during RAG queries.",
+      "options": []
+    },
+    {
+      "name": "RAG_TOP_K_RERANKER",
+      "type": "int",
+      "default": 3,
+      "description": "Number of documents to consider after reranking.",
+      "options": []
+    },
+    {
+      "name": "RAG_RELEVANCE_THRESHOLD",
+      "type": "float",
+      "default": 0.0,
+      "description": "Minimum relevance score threshold for retrieved documents.",
+      "options": []
+    },
+    {
+      "name": "ENABLE_RAG_HYBRID_SEARCH",
+      "type": "bool",
+      "default": false,
+      "description": "Enable hybrid search combining BM25 keyword search with vector similarity search.",
+      "options": []
+    },
+    {
+      "name": "RAG_HYBRID_BM25_WEIGHT",
+      "type": "float",
+      "default": 0.5,
+      "description": "Weight for BM25 in hybrid search (0-1). 1 means only keyword search, 0 means only vector search.",
+      "options": []
+    },
+    {
+      "name": "CHUNK_SIZE",
+      "type": "int",
+      "default": 1000,
+      "description": "Document chunk size in characters for embeddings.",
+      "options": []
+    },
+    {
+      "name": "CHUNK_OVERLAP",
+      "type": "int",
+      "default": 100,
+      "description": "Overlap between consecutive chunks in characters.",
+      "options": []
+    },
+    {
+      "name": "RAG_TEXT_SPLITTER",
+      "type": "str",
+      "default": "character",
+      "description": "Text splitter algorithm to use for document chunking.",
+      "options": [
+        "character",
+        "token",
+        "markdown_header"
+      ]
+    },
+    {
+      "name": "TIKTOKEN_CACHE_DIR",
+      "type": "str",
+      "default": "{CACHE_DIR}/tiktoken",
+      "description": "Directory for TikToken cache storage.",
+      "options": []
+    },
+    {
+      "name": "TIKTOKEN_ENCODING_NAME",
+      "type": "str",
+      "default": "cl100k_base",
+      "description": "TikToken encoding name to use.",
+      "options": []
+    },
+    {
+      "name": "PDF_EXTRACT_IMAGES",
+      "type": "bool",
+      "default": false,
+      "description": "Extract images from PDFs using OCR when loading documents.",
+      "options": []
+    },
+    {
+      "name": "RAG_FILE_MAX_SIZE",
+      "type": "int",
+      "default": null,
+      "description": "Maximum file size in megabytes for document upload.",
+      "options": []
+    },
+    {
+      "name": "RAG_FILE_MAX_COUNT",
+      "type": "int",
+      "default": null,
+      "description": "Maximum number of files that can be uploaded at once.",
+      "options": []
+    },
+    {
+      "name": "RAG_ALLOWED_FILE_EXTENSIONS",
+      "type": "list",
+      "default": [],
+      "description": "List of allowed file extensions for upload. Empty list allows all supported types.",
+      "options": []
+    },
+    {
+      "name": "RAG_EMBEDDING_BATCH_SIZE",
+      "type": "int",
+      "default": 1,
+      "description": "Batch size for embedding generation in RAG models.",
+      "options": []
+    },
+    {
+      "name": "RAG_RERANKING_MODEL",
+      "type": "str",
+      "default": null,
+      "description": "Model to use for reranking retrieved results (e.g., cross-encoder model).",
+      "options": []
+    },
+    {
+      "name": "RAG_RERANKING_MODEL_TRUST_REMOTE_CODE",
+      "type": "bool",
+      "default": false,
+      "description": "Trust remote code for reranking model from HuggingFace Hub.",
+      "options": []
+    },
+    {
+      "name": "RAG_RERANKING_MODEL_AUTO_UPDATE",
+      "type": "bool",
+      "default": true,
+      "description": "Automatically update reranking model when newer version available.",
+      "options": []
+    },
+    {
+      "name": "ENABLE_RETRIEVAL_QUERY_GENERATION",
+      "type": "bool",
+      "default": true,
+      "description": "Enable AI-powered query optimization for better retrieval results.",
+      "options": []
+    },
+    {
+      "name": "BYPASS_EMBEDDING_AND_RETRIEVAL",
+      "type": "bool",
+      "default": false,
+      "description": "Bypass embedding and retrieval process (for testing only).",
+      "options": []
+    },
+    {
+      "name": "RAG_FULL_CONTEXT",
+      "type": "bool",
+      "default": false,
+      "description": "Use full document context instead of chunked retrieval.",
+      "options": []
+    },
+    {
+      "name": "ENABLE_RAG_LOCAL_WEB_FETCH",
+      "type": "bool",
+      "default": false,
+      "description": "Enable local web content fetching for RAG.",
+      "options": []
+    }
+  ]
+}

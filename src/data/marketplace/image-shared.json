@@ -1,0 +1,36 @@
+{
+  "id": "image-shared",
+  "name": "Image Generation Shared Settings",
+  "category": "image-generation",
+  "requires_api_key": false,
+  "logo": "@/assets/icons/image.svg",
+  "description": "Shared configuration for image generation functionality, automatically available when any image engine is configured",
+  "activation_condition": {
+    "type": "provider_selected",
+    "provider_path": "providers.image_engine",
+    "exclude_values": [""]
+  },
+  "openwebui_variables": [
+    {
+      "name": "ENABLE_IMAGE_PROMPT_GENERATION",
+      "type": "bool",
+      "default": true,
+      "description": "Enable AI-powered prompt enhancement for better image generation results.",
+      "options": []
+    },
+    {
+      "name": "IMAGE_SIZE",
+      "type": "str",
+      "default": "512x512",
+      "description": "Default image dimensions in WIDTHxHEIGHT format (e.g., 1024x1024).",
+      "options": []
+    },
+    {
+      "name": "IMAGE_STEPS",
+      "type": "int",
+      "default": 50,
+      "description": "Number of diffusion steps for image generation (applies to Stable Diffusion models).",
+      "options": []
+    }
+  ]
+}

@@ -39,6 +39,69 @@
       "default": "None",
       "description": "Specifies the username for database authentication. This is used to construct the `DATABASE_URL` when a complete `DATABASE_URL` is not explicitly defined.",
       "options": []
+    },
+    {
+      "name": "DATABASE_PORT",
+      "type": "int",
+      "default": null,
+      "description": "Specifies the port number of the database server. This is used to construct the DATABASE_URL when a complete DATABASE_URL is not explicitly defined.",
+      "options": []
+    },
+    {
+      "name": "DATABASE_NAME",
+      "type": "str",
+      "default": null,
+      "description": "Specifies the name of the database to connect to. This is used to construct the DATABASE_URL when a complete DATABASE_URL is not explicitly defined.",
+      "options": []
+    },
+    {
+      "name": "DATABASE_SCHEMA",
+      "type": "str",
+      "default": null,
+      "description": "Specifies the database schema to connect to.",
+      "options": []
+    },
+    {
+      "name": "DATABASE_POOL_SIZE",
+      "type": "int",
+      "default": null,
+      "description": "Specifies the pooling strategy and size of the database pool. By default SQLAlchemy will automatically chose the proper pooling strategy for the selected database connection. A value of 0 disables pooling. A value larger 0 will set the pooling strategy to QueuePool and the pool size accordingly.",
+      "options": []
+    },
+    {
+      "name": "DATABASE_POOL_MAX_OVERFLOW",
+      "type": "int",
+      "default": 0,
+      "description": "Specifies the database pool max overflow. More information: https://docs.sqlalchemy.org/en/20/core/pooling.html#sqlalchemy.pool.QueuePool.params.max_overflow",
+      "options": []
+    },
+    {
+      "name": "DATABASE_POOL_TIMEOUT",
+      "type": "int",
+      "default": 30,
+      "description": "Specifies the database pool timeout in seconds to get a connection. More information: https://docs.sqlalchemy.org/en/20/core/pooling.html#sqlalchemy.pool.QueuePool.params.timeout",
+      "options": []
+    },
+    {
+      "name": "DATABASE_POOL_RECYCLE",
+      "type": "int",
+      "default": 3600,
+      "description": "Specifies the database pool recycle time in seconds. More information: https://docs.sqlalchemy.org/en/20/core/pooling.html#setting-pool-recycle",
+      "options": []
+    },
+    {
+      "name": "DATABASE_ENABLE_SQLITE_WAL",
+      "type": "bool",
+      "default": false,
+      "description": "Enables or disables SQLite WAL (Write-Ahead Logging) mode. When enabled, SQLite transactions can be managed more efficiently, allowing multiple readers and one writer concurrently, which can improve database performance, especially under high concurrency. This setting only applies to SQLite databases.",
+      "options": []
+    },
+    {
+      "name": "DATABASE_DEDUPLICATE_INTERVAL",
+      "type": "float",
+      "default": 0.0,
+      "description": "Sets a time interval in seconds during which certain database write operations (e.g., updating a user's last_active_at timestamp) will be deduplicated. If a write operation is attempted within this interval for the same entity, it will be skipped. A value of 0.0 disables deduplication.",
+      "options": []
     }
   ]
 }
