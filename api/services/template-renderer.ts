@@ -37,9 +37,65 @@ interface TemplateContext {
 }
 
 /**
+ * Extract provider name from model ID
+ * Model IDs follow pattern: "provider/model-name" (e.g., "openai/gpt-4", "anthropic/claude-3")
+ */
+function extractProvider(modelId: string): string {
+  const parts = modelId.split('/')
+  return parts.length > 1 ? parts[0] : 'unknown'
+}
+
+/**
+ * Get API key name for provider
+ * Converts provider name to the corresponding environment variable name
+ */
+function getApiKeyForProvider(provider: string): string {
+  // Map provider names to their API key environment variable names
+  const keyMap: Record<string, string> = {
+    'openai': 'OPENAI_API_KEY',
+    'anthropic': 'ANTHROPIC_API_KEY',
+    'gemini': 'GEMINI_API_KEY',
+    'groq': 'GROQ_API_KEY',
+    'mistral': 'MISTRAL_API_KEY',
+    'openrouter': 'OPENROUTER_API_KEY',
+    'perplexity': 'PERPLEXITY_API_KEY',
+    'cohere': 'COHERE_API_KEY',
+    'deepseek': 'DEEPSEEK_API_KEY',
+    'aws-bedrock': 'AWS_BEDROCK_API_KEY',
+    'azure': 'AZURE_API_KEY',
+    'vertex-ai': 'VERTEX_AI_API_KEY',
+  }
+  return keyMap[provider] || `${provider.toUpperCase()}_API_KEY`
+}
+
+/**
  * Build template context from user configuration
  */
 function buildTemplateContext(userConfig: UserConfig, releaseCatalog: unknown): TemplateContext {
+  // Build cloud models array from userConfig.models.cloud
+  const cloudModels = (userConfig.models?.cloud || []).map(modelId => {
+    const provider = extractProvider(modelId)
+    const apiKey = getApiKeyForProvider(provider)
+
+    return {
+      name: modelId.split('/').pop() || modelId, // Extract model name
+      litellm_model_name: modelId, // Full ID for LiteLLM
+      requires_api_key: apiKey,
+      provider: provider,
+    }
+  })
+
+  // Build local models from userConfig.models.local
+  const localModels: Record<string, any> = {}
+  ;(userConfig.models?.local || []).forEach(modelId => {
+    localModels[modelId] = {
+      name: modelId,
+      display_name: modelId,
+      enabled: true,
+      group: modelId.includes('embed') ? 'embeddings' : 'chat',
+    }
+  })
+
   return {
     infrastructure: userConfig.infrastructure || {},
     features: userConfig.features || {},
@@ -51,17 +107,17 @@ function buildTemplateContext(userConfig: UserConfig, releaseCatalog: unknown): 
       tailnet: 'tail8dd1.ts.net',
     },
 
-    // Build litellm context
+    // Build litellm context with populated models
     litellm: {
-      models: [], // Will be populated from resolved cloud models
+      models: cloudModels,
       database_url: userConfig.litellm?.database_url ||
                     'postgresql://litellm@litellm-postgres:5432/litellm',
       drop_params: userConfig.litellm?.drop_params !== false,
     },
 
-    // Build local_inference context
+    // Build local_inference context with populated models
     local_inference: {
-      models: {}, // Will be populated from resolved local models
+      models: localModels,
       groups: userConfig.local_inference?.groups || {},
       defaults: userConfig.local_inference?.defaults || {},
     },
@@ -598,12 +654,18 @@ export async function renderTemplates(
       environment['REDIS_HOST'] = 'litellm-redis'
       environment['REDIS_PORT'] = '6379'
 
-      // Add API keys from secrets
-      if (userConfig.secrets) {
-        if (userConfig.secrets.openai_api_key) secrets.push('openai_api_key')
-        if (userConfig.secrets.anthropic_api_key) secrets.push('anthropic_api_key')
-        if (userConfig.secrets.groq_api_key) secrets.push('groq_api_key')
-      }
+      // Add API keys dynamically based on selected cloud models
+      const usedProviders = new Set<string>()
+      ;(userConfig.models?.cloud || []).forEach(modelId => {
+        const provider = extractProvider(modelId)
+        usedProviders.add(provider)
+      })
+
+      // Add secrets for each used provider
+      usedProviders.forEach(provider => {
+        const secretName = provider.toLowerCase().replace('-', '_') + '_api_key'
+        secrets.push(secretName)
+      })
     }
 
     if (serviceName === 'litellm-postgres') {

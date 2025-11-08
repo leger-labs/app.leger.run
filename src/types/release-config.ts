@@ -113,7 +113,8 @@ export interface TailscaleConfig {
 
 /**
  * Complete user configuration (generated output)
- * Combines Release + Settings + Marketplace + Models + Secrets
+ * Combines Release + Settings + Marketplace + Models
+ * Note: Secrets are managed separately via Podman Secrets, not in configuration
  */
 export interface UserConfig {
   tailscale: TailscaleConfig;
@@ -124,5 +125,4 @@ export interface UserConfig {
   features: Record<string, boolean>;
   providers: Record<string, string>;
   provider_config: Record<string, any>;
-  secrets: Record<string, string>;
 }
