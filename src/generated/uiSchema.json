@@ -34,10 +34,50 @@
         "category": "Advanced"
       }
     },
+    "follow_up_generation": {
+      "ui:widget": "checkbox",
+      "ui:help": "Generate suggested follow-up questions after each response",
+      "ui:order": 303,
+      "ui:title": "Follow-Up Question Suggestions",
+      "ui:options": {
+        "category": "AI Assistance"
+      }
+    },
+    "evaluation_arena": {
+      "ui:widget": "checkbox",
+      "ui:help": "Enable side-by-side model comparison for evaluation",
+      "ui:order": 304,
+      "ui:title": "Model Comparison Arena",
+      "ui:options": {
+        "category": "AI Assistance"
+      }
+    },
+    "message_rating": {
+      "ui:widget": "checkbox",
+      "ui:help": "Allow rating individual messages for quality feedback",
+      "ui:order": 305,
+      "ui:title": "Message Rating",
+      "ui:options": {
+        "category": "AI Assistance"
+      }
+    },
+    "community_sharing": {
+      "ui:widget": "checkbox",
+      "ui:help": "Show share-to-community button for conversations",
+      "ui:order": 306,
+      "ui:title": "Community Sharing",
+      "ui:options": {
+        "category": "Social"
+      }
+    },
     "ui:order": [
       "title_generation",
       "autocomplete_generation",
       "tags_generation",
+      "follow_up_generation",
+      "evaluation_arena",
+      "message_rating",
+      "community_sharing",
       "websocket_support",
       "*"
     ]
@@ -401,6 +441,57 @@
       "ui:order": 11,
       "ui:title": "Custom Instance Label",
       "ui:options": {
+        "category": "Core"
+      }
+    },
+    "default_locale": {
+      "ui:widget": "select",
+      "ui:help": "Two-letter ISO 639-1 language code for the interface",
+      "ui:order": 12,
+      "ui:title": "Default UI Language",
+      "ui:options": {
+        "enumOptions": [
+          {
+            "value": "en",
+            "label": "en"
+          },
+          {
+            "value": "es",
+            "label": "es"
+          },
+          {
+            "value": "fr",
+            "label": "fr"
+          },
+          {
+            "value": "de",
+            "label": "de"
+          },
+          {
+            "value": "zh",
+            "label": "zh"
+          },
+          {
+            "value": "ja",
+            "label": "ja"
+          },
+          {
+            "value": "ko",
+            "label": "ko"
+          },
+          {
+            "value": "pt",
+            "label": "pt"
+          },
+          {
+            "value": "ru",
+            "label": "ru"
+          },
+          {
+            "value": "ar",
+            "label": "ar"
+          }
+        ],
         "category": "Core"
       }
     },
@@ -839,6 +930,94 @@
         "category": "Advanced"
       }
     },
+    "rag_embedding_trust_remote_code": {
+      "ui:widget": "checkbox",
+      "ui:help": "Allow custom HuggingFace embedding models with remote code execution",
+      "ui:order": 503,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "vector_db"
+          ],
+          "value": [
+            "pgvector",
+            "qdrant",
+            "chroma"
+          ]
+        }
+      ],
+      "ui:title": "Trust Remote Code (Embeddings)",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "rag_reranking_trust_remote_code": {
+      "ui:widget": "checkbox",
+      "ui:help": "Allow custom HuggingFace reranking models with remote code execution",
+      "ui:order": 504,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "vector_db"
+          ],
+          "value": [
+            "pgvector",
+            "qdrant",
+            "chroma"
+          ]
+        }
+      ],
+      "ui:title": "Trust Remote Code (Reranking)",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "rag_embedding_auto_update": {
+      "ui:widget": "checkbox",
+      "ui:help": "Automatically update embedding models from HuggingFace",
+      "ui:order": 505,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "vector_db"
+          ],
+          "value": [
+            "pgvector",
+            "qdrant",
+            "chroma"
+          ]
+        }
+      ],
+      "ui:title": "Auto-Update Embedding Models",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "rag_reranking_auto_update": {
+      "ui:widget": "checkbox",
+      "ui:help": "Automatically update reranking models from HuggingFace",
+      "ui:order": 506,
+      "ui:dependencies": [
+        {
+          "path": [
+            "providers",
+            "vector_db"
+          ],
+          "value": [
+            "pgvector",
+            "qdrant",
+            "chroma"
+          ]
+        }
+      ],
+      "ui:title": "Auto-Update Reranking Models",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
     "task_model_title": {
       "ui:widget": "text",
       "ui:help": "Model ID for generating chat titles (ultra-fast, <1B params). Must exist in model-store.",
@@ -892,6 +1071,24 @@
       ],
       "ui:placeholder": "qwen3-0.6b",
       "ui:title": "Task Model: Autocomplete Generation",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
+    "autocomplete_input_max_length": {
+      "ui:widget": "updown",
+      "ui:help": "Maximum input length for autocomplete suggestions (-1 = unlimited)",
+      "ui:order": 307,
+      "ui:dependencies": [
+        {
+          "path": [
+            "features",
+            "autocomplete_generation"
+          ],
+          "value": true
+        }
+      ],
+      "ui:title": "Autocomplete Max Input Length",
       "ui:options": {
         "category": "Advanced"
       }
@@ -962,6 +1159,15 @@
         "category": "Advanced"
       }
     },
+    "cache_control": {
+      "ui:widget": "text",
+      "ui:help": "Set cache control policy for HTTP responses (e.g., 'public, max-age=3600')",
+      "ui:order": 611,
+      "ui:title": "HTTP Cache Control Header",
+      "ui:options": {
+        "category": "Advanced"
+      }
+    },
     "openwebui_timeout_start": {
       "ui:widget": "updown",
       "ui:order": 600,
@@ -973,6 +1179,7 @@
     "ui:order": [
       "webui_name",
       "custom_name",
+      "default_locale",
       "qdrant_url",
       "qdrant_api_key",
       "qdrant_grpc_port",
@@ -1000,18 +1207,19 @@
       "task_model_query",
       "task_model_search_query",
       "task_model_rag_template",
+      "autocomplete_input_max_length",
       "rag_top_k",
       "chunk_size",
       "chunk_overlap",
+      "rag_embedding_trust_remote_code",
+      "rag_reranking_trust_remote_code",
+      "rag_embedding_auto_update",
+      "rag_reranking_auto_update",
       "openwebui_timeout_start",
       "log_level",
       "redis_key_prefix",
+      "cache_control",
       "*"
     ]
-  },
-  "ui:order": [
-    "tailscale",
-    "secrets",
-    "*"
-  ]
+  }
 }

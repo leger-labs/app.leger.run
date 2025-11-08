@@ -319,6 +319,49 @@ class APIClient {
       body: JSON.stringify({ settings }),
     });
   }
+
+  /**
+   * Get providers with stored API keys (enabled providers)
+   */
+  async getEnabledProviders(): Promise<{ providers: string[] }> {
+    try {
+      const selections = await this.getProviderSelections();
+      return { providers: Object.keys(selections) };
+    } catch (error) {
+      // If no selections exist, return empty array
+      return { providers: [] };
+    }
+  }
+
+  /**
+   * Save release wizard configuration
+   */
+  async saveReleaseConfig(releaseId: string, config: any): Promise<void> {
+    await this.saveConfiguration(releaseId, config);
+  }
+
+  /**
+   * Load release wizard configuration
+   */
+  async getReleaseConfig(releaseId: string): Promise<any | null> {
+    try {
+      const response = await this.request<ConfigurationRecord>(
+        `/releases/${releaseId}/configuration`
+      );
+
+      if (response && response.config_data) {
+        // Parse config_data if it's a string
+        return typeof response.config_data === 'string'
+          ? JSON.parse(response.config_data)
+          : response.config_data;
+      }
+
+      return null;
+    } catch (error) {
+      // Return null if no configuration exists yet
+      return null;
+    }
+  }
 }
 
 // Export singleton instance

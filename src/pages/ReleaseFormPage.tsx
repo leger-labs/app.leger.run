@@ -22,10 +22,9 @@ import {
 } from '@/components/ui/breadcrumb';
 import { useReleases } from '@/hooks/use-releases';
 import { apiClient } from '@/lib/api-client';
-import { CategoryBasedReleaseForm } from '@/components/releases/CategoryBasedReleaseForm';
-import { getReleaseSchemaBundle } from '@/lib/schema-loader';
+import { ReleaseWizard } from '@/components/releases/ReleaseWizard';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import type { DeploymentRecord } from '@/types';
+import type { DeploymentRecord, CrystallizedConfig } from '@/types';
 
 export function ReleaseFormPage() {
   const { id } = useParams();
@@ -52,8 +51,6 @@ export function ReleaseFormPage() {
   const [isDeploying, setIsDeploying] = useState(false);
   const [deployment, setDeployment] = useState<DeploymentRecord | null>(null);
   const [deployError, setDeployError] = useState<string | null>(null);
-
-  const releaseSchemaBundle = useMemo(() => getReleaseSchemaBundle(), []);
 
   // Fetch existing release if editing
   useEffect(() => {
@@ -94,23 +91,33 @@ export function ReleaseFormPage() {
     setIsDirty(true);
   };
 
-  const handleConfigChange = useCallback((data: Record<string, unknown>) => {
-    setConfigData(data);
-    setIsConfigDirty(true);
-  }, []);
+  const handleWizardComplete = useCallback(async (config: CrystallizedConfig) => {
+    if (!id) {
+      toast.error('Please save the release first');
+      return;
+    }
 
-  const handleConfigSubmit = useCallback(() => {
-    setIsConfigSaving(true);
     try {
-      toast.success('Configuration captured', {
-        description:
-          'Release configuration is stored locally until backend persistence is available.',
+      setIsConfigSaving(true);
+
+      // Save final config
+      await apiClient.saveReleaseConfig(id, config);
+
+      // Show success message
+      toast.success('Release configuration saved', {
+        description: 'You can now deploy this release to R2',
       });
+
+      // Update local state
+      setConfigData(config);
       setIsConfigDirty(false);
+    } catch (error) {
+      toast.error('Failed to save configuration');
+      console.error('Failed to save configuration:', error);
     } finally {
       setIsConfigSaving(false);
     }
-  }, []);
+  }, [id]);
 
   const validateAllFields = (): boolean => {
     const newErrors: Record<string, string> = {};
@@ -269,29 +276,21 @@ export function ReleaseFormPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Infrastructure Configuration</CardTitle>
+          <CardTitle>Release Configuration</CardTitle>
+          <CardDescription>
+            Finalize your deployment configuration in 4 steps
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <Alert className="border-primary/20 bg-primary/5">
-            <AlertTitle>Schema-Driven Configuration</AlertTitle>
+            <AlertTitle>Release Wizard</AlertTitle>
             <AlertDescription>
-              Configure your infrastructure deployment using the latest schema from{' '}
-              <code className="text-xs">leger-labs/schema</code>. Enable the features you want,
-              select providers, and fine-tune settings through an intuitive step-by-step interface.
+              Configure your release by selecting models, services, OpenWebUI settings, and Caddy
+              routes through an intuitive step-by-step wizard.
             </AlertDescription>
           </Alert>
 
-          <CategoryBasedReleaseForm
-            schema={releaseSchemaBundle.schema}
-            uiSchema={releaseSchemaBundle.uiSchema}
-            categories={releaseSchemaBundle.categories}
-            value={configData}
-            onChange={handleConfigChange}
-            onSubmit={handleConfigSubmit}
-            isSubmitting={isConfigSaving}
-            isDirty={isConfigDirty}
-            submitLabel="Save configuration"
-          />
+          <ReleaseWizard releaseId={id} onComplete={handleWizardComplete} />
         </CardContent>
       </Card>
 

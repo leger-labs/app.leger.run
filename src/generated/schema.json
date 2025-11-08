@@ -1,66 +1,16 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://raw.githubusercontent.com/leger-labs/leger-schema/v0.0.1/schema.json",
+  "$id": "https://raw.githubusercontent.com/leger-labs/leger-schema/v0.1.0/schema.json",
   "title": "Leger Infrastructure Configuration Schema",
-  "description": "Single source of truth for Podman Quadlet generation - v0.0.1",
-  "schema_version": "0.0.1",
+  "description": "Single source of truth for Podman Quadlet generation - v0.1.0",
+  "schema_version": "0.1.0",
   "type": "object",
   "required": [
-    "tailscale",
     "infrastructure",
     "features",
     "providers"
   ],
   "properties": {
-    "tailscale": {
-      "type": "object",
-      "title": "Tailscale Configuration",
-      "description": "Tailscale MagicDNS configuration for HTTPS access",
-      "x-category": "Infrastructure",
-      "x-display-order": 0,
-      "required": [
-        "full_hostname"
-      ],
-      "properties": {
-        "full_hostname": {
-          "type": "string",
-          "title": "Tailscale MagicDNS Hostname",
-          "description": "Your full Tailscale MagicDNS hostname (e.g., blueprint.tail8dd1.ts.net)",
-          "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\\.tail[a-z0-9]+\\.ts\\.net$",
-          "x-display-order": 1,
-          "examples": [
-            "myserver.tail8dd1.ts.net",
-            "blueprint.tail8dd1.ts.net",
-            "llm-stack.tailabcd.ts.net"
-          ]
-        },
-        "hostname": {
-          "type": "string",
-          "title": "Machine Hostname",
-          "description": "The machine name portion (auto-extracted from full_hostname)",
-          "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$",
-          "x-display-order": 2,
-          "x-readonly": true,
-          "examples": [
-            "blueprint",
-            "myserver",
-            "llm-stack"
-          ]
-        },
-        "tailnet": {
-          "type": "string",
-          "title": "Tailnet Domain",
-          "description": "The tailnet domain portion (auto-extracted from full_hostname)",
-          "pattern": "^tail[a-z0-9]+\\.ts\\.net$",
-          "x-display-order": 3,
-          "x-readonly": true,
-          "examples": [
-            "tail8dd1.ts.net",
-            "tailabcd.ts.net"
-          ]
-        }
-      }
-    },
     "infrastructure": {
       "type": "object",
       "description": "Service infrastructure configuration with defaults",
@@ -991,6 +941,38 @@
           "default": true,
           "x-category": "Advanced",
           "x-display-order": 400
+        },
+        "follow_up_generation": {
+          "type": "boolean",
+          "title": "Follow-Up Question Suggestions",
+          "description": "Generate suggested follow-up questions after each response",
+          "default": true,
+          "x-category": "AI Assistance",
+          "x-display-order": 303
+        },
+        "evaluation_arena": {
+          "type": "boolean",
+          "title": "Model Comparison Arena",
+          "description": "Enable side-by-side model comparison for evaluation",
+          "default": true,
+          "x-category": "AI Assistance",
+          "x-display-order": 304
+        },
+        "message_rating": {
+          "type": "boolean",
+          "title": "Message Rating",
+          "description": "Allow rating individual messages for quality feedback",
+          "default": true,
+          "x-category": "AI Assistance",
+          "x-display-order": 305
+        },
+        "community_sharing": {
+          "type": "boolean",
+          "title": "Community Sharing",
+          "description": "Show share-to-community button for conversations",
+          "default": true,
+          "x-category": "Social",
+          "x-display-order": 306
         }
       }
     },
@@ -1187,6 +1169,26 @@
           "default": "",
           "x-category": "Core",
           "x-display-order": 11
+        },
+        "default_locale": {
+          "type": "string",
+          "title": "Default UI Language",
+          "description": "Two-letter ISO 639-1 language code for the interface",
+          "default": "en",
+          "enum": [
+            "en",
+            "es",
+            "fr",
+            "de",
+            "zh",
+            "ja",
+            "ko",
+            "pt",
+            "ru",
+            "ar"
+          ],
+          "x-category": "Core",
+          "x-display-order": 12
         },
         "qdrant_url": {
           "type": "string",
@@ -1470,6 +1472,66 @@
           "x-category": "Advanced",
           "x-display-order": 502
         },
+        "rag_embedding_trust_remote_code": {
+          "type": "boolean",
+          "title": "Trust Remote Code (Embeddings)",
+          "description": "Allow custom HuggingFace embedding models with remote code execution",
+          "default": false,
+          "x-depends-on": {
+            "providers.vector_db": [
+              "pgvector",
+              "qdrant",
+              "chroma"
+            ]
+          },
+          "x-category": "Advanced",
+          "x-display-order": 503
+        },
+        "rag_reranking_trust_remote_code": {
+          "type": "boolean",
+          "title": "Trust Remote Code (Reranking)",
+          "description": "Allow custom HuggingFace reranking models with remote code execution",
+          "default": false,
+          "x-depends-on": {
+            "providers.vector_db": [
+              "pgvector",
+              "qdrant",
+              "chroma"
+            ]
+          },
+          "x-category": "Advanced",
+          "x-display-order": 504
+        },
+        "rag_embedding_auto_update": {
+          "type": "boolean",
+          "title": "Auto-Update Embedding Models",
+          "description": "Automatically update embedding models from HuggingFace",
+          "default": true,
+          "x-depends-on": {
+            "providers.vector_db": [
+              "pgvector",
+              "qdrant",
+              "chroma"
+            ]
+          },
+          "x-category": "Advanced",
+          "x-display-order": 505
+        },
+        "rag_reranking_auto_update": {
+          "type": "boolean",
+          "title": "Auto-Update Reranking Models",
+          "description": "Automatically update reranking models from HuggingFace",
+          "default": true,
+          "x-depends-on": {
+            "providers.vector_db": [
+              "pgvector",
+              "qdrant",
+              "chroma"
+            ]
+          },
+          "x-category": "Advanced",
+          "x-display-order": 506
+        },
         "task_model_title": {
           "type": "string",
           "title": "Task Model: Title Generation",
@@ -1520,6 +1582,19 @@
           "x-auto-install": true,
           "x-category": "Advanced",
           "x-display-order": 303
+        },
+        "autocomplete_input_max_length": {
+          "type": "integer",
+          "title": "Autocomplete Max Input Length",
+          "description": "Maximum input length for autocomplete suggestions (-1 = unlimited)",
+          "default": -1,
+          "minimum": -1,
+          "maximum": 10000,
+          "x-depends-on": {
+            "features.autocomplete_generation": true
+          },
+          "x-category": "Advanced",
+          "x-display-order": 307
         },
         "task_model_query": {
           "type": "string",
@@ -1585,6 +1660,14 @@
           "x-category": "Advanced",
           "x-display-order": 610
         },
+        "cache_control": {
+          "type": "string",
+          "title": "HTTP Cache Control Header",
+          "description": "Set cache control policy for HTTP responses (e.g., 'public, max-age=3600')",
+          "default": "",
+          "x-category": "Advanced",
+          "x-display-order": 611
+        },
         "openwebui_timeout_start": {
           "type": "integer",
           "title": "OpenWebUI Startup Timeout",
@@ -1593,85 +1676,6 @@
           "maximum": 1800,
           "x-category": "Advanced",
           "x-display-order": 600
-        }
-      }
-    },
-    "secrets": {
-      "type": "object",
-      "title": "External API Secrets",
-      "description": "Real external cloud provider API keys that users must register for and securely store. These NEVER contain actual values - only {PLACEHOLDER} patterns. Internal service keys (LiteLLM master key, OpenWebUI secret, etc.) are NOT secrets - they're hardcoded for inter-service communication.",
-      "x-category": "Security",
-      "x-display-order": 500,
-      "properties": {
-        "openai_api_key": {
-          "type": "string",
-          "title": "OpenAI API Key",
-          "description": "OpenAI API key for GPT models, embeddings, and speech services. Register at https://platform.openai.com/api-keys",
-          "default": "{OPENAI_API_KEY}",
-          "x-sensitive": true
-        },
-        "anthropic_api_key": {
-          "type": "string",
-          "title": "Anthropic API Key",
-          "description": "Anthropic API key for Claude models. Register at https://console.anthropic.com/",
-          "default": "{ANTHROPIC_API_KEY}",
-          "x-sensitive": true
-        },
-        "gemini_api_key": {
-          "type": "string",
-          "title": "Google Gemini API Key",
-          "description": "Google Gemini API key for Gemini models. Register at https://makersuite.google.com/app/apikey",
-          "default": "{GEMINI_API_KEY}",
-          "x-sensitive": true
-        },
-        "groq_api_key": {
-          "type": "string",
-          "title": "Groq API Key",
-          "description": "Groq API key for fast inference. Register at https://console.groq.com/",
-          "default": "{GROQ_API_KEY}",
-          "x-sensitive": true
-        },
-        "mistral_api_key": {
-          "type": "string",
-          "title": "Mistral API Key",
-          "description": "Mistral API key for Mistral models. Register at https://console.mistral.ai/",
-          "default": "{MISTRAL_API_KEY}",
-          "x-sensitive": true
-        },
-        "openrouter_api_key": {
-          "type": "string",
-          "title": "OpenRouter API Key",
-          "description": "OpenRouter API key for unified model access. Register at https://openrouter.ai/keys",
-          "default": "{OPENROUTER_API_KEY}",
-          "x-sensitive": true
-        },
-        "perplexity_api_key": {
-          "type": "string",
-          "title": "Perplexity API Key",
-          "description": "Perplexity API key for Perplexity models and search. Register at https://www.perplexity.ai/settings/api",
-          "default": "{PERPLEXITY_API_KEY}",
-          "x-sensitive": true
-        },
-        "tavily_api_key": {
-          "type": "string",
-          "title": "Tavily Search API Key",
-          "description": "Tavily API key for AI-powered web search. Register at https://tavily.com/",
-          "default": "{TAVILY_API_KEY}",
-          "x-sensitive": true
-        },
-        "hf_token": {
-          "type": "string",
-          "title": "HuggingFace API Token",
-          "description": "HuggingFace token for model downloads. Register at https://huggingface.co/settings/tokens",
-          "default": "{HF_TOKEN}",
-          "x-sensitive": true
-        },
-        "civitai_token": {
-          "type": "string",
-          "title": "CivitAI API Token",
-          "description": "CivitAI token for model downloads. Register at https://civitai.com/user/account",
-          "default": "{CIVITAI_TOKEN}",
-          "x-sensitive": true
         }
       }
     }

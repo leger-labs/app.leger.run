@@ -280,6 +280,14 @@
         "type": "string",
         "required": false,
         "order": 11
+      },
+      {
+        "path": "provider_config.default_locale",
+        "name": "default_locale",
+        "title": "Default UI Language",
+        "type": "string",
+        "required": false,
+        "order": 12
       }
     ]
   },
@@ -310,6 +318,30 @@
         "type": "boolean",
         "required": false,
         "order": 302
+      },
+      {
+        "path": "features.follow_up_generation",
+        "name": "follow_up_generation",
+        "title": "Follow-Up Question Suggestions",
+        "type": "boolean",
+        "required": false,
+        "order": 303
+      },
+      {
+        "path": "features.evaluation_arena",
+        "name": "evaluation_arena",
+        "title": "Model Comparison Arena",
+        "type": "boolean",
+        "required": false,
+        "order": 304
+      },
+      {
+        "path": "features.message_rating",
+        "name": "message_rating",
+        "title": "Message Rating",
+        "type": "boolean",
+        "required": false,
+        "order": 305
       }
     ]
   },
@@ -366,6 +398,14 @@
         "order": 306
       },
       {
+        "path": "provider_config.autocomplete_input_max_length",
+        "name": "autocomplete_input_max_length",
+        "title": "Autocomplete Max Input Length",
+        "type": "integer",
+        "required": false,
+        "order": 307
+      },
+      {
         "path": "features.websocket_support",
         "name": "websocket_support",
         "title": "WebSocket Support",
@@ -398,6 +438,38 @@
         "order": 502
       },
       {
+        "path": "provider_config.rag_embedding_trust_remote_code",
+        "name": "rag_embedding_trust_remote_code",
+        "title": "Trust Remote Code (Embeddings)",
+        "type": "boolean",
+        "required": false,
+        "order": 503
+      },
+      {
+        "path": "provider_config.rag_reranking_trust_remote_code",
+        "name": "rag_reranking_trust_remote_code",
+        "title": "Trust Remote Code (Reranking)",
+        "type": "boolean",
+        "required": false,
+        "order": 504
+      },
+      {
+        "path": "provider_config.rag_embedding_auto_update",
+        "name": "rag_embedding_auto_update",
+        "title": "Auto-Update Embedding Models",
+        "type": "boolean",
+        "required": false,
+        "order": 505
+      },
+      {
+        "path": "provider_config.rag_reranking_auto_update",
+        "name": "rag_reranking_auto_update",
+        "title": "Auto-Update Reranking Models",
+        "type": "boolean",
+        "required": false,
+        "order": 506
+      },
+      {
         "path": "provider_config.openwebui_timeout_start",
         "name": "openwebui_timeout_start",
         "title": "OpenWebUI Startup Timeout",
@@ -420,6 +492,28 @@
         "type": "string",
         "required": false,
         "order": 610
+      },
+      {
+        "path": "provider_config.cache_control",
+        "name": "cache_control",
+        "title": "HTTP Cache Control Header",
+        "type": "string",
+        "required": false,
+        "order": 611
+      }
+    ]
+  },
+  {
+    "name": "Social",
+    "order": 999,
+    "fields": [
+      {
+        "path": "features.community_sharing",
+        "name": "community_sharing",
+        "title": "Community Sharing",
+        "type": "boolean",
+        "required": false,
+        "order": 306
       }
     ]
   }

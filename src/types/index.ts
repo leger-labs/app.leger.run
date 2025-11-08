@@ -265,3 +265,18 @@ export interface AutoSaveOptions {
   enabled?: boolean;
   maxHistorySize?: number;
 }
+
+// Export Release Wizard types
+export type {
+  CrystallizedConfig,
+  ModelSelection,
+  ServiceSelection,
+  OpenWebUIConfig,
+  CaddyConfig,
+  CaddyRoute,
+  ModelDefinition,
+  ProviderDefinition,
+  MarketplaceService,
+  ConfigField,
+  ConfigFieldGroup,
+} from './release-wizard';
