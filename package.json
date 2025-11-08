@@ -4,7 +4,9 @@
   "description": "Web application for Leger secret management and release tracking",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/generate-data-bundles.js",
     "dev": "vite",
+    "prebuild": "node scripts/generate-data-bundles.js",
     "build": "npm run schema:generate && vite build && npm run build:worker",
     "build:worker": "node scripts/build-worker.js",
     "preview": "vite preview",
