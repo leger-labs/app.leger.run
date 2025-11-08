@@ -6,61 +6,11 @@
   "schema_version": "0.1.0",
   "type": "object",
   "required": [
-    "tailscale",
     "infrastructure",
     "features",
     "providers"
   ],
   "properties": {
-    "tailscale": {
-      "type": "object",
-      "title": "Tailscale Configuration",
-      "description": "Tailscale MagicDNS configuration for HTTPS access",
-      "x-category": "Infrastructure",
-      "x-display-order": 0,
-      "required": [
-        "full_hostname"
-      ],
-      "properties": {
-        "full_hostname": {
-          "type": "string",
-          "title": "Tailscale MagicDNS Hostname",
-          "description": "Your full Tailscale MagicDNS hostname (e.g., blueprint.tail8dd1.ts.net)",
-          "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\\.tail[a-z0-9]+\\.ts\\.net$",
-          "x-display-order": 1,
-          "examples": [
-            "myserver.tail8dd1.ts.net",
-            "blueprint.tail8dd1.ts.net",
-            "llm-stack.tailabcd.ts.net"
-          ]
-        },
-        "hostname": {
-          "type": "string",
-          "title": "Machine Hostname",
-          "description": "The machine name portion (auto-extracted from full_hostname)",
-          "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$",
-          "x-display-order": 2,
-          "x-readonly": true,
-          "examples": [
-            "blueprint",
-            "myserver",
-            "llm-stack"
-          ]
-        },
-        "tailnet": {
-          "type": "string",
-          "title": "Tailnet Domain",
-          "description": "The tailnet domain portion (auto-extracted from full_hostname)",
-          "pattern": "^tail[a-z0-9]+\\.ts\\.net$",
-          "x-display-order": 3,
-          "x-readonly": true,
-          "examples": [
-            "tail8dd1.ts.net",
-            "tailabcd.ts.net"
-          ]
-        }
-      }
-    },
     "infrastructure": {
       "type": "object",
       "description": "Service infrastructure configuration with defaults",
@@ -1726,85 +1676,6 @@
           "maximum": 1800,
           "x-category": "Advanced",
           "x-display-order": 600
-        }
-      }
-    },
-    "secrets": {
-      "type": "object",
-      "title": "External API Secrets",
-      "description": "Real external cloud provider API keys that users must register for and securely store. These NEVER contain actual values - only {PLACEHOLDER} patterns. Internal service keys (LiteLLM master key, OpenWebUI secret, etc.) are NOT secrets - they're hardcoded for inter-service communication.",
-      "x-category": "Security",
-      "x-display-order": 500,
-      "properties": {
-        "openai_api_key": {
-          "type": "string",
-          "title": "OpenAI API Key",
-          "description": "OpenAI API key for GPT models, embeddings, and speech services. Register at https://platform.openai.com/api-keys",
-          "default": "{OPENAI_API_KEY}",
-          "x-sensitive": true
-        },
-        "anthropic_api_key": {
-          "type": "string",
-          "title": "Anthropic API Key",
-          "description": "Anthropic API key for Claude models. Register at https://console.anthropic.com/",
-          "default": "{ANTHROPIC_API_KEY}",
-          "x-sensitive": true
-        },
-        "gemini_api_key": {
-          "type": "string",
-          "title": "Google Gemini API Key",
-          "description": "Google Gemini API key for Gemini models. Register at https://makersuite.google.com/app/apikey",
-          "default": "{GEMINI_API_KEY}",
-          "x-sensitive": true
-        },
-        "groq_api_key": {
-          "type": "string",
-          "title": "Groq API Key",
-          "description": "Groq API key for fast inference. Register at https://console.groq.com/",
-          "default": "{GROQ_API_KEY}",
-          "x-sensitive": true
-        },
-        "mistral_api_key": {
-          "type": "string",
-          "title": "Mistral API Key",
-          "description": "Mistral API key for Mistral models. Register at https://console.mistral.ai/",
-          "default": "{MISTRAL_API_KEY}",
-          "x-sensitive": true
-        },
-        "openrouter_api_key": {
-          "type": "string",
-          "title": "OpenRouter API Key",
-          "description": "OpenRouter API key for unified model access. Register at https://openrouter.ai/keys",
-          "default": "{OPENROUTER_API_KEY}",
-          "x-sensitive": true
-        },
-        "perplexity_api_key": {
-          "type": "string",
-          "title": "Perplexity API Key",
-          "description": "Perplexity API key for Perplexity models and search. Register at https://www.perplexity.ai/settings/api",
-          "default": "{PERPLEXITY_API_KEY}",
-          "x-sensitive": true
-        },
-        "tavily_api_key": {
-          "type": "string",
-          "title": "Tavily Search API Key",
-          "description": "Tavily API key for AI-powered web search. Register at https://tavily.com/",
-          "default": "{TAVILY_API_KEY}",
-          "x-sensitive": true
-        },
-        "hf_token": {
-          "type": "string",
-          "title": "HuggingFace API Token",
-          "description": "HuggingFace token for model downloads. Register at https://huggingface.co/settings/tokens",
-          "default": "{HF_TOKEN}",
-          "x-sensitive": true
-        },
-        "civitai_token": {
-          "type": "string",
-          "title": "CivitAI API Token",
-          "description": "CivitAI token for model downloads. Register at https://civitai.com/user/account",
-          "default": "{CIVITAI_TOKEN}",
-          "x-sensitive": true
         }
       }
     }

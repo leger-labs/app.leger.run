@@ -44,9 +44,6 @@ export interface UserConfig {
   provider_config?: {
     [key: string]: unknown
   }
-  secrets?: {
-    [key: string]: string
-  }
   models?: {
     cloud?: string[]
     local?: string[]
