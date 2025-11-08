@@ -1,64 +1,52 @@
 /**
  * Marketplace data loaders
- * Lazy-loads service definitions from JSON files
+ * Provides access to the pre-bundled marketplace service definitions
  */
 
+import marketplaceBundleRaw from '@/generated/marketplace-services.json';
 import type { Service } from '@/types/marketplace';
 
-/**
- * Import all service JSON files using Vite's glob import
- */
-const serviceFiles = import.meta.glob<Service>('./*.json', {
-  import: 'default',
-});
+type MarketplaceBundle = {
+  serviceCount: number;
+  services: Service[];
+};
+
+const marketplaceBundle = marketplaceBundleRaw as MarketplaceBundle;
+
+const servicesById = new Map(
+  marketplaceBundle.services.map((service) => [service.id, service])
+);
+
+function cloneService(service: Service): Service {
+  return JSON.parse(JSON.stringify(service)) as Service;
+}
 
 /**
  * Get list of all available service IDs
  */
 export function getServiceIds(): string[] {
-  return Object.keys(serviceFiles).map((path) => {
-    // Extract filename without path and extension
-    // "./azure-openai.json" -> "azure-openai"
-    return path.replace('./', '').replace('.json', '');
-  });
+  return marketplaceBundle.services.map((service) => service.id);
 }
 
 /**
  * Load a single service by ID
  */
 export async function loadService(serviceId: string): Promise<Service | null> {
-  const path = `./${serviceId}.json`;
-  const loader = serviceFiles[path];
+  const service = servicesById.get(serviceId);
 
-  if (!loader) {
+  if (!service) {
     console.warn(`Service not found: ${serviceId}`);
     return null;
   }
 
-  try {
-    return await loader();
-  } catch (error) {
-    console.error(`Failed to load service ${serviceId}:`, error);
-    return null;
-  }
+  return cloneService(service);
 }
 
 /**
  * Load all services
  */
 export async function loadAllServices(): Promise<Service[]> {
-  const services: Service[] = [];
-
-  for (const [path, loader] of Object.entries(serviceFiles)) {
-    try {
-      const service = await loader();
-      services.push(service);
-    } catch (error) {
-      console.error(`Failed to load service from ${path}:`, error);
-    }
-  }
-
-  return services;
+  return marketplaceBundle.services.map((service) => cloneService(service));
 }
 
 /**

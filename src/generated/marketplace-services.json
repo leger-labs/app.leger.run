@@ -1,0 +1,3698 @@
+{
+  "serviceCount": 77,
+  "services": [
+    {
+      "id": "automatic1111",
+      "name": "AUTOMATIC1111 (Stable Diffusion)",
+      "category": "image-generation",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/automatic.svg",
+      "openwebui_variables": [
+        {
+          "name": "AUTOMATIC1111_API_AUTH",
+          "type": "str",
+          "default": null,
+          "description": "Sets the AUTOMATIC1111 API authentication.",
+          "options": []
+        },
+        {
+          "name": "AUTOMATIC1111_BASE_URL",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the URL to AUTOMATIC1111's Stable Diffusion API.",
+          "options": []
+        },
+        {
+          "name": "AUTOMATIC1111_CFG_SCALE",
+          "type": "float",
+          "default": null,
+          "description": "Sets the scale for AUTOMATIC1111 inference.",
+          "options": []
+        },
+        {
+          "name": "AUTOMATIC1111_SAMPLER",
+          "type": "str",
+          "default": null,
+          "description": "Sets the sampler for AUTOMATIC1111 inference.",
+          "options": []
+        },
+        {
+          "name": "AUTOMATIC1111_SCHEDULER",
+          "type": "str",
+          "default": null,
+          "description": "Sets the scheduler for AUTOMATIC1111 inference.",
+          "options": []
+        },
+        {
+          "name": "AUTOMATIC1111_PARAMS",
+          "type": "str",
+          "default": "{}",
+          "description": "Additional parameters in JSON format to pass to AUTOMATIC1111 API requests (e.g., {\"cfg_scale\": 7, \"sampler_name\": \"Euler a\", \"scheduler\": \"normal\"}).",
+          "options": []
+        },
+        {
+          "name": "IMAGE_GENERATION_ENGINE",
+          "type": "str",
+          "default": "openai",
+          "description": "Specifies the engine to use for image generation.",
+          "options": [
+            "openai",
+            "comfyui",
+            "automatic1111",
+            "gemini"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "azure-dalle",
+      "name": "Azure OpenAI DALL-E",
+      "category": "image-generation",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/azure.svg",
+      "openwebui_variables": [
+        {
+          "name": "IMAGES_OPENAI_API_BASE_URL",
+          "type": "str",
+          "default": "${OPENAI_API_BASE_URL}",
+          "description": "Sets the OpenAI-compatible base URL to use for DALL-E image generation.",
+          "options": []
+        },
+        {
+          "name": "IMAGES_OPENAI_API_KEY",
+          "type": "str",
+          "default": "${OPENAI_API_KEY}",
+          "description": "Sets the API key to use for DALL-E image generation.",
+          "options": []
+        },
+        {
+          "name": "IMAGES_OPENAI_API_VERSION",
+          "type": "str",
+          "default": "${OPENAI_API_VERSION}",
+          "description": "Optional setting. If provided it sets the `api-version` query parameter when calling the image generation. If the Azure OpenAI service is used, this needs to be configured.",
+          "options": []
+        },
+        {
+          "name": "IMAGE_GENERATION_ENGINE",
+          "type": "str",
+          "default": "openai",
+          "description": "Specifies the engine to use for image generation.",
+          "options": [
+            "openai",
+            "comfyui",
+            "automatic1111",
+            "gemini"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "azure-document-intelligence",
+      "name": "Azure Document Intelligence",
+      "category": "content-extraction",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/azure.svg",
+      "openwebui_variables": [
+        {
+          "name": "DOCUMENT_INTELLIGENCE_ENDPOINT",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the endpoint for document intelligence.",
+          "options": []
+        },
+        {
+          "name": "DOCUMENT_INTELLIGENCE_KEY",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the key for document intelligence.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "azure-openai",
+      "name": "Azure OpenAI",
+      "category": "llm",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/azure.svg",
+      "openwebui_variables": [
+        {
+          "name": "ENABLE_OPENAI_API",
+          "type": "bool",
+          "default": true,
+          "description": "Enables the use of OpenAI APIs.",
+          "options": []
+        },
+        {
+          "name": "OPENAI_API_BASE_URL",
+          "type": "str",
+          "default": "https://api.openai.com/v1",
+          "description": "Configures the OpenAI base API URL.",
+          "options": []
+        },
+        {
+          "name": "OPENAI_API_BASE_URLS",
+          "type": "str",
+          "default": null,
+          "description": "Supports balanced OpenAI base API URLs, semicolon-separated.",
+          "options": []
+        },
+        {
+          "name": "OPENAI_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the OpenAI API key.",
+          "options": []
+        },
+        {
+          "name": "OPENAI_API_KEYS",
+          "type": "str",
+          "default": null,
+          "description": "Supports multiple OpenAI API keys, semicolon-separated.",
+          "options": []
+        },
+        {
+          "name": "RAG_AZURE_OPENAI_API_KEY",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the API key for Azure OpenAI Services when using Azure OpenAI for RAG embeddings.",
+          "options": []
+        },
+        {
+          "name": "RAG_AZURE_OPENAI_API_VERSION",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the API version for Azure OpenAI Services when using Azure OpenAI for RAG embeddings. Common values include `2023-05-15`, `2023-12-01-preview`, or `2024-02-01`.",
+          "options": []
+        },
+        {
+          "name": "RAG_OPENAI_API_BASE_URL",
+          "type": "str",
+          "default": "${OPENAI_API_BASE_URL}",
+          "description": "Sets the OpenAI base API URL to use for RAG embeddings.",
+          "options": []
+        },
+        {
+          "name": "RAG_OPENAI_API_KEY",
+          "type": "str",
+          "default": "${OPENAI_API_KEY}",
+          "description": "Sets the OpenAI API key to use for RAG embeddings.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "azure-openai-embeddings",
+      "name": "Azure OpenAI Embeddings",
+      "category": "rag",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/azure.svg",
+      "openwebui_variables": [
+        {
+          "name": "RAG_AZURE_OPENAI_API_KEY",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the API key for Azure OpenAI Services when using Azure OpenAI for RAG embeddings.",
+          "options": []
+        },
+        {
+          "name": "RAG_AZURE_OPENAI_API_VERSION",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the API version for Azure OpenAI Services when using Azure OpenAI for RAG embeddings. Common values include `2023-05-15`, `2023-12-01-preview`, or `2024-02-01`.",
+          "options": []
+        },
+        {
+          "name": "RAG_AZURE_OPENAI_BASE_URL",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the base URL for Azure OpenAI Services when using Azure OpenAI for RAG embeddings. Should be in the format `https://{your-resource-name}.openai.azure.com`.",
+          "options": []
+        },
+        {
+          "name": "RAG_EMBEDDING_ENGINE",
+          "type": "str",
+          "default": null,
+          "description": "Selects an embedding engine to use for RAG.",
+          "options": [
+            "ollama",
+            "openai",
+            "azure_openai"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "azure-storage",
+      "name": "Azure Blob Storage",
+      "category": "storage",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/azure.svg",
+      "openwebui_variables": [
+        {
+          "name": "AZURE_STORAGE_CONTAINER_NAME",
+          "type": "str",
+          "default": null,
+          "description": "Sets the container name for Azure Storage.",
+          "options": []
+        },
+        {
+          "name": "AZURE_STORAGE_ENDPOINT",
+          "type": "str",
+          "default": null,
+          "description": "Sets the endpoint URL for Azure Storage.",
+          "options": []
+        },
+        {
+          "name": "AZURE_STORAGE_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Set the access key for Azure Storage.\n  - Optional - if not provided, credentials will be taken from the environment. User credentials if run locally and Managed Identity if run in Azure services.\n\n### OpenTelemetry Configuration",
+          "options": []
+        },
+        {
+          "name": "STORAGE_PROVIDER",
+          "type": "str",
+          "default": null,
+          "description": "Sets the storage provider.",
+          "options": [
+            "s3",
+            "gcs",
+            "azure"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "azure-stt",
+      "name": "Azure Speech-to-Text",
+      "category": "speech-to-text",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/azure.svg",
+      "openwebui_variables": [
+        {
+          "name": "AUDIO_STT_AZURE_API_KEY",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the Azure API key to use for Speech-to-Text.",
+          "options": []
+        },
+        {
+          "name": "AUDIO_STT_AZURE_LOCALES",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the locales to use for Azure Speech-to-Text.",
+          "options": []
+        },
+        {
+          "name": "AUDIO_STT_AZURE_REGION",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the Azure region to use for Speech-to-Text.",
+          "options": []
+        },
+        {
+          "name": "AUDIO_STT_ENGINE",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the Speech-to-Text engine to use.",
+          "options": [
+            "openai",
+            "deepgram",
+            "azure"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "azure-tts",
+      "name": "Azure Text-to-Speech",
+      "category": "text-to-speech",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/azure.svg",
+      "openwebui_variables": [
+        {
+          "name": "AUDIO_TTS_AZURE_SPEECH_OUTPUT_FORMAT",
+          "type": "str",
+          "default": null,
+          "description": "Sets the output format for Azure Text to Speech.",
+          "options": []
+        },
+        {
+          "name": "AUDIO_TTS_AZURE_SPEECH_REGION",
+          "type": "str",
+          "default": null,
+          "description": "Sets the region for Azure Text to Speech.",
+          "options": []
+        },
+        {
+          "name": "AUDIO_TTS_ENGINE",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the Text-to-Speech engine to use.",
+          "options": [
+            "azure",
+            "elevenlabs",
+            "openai",
+            "transformers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bing",
+      "name": "Bing Search",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/bing.svg",
+      "openwebui_variables": [
+        {
+          "name": "BING_SEARCH_V7_ENDPOINT",
+          "type": "str",
+          "default": "https://api.bing.microsoft.com/v7.0/search",
+          "description": "Sets the endpoint for Bing Search API.",
+          "options": []
+        },
+        {
+          "name": "BING_SEARCH_V7_SUBSCRIPTION_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the subscription key for Bing Search API.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "bocha",
+      "name": "Bocha Search",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/bocha.svg",
+      "openwebui_variables": [
+        {
+          "name": "BOCHA_SEARCH_API_KEY",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the API key for Bocha Search API.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "brave-search",
+      "name": "Brave Search",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/brave-search.svg",
+      "openwebui_variables": [
+        {
+          "name": "BRAVE_SEARCH_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the API key for the Brave Search API.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "chroma",
+      "name": "ChromaDB",
+      "category": "rag",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/chromadb.svg",
+      "openwebui_variables": [
+        {
+          "name": "CHROMA_CLIENT_AUTH_CREDENTIALS",
+          "type": "str",
+          "default": null,
+          "description": "Specifies auth credentials for remote ChromaDB Server.",
+          "options": []
+        },
+        {
+          "name": "CHROMA_CLIENT_AUTH_PROVIDER",
+          "type": "str",
+          "default": null,
+          "description": "Specifies an authentication provider for remote ChromaDB Server.",
+          "options": []
+        },
+        {
+          "name": "CHROMA_DATABASE",
+          "type": "str",
+          "default": null,
+          "description": "Sets the database in the ChromaDB tenant to use for RAG embeddings.",
+          "options": []
+        },
+        {
+          "name": "CHROMA_HTTP_HEADERS",
+          "type": "str",
+          "default": null,
+          "description": "A comma-separated list of HTTP headers to include with every ChromaDB request.",
+          "options": []
+        },
+        {
+          "name": "CHROMA_HTTP_HOST",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the hostname of a remote ChromaDB Server. Uses a local ChromaDB instance if not set.",
+          "options": []
+        },
+        {
+          "name": "CHROMA_HTTP_PORT",
+          "type": "int",
+          "default": "8000",
+          "description": "Specifies the port of a remote ChromaDB Server.",
+          "options": []
+        },
+        {
+          "name": "CHROMA_HTTP_SSL",
+          "type": "bool",
+          "default": "False",
+          "description": "Controls whether or not SSL is used for ChromaDB Server connections.",
+          "options": []
+        },
+        {
+          "name": "CHROMA_TENANT",
+          "type": "str",
+          "default": null,
+          "description": "Sets the tenant for ChromaDB to use for RAG embeddings.",
+          "options": []
+        },
+        {
+          "name": "PGVECTOR_DB_URL",
+          "type": "str",
+          "default": null,
+          "description": "Sets the database URL for model storage.",
+          "options": []
+        },
+        {
+          "name": "VECTOR_DB",
+          "type": "str",
+          "default": "chroma",
+          "description": "Specifies which vector database system to use. This setting determines which vector storage system will be used for managing embeddings.\n\n:::note\n\nPostgreSQL Dependencies\nTo use `pgvector`, ensure you have PostgreSQL dependencies installed:\n\n```bash\npip install open-webui[all]\n```\n\n:::\n\n### ChromaDB",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "code-shared",
+      "name": "Code Execution Shared Settings",
+      "category": "code-execution",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/code.svg",
+      "description": "Shared configuration for code execution functionality, automatically available when any code execution engine is configured",
+      "activation_condition": {
+        "type": "provider_selected",
+        "provider_path": "providers.code_execution_engine",
+        "exclude_values": [
+          ""
+        ]
+      },
+      "openwebui_variables": [
+        {
+          "name": "CODE_INTERPRETER_BLACKLISTED_MODULES",
+          "type": "str",
+          "default": null,
+          "description": "Comma-separated list of Python modules that are blacklisted and cannot be imported or used within the code interpreter. Enhances security by preventing access to potentially sensitive or system-level functionalities.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "comfyui",
+      "name": "ComfyUI",
+      "category": "image-generation",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/comfyui.svg",
+      "openwebui_variables": [
+        {
+          "name": "COMFYUI_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the API key for ComfyUI.",
+          "options": []
+        },
+        {
+          "name": "COMFYUI_BASE_URL",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the URL to the ComfyUI image generation API.",
+          "options": []
+        },
+        {
+          "name": "COMFYUI_WORKFLOW",
+          "type": "str",
+          "default": "",
+          "description": "Sets the ComfyUI workflow.",
+          "options": []
+        },
+        {
+          "name": "COMFYUI_WORKFLOW_NODES",
+          "type": "list",
+          "default": [],
+          "description": "Specifies the ComfyUI workflow node mappings for image generation.",
+          "options": []
+        },
+        {
+          "name": "IMAGE_EDIT_ENGINE",
+          "type": "str",
+          "default": "comfyui",
+          "description": "Configures the engine used for image editing operations, enabling modification of existing images using text prompts.",
+          "options": [
+            "openai",
+            "gemini",
+            "comfyui"
+          ]
+        },
+        {
+          "name": "IMAGE_EDIT_MODEL",
+          "type": "str",
+          "default": "",
+          "description": "Specifies the model to use for image editing operations within the selected engine.",
+          "options": []
+        },
+        {
+          "name": "IMAGE_EDIT_SIZE",
+          "type": "str",
+          "default": "",
+          "description": "Defines the output dimensions for edited images in WIDTHxHEIGHT format (e.g., 1024x1024). Leave empty to preserve original dimensions.",
+          "options": []
+        },
+        {
+          "name": "IMAGES_EDIT_COMFYUI_BASE_URL",
+          "type": "str",
+          "default": "",
+          "description": "Configures the ComfyUI base URL for image editing operations, enabling self-hosted ComfyUI workflows for image manipulation.",
+          "options": []
+        },
+        {
+          "name": "IMAGES_EDIT_COMFYUI_API_KEY",
+          "type": "str",
+          "default": "",
+          "description": "Provides authentication for ComfyUI image editing API requests when the ComfyUI instance requires API key authentication.",
+          "options": []
+        },
+        {
+          "name": "IMAGES_EDIT_COMFYUI_WORKFLOW",
+          "type": "str",
+          "default": "",
+          "description": "Defines the ComfyUI workflow configuration in JSON format for image editing operations. Must include nodes for image input, prompt, and output. Export from ComfyUI using 'Save (API Format)'.",
+          "options": []
+        },
+        {
+          "name": "IMAGES_EDIT_COMFYUI_WORKFLOW_NODES",
+          "type": "list",
+          "default": [],
+          "description": "Specifies the ComfyUI workflow node mappings for image editing, defining which nodes handle image input, prompt, model, dimensions, and other parameters. Configured automatically via the admin UI.",
+          "options": []
+        },
+        {
+          "name": "IMAGE_GENERATION_ENGINE",
+          "type": "str",
+          "default": "openai",
+          "description": "Specifies the engine to use for image generation.",
+          "options": [
+            "openai",
+            "comfyui",
+            "automatic1111",
+            "gemini"
+          ]
+        },
+        {
+          "name": "COMFYUI_WORKSPACE",
+          "type": "str",
+          "default": "/workspace",
+          "description": "ComfyUI workspace path",
+          "options": []
+        },
+        {
+          "name": "COMFYUI_AUTO_UPDATE",
+          "type": "bool",
+          "default": false,
+          "description": "ComfyUI auto-update flag",
+          "options": []
+        },
+        {
+          "name": "COMFYUI_WEB_ENABLE_AUTH",
+          "type": "bool",
+          "default": false,
+          "description": "ComfyUI web authentication",
+          "options": []
+        },
+        {
+          "name": "COMFYUI_LOG_LEVEL",
+          "type": "str",
+          "default": "INFO",
+          "description": "ComfyUI log level",
+          "options": [
+            "DEBUG",
+            "INFO",
+            "WARNING",
+            "ERROR"
+          ]
+        },
+        {
+          "name": "COMFYUI_ARGS",
+          "type": "str",
+          "default": "",
+          "description": "ComfyUI additional arguments",
+          "options": []
+        },
+        {
+          "name": "COMFYUI_STARTUP_TIMEOUT",
+          "type": "int",
+          "default": 900,
+          "description": "ComfyUI startup timeout in seconds",
+          "validation": {
+            "min": 60,
+            "max": 1800
+          },
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "deepgram",
+      "name": "Deepgram",
+      "category": "speech-to-text",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/deepgram.svg",
+      "openwebui_variables": [
+        {
+          "name": "AUDIO_STT_ENGINE",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the Speech-to-Text engine to use.",
+          "options": [
+            "openai",
+            "deepgram",
+            "azure"
+          ]
+        },
+        {
+          "name": "DEEPGRAM_API_KEY",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the Deepgram API key to use for Speech-to-Text.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "docling",
+      "name": "Docling",
+      "category": "content-extraction",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/docling.svg",
+      "openwebui_variables": [
+        {
+          "name": "DOCLING_OCR_ENGINE",
+          "type": "str",
+          "default": "tesseract",
+          "description": "Specifies the OCR engine used by Docling.\n  Supported values include: `tesseract` (default), `easyocr`, `ocrmac`, `rapidocr`, and `tesserocr`.",
+          "options": []
+        },
+        {
+          "name": "DOCLING_OCR_LANG",
+          "type": "str",
+          "default": "eng,fra,deu,spa",
+          "description": "Specifies the OCR language(s) to be used with the configured `DOCLING_OCR_ENGINE`.\n  The format and available language codes depend on the selected OCR engine.",
+          "options": []
+        },
+        {
+          "name": "DOCLING_SERVER_URL",
+          "type": "str",
+          "default": "http://docling:5001",
+          "description": "Specifies the URL for the Docling server. Requires Docling version 1.0.0 or later.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "duckduckgo",
+      "name": "DuckDuckGo",
+      "category": "web-search",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/duckduckgo.svg",
+      "openwebui_variables": [
+        {
+          "name": "WEB_SEARCH_ENGINE",
+          "type": "str",
+          "default": null,
+          "description": null,
+          "options": [
+            "searxng",
+            "google_pse",
+            "brave",
+            "kagi",
+            "mojeek",
+            "bocha",
+            "serpstack",
+            "serper",
+            "serply",
+            "searchapi",
+            "serpapi",
+            "duckduckgo",
+            "tavily",
+            "jina",
+            "bing",
+            "exa",
+            "perplexity",
+            "perplexity_search",
+            "sougou",
+            "ollama_cloud"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edgetts",
+      "name": "Edge TTS",
+      "category": "text-to-speech",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/edgetts.svg",
+      "openwebui_variables": [
+        {
+          "name": "AUDIO_TTS_ENGINE",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the Text-to-Speech engine to use.",
+          "options": [
+            "azure",
+            "elevenlabs",
+            "openai",
+            "transformers"
+          ]
+        },
+        {
+          "name": "EDGETTS_RESPONSE_FORMAT",
+          "type": "str",
+          "default": "mp3",
+          "description": "Edge TTS response format",
+          "options": [
+            "mp3",
+            "wav",
+            "opus"
+          ]
+        },
+        {
+          "name": "EDGETTS_SPEED",
+          "type": "float",
+          "default": 1,
+          "description": "Edge TTS speech speed",
+          "validation": {
+            "min": 0.5,
+            "max": 2
+          },
+          "options": []
+        },
+        {
+          "name": "EDGETTS_VOICE",
+          "type": "str",
+          "default": "en-US-AriaNeural",
+          "description": "Edge TTS voice",
+          "options": []
+        },
+        {
+          "name": "EDGETTS_LOG_LEVEL",
+          "type": "str",
+          "default": "INFO",
+          "description": "Edge TTS log level",
+          "options": [
+            "DEBUG",
+            "INFO",
+            "WARNING",
+            "ERROR"
+          ]
+        },
+        {
+          "name": "EDGETTS_STARTUP_TIMEOUT",
+          "type": "int",
+          "default": 300,
+          "description": "Edge TTS startup timeout",
+          "validation": {
+            "min": 30,
+            "max": 600
+          },
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "elasticsearch",
+      "name": "Elasticsearch",
+      "category": "rag",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/elasticsearch.svg",
+      "openwebui_variables": [
+        {
+          "name": "ELASTICSEARCH_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the Elasticsearch API key.",
+          "options": []
+        },
+        {
+          "name": "ELASTICSEARCH_CA_CERTS",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the path to the CA certificates for Elasticsearch.",
+          "options": []
+        },
+        {
+          "name": "ELASTICSEARCH_CLOUD_ID",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the Elasticsearch cloud ID.",
+          "options": []
+        },
+        {
+          "name": "ELASTICSEARCH_INDEX_PREFIX",
+          "type": "str",
+          "default": "open_webui_collections",
+          "description": "Specifies the prefix for the Elasticsearch index.",
+          "options": []
+        },
+        {
+          "name": "ELASTICSEARCH_PASSWORD",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the password for Elasticsearch.",
+          "options": []
+        },
+        {
+          "name": "ELASTICSEARCH_URL",
+          "type": "str",
+          "default": "https://localhost:9200",
+          "description": "Specifies the URL for the Elasticsearch instance.",
+          "options": []
+        },
+        {
+          "name": "ELASTICSEARCH_USERNAME",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the username for Elasticsearch.",
+          "options": []
+        },
+        {
+          "name": "PGVECTOR_DB_URL",
+          "type": "str",
+          "default": null,
+          "description": "Sets the database URL for model storage.",
+          "options": []
+        },
+        {
+          "name": "VECTOR_DB",
+          "type": "str",
+          "default": "chroma",
+          "description": "Specifies which vector database system to use. This setting determines which vector storage system will be used for managing embeddings.\n\n:::note\n\nPostgreSQL Dependencies\nTo use `pgvector`, ensure you have PostgreSQL dependencies installed:\n\n```bash\npip install open-webui[all]\n```\n\n:::\n\n### ChromaDB",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "elevenlabs",
+      "name": "ElevenLabs",
+      "category": "text-to-speech",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/elevenlabs.svg",
+      "openwebui_variables": [
+        {
+          "name": "AUDIO_TTS_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the API key for Text-to-Speech.",
+          "options": []
+        },
+        {
+          "name": "AUDIO_TTS_ENGINE",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the Text-to-Speech engine to use.",
+          "options": [
+            "azure",
+            "elevenlabs",
+            "openai",
+            "transformers"
+          ]
+        },
+        {
+          "name": "ELEVENLABS_API_BASE_URL",
+          "type": "str",
+          "default": "https://api.elevenlabs.io",
+          "description": "Configures custom ElevenLabs API endpoints for EU residency and regional deployments.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "exa",
+      "name": "Exa",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/exa.svg",
+      "openwebui_variables": [
+        {
+          "name": "EXA_API_KEY",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the API key for Exa search API.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "external-loader",
+      "name": "External Document Loader",
+      "category": "content-extraction",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/mcp.svg",
+      "openwebui_variables": [
+        {
+          "name": "EXTERNAL_DOCUMENT_LOADER_API_KEY",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the API key for authenticating with the external document loader service.",
+          "options": []
+        },
+        {
+          "name": "EXTERNAL_DOCUMENT_LOADER_URL",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the URL for the external document loader service.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "firecrawl",
+      "name": "Firecrawl",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/firecrawl.svg",
+      "openwebui_variables": [
+        {
+          "name": "FIRECRAWL_API_BASE_URL",
+          "type": "str",
+          "default": "https://api.firecrawl.dev",
+          "description": "Sets the base URL for Firecrawl API.",
+          "options": []
+        },
+        {
+          "name": "FIRECRAWL_API_KEY",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the API key for Firecrawl API.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "gcs",
+      "name": "Google Cloud Storage",
+      "category": "storage",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/googlecloud.svg",
+      "openwebui_variables": [
+        {
+          "name": "GCS_BUCKET_NAME",
+          "type": "str",
+          "default": null,
+          "description": "Sets the bucket name for Google Cloud Storage. Bucket must already exist.",
+          "options": []
+        },
+        {
+          "name": "GOOGLE_APPLICATION_CREDENTIALS_JSON",
+          "type": "str",
+          "default": null,
+          "description": "Contents of Google Application Credentials JSON file.\n  - Optional - if not provided, credentials will be taken from the environment. User credentials if run locally and Google Metadata server if run on a Google Compute Engine.\n  - A file can be generated for a service account following this [guide.](https://developers.google.com/workspace/guides/create-credentials#service-account)",
+          "options": []
+        },
+        {
+          "name": "STORAGE_PROVIDER",
+          "type": "str",
+          "default": null,
+          "description": "Sets the storage provider.",
+          "options": [
+            "s3",
+            "gcs",
+            "azure"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gemini-images",
+      "name": "Google Gemini Image Generation",
+      "category": "image-generation",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/gemini.svg",
+      "openwebui_variables": [
+        {
+          "name": "GEMINI_API_BASE_URL",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the URL to Gemini's API.",
+          "options": []
+        },
+        {
+          "name": "GEMINI_API_KEY",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the Gemini API key.",
+          "options": []
+        },
+        {
+          "name": "IMAGES_GEMINI_API_BASE_URL",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the URL to Gemini's image generation API.",
+          "options": []
+        },
+        {
+          "name": "IMAGES_GEMINI_API_KEY",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the Gemini API key for image generation.",
+          "options": []
+        },
+        {
+          "name": "IMAGES_GEMINI_ENDPOINT_METHOD",
+          "type": "str",
+          "default": "",
+          "description": "Specifies the Gemini API endpoint method (predict or generateContent).",
+          "options": [
+            "predict",
+            "generateContent"
+          ]
+        },
+        {
+          "name": "IMAGE_EDIT_ENGINE",
+          "type": "str",
+          "default": "gemini",
+          "description": "Configures the engine used for image editing operations, enabling modification of existing images using text prompts.",
+          "options": [
+            "openai",
+            "gemini",
+            "comfyui"
+          ]
+        },
+        {
+          "name": "IMAGE_EDIT_MODEL",
+          "type": "str",
+          "default": "",
+          "description": "Specifies the model to use for image editing operations within the selected engine (e.g., gemini-2.5-flash).",
+          "options": []
+        },
+        {
+          "name": "IMAGE_EDIT_SIZE",
+          "type": "str",
+          "default": "",
+          "description": "Defines the output dimensions for edited images in WIDTHxHEIGHT format (e.g., 1024x1024). Leave empty to preserve original dimensions.",
+          "options": []
+        },
+        {
+          "name": "IMAGES_EDIT_GEMINI_API_BASE_URL",
+          "type": "str",
+          "default": "${GEMINI_API_BASE_URL}",
+          "description": "Configures the Gemini API base URL for image editing operations with Gemini models.",
+          "options": []
+        },
+        {
+          "name": "IMAGES_EDIT_GEMINI_API_KEY",
+          "type": "str",
+          "default": "${GEMINI_API_KEY}",
+          "description": "Provides authentication for Gemini image editing API requests.",
+          "options": []
+        },
+        {
+          "name": "IMAGE_GENERATION_ENGINE",
+          "type": "str",
+          "default": "openai",
+          "description": "Specifies the engine to use for image generation.",
+          "options": [
+            "openai",
+            "comfyui",
+            "automatic1111",
+            "gemini"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "google-drive",
+      "name": "Google Drive",
+      "category": "document-integration",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/google.svg",
+      "openwebui_variables": [
+        {
+          "name": "ENABLE_GOOGLE_DRIVE_INTEGRATION",
+          "type": "bool",
+          "default": "False",
+          "description": "Enables or disables Google Drive integration. If set to true, and `GOOGLE_DRIVE_CLIENT_ID` & `GOOGLE_DRIVE_API_KEY` are both configured, Google Drive will appear as an upload option in the chat UI.",
+          "options": []
+        },
+        {
+          "name": "GOOGLE_DRIVE_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the API key for Google Drive integration.",
+          "options": []
+        },
+        {
+          "name": "GOOGLE_DRIVE_CLIENT_ID",
+          "type": "str",
+          "default": null,
+          "description": "Sets the client ID for Google Drive (client must be configured with Drive API and Picker API enabled).",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "google-pse",
+      "name": "Google Programmable Search Engine",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/google.svg",
+      "openwebui_variables": [
+        {
+          "name": "GOOGLE_PSE_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the API key for the Google Programmable Search Engine (PSE) service.",
+          "options": []
+        },
+        {
+          "name": "GOOGLE_PSE_ENGINE_ID",
+          "type": "str",
+          "default": null,
+          "description": "The engine ID for the Google Programmable Search Engine (PSE) service.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "image-shared",
+      "name": "Image Generation Shared Settings",
+      "category": "image-generation",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/image.svg",
+      "description": "Shared configuration for image generation functionality, automatically available when any image engine is configured",
+      "activation_condition": {
+        "type": "provider_selected",
+        "provider_path": "providers.image_engine",
+        "exclude_values": [
+          ""
+        ]
+      },
+      "openwebui_variables": [
+        {
+          "name": "ENABLE_IMAGE_PROMPT_GENERATION",
+          "type": "bool",
+          "default": true,
+          "description": "Enable AI-powered prompt enhancement for better image generation results.",
+          "options": []
+        },
+        {
+          "name": "IMAGE_SIZE",
+          "type": "str",
+          "default": "512x512",
+          "description": "Default image dimensions in WIDTHxHEIGHT format (e.g., 1024x1024).",
+          "options": []
+        },
+        {
+          "name": "IMAGE_STEPS",
+          "type": "int",
+          "default": 50,
+          "description": "Number of diffusion steps for image generation (applies to Stable Diffusion models).",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "jina",
+      "name": "Jina Search",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/searchapi.svg",
+      "openwebui_variables": [
+        {
+          "name": "JINA_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the API key for Jina.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "jupyter",
+      "name": "Jupyter Kernel",
+      "category": "code-execution",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/jupyter.svg",
+      "openwebui_variables": [
+        {
+          "name": "CODE_EXECUTION_ENGINE",
+          "type": "str",
+          "default": "pyodide",
+          "description": "Specifies the code execution engine to use.",
+          "options": []
+        },
+        {
+          "name": "CODE_EXECUTION_JUPYTER_AUTH",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the Jupyter authentication method to use for code execution.",
+          "options": []
+        },
+        {
+          "name": "CODE_EXECUTION_JUPYTER_AUTH_PASSWORD",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the Jupyter authentication password to use for code execution.",
+          "options": []
+        },
+        {
+          "name": "CODE_EXECUTION_JUPYTER_AUTH_TOKEN",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the Jupyter authentication token to use for code execution.",
+          "options": []
+        },
+        {
+          "name": "CODE_EXECUTION_JUPYTER_TIMEOUT",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the timeout for Jupyter code execution.",
+          "options": []
+        },
+        {
+          "name": "CODE_EXECUTION_JUPYTER_URL",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the Jupyter URL to use for code execution.",
+          "options": []
+        },
+        {
+          "name": "CODE_INTERPRETER_ENGINE",
+          "type": "str",
+          "default": "pyodide",
+          "description": "Specifies the code interpreter engine to use.",
+          "options": []
+        },
+        {
+          "name": "CODE_INTERPRETER_JUPYTER_AUTH",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the Jupyter authentication method to use for code interpreter.",
+          "options": []
+        },
+        {
+          "name": "CODE_INTERPRETER_JUPYTER_AUTH_PASSWORD",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the Jupyter authentication password to use for code interpreter.",
+          "options": []
+        },
+        {
+          "name": "CODE_INTERPRETER_JUPYTER_AUTH_TOKEN",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the Jupyter authentication token to use for code interpreter.",
+          "options": []
+        },
+        {
+          "name": "CODE_INTERPRETER_JUPYTER_TIMEOUT",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the timeout for the Jupyter code interpreter.",
+          "options": []
+        },
+        {
+          "name": "CODE_INTERPRETER_JUPYTER_URL",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the Jupyter URL to use for code interpreter.",
+          "options": []
+        },
+        {
+          "name": "JUPYTER_DISABLE_EXECUTE_TOOL",
+          "type": "bool",
+          "default": true,
+          "description": "Disable Jupyter notebook execute tool",
+          "options": []
+        },
+        {
+          "name": "JUPYTER_AUTH_TYPE",
+          "type": "str",
+          "default": "token",
+          "description": "Jupyter authentication method",
+          "options": [
+            "token",
+            "password",
+            "none"
+          ]
+        },
+        {
+          "name": "JUPYTER_TIMEOUT",
+          "type": "int",
+          "default": 300,
+          "description": "Jupyter execution timeout in seconds",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "kagi",
+      "name": "Kagi Search",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/kagi.svg",
+      "openwebui_variables": [
+        {
+          "name": "KAGI_SEARCH_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the API key for Kagi Search API.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "milvus",
+      "name": "Milvus",
+      "category": "rag",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/milvus.svg",
+      "openwebui_variables": [
+        {
+          "name": "ENABLE_MILVUS_MULTITENANCY_MODE",
+          "type": "bool",
+          "default": "false",
+          "description": "Enables multitenancy pattern for Milvus collections management, which significantly reduces RAM usage and computational overhead by consolidating similar vector data structures. Controls whether Milvus uses multitenancy collection architecture. When enabled, all vector data is consolidated into 5 shared collections (memories, knowledge, files, web_search, hash_based) instead of creating individual collections per resource. Data isolation is achieved via a resource_id field rather than collection-level separation.\n\n:::info\n\n**Benefits of multitenancy mode:**",
+          "options": []
+        },
+        {
+          "name": "MILVUS_COLLECTION_PREFIX",
+          "type": "str",
+          "default": "open_webui",
+          "description": "Sets the prefix for Milvus collection names. In multitenancy mode, collections become `{prefix}_memories`, `{prefix}_knowledge`, etc. In legacy mode, collections are `{prefix}_{collection_name}`. Changing this value creates an entirely separate namespace—existing collections with the old prefix become invisible to Open WebUI but remain in Milvus consuming resources. Use this for true multi-instance isolation on a shared Milvus server, not for migration between modes. Milvus only accepts underscores, hyphens/dashes are not possible and will cause errors.\n\n### OpenSearch",
+          "options": []
+        },
+        {
+          "name": "MILVUS_DB",
+          "type": "str",
+          "default": "default",
+          "description": "Specifies the database to connect to within a Milvus instance.",
+          "options": []
+        },
+        {
+          "name": "MILVUS_DISKANN_MAX_DEGREE",
+          "type": "int",
+          "default": "56",
+          "description": "Sets the max degree for Milvus if Milvus is in DISKANN indexing mode. Generally recommended to leave as is.",
+          "options": []
+        },
+        {
+          "name": "MILVUS_DISKANN_SEARCH_LIST_SIZE",
+          "type": "int",
+          "default": "100",
+          "description": "Sets the Milvus DISKANN search list size. Generally recommended to leave as is.",
+          "options": []
+        },
+        {
+          "name": "MILVUS_HNSW_EFCONSTRUCTION",
+          "type": "int",
+          "default": "100",
+          "description": "Specifies the `efConstruction` parameter for the HNSW index type in Milvus. This influences the size of the dynamic list for the nearest neighbors during index construction. Only applicable if `MILVUS_INDEX_TYPE` is `HNSW`.",
+          "options": []
+        },
+        {
+          "name": "MILVUS_HNSW_M",
+          "type": "int",
+          "default": "16",
+          "description": "Specifies the `M` parameter for the HNSW index type in Milvus. This influences the number of bi-directional links created for each new element during construction. Only applicable if `MILVUS_INDEX_TYPE` is `HNSW`.",
+          "options": []
+        },
+        {
+          "name": "MILVUS_INDEX_TYPE",
+          "type": "str",
+          "default": "HNSW",
+          "description": "Specifies the index type to use when creating a new collection in Milvus. `AUTOINDEX` is generally recommended for Milvus standalone. `HNSW` may offer better performance but requires a clustered Milvus setup and is not meant for standalone setups.",
+          "options": []
+        },
+        {
+          "name": "MILVUS_IVF_FLAT_NLIST",
+          "type": "int",
+          "default": "128",
+          "description": "Specifies the `nlist` parameter for the IVF_FLAT index type in Milvus. This is the number of cluster units. Only applicable if `MILVUS_INDEX_TYPE` is `IVF_FLAT`.",
+          "options": []
+        },
+        {
+          "name": "MILVUS_METRIC_TYPE",
+          "type": "str",
+          "default": "COSINE",
+          "description": "Specifies the metric type for vector similarity search in Milvus.",
+          "options": []
+        },
+        {
+          "name": "MILVUS_TOKEN",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies an optional connection token for Milvus.",
+          "options": []
+        },
+        {
+          "name": "MILVUS_URI",
+          "type": "str",
+          "default": "${DATA_DIR}/vector_db/milvus.db",
+          "description": "Specifies the URI for connecting to the Milvus vector database. This can point to a local or remote Milvus server based on the deployment configuration.",
+          "options": []
+        },
+        {
+          "name": "PGVECTOR_DB_URL",
+          "type": "str",
+          "default": null,
+          "description": "Sets the database URL for model storage.",
+          "options": []
+        },
+        {
+          "name": "VECTOR_DB",
+          "type": "str",
+          "default": "chroma",
+          "description": "Specifies which vector database system to use. This setting determines which vector storage system will be used for managing embeddings.\n\n:::note\n\nPostgreSQL Dependencies\nTo use `pgvector`, ensure you have PostgreSQL dependencies installed:\n\n```bash\npip install open-webui[all]\n```\n\n:::\n\n### ChromaDB",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "mistral-ocr",
+      "name": "Mistral OCR",
+      "category": "content-extraction",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/mistral.svg",
+      "openwebui_variables": [
+        {
+          "name": "MISTRAL_OCR_API_KEY",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the Mistral OCR API key to use.",
+          "options": []
+        },
+        {
+          "name": "MISTRAL_OCR_API_BASE_URL",
+          "type": "str",
+          "default": "https://api.mistral.ai/v1",
+          "description": "Configures custom Mistral OCR API endpoints.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "mojeek",
+      "name": "Mojeek Search",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/mojeek.svg",
+      "openwebui_variables": [
+        {
+          "name": "MOJEEK_SEARCH_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the API key for Mojeek Search API.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama",
+      "category": "llm",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/ollama.svg",
+      "openwebui_variables": [
+        {
+          "name": "ENABLE_OLLAMA_API",
+          "type": "bool",
+          "default": "True",
+          "description": "Enables the use of Ollama APIs.",
+          "options": []
+        },
+        {
+          "name": "OLLAMA_BASE_URLS",
+          "type": "str",
+          "default": null,
+          "description": "Configures load-balanced Ollama backend hosts, separated by `;`. See\n[`OLLAMA_BASE_URL`](#ollama_base_url). Takes precedence over[`OLLAMA_BASE_URL`](#ollama_base_url).",
+          "options": []
+        },
+        {
+          "name": "RAG_OLLAMA_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the API key for Ollama API used in RAG models.",
+          "options": []
+        },
+        {
+          "name": "RAG_OLLAMA_BASE_URL",
+          "type": "str",
+          "default": null,
+          "description": "Sets the base URL for Ollama API used in RAG models.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "ollama-cloud-search",
+      "name": "Ollama Cloud Search",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/ollama.svg",
+      "openwebui_variables": [
+        {
+          "name": "OLLAMA_CLOUD_WEB_SEARCH_API_KEY",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the Ollama Cloud Web Search API Key.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "ollama-embeddings",
+      "name": "Ollama Embeddings",
+      "category": "rag",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/ollama.svg",
+      "openwebui_variables": [
+        {
+          "name": "RAG_EMBEDDING_ENGINE",
+          "type": "str",
+          "default": null,
+          "description": "Selects an embedding engine to use for RAG.",
+          "options": [
+            "ollama",
+            "openai",
+            "azure_openai"
+          ]
+        },
+        {
+          "name": "RAG_OLLAMA_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the API key for Ollama API used in RAG models.",
+          "options": []
+        },
+        {
+          "name": "RAG_OLLAMA_BASE_URL",
+          "type": "str",
+          "default": null,
+          "description": "Sets the base URL for Ollama API used in RAG models.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "onedrive-business",
+      "name": "OneDrive for Business",
+      "category": "document-integration",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/microsoft.svg",
+      "openwebui_variables": [
+        {
+          "name": "ENABLE_ONEDRIVE_BUSINESS",
+          "type": "bool",
+          "default": "True",
+          "description": "Controls whether the \"Work/School OneDrive\" option appears in the attachment menu. Requires `ONEDRIVE_CLIENT_ID` to be configured.",
+          "options": []
+        },
+        {
+          "name": "ENABLE_ONEDRIVE_INTEGRATION",
+          "type": "bool",
+          "default": "False",
+          "description": "Enables or disables the Microsoft OneDrive integration feature globally.",
+          "options": []
+        },
+        {
+          "name": "ONEDRIVE_CLIENT_ID_BUSINESS",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the Application (client) ID for the **Work/School (Business) OneDrive** integration. This requires a separate Azure App Registration configured to support personal Microsoft accounts. **Do not put the personal OneDrive client ID here!**\n\n:::info\n\nThis Client ID (also known as Application ID) is obtained from an Azure App Registration within your Microsoft Entra ID (formerly Azure AD) tenant.\nWhen configuring the App Registration in Azure, the Redirect URI must be set to the URL of your Open WebUI instance and configured as a **Single-page application (SPA)** type for the authentication to succeed.\n\n:::",
+          "options": []
+        },
+        {
+          "name": "ONEDRIVE_SHAREPOINT_TENANT_ID",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the Directory (tenant) ID for the work/school integration. This is obtained from your business-focused Azure App Registration.",
+          "options": []
+        },
+        {
+          "name": "ONEDRIVE_SHAREPOINT_URL",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the root SharePoint site URL for the work/school integration, e.g., `https://companyname.sharepoint.com`.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "onedrive-personal",
+      "name": "OneDrive Personal",
+      "category": "document-integration",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/microsoft.svg",
+      "openwebui_variables": [
+        {
+          "name": "ENABLE_ONEDRIVE_INTEGRATION",
+          "type": "bool",
+          "default": "False",
+          "description": "Enables or disables the Microsoft OneDrive integration feature globally.",
+          "options": []
+        },
+        {
+          "name": "ENABLE_ONEDRIVE_PERSONAL",
+          "type": "bool",
+          "default": "True",
+          "description": "Controls whether the \"Personal OneDrive\" option appears in the attachment menu. Requires `ONEDRIVE_PERSONAL_CLIENT_ID` to be configured.",
+          "options": []
+        },
+        {
+          "name": "ONEDRIVE_CLIENT_ID_PERSONAL",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the Application (client) ID for the **Personal OneDrive** integration. This requires a separate Azure App Registration configured to support personal Microsoft accounts. **Do not put the business OneDrive client ID here!**",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "openai-api",
+      "name": "OpenAI API",
+      "category": "llm",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/openai.svg",
+      "openwebui_variables": [
+        {
+          "name": "ENABLE_OPENAI_API",
+          "type": "bool",
+          "default": true,
+          "description": "Enables the use of OpenAI APIs.",
+          "options": []
+        },
+        {
+          "name": "OPENAI_API_BASE_URL",
+          "type": "str",
+          "default": "https://api.openai.com/v1",
+          "description": "Configures the OpenAI base API URL.",
+          "options": []
+        },
+        {
+          "name": "OPENAI_API_BASE_URLS",
+          "type": "str",
+          "default": null,
+          "description": "Supports balanced OpenAI base API URLs, semicolon-separated.",
+          "options": []
+        },
+        {
+          "name": "OPENAI_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the OpenAI API key.",
+          "options": []
+        },
+        {
+          "name": "OPENAI_API_KEYS",
+          "type": "str",
+          "default": null,
+          "description": "Supports multiple OpenAI API keys, semicolon-separated.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "openai-dalle",
+      "name": "OpenAI DALL-E",
+      "category": "image-generation",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/dalle.svg",
+      "openwebui_variables": [
+        {
+          "name": "IMAGES_OPENAI_API_BASE_URL",
+          "type": "str",
+          "default": "${OPENAI_API_BASE_URL}",
+          "description": "Sets the OpenAI-compatible base URL to use for DALL-E image generation.",
+          "options": []
+        },
+        {
+          "name": "IMAGES_OPENAI_API_KEY",
+          "type": "str",
+          "default": "${OPENAI_API_KEY}",
+          "description": "Sets the API key to use for DALL-E image generation.",
+          "options": []
+        },
+        {
+          "name": "IMAGES_OPENAI_API_VERSION",
+          "type": "str",
+          "default": "${OPENAI_API_VERSION}",
+          "description": "Optional setting. If provided it sets the `api-version` query parameter when calling the image generation. If the Azure OpenAI service is used, this needs to be configured.",
+          "options": []
+        },
+        {
+          "name": "IMAGE_EDIT_ENGINE",
+          "type": "str",
+          "default": "openai",
+          "description": "Configures the engine used for image editing operations, enabling modification of existing images using text prompts.",
+          "options": [
+            "openai",
+            "gemini",
+            "comfyui"
+          ]
+        },
+        {
+          "name": "IMAGE_EDIT_MODEL",
+          "type": "str",
+          "default": "",
+          "description": "Specifies the model to use for image editing operations within the selected engine (e.g., dall-e-2).",
+          "options": []
+        },
+        {
+          "name": "IMAGE_EDIT_SIZE",
+          "type": "str",
+          "default": "",
+          "description": "Defines the output dimensions for edited images in WIDTHxHEIGHT format (e.g., 1024x1024). Leave empty to preserve original dimensions.",
+          "options": []
+        },
+        {
+          "name": "IMAGES_EDIT_OPENAI_API_BASE_URL",
+          "type": "str",
+          "default": "${OPENAI_API_BASE_URL}",
+          "description": "Configures the OpenAI API base URL specifically for image editing operations, allowing separate endpoints from image generation.",
+          "options": []
+        },
+        {
+          "name": "IMAGES_EDIT_OPENAI_API_VERSION",
+          "type": "str",
+          "default": "",
+          "description": "Specifies the OpenAI API version for image editing, enabling support for Azure OpenAI deployments with versioned endpoints.",
+          "options": []
+        },
+        {
+          "name": "IMAGES_EDIT_OPENAI_API_KEY",
+          "type": "str",
+          "default": "${OPENAI_API_KEY}",
+          "description": "Provides authentication for OpenAI image editing API requests, with support for separate keys from image generation.",
+          "options": []
+        },
+        {
+          "name": "IMAGE_GENERATION_ENGINE",
+          "type": "str",
+          "default": "openai",
+          "description": "Specifies the engine to use for image generation.",
+          "options": [
+            "openai",
+            "comfyui",
+            "automatic1111",
+            "gemini"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "openai-embeddings",
+      "name": "OpenAI Embeddings",
+      "category": "rag",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/openai.svg",
+      "openwebui_variables": [
+        {
+          "name": "RAG_EMBEDDING_ENGINE",
+          "type": "str",
+          "default": null,
+          "description": "Selects an embedding engine to use for RAG.",
+          "options": [
+            "ollama",
+            "openai",
+            "azure_openai"
+          ]
+        },
+        {
+          "name": "RAG_OPENAI_API_BASE_URL",
+          "type": "str",
+          "default": "${OPENAI_API_BASE_URL}",
+          "description": "Sets the OpenAI base API URL to use for RAG embeddings.",
+          "options": []
+        },
+        {
+          "name": "RAG_OPENAI_API_KEY",
+          "type": "str",
+          "default": "${OPENAI_API_KEY}",
+          "description": "Sets the OpenAI API key to use for RAG embeddings.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "openai-stt",
+      "name": "OpenAI Speech-to-Text",
+      "category": "speech-to-text",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/openai.svg",
+      "openwebui_variables": [
+        {
+          "name": "AUDIO_STT_ENGINE",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the Speech-to-Text engine to use.",
+          "options": [
+            "openai",
+            "deepgram",
+            "azure"
+          ]
+        },
+        {
+          "name": "AUDIO_STT_MODEL",
+          "type": "str",
+          "default": "whisper-1",
+          "description": "Specifies the Speech-to-Text model to use for OpenAI-compatible endpoints.",
+          "options": []
+        },
+        {
+          "name": "AUDIO_STT_OPENAI_API_BASE_URL",
+          "type": "str",
+          "default": "${OPENAI_API_BASE_URL}",
+          "description": "Sets the OpenAI-compatible base URL to use for Speech-to-Text.",
+          "options": []
+        },
+        {
+          "name": "AUDIO_STT_OPENAI_API_KEY",
+          "type": "str",
+          "default": "${OPENAI_API_KEY}",
+          "description": "Sets the OpenAI API key to use for Speech-to-Text.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "openai-tts",
+      "name": "OpenAI Text-to-Speech",
+      "category": "text-to-speech",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/openai.svg",
+      "openwebui_variables": [
+        {
+          "name": "AUDIO_TTS_ENGINE",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the Text-to-Speech engine to use.",
+          "options": [
+            "azure",
+            "elevenlabs",
+            "openai",
+            "transformers"
+          ]
+        },
+        {
+          "name": "AUDIO_TTS_MODEL",
+          "type": "str",
+          "default": "tts-1",
+          "description": "Specifies the OpenAI text-to-speech model to use.",
+          "options": []
+        },
+        {
+          "name": "AUDIO_TTS_OPENAI_API_BASE_URL",
+          "type": "str",
+          "default": "${OPENAI_API_BASE_URL}",
+          "description": "Sets the OpenAI-compatible base URL to use for text-to-speech.",
+          "options": []
+        },
+        {
+          "name": "AUDIO_TTS_OPENAI_API_KEY",
+          "type": "str",
+          "default": "${OPENAI_API_KEY}",
+          "description": "Sets the API key to use for text-to-speech.",
+          "options": []
+        },
+        {
+          "name": "AUDIO_TTS_VOICE",
+          "type": "str",
+          "default": "alloy",
+          "description": "Sets the OpenAI text-to-speech voice to use.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "opensearch",
+      "name": "OpenSearch",
+      "category": "rag",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/opensearch.svg",
+      "openwebui_variables": [
+        {
+          "name": "OPENSEARCH_CERT_VERIFY",
+          "type": "bool",
+          "default": "False",
+          "description": "Enables or disables OpenSearch certificate verification.",
+          "options": []
+        },
+        {
+          "name": "OPENSEARCH_PASSWORD",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the password for OpenSearch.",
+          "options": []
+        },
+        {
+          "name": "OPENSEARCH_SSL",
+          "type": "bool",
+          "default": "True",
+          "description": "Enables or disables SSL for OpenSearch.",
+          "options": []
+        },
+        {
+          "name": "OPENSEARCH_URI",
+          "type": "str",
+          "default": "https://localhost:9200",
+          "description": "Sets the URI for OpenSearch.",
+          "options": []
+        },
+        {
+          "name": "OPENSEARCH_USERNAME",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the username for OpenSearch.\n\n### PGVector\n\n:::note\n\nPostgreSQL Dependencies\nTo use `pgvector`, ensure you have PostgreSQL dependencies installed:\n\n```bash\npip install open-webui[all]\n```\n\n:::",
+          "options": []
+        },
+        {
+          "name": "PGVECTOR_DB_URL",
+          "type": "str",
+          "default": null,
+          "description": "Sets the database URL for model storage.",
+          "options": []
+        },
+        {
+          "name": "VECTOR_DB",
+          "type": "str",
+          "default": "chroma",
+          "description": "Specifies which vector database system to use. This setting determines which vector storage system will be used for managing embeddings.\n\n:::note\n\nPostgreSQL Dependencies\nTo use `pgvector`, ensure you have PostgreSQL dependencies installed:\n\n```bash\npip install open-webui[all]\n```\n\n:::\n\n### ChromaDB",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "opentelemetry",
+      "name": "OpenTelemetry",
+      "category": "observability",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/opentelemetry.svg",
+      "openwebui_variables": [
+        {
+          "name": "ENABLE_OTEL",
+          "type": "bool",
+          "default": false,
+          "description": "Enables OpenTelemetry observability",
+          "options": []
+        },
+        {
+          "name": "ENABLE_OTEL_TRACES",
+          "type": "bool",
+          "default": false,
+          "description": "Enables OpenTelemetry traces",
+          "options": []
+        },
+        {
+          "name": "ENABLE_OTEL_METRICS",
+          "type": "bool",
+          "default": false,
+          "description": "Enables OpenTelemetry metrics",
+          "options": []
+        },
+        {
+          "name": "ENABLE_OTEL_LOGS",
+          "type": "bool",
+          "default": false,
+          "description": "Enables OpenTelemetry logging",
+          "options": []
+        },
+        {
+          "name": "OTEL_EXPORTER_OTLP_ENDPOINT",
+          "type": "str",
+          "default": "http://localhost:4317",
+          "description": "OTLP endpoint for traces/metrics/logs",
+          "options": []
+        },
+        {
+          "name": "OTEL_METRICS_EXPORTER_OTLP_ENDPOINT",
+          "type": "str",
+          "default": null,
+          "description": "Dedicated OTLP endpoint for metrics",
+          "options": []
+        },
+        {
+          "name": "OTEL_LOGS_EXPORTER_OTLP_ENDPOINT",
+          "type": "str",
+          "default": null,
+          "description": "Dedicated OTLP endpoint for logs",
+          "options": []
+        },
+        {
+          "name": "OTEL_EXPORTER_OTLP_INSECURE",
+          "type": "bool",
+          "default": false,
+          "description": "Use insecure connection for traces",
+          "options": []
+        },
+        {
+          "name": "OTEL_METRICS_EXPORTER_OTLP_INSECURE",
+          "type": "bool",
+          "default": null,
+          "description": "Use insecure connection for metrics",
+          "options": []
+        },
+        {
+          "name": "OTEL_LOGS_EXPORTER_OTLP_INSECURE",
+          "type": "bool",
+          "default": null,
+          "description": "Use insecure connection for logs",
+          "options": []
+        },
+        {
+          "name": "OTEL_SERVICE_NAME",
+          "type": "str",
+          "default": "open-webui",
+          "description": "Service name in telemetry",
+          "options": []
+        },
+        {
+          "name": "OTEL_RESOURCE_ATTRIBUTES",
+          "type": "str",
+          "default": "",
+          "description": "Additional resource attributes (key1=val1,key2=val2)",
+          "options": []
+        },
+        {
+          "name": "OTEL_TRACES_SAMPLER",
+          "type": "str",
+          "default": "parentbased_always_on",
+          "description": "Trace sampling strategy",
+          "options": [
+            "parentbased_always_on",
+            "always_on",
+            "always_off",
+            "parentbased_always_off"
+          ]
+        },
+        {
+          "name": "OTEL_BASIC_AUTH_USERNAME",
+          "type": "str",
+          "default": "",
+          "description": "Basic auth username for OTLP",
+          "options": []
+        },
+        {
+          "name": "OTEL_BASIC_AUTH_PASSWORD",
+          "type": "str",
+          "default": "",
+          "description": "Basic auth password for OTLP",
+          "sensitive": true,
+          "options": []
+        },
+        {
+          "name": "OTEL_METRICS_BASIC_AUTH_USERNAME",
+          "type": "str",
+          "default": null,
+          "description": "Basic auth username for metrics OTLP",
+          "options": []
+        },
+        {
+          "name": "OTEL_METRICS_BASIC_AUTH_PASSWORD",
+          "type": "str",
+          "default": null,
+          "description": "Basic auth password for metrics OTLP",
+          "sensitive": true,
+          "options": []
+        },
+        {
+          "name": "OTEL_LOGS_BASIC_AUTH_USERNAME",
+          "type": "str",
+          "default": null,
+          "description": "Basic auth username for logs OTLP",
+          "options": []
+        },
+        {
+          "name": "OTEL_LOGS_BASIC_AUTH_PASSWORD",
+          "type": "str",
+          "default": null,
+          "description": "Basic auth password for logs OTLP",
+          "sensitive": true,
+          "options": []
+        },
+        {
+          "name": "OTEL_OTLP_SPAN_EXPORTER",
+          "type": "str",
+          "default": "grpc",
+          "description": "Protocol for exporting traces",
+          "options": [
+            "grpc",
+            "http"
+          ]
+        },
+        {
+          "name": "OTEL_METRICS_OTLP_SPAN_EXPORTER",
+          "type": "str",
+          "default": null,
+          "description": "Protocol for exporting metrics",
+          "options": [
+            "grpc",
+            "http"
+          ]
+        },
+        {
+          "name": "OTEL_LOGS_OTLP_SPAN_EXPORTER",
+          "type": "str",
+          "default": null,
+          "description": "Protocol for exporting logs",
+          "options": [
+            "grpc",
+            "http"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oracle23ai",
+      "name": "Oracle 23ai Vector Search",
+      "category": "rag",
+      "requires_api_key": false,
+      "openwebui_variables": [
+        {
+          "name": "ORACLE_DB_DSN",
+          "type": null,
+          "default": null,
+          "description": null,
+          "options": []
+        },
+        {
+          "name": "ORACLE_DB_PASSWORD",
+          "type": null,
+          "default": null,
+          "description": null,
+          "options": []
+        },
+        {
+          "name": "ORACLE_DB_POOL_INCREMENT",
+          "type": null,
+          "default": null,
+          "description": null,
+          "options": []
+        },
+        {
+          "name": "ORACLE_DB_POOL_MAX",
+          "type": null,
+          "default": null,
+          "description": null,
+          "options": []
+        },
+        {
+          "name": "ORACLE_DB_POOL_MIN",
+          "type": null,
+          "default": null,
+          "description": null,
+          "options": []
+        },
+        {
+          "name": "ORACLE_DB_USER",
+          "type": null,
+          "default": null,
+          "description": null,
+          "options": []
+        },
+        {
+          "name": "ORACLE_DB_USE_WALLET",
+          "type": null,
+          "default": null,
+          "description": null,
+          "options": []
+        },
+        {
+          "name": "ORACLE_VECTOR_LENGTH",
+          "type": null,
+          "default": null,
+          "description": null,
+          "options": []
+        },
+        {
+          "name": "ORACLE_WALLET_DIR",
+          "type": null,
+          "default": null,
+          "description": null,
+          "options": []
+        },
+        {
+          "name": "ORACLE_WALLET_PASSWORD",
+          "type": null,
+          "default": null,
+          "description": null,
+          "options": []
+        },
+        {
+          "name": "PGVECTOR_DB_URL",
+          "type": "str",
+          "default": null,
+          "description": "Sets the database URL for model storage.",
+          "options": []
+        },
+        {
+          "name": "VECTOR_DB",
+          "type": "str",
+          "default": "chroma",
+          "description": "Specifies which vector database system to use. This setting determines which vector storage system will be used for managing embeddings.\n\n:::note\n\nPostgreSQL Dependencies\nTo use `pgvector`, ensure you have PostgreSQL dependencies installed:\n\n```bash\npip install open-webui[all]\n```\n\n:::\n\n### ChromaDB",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "perplexity",
+      "name": "Perplexity AI",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/perplexity.svg",
+      "openwebui_variables": [
+        {
+          "name": "PERPLEXITY_API_KEY",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the API key for Perplexity API.",
+          "options": []
+        },
+        {
+          "name": "WEB_SEARCH_ENGINE",
+          "type": "str",
+          "default": null,
+          "description": null,
+          "options": [
+            "searxng",
+            "google_pse",
+            "brave",
+            "kagi",
+            "mojeek",
+            "bocha",
+            "serpstack",
+            "serper",
+            "serply",
+            "searchapi",
+            "serpapi",
+            "duckduckgo",
+            "tavily",
+            "jina",
+            "bing",
+            "exa",
+            "perplexity",
+            "perplexity_search",
+            "sougou",
+            "ollama_cloud"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "perplexity-search",
+      "name": "Perplexity Search API",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/perplexity.svg",
+      "openwebui_variables": [
+        {
+          "name": "PERPLEXITY_API_KEY",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the API key for Perplexity API.",
+          "options": []
+        },
+        {
+          "name": "WEB_SEARCH_ENGINE",
+          "type": "str",
+          "default": null,
+          "description": null,
+          "options": [
+            "searxng",
+            "google_pse",
+            "brave",
+            "kagi",
+            "mojeek",
+            "bocha",
+            "serpstack",
+            "serper",
+            "serply",
+            "searchapi",
+            "serpapi",
+            "duckduckgo",
+            "tavily",
+            "jina",
+            "bing",
+            "exa",
+            "perplexity",
+            "perplexity_search",
+            "sougou",
+            "ollama_cloud"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pgvector",
+      "name": "PGVector (PostgreSQL)",
+      "category": "rag",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/postgresql.svg",
+      "openwebui_variables": [
+        {
+          "name": "PGVECTOR_CREATE_EXTENSION",
+          "type": "str",
+          "default": null,
+          "description": "Creates the vector extension in the database\n\n:::info\n\nIf set to `false`, open-webui will assume the postgreSQL database where embeddings will be stored is pre-configured with the `vector` extension. This also allows open-webui to run as a non superuser database user.\n\n:::\n\n### Qdrant",
+          "options": []
+        },
+        {
+          "name": "PGVECTOR_DB_URL",
+          "type": "str",
+          "default": null,
+          "description": "Sets the database URL for model storage.",
+          "options": []
+        },
+        {
+          "name": "PGVECTOR_INITIALIZE_MAX_VECTOR_LENGTH",
+          "type": "str",
+          "default": "1536",
+          "description": "Specifies the maximum vector length for PGVector initialization.",
+          "options": []
+        },
+        {
+          "name": "VECTOR_DB",
+          "type": "str",
+          "default": "chroma",
+          "description": "Specifies which vector database system to use. This setting determines which vector storage system will be used for managing embeddings.\n\n:::note\n\nPostgreSQL Dependencies\nTo use `pgvector`, ensure you have PostgreSQL dependencies installed:\n\n```bash\npip install open-webui[all]\n```\n\n:::\n\n### ChromaDB",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "pinecone",
+      "name": "Pinecone",
+      "category": "rag",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/pinecone.svg",
+      "openwebui_variables": [
+        {
+          "name": "PGVECTOR_DB_URL",
+          "type": "str",
+          "default": null,
+          "description": "Sets the database URL for model storage.",
+          "options": []
+        },
+        {
+          "name": "PINECONE_API_KEY",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the API key used to authenticate with the Pinecone service.",
+          "options": []
+        },
+        {
+          "name": "PINECONE_CLOUD",
+          "type": "str",
+          "default": "aws",
+          "description": "Specifies the cloud provider where the Pinecone index is hosted.\n\n### Oracle 23ai Vector Search (oracle23ai)",
+          "options": []
+        },
+        {
+          "name": "PINECONE_DIMENSION",
+          "type": "int",
+          "default": "1536",
+          "description": "The dimensionality of the vector embeddings. Must match the dimension expected by the index (commonly 768, 1024, 1536, or 3072 based on model used).",
+          "options": []
+        },
+        {
+          "name": "PINECONE_ENVIRONMENT",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the Pinecone environment to connect to (e.g., `us-west1-gcp`, `gcp-starter`, etc.).",
+          "options": []
+        },
+        {
+          "name": "PINECONE_INDEX_NAME",
+          "type": "str",
+          "default": "open-webui-index",
+          "description": "Defines the name of the Pinecone index that will be used to store and query vector embeddings.",
+          "options": []
+        },
+        {
+          "name": "PINECONE_METRIC",
+          "type": "str",
+          "default": "cosine",
+          "description": "Specifies the similarity metric to use for vector comparisons within the Pinecone index.",
+          "options": []
+        },
+        {
+          "name": "VECTOR_DB",
+          "type": "str",
+          "default": "chroma",
+          "description": "Specifies which vector database system to use. This setting determines which vector storage system will be used for managing embeddings.\n\n:::note\n\nPostgreSQL Dependencies\nTo use `pgvector`, ensure you have PostgreSQL dependencies installed:\n\n```bash\npip install open-webui[all]\n```\n\n:::\n\n### ChromaDB",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "playwright",
+      "name": "Playwright",
+      "category": "web-search",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/playwright.svg",
+      "openwebui_variables": [
+        {
+          "name": "PLAYWRIGHT_TIMEOUT",
+          "type": "int",
+          "default": null,
+          "description": "Specifies the timeout for Playwright requests.",
+          "options": []
+        },
+        {
+          "name": "PLAYWRIGHT_WS_URL",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the WebSocket URI of a remote Playwright browser instance. When set, Open WebUI will use this remote browser instead of installing browser dependencies locally. This is particularly useful in containerized environments where you want to keep the Open WebUI container lightweight and separate browser concerns. Example: `ws://playwright:3000`",
+          "options": []
+        },
+        {
+          "name": "WEB_LOADER_ENGINE",
+          "type": "str",
+          "default": "safe_web",
+          "description": "Specifies the loader to use for retrieving and processing web content.",
+          "options": [
+            "requests",
+            "playwright"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "postgresql",
+      "name": "PostgreSQL",
+      "category": "database",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/postgresql.svg",
+      "openwebui_variables": [
+        {
+          "name": "DATABASE_HOST",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the hostname or IP address of the database server. This is used to construct the `DATABASE_URL` when a complete `DATABASE_URL` is not explicitly defined.",
+          "options": []
+        },
+        {
+          "name": "DATABASE_PASSWORD",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the password for database authentication. This is used to construct the `DATABASE_URL` when a complete `DATABASE_URL` is not explicitly defined. If your password contains special characters, please ensure they are properly URL-encoded.",
+          "options": []
+        },
+        {
+          "name": "DATABASE_TYPE",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the database type (e.g., `sqlite`, `postgresql`, `sqlite+sqlcipher`). This is used in conjunction with other individual parameters to construct the `DATABASE_URL` if a complete `DATABASE_URL` is not explicitly defined.",
+          "options": []
+        },
+        {
+          "name": "DATABASE_URL",
+          "type": "str",
+          "default": "sqlite:///${DATA_DIR}/webui.db",
+          "description": "Specifies the complete database connection URL, following SQLAlchemy's URL scheme. This variable takes precedence over individual database connection parameters if explicitly set.\n\n:::info\n\n**For PostgreSQL support, ensure you installed with `pip install open-webui[all]` instead of the basic installation.**\nSupports SQLite, Postgres, and encrypted SQLite via SQLCipher.\n**Changing the URL does not migrate data between databases.**\n\nDocumentation on the URL scheme is available [here](https://docs.sqlalchemy.org/en/20/core/engines.html#database-urls).\n\nIf your database password contains special characters, please ensure they are properly URL-encoded. For example, a password like `p@ssword` should be encoded as `p%40ssword`.\n\nFor configuration using individual parameters or encrypted SQLite, see the relevant sections below.\n\n:::",
+          "options": []
+        },
+        {
+          "name": "DATABASE_USER",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the username for database authentication. This is used to construct the `DATABASE_URL` when a complete `DATABASE_URL` is not explicitly defined.",
+          "options": []
+        },
+        {
+          "name": "DATABASE_PORT",
+          "type": "int",
+          "default": null,
+          "description": "Specifies the port number of the database server. This is used to construct the DATABASE_URL when a complete DATABASE_URL is not explicitly defined.",
+          "options": []
+        },
+        {
+          "name": "DATABASE_NAME",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the name of the database to connect to. This is used to construct the DATABASE_URL when a complete DATABASE_URL is not explicitly defined.",
+          "options": []
+        },
+        {
+          "name": "DATABASE_SCHEMA",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the database schema to connect to.",
+          "options": []
+        },
+        {
+          "name": "DATABASE_POOL_SIZE",
+          "type": "int",
+          "default": null,
+          "description": "Specifies the pooling strategy and size of the database pool. By default SQLAlchemy will automatically chose the proper pooling strategy for the selected database connection. A value of 0 disables pooling. A value larger 0 will set the pooling strategy to QueuePool and the pool size accordingly.",
+          "options": []
+        },
+        {
+          "name": "DATABASE_POOL_MAX_OVERFLOW",
+          "type": "int",
+          "default": 0,
+          "description": "Specifies the database pool max overflow. More information: https://docs.sqlalchemy.org/en/20/core/pooling.html#sqlalchemy.pool.QueuePool.params.max_overflow",
+          "options": []
+        },
+        {
+          "name": "DATABASE_POOL_TIMEOUT",
+          "type": "int",
+          "default": 30,
+          "description": "Specifies the database pool timeout in seconds to get a connection. More information: https://docs.sqlalchemy.org/en/20/core/pooling.html#sqlalchemy.pool.QueuePool.params.timeout",
+          "options": []
+        },
+        {
+          "name": "DATABASE_POOL_RECYCLE",
+          "type": "int",
+          "default": 3600,
+          "description": "Specifies the database pool recycle time in seconds. More information: https://docs.sqlalchemy.org/en/20/core/pooling.html#setting-pool-recycle",
+          "options": []
+        },
+        {
+          "name": "DATABASE_ENABLE_SQLITE_WAL",
+          "type": "bool",
+          "default": false,
+          "description": "Enables or disables SQLite WAL (Write-Ahead Logging) mode. When enabled, SQLite transactions can be managed more efficiently, allowing multiple readers and one writer concurrently, which can improve database performance, especially under high concurrency. This setting only applies to SQLite databases.",
+          "options": []
+        },
+        {
+          "name": "DATABASE_DEDUPLICATE_INTERVAL",
+          "type": "float",
+          "default": 0,
+          "description": "Sets a time interval in seconds during which certain database write operations (e.g., updating a user's last_active_at timestamp) will be deduplicated. If a write operation is attempted within this interval for the same entity, it will be skipped. A value of 0.0 disables deduplication.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "pyodide",
+      "name": "Pyodide (WebAssembly)",
+      "category": "code-execution",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/pyodide.svg",
+      "openwebui_variables": [
+        {
+          "name": "CODE_EXECUTION_ENGINE",
+          "type": "str",
+          "default": "pyodide",
+          "description": "Specifies the code execution engine to use.",
+          "options": []
+        },
+        {
+          "name": "CODE_INTERPRETER_ENGINE",
+          "type": "str",
+          "default": "pyodide",
+          "description": "Specifies the code interpreter engine to use.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "qdrant",
+      "name": "Qdrant",
+      "category": "rag",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/qdrant.svg",
+      "openwebui_variables": [
+        {
+          "name": "ENABLE_QDRANT_MULTITENANCY_MODE",
+          "type": "bool",
+          "default": "True",
+          "description": "Enables multitenancy pattern for Qdrant collections management, which significantly reduces RAM usage and computational overhead by consolidating similar vector data structures. Recommend turn on\n\n:::info\n\nThis will disconect all Qdrant collections created in the previous pattern, which is non-multitenancy. Go to  `Admin Settings` > `Documents` > `Reindex Knowledge Base` to migrate existing knowledges.\n\nThe Qdrant collections created in the previous pattern will still consume resources.\n\nCurrently, there is no button in the UI to only reset the vector DB. If you want to migrate knowledge to multitenancy:",
+          "options": []
+        },
+        {
+          "name": "PGVECTOR_DB_URL",
+          "type": "str",
+          "default": null,
+          "description": "Sets the database URL for model storage.",
+          "options": []
+        },
+        {
+          "name": "QDRANT_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the API key for Qdrant.",
+          "options": []
+        },
+        {
+          "name": "QDRANT_COLLECTION_PREFIX",
+          "type": "str",
+          "default": "open-webui",
+          "description": "Sets the prefix for Qdrant collection names. Useful for namespacing or isolating collections, especially in multitenancy mode. Changing this value will cause the application to use a different set of collections in Qdrant. Existing collections with a different prefix will not be affected.\n\n### Pinecone\n\nWhen using Pinecone as the vector store, the following environment variables are used to control its behavior. Make sure to set these variables in your `.env` file or deployment environment.",
+          "options": []
+        },
+        {
+          "name": "QDRANT_GRPC_PORT",
+          "type": "int",
+          "default": "6334",
+          "description": "Sets the gRPC port number for Qdrant.",
+          "options": []
+        },
+        {
+          "name": "QDRANT_HNSW_M",
+          "type": "int",
+          "default": "16",
+          "description": "Controls the HNSW (Hierarchical Navigable Small World) index construction. In standard mode, this sets the `m` parameter. In multi-tenancy mode, this value is used for the `payload_m` parameter to build indexes on the payload, as the global `m` is disabled for performance, following Qdrant best practices.",
+          "options": []
+        },
+        {
+          "name": "QDRANT_ON_DISK",
+          "type": "bool",
+          "default": "False",
+          "description": "Enable the usage of memmap(also known as on-disk) storage",
+          "options": []
+        },
+        {
+          "name": "QDRANT_PREFER_GRPC",
+          "type": "bool",
+          "default": "False",
+          "description": "Use gPRC interface whenever possible.\n\n:::info\n\nIf set to `True`, and `QDRANT_URI` points to a self-hosted server with TLS enabled and certificate signed by a private CA, set the environment variable `GRPC_DEFAULT_SSL_ROOTS_FILE_PATH` to the path of your PEM-encoded CA certificates file. See the [gRPC Core Docs](https://grpc.github.io/grpc/core/md_doc_environment_variables.html) for more information.\n\n:::",
+          "options": []
+        },
+        {
+          "name": "QDRANT_TIMEOUT",
+          "type": "int",
+          "default": "5",
+          "description": "Sets the timeout in seconds for all requests made to the Qdrant server, helping to prevent long-running queries from stalling the application.",
+          "options": []
+        },
+        {
+          "name": "QDRANT_URI",
+          "type": "str",
+          "default": null,
+          "description": "Sets the URI for Qdrant.",
+          "options": []
+        },
+        {
+          "name": "VECTOR_DB",
+          "type": "str",
+          "default": "chroma",
+          "description": "Specifies which vector database system to use. This setting determines which vector storage system will be used for managing embeddings.\n\n:::note\n\nPostgreSQL Dependencies\nTo use `pgvector`, ensure you have PostgreSQL dependencies installed:\n\n```bash\npip install open-webui[all]\n```\n\n:::\n\n### ChromaDB",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "rag-shared",
+      "name": "RAG Shared Settings",
+      "category": "rag",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/rag.svg",
+      "description": "Shared configuration for RAG functionality, automatically available when any vector database is configured",
+      "activation_condition": {
+        "type": "provider_selected",
+        "provider_path": "providers.vector_db",
+        "exclude_values": [
+          ""
+        ]
+      },
+      "openwebui_variables": [
+        {
+          "name": "RAG_TOP_K",
+          "type": "int",
+          "default": 3,
+          "description": "Number of documents to retrieve during RAG queries.",
+          "options": []
+        },
+        {
+          "name": "RAG_TOP_K_RERANKER",
+          "type": "int",
+          "default": 3,
+          "description": "Number of documents to consider after reranking.",
+          "options": []
+        },
+        {
+          "name": "RAG_RELEVANCE_THRESHOLD",
+          "type": "float",
+          "default": 0,
+          "description": "Minimum relevance score threshold for retrieved documents.",
+          "options": []
+        },
+        {
+          "name": "ENABLE_RAG_HYBRID_SEARCH",
+          "type": "bool",
+          "default": false,
+          "description": "Enable hybrid search combining BM25 keyword search with vector similarity search.",
+          "options": []
+        },
+        {
+          "name": "RAG_HYBRID_BM25_WEIGHT",
+          "type": "float",
+          "default": 0.5,
+          "description": "Weight for BM25 in hybrid search (0-1). 1 means only keyword search, 0 means only vector search.",
+          "options": []
+        },
+        {
+          "name": "CHUNK_SIZE",
+          "type": "int",
+          "default": 1000,
+          "description": "Document chunk size in characters for embeddings.",
+          "options": []
+        },
+        {
+          "name": "CHUNK_OVERLAP",
+          "type": "int",
+          "default": 100,
+          "description": "Overlap between consecutive chunks in characters.",
+          "options": []
+        },
+        {
+          "name": "RAG_TEXT_SPLITTER",
+          "type": "str",
+          "default": "character",
+          "description": "Text splitter algorithm to use for document chunking.",
+          "options": [
+            "character",
+            "token",
+            "markdown_header"
+          ]
+        },
+        {
+          "name": "TIKTOKEN_CACHE_DIR",
+          "type": "str",
+          "default": "{CACHE_DIR}/tiktoken",
+          "description": "Directory for TikToken cache storage.",
+          "options": []
+        },
+        {
+          "name": "TIKTOKEN_ENCODING_NAME",
+          "type": "str",
+          "default": "cl100k_base",
+          "description": "TikToken encoding name to use.",
+          "options": []
+        },
+        {
+          "name": "PDF_EXTRACT_IMAGES",
+          "type": "bool",
+          "default": false,
+          "description": "Extract images from PDFs using OCR when loading documents.",
+          "options": []
+        },
+        {
+          "name": "RAG_FILE_MAX_SIZE",
+          "type": "int",
+          "default": null,
+          "description": "Maximum file size in megabytes for document upload.",
+          "options": []
+        },
+        {
+          "name": "RAG_FILE_MAX_COUNT",
+          "type": "int",
+          "default": null,
+          "description": "Maximum number of files that can be uploaded at once.",
+          "options": []
+        },
+        {
+          "name": "RAG_ALLOWED_FILE_EXTENSIONS",
+          "type": "list",
+          "default": [],
+          "description": "List of allowed file extensions for upload. Empty list allows all supported types.",
+          "options": []
+        },
+        {
+          "name": "RAG_EMBEDDING_BATCH_SIZE",
+          "type": "int",
+          "default": 1,
+          "description": "Batch size for embedding generation in RAG models.",
+          "options": []
+        },
+        {
+          "name": "RAG_RERANKING_MODEL",
+          "type": "str",
+          "default": null,
+          "description": "Model to use for reranking retrieved results (e.g., cross-encoder model).",
+          "options": []
+        },
+        {
+          "name": "RAG_RERANKING_MODEL_TRUST_REMOTE_CODE",
+          "type": "bool",
+          "default": false,
+          "description": "Trust remote code for reranking model from HuggingFace Hub.",
+          "options": []
+        },
+        {
+          "name": "RAG_RERANKING_MODEL_AUTO_UPDATE",
+          "type": "bool",
+          "default": true,
+          "description": "Automatically update reranking model when newer version available.",
+          "options": []
+        },
+        {
+          "name": "ENABLE_RETRIEVAL_QUERY_GENERATION",
+          "type": "bool",
+          "default": true,
+          "description": "Enable AI-powered query optimization for better retrieval results.",
+          "options": []
+        },
+        {
+          "name": "BYPASS_EMBEDDING_AND_RETRIEVAL",
+          "type": "bool",
+          "default": false,
+          "description": "Bypass embedding and retrieval process (for testing only).",
+          "options": []
+        },
+        {
+          "name": "RAG_FULL_CONTEXT",
+          "type": "bool",
+          "default": false,
+          "description": "Use full document context instead of chunked retrieval.",
+          "options": []
+        },
+        {
+          "name": "ENABLE_RAG_LOCAL_WEB_FETCH",
+          "type": "bool",
+          "default": false,
+          "description": "Enable local web content fetching for RAG.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "redis",
+      "name": "Redis",
+      "category": "cache",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/redis.svg",
+      "openwebui_variables": [
+        {
+          "name": "REDIS_KEY_PREFIX",
+          "type": "str",
+          "default": "open-webui",
+          "description": "Customizes the Redis key prefix used for storing configuration values. This allows multiple Open WebUI instances to share the same Redis instance without key conflicts. When operating in Redis cluster mode, the prefix is formatted as `{prefix}:` (e.g., `{open-webui}:config:*`) to enable multi-key operations on configuration keys within the same hash slot.",
+          "options": []
+        },
+        {
+          "name": "REDIS_URL",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the URL of the Redis instance or cluster host for storing application state.",
+          "options": []
+        },
+        {
+          "name": "WEBSOCKET_REDIS_URL",
+          "type": "str",
+          "default": "${REDIS_URL}",
+          "description": "Specifies the URL of the Redis instance or cluster host for websocket communication. It is distinct from `REDIS_URL` and in practice, it is recommended to set both.\n\n:::info\n\nWhen deploying Open WebUI in a multi-node/worker cluster with a load balancer, you must ensure that the WEBSOCKET_REDIS_URL value is set and a key-value NoSQL database like Redis is used. Without it, websocket consistency and persistency issues will occur.\n\n:::",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "redis-cluster",
+      "name": "Redis Cluster",
+      "category": "cache",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/redis.svg",
+      "openwebui_variables": [
+        {
+          "name": "REDIS_CLUSTER",
+          "type": "bool",
+          "default": "False",
+          "description": "Connect to a Redis Cluster instead of a single instance or using Redis Sentinels. If `True`, `REDIS_URL` must also be defined.\n\n:::info\n\nThis option has no effect if `REDIS_SENTINEL_HOSTS` is defined.\n\n:::",
+          "options": []
+        },
+        {
+          "name": "REDIS_URL",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the URL of the Redis instance or cluster host for storing application state.",
+          "options": []
+        },
+        {
+          "name": "WEBSOCKET_REDIS_CLUSTER",
+          "type": "bool",
+          "default": "${REDIS_CLUSTER}",
+          "description": "Specifies that websocket should communicate with a Redis Cluster instead of a single instance or using Redis Sentinels. If `True`, `WEBSOCKET_REDIS_URL` and/or `REDIS_URL` must also be defined.\n\n:::info\n\nThis option has no effect if `WEBSOCKET_SENTINEL_HOSTS` is defined.\n\n:::",
+          "options": []
+        },
+        {
+          "name": "WEBSOCKET_REDIS_URL",
+          "type": "str",
+          "default": "${REDIS_URL}",
+          "description": "Specifies the URL of the Redis instance or cluster host for websocket communication. It is distinct from `REDIS_URL` and in practice, it is recommended to set both.\n\n:::info\n\nWhen deploying Open WebUI in a multi-node/worker cluster with a load balancer, you must ensure that the WEBSOCKET_REDIS_URL value is set and a key-value NoSQL database like Redis is used. Without it, websocket consistency and persistency issues will occur.\n\n:::",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "redis-sentinel",
+      "name": "Redis Sentinel",
+      "category": "cache",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/redis.svg",
+      "openwebui_variables": [
+        {
+          "name": "REDIS_SENTINEL_HOSTS",
+          "type": "str",
+          "default": null,
+          "description": "Comma-separated list of Redis Sentinels for app state. If specified, the \"hostname\" in `REDIS_URL` will be interpreted as the Sentinel service name.",
+          "options": []
+        },
+        {
+          "name": "REDIS_SENTINEL_PORT",
+          "type": "int",
+          "default": "26379",
+          "description": "Sentinel port for app state Redis.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "name": "Amazon S3",
+      "category": "storage",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/s3.svg",
+      "openwebui_variables": [
+        {
+          "name": "S3_ACCESS_KEY_ID",
+          "type": "str",
+          "default": null,
+          "description": "Sets the access key ID for S3 storage.",
+          "options": []
+        },
+        {
+          "name": "S3_BUCKET_NAME",
+          "type": "str",
+          "default": null,
+          "description": "Sets the bucket name for S3 storage.",
+          "options": []
+        },
+        {
+          "name": "S3_ENDPOINT_URL",
+          "type": "str",
+          "default": null,
+          "description": "Sets the endpoint URL for S3 storage.\n\n:::info\n\nIf the endpoint is an S3-compatible provider like MinIO that uses a TLS certificate signed by a private CA, set the environment variable `AWS_CA_BUNDLE` to the path of your PEM-encoded CA certificates file. See the [Amazon SDK Docs](https://docs.aws.amazon.com/sdkref/latest/guide/feature-gen-config.html) for more information.\n\n:::",
+          "options": []
+        },
+        {
+          "name": "S3_SECRET_ACCESS_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the secret access key for S3 storage.",
+          "options": []
+        },
+        {
+          "name": "S3_KEY_PREFIX",
+          "type": "str",
+          "default": null,
+          "description": "Sets the key prefix for a S3 object.",
+          "options": []
+        },
+        {
+          "name": "S3_USE_ACCELERATE_ENDPOINT",
+          "type": "bool",
+          "default": false,
+          "description": "Specifies whether to use the accelerated endpoint for S3 storage.",
+          "options": []
+        },
+        {
+          "name": "S3_ENABLE_TAGGING",
+          "type": "bool",
+          "default": false,
+          "description": "Enables S3 object tagging. Set to False for Cloudflare R2.",
+          "options": []
+        },
+        {
+          "name": "S3_ADDRESSING_STYLE",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the addressing style to use for S3 storage (e.g., 'path', 'virtual').",
+          "options": [
+            "path",
+            "virtual"
+          ]
+        },
+        {
+          "name": "S3_REGION_NAME",
+          "type": "str",
+          "default": null,
+          "description": "Sets the region name for S3 storage.",
+          "options": []
+        },
+        {
+          "name": "STORAGE_PROVIDER",
+          "type": "str",
+          "default": null,
+          "description": "Sets the storage provider.",
+          "options": [
+            "s3",
+            "gcs",
+            "azure"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s3vector",
+      "name": "S3 Vector Bucket",
+      "category": "rag",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/s3vectors.svg",
+      "openwebui_variables": [
+        {
+          "name": "PGVECTOR_DB_URL",
+          "type": "str",
+          "default": null,
+          "description": "Sets the database URL for model storage.",
+          "options": []
+        },
+        {
+          "name": "S3_VECTOR_BUCKET_NAME",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the name of the S3 Vector Bucket to store vectors in.",
+          "options": []
+        },
+        {
+          "name": "S3_VECTOR_REGION",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the AWS region where the S3 Vector Bucket is hosted.\n\n## RAG Content Extraction Engine",
+          "options": []
+        },
+        {
+          "name": "VECTOR_DB",
+          "type": "str",
+          "default": "chroma",
+          "description": "Specifies which vector database system to use. This setting determines which vector storage system will be used for managing embeddings.\n\n:::note\n\nPostgreSQL Dependencies\nTo use `pgvector`, ensure you have PostgreSQL dependencies installed:\n\n```bash\npip install open-webui[all]\n```\n\n:::\n\n### ChromaDB",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "search-shared",
+      "name": "Web Search Shared Settings",
+      "category": "web-search",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/search.svg",
+      "description": "Shared configuration for web search functionality, automatically available when any search engine is configured",
+      "activation_condition": {
+        "type": "provider_selected",
+        "provider_path": "providers.web_search_engine",
+        "exclude_values": [
+          ""
+        ]
+      },
+      "openwebui_variables": [
+        {
+          "name": "ENABLE_SEARCH_QUERY_GENERATION",
+          "type": "bool",
+          "default": true,
+          "description": "Enable AI-powered query optimization for web search.",
+          "options": []
+        },
+        {
+          "name": "WEB_SEARCH_TRUST_ENV",
+          "type": "bool",
+          "default": false,
+          "description": "Use http_proxy and https_proxy environment variables for web search requests.",
+          "options": []
+        },
+        {
+          "name": "WEB_SEARCH_RESULT_COUNT",
+          "type": "int",
+          "default": 3,
+          "description": "Maximum number of search results to process and retrieve.",
+          "options": []
+        },
+        {
+          "name": "WEB_LOADER_CONCURRENT_REQUESTS",
+          "type": "int",
+          "default": 10,
+          "description": "Number of concurrent requests for fetching web page content from search results.",
+          "options": []
+        },
+        {
+          "name": "BYPASS_WEB_SEARCH_EMBEDDING_AND_RETRIEVAL",
+          "type": "bool",
+          "default": false,
+          "description": "Skip RAG processing of web search results.",
+          "options": []
+        },
+        {
+          "name": "YOUTUBE_LOADER_PROXY_URL",
+          "type": "str",
+          "default": null,
+          "description": "Proxy URL for YouTube transcript fetching.",
+          "options": []
+        },
+        {
+          "name": "YOUTUBE_LOADER_LANGUAGE",
+          "type": "str",
+          "default": "en",
+          "description": "Comma-separated list of language codes to try when fetching YouTube transcripts, in priority order.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "searchapi",
+      "name": "SearchAPI",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/searchapi.svg",
+      "openwebui_variables": [
+        {
+          "name": "SEARCHAPI_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the API key for SearchAPI.",
+          "options": []
+        },
+        {
+          "name": "SEARCHAPI_ENGINE",
+          "type": "str",
+          "default": null,
+          "description": "Sets the SearchAPI engine.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "searxng",
+      "name": "SearXNG",
+      "category": "web-search",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/searxng.svg",
+      "openwebui_variables": [
+        {
+          "name": "SEARXNG_QUERY_URL",
+          "type": "str",
+          "default": null,
+          "description": "The [SearXNG search API](https://docs.searxng.org/dev/search_api.html) URL supporting JSON output. `<query>` is replaced with\nthe search query. Example: `http://searxng.local/search?q=<query>`",
+          "options": []
+        },
+        {
+          "name": "SEARXNG_BASE_URL",
+          "type": "str",
+          "default": "",
+          "description": "SearXNG base URL",
+          "options": []
+        },
+        {
+          "name": "SEARXNG_SAFE_SEARCH",
+          "type": "int",
+          "default": 0,
+          "description": "Safe search level (0, 1, 2)",
+          "options": []
+        },
+        {
+          "name": "SEARXNG_AUTOCOMPLETE",
+          "type": "str",
+          "default": "google",
+          "description": "Autocomplete provider",
+          "options": [
+            "google",
+            "duckduckgo",
+            "wikipedia",
+            ""
+          ]
+        },
+        {
+          "name": "SEARXNG_MAX_PAGE",
+          "type": "int",
+          "default": 10,
+          "description": "Maximum pages to search",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "sentencetransformers",
+      "name": "SentenceTransformers (Local)",
+      "category": "rag",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/huggingface.svg",
+      "openwebui_variables": [
+        {
+          "name": "RAG_EMBEDDING_ENGINE",
+          "type": "str",
+          "default": null,
+          "description": "Selects an embedding engine to use for RAG.",
+          "options": [
+            "ollama",
+            "openai",
+            "azure_openai"
+          ]
+        },
+        {
+          "name": "RAG_EMBEDDING_MODEL",
+          "type": "str",
+          "default": "sentence-transformers/all-MiniLM-L6-v2",
+          "description": "Sets a model for embeddings. Locally, a Sentence-Transformer model is used.",
+          "options": []
+        },
+        {
+          "name": "RAG_EMBEDDING_MODEL_AUTO_UPDATE",
+          "type": "bool",
+          "default": "True",
+          "description": "Toggles automatic update of the Sentence-Transformer model.",
+          "options": []
+        },
+        {
+          "name": "RAG_EMBEDDING_MODEL_TRUST_REMOTE_CODE",
+          "type": "bool",
+          "default": "False",
+          "description": "Determines whether to allow custom models defined on the Hub in their own modeling files.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "serpapi",
+      "name": "SerpAPI",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/serpapi.svg",
+      "openwebui_variables": [
+        {
+          "name": "SERPAPI_API_KEY",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the API key for SerpAPI.",
+          "options": []
+        },
+        {
+          "name": "SERPAPI_ENGINE",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the search engine to use for SerpAPI.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "serper",
+      "name": "Serper",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/google.svg",
+      "openwebui_variables": [
+        {
+          "name": "SERPER_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the API key for Serper search API.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "serply",
+      "name": "Serply",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/searchapi.svg",
+      "openwebui_variables": [
+        {
+          "name": "SERPLY_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the API key for Serply search API.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "serpstack",
+      "name": "Serpstack",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/searchapi.svg",
+      "openwebui_variables": [
+        {
+          "name": "SERPSTACK_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the API key for Serpstack search API.",
+          "options": []
+        },
+        {
+          "name": "SERPSTACK_HTTPS",
+          "type": "bool",
+          "default": "True",
+          "description": "Configures the use of HTTPS for Serpstack requests. Free tier requests are restricted to HTTP only.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "sougou",
+      "name": "Sougou Search",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/sougou.svg",
+      "openwebui_variables": [
+        {
+          "name": "SOUGOU_API_SID",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the Sogou API SID.",
+          "options": []
+        },
+        {
+          "name": "SOUGOU_API_SK",
+          "type": "str",
+          "default": "None",
+          "description": "Sets the Sogou API SK.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "sqlcipher",
+      "name": "SQLCipher (Encrypted SQLite)",
+      "category": "database",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/sqlite.svg",
+      "openwebui_variables": [
+        {
+          "name": "DATABASE_PASSWORD",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the password for database authentication. This is used to construct the `DATABASE_URL` when a complete `DATABASE_URL` is not explicitly defined. If your password contains special characters, please ensure they are properly URL-encoded.",
+          "options": []
+        },
+        {
+          "name": "DATABASE_TYPE",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the database type (e.g., `sqlite`, `postgresql`, `sqlite+sqlcipher`). This is used in conjunction with other individual parameters to construct the `DATABASE_URL` if a complete `DATABASE_URL` is not explicitly defined.",
+          "options": []
+        },
+        {
+          "name": "DATABASE_POOL_SIZE",
+          "type": "int",
+          "default": null,
+          "description": "Specifies the pooling strategy and size of the database pool. By default SQLAlchemy will automatically chose the proper pooling strategy for the selected database connection. A value of 0 disables pooling. A value larger 0 will set the pooling strategy to QueuePool and the pool size accordingly.",
+          "options": []
+        },
+        {
+          "name": "DATABASE_POOL_MAX_OVERFLOW",
+          "type": "int",
+          "default": 0,
+          "description": "Specifies the database pool max overflow. More information: https://docs.sqlalchemy.org/en/20/core/pooling.html#sqlalchemy.pool.QueuePool.params.max_overflow",
+          "options": []
+        },
+        {
+          "name": "DATABASE_POOL_TIMEOUT",
+          "type": "int",
+          "default": 30,
+          "description": "Specifies the database pool timeout in seconds to get a connection. More information: https://docs.sqlalchemy.org/en/20/core/pooling.html#sqlalchemy.pool.QueuePool.params.timeout",
+          "options": []
+        },
+        {
+          "name": "DATABASE_POOL_RECYCLE",
+          "type": "int",
+          "default": 3600,
+          "description": "Specifies the database pool recycle time in seconds. More information: https://docs.sqlalchemy.org/en/20/core/pooling.html#setting-pool-recycle",
+          "options": []
+        },
+        {
+          "name": "DATABASE_ENABLE_SQLITE_WAL",
+          "type": "bool",
+          "default": false,
+          "description": "Enables or disables SQLite WAL (Write-Ahead Logging) mode. When enabled, SQLite transactions can be managed more efficiently, allowing multiple readers and one writer concurrently, which can improve database performance, especially under high concurrency. This setting only applies to SQLite databases.",
+          "options": []
+        },
+        {
+          "name": "DATABASE_DEDUPLICATE_INTERVAL",
+          "type": "float",
+          "default": 0,
+          "description": "Sets a time interval in seconds during which certain database write operations (e.g., updating a user's last_active_at timestamp) will be deduplicated. If a write operation is attempted within this interval for the same entity, it will be skipped. A value of 0.0 disables deduplication.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "sqlite",
+      "name": "SQLite",
+      "category": "database",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/sqlite.svg",
+      "openwebui_variables": [
+        {
+          "name": "DATABASE_TYPE",
+          "type": "str",
+          "default": "None",
+          "description": "Specifies the database type (e.g., `sqlite`, `postgresql`, `sqlite+sqlcipher`). This is used in conjunction with other individual parameters to construct the `DATABASE_URL` if a complete `DATABASE_URL` is not explicitly defined.",
+          "options": []
+        },
+        {
+          "name": "DATABASE_URL",
+          "type": "str",
+          "default": "sqlite:///${DATA_DIR}/webui.db",
+          "description": "Specifies the complete database connection URL, following SQLAlchemy's URL scheme. This variable takes precedence over individual database connection parameters if explicitly set.\n\n:::info\n\n**For PostgreSQL support, ensure you installed with `pip install open-webui[all]` instead of the basic installation.**\nSupports SQLite, Postgres, and encrypted SQLite via SQLCipher.\n**Changing the URL does not migrate data between databases.**\n\nDocumentation on the URL scheme is available [here](https://docs.sqlalchemy.org/en/20/core/engines.html#database-urls).\n\nIf your database password contains special characters, please ensure they are properly URL-encoded. For example, a password like `p@ssword` should be encoded as `p%40ssword`.\n\nFor configuration using individual parameters or encrypted SQLite, see the relevant sections below.\n\n:::",
+          "options": []
+        },
+        {
+          "name": "DATABASE_POOL_SIZE",
+          "type": "int",
+          "default": null,
+          "description": "Specifies the pooling strategy and size of the database pool. By default SQLAlchemy will automatically chose the proper pooling strategy for the selected database connection. A value of 0 disables pooling. A value larger 0 will set the pooling strategy to QueuePool and the pool size accordingly.",
+          "options": []
+        },
+        {
+          "name": "DATABASE_POOL_MAX_OVERFLOW",
+          "type": "int",
+          "default": 0,
+          "description": "Specifies the database pool max overflow. More information: https://docs.sqlalchemy.org/en/20/core/pooling.html#sqlalchemy.pool.QueuePool.params.max_overflow",
+          "options": []
+        },
+        {
+          "name": "DATABASE_POOL_TIMEOUT",
+          "type": "int",
+          "default": 30,
+          "description": "Specifies the database pool timeout in seconds to get a connection. More information: https://docs.sqlalchemy.org/en/20/core/pooling.html#sqlalchemy.pool.QueuePool.params.timeout",
+          "options": []
+        },
+        {
+          "name": "DATABASE_POOL_RECYCLE",
+          "type": "int",
+          "default": 3600,
+          "description": "Specifies the database pool recycle time in seconds. More information: https://docs.sqlalchemy.org/en/20/core/pooling.html#setting-pool-recycle",
+          "options": []
+        },
+        {
+          "name": "DATABASE_ENABLE_SQLITE_WAL",
+          "type": "bool",
+          "default": false,
+          "description": "Enables or disables SQLite WAL (Write-Ahead Logging) mode. When enabled, SQLite transactions can be managed more efficiently, allowing multiple readers and one writer concurrently, which can improve database performance, especially under high concurrency. This setting only applies to SQLite databases.",
+          "options": []
+        },
+        {
+          "name": "DATABASE_DEDUPLICATE_INTERVAL",
+          "type": "float",
+          "default": 0,
+          "description": "Sets a time interval in seconds during which certain database write operations (e.g., updating a user's last_active_at timestamp) will be deduplicated. If a write operation is attempted within this interval for the same entity, it will be skipped. A value of 0.0 disables deduplication.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "tavily",
+      "name": "Tavily",
+      "category": "web-search",
+      "requires_api_key": true,
+      "logo": "@/assets/icons/tavily.svg",
+      "openwebui_variables": [
+        {
+          "name": "TAVILY_API_KEY",
+          "type": "str",
+          "default": null,
+          "description": "Sets the API key for Tavily search API.",
+          "options": []
+        },
+        {
+          "name": "TAVILY_EXTRACT_DEPTH",
+          "type": "str",
+          "default": "basic",
+          "description": "Specifies the extract depth for Tavily search results.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "tika",
+      "name": "Apache Tika",
+      "category": "content-extraction",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/tika.svg",
+      "openwebui_variables": [
+        {
+          "name": "TIKA_SERVER_URL",
+          "type": "str",
+          "default": "http://localhost:9998",
+          "description": "Sets the URL for the Apache Tika server.",
+          "options": []
+        },
+        {
+          "name": "TIKA_HEAP_SIZE",
+          "type": "str",
+          "default": "2g",
+          "description": "Tika heap size",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "transformers-tts",
+      "name": "Transformers TTS (Local)",
+      "category": "text-to-speech",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/huggingface.svg",
+      "openwebui_variables": [
+        {
+          "name": "AUDIO_TTS_ENGINE",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the Text-to-Speech engine to use.",
+          "options": [
+            "azure",
+            "elevenlabs",
+            "openai",
+            "transformers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "webapi-tts",
+      "name": "Web API TTS (Browser)",
+      "category": "text-to-speech",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/playwright.svg",
+      "openwebui_variables": [
+        {
+          "name": "AUDIO_TTS_ENGINE",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the Text-to-Speech engine to use.",
+          "options": [
+            "azure",
+            "elevenlabs",
+            "openai",
+            "transformers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whisper-local",
+      "name": "Whisper (Local)",
+      "category": "speech-to-text",
+      "requires_api_key": false,
+      "logo": "@/assets/icons/openai.svg",
+      "openwebui_variables": [
+        {
+          "name": "AUDIO_STT_ENGINE",
+          "type": "str",
+          "default": null,
+          "description": "Specifies the Speech-to-Text engine to use.",
+          "options": [
+            "openai",
+            "deepgram",
+            "azure"
+          ]
+        },
+        {
+          "name": "WHISPER_LANGUAGE",
+          "type": "str",
+          "default": "",
+          "description": "Whisper language code",
+          "options": []
+        },
+        {
+          "name": "WHISPER_MODEL",
+          "type": "str",
+          "default": "base",
+          "description": "Whisper model to use",
+          "options": [
+            "tiny",
+            "base",
+            "small",
+            "medium",
+            "large"
+          ]
+        },
+        {
+          "name": "WHISPER_MODEL_AUTO_UPDATE",
+          "type": "bool",
+          "default": false,
+          "description": "Toggles automatic update of the Whisper model.",
+          "options": []
+        },
+        {
+          "name": "WHISPER_MODEL_DIR",
+          "type": "str",
+          "default": "${DATA_DIR}/cache/whisper/models",
+          "description": "Specifies the directory to store Whisper model files.",
+          "options": []
+        },
+        {
+          "name": "WHISPER_VAD_FILTER",
+          "type": "bool",
+          "default": false,
+          "description": "Specifies whether to apply a Voice Activity Detection (VAD) filter to Whisper Speech-to-Text.",
+          "options": []
+        },
+        {
+          "name": "WHISPER_BEAM_SIZE",
+          "type": "int",
+          "default": 5,
+          "description": "Whisper beam size",
+          "options": []
+        },
+        {
+          "name": "WHISPER_COMPUTE_TYPE",
+          "type": "str",
+          "default": "int8",
+          "description": "Whisper compute type",
+          "options": [
+            "int8",
+            "float16",
+            "float32"
+          ]
+        },
+        {
+          "name": "WHISPER_DEVICE",
+          "type": "str",
+          "default": "auto",
+          "description": "Whisper device",
+          "options": [
+            "auto",
+            "cpu",
+            "cuda"
+          ]
+        },
+        {
+          "name": "WHISPER_CACHE_DIR",
+          "type": "str",
+          "default": "/var/lib/whisper/cache",
+          "description": "Whisper cache directory",
+          "options": []
+        }
+      ]
+    }
+  ]
+}
