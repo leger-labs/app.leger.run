@@ -1,0 +1,29 @@
+{
+  "id": "voyage-3.5-lite",
+  "name": "Voyage 3.5 Lite",
+  "maker": "voyage",
+  "providers": [
+    {
+      "id": "voyage",
+      "litellm_model_name": "voyage/voyage-3.5-lite",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/voyage.svg",
+  "description": "Lightweight embedding model optimized for speed and cost efficiency",
+  "capabilities": [
+    "embeddings"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.02",
+    "output_per_1m": "—",
+    "tier": "budget"
+  },
+  "use_cases": [
+    "High-volume semantic search",
+    "Budget-conscious RAG pipelines",
+    "Real-time retrieval",
+    "Vector database indexing"
+  ],
+  "enabled": true
+}

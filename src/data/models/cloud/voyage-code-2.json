@@ -1,0 +1,30 @@
+{
+  "id": "voyage-code-2",
+  "name": "Voyage Code 2",
+  "maker": "voyage",
+  "providers": [
+    {
+      "id": "voyage",
+      "litellm_model_name": "voyage/voyage-code-2",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/voyage.svg",
+  "description": "Previous generation code embedding model with balanced performance and cost",
+  "capabilities": [
+    "embeddings"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.12",
+    "output_per_1m": "—",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Code search",
+    "Codebase navigation",
+    "Function similarity",
+    "API documentation retrieval"
+  ],
+  "enabled": true,
+  "notes": "Predecessor to Voyage Code 3, still recommended for cost-sensitive applications"
+}

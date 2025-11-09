@@ -1,0 +1,30 @@
+{
+  "id": "voyage-law-2",
+  "name": "Voyage Law 2",
+  "maker": "voyage",
+  "providers": [
+    {
+      "id": "voyage",
+      "litellm_model_name": "voyage/voyage-law-2",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/voyage.svg",
+  "description": "Specialized embedding model fine-tuned for legal document retrieval and analysis",
+  "capabilities": [
+    "embeddings"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.12",
+    "output_per_1m": "—",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Legal document search",
+    "Case law retrieval",
+    "Contract analysis",
+    "Legal research assistants"
+  ],
+  "enabled": true,
+  "notes": "Optimized for legal domain terminology and document structures"
+}

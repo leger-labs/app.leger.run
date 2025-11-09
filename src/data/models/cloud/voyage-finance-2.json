@@ -1,0 +1,30 @@
+{
+  "id": "voyage-finance-2",
+  "name": "Voyage Finance 2",
+  "maker": "voyage",
+  "providers": [
+    {
+      "id": "voyage",
+      "litellm_model_name": "voyage/voyage-finance-2",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/voyage.svg",
+  "description": "Domain-specific embedding model optimized for financial documents and analysis",
+  "capabilities": [
+    "embeddings"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.12",
+    "output_per_1m": "—",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Financial document retrieval",
+    "Earnings report analysis",
+    "Market research search",
+    "Regulatory compliance"
+  ],
+  "enabled": true,
+  "notes": "Fine-tuned on financial terminology, reports, and market data"
+}
