@@ -1,0 +1,31 @@
+{
+  "id": "voyage-3-large",
+  "name": "Voyage 3 Large",
+  "maker": "voyage",
+  "providers": [
+    {
+      "id": "voyage",
+      "litellm_model_name": "voyage/voyage-3-large",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/voyage.svg",
+  "description": "High-capacity embedding model with 10B parameters for premium retrieval tasks",
+  "capabilities": [
+    "embeddings"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.18",
+    "output_per_1m": "—",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "High fidelity semantic search",
+    "Enterprise RAG workloads",
+    "Large document indexing",
+    "Advanced similarity ranking"
+  ],
+  "enabled": true,
+  "embedding_dimension": 1536,
+  "notes": "Premium embedding quality for demanding retrieval tasks"
+}

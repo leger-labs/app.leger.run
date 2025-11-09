@@ -1,0 +1,61 @@
+{
+  "id": "voyage",
+  "name": "Voyage AI",
+  "icon": "@/assets/icons/voyage.svg",
+  "website": "https://www.voyageai.com/",
+  "requires_api_key": "VOYAGE_API_KEY",
+  "api_key_register_url": "https://dash.voyageai.com/",
+  "description": "Domain-specialized embedding APIs from Voyage AI",
+  "provider_type": "api",
+  "models": [
+    {
+      "id": "voyage/voyage-3.5-lite",
+      "maker": "voyage",
+      "context": null,
+      "input_cost_per_million": 0.02,
+      "output_cost_per_million": null
+    },
+    {
+      "id": "voyage/voyage-3.5",
+      "maker": "voyage",
+      "context": null,
+      "input_cost_per_million": 0.06,
+      "output_cost_per_million": null
+    },
+    {
+      "id": "voyage/voyage-3-large",
+      "maker": "voyage",
+      "context": null,
+      "input_cost_per_million": 0.18,
+      "output_cost_per_million": null
+    },
+    {
+      "id": "voyage/voyage-law-2",
+      "maker": "voyage",
+      "context": null,
+      "input_cost_per_million": 0.12,
+      "output_cost_per_million": null
+    },
+    {
+      "id": "voyage/voyage-code-3",
+      "maker": "voyage",
+      "context": null,
+      "input_cost_per_million": 0.18,
+      "output_cost_per_million": null
+    },
+    {
+      "id": "voyage/voyage-code-2",
+      "maker": "voyage",
+      "context": null,
+      "input_cost_per_million": 0.12,
+      "output_cost_per_million": null
+    },
+    {
+      "id": "voyage/voyage-finance-2",
+      "maker": "voyage",
+      "context": null,
+      "input_cost_per_million": 0.12,
+      "output_cost_per_million": null
+    }
+  ]
+}

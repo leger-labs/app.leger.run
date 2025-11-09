@@ -25,7 +25,8 @@
     "vision",
     "code",
     "tool_calling",
-    "function_execution"
+    "function_execution",
+    "image"
   ],
   "pricing": {
     "input_per_1m": "$1.25",

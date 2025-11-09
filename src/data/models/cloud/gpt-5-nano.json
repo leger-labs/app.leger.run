@@ -20,7 +20,8 @@
   "description": "Fastest, most cost-efficient GPT-5 for everyday tasks",
   "capabilities": [
     "chat",
-    "reasoning"
+    "reasoning",
+    "image"
   ],
   "pricing": {
     "input_per_1m": "$0.05",

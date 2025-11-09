@@ -1,0 +1,16 @@
+{
+  "id": "voyage",
+  "name": "Voyage AI",
+  "icon": "@/assets/icons/voyage.svg",
+  "website": "https://www.voyageai.com/",
+  "description": "Specialized embedding models for domain-specific retrieval",
+  "models": [
+    "voyage/voyage-3.5-lite",
+    "voyage/voyage-3.5",
+    "voyage/voyage-3-large",
+    "voyage/voyage-law-2",
+    "voyage/voyage-code-3",
+    "voyage/voyage-code-2",
+    "voyage/voyage-finance-2"
+  ]
+}

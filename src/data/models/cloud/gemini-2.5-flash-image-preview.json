@@ -1,0 +1,42 @@
+{
+  "id": "gemini-2.5-flash-image-preview",
+  "name": "Gemini 2.5 Flash Image Preview",
+  "maker": "google",
+  "providers": [
+    {
+      "id": "gemini",
+      "litellm_model_name": "gemini/gemini-2.5-flash-image-preview",
+      "is_default": true
+    },
+    {
+      "id": "vertex-ai",
+      "litellm_model_name": "vertex_ai/gemini-2.5-flash-image-preview",
+      "is_default": false
+    }
+  ],
+  "context_window": 33000,
+  "max_output": 8250,
+  "icon": "@/assets/icons/google.svg",
+  "description": "Preview variant of Google's Gemini 2.5 Flash Image with experimental image generation features",
+  "capabilities": [
+    "chat",
+    "vision",
+    "multimodal",
+    "image",
+    "reasoning"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.30",
+    "output_per_1m": "$2.50",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "Experimental image generation",
+    "Multimodal content creation",
+    "Visual prototyping",
+    "Preview of upcoming features"
+  ],
+  "release_date": "2025",
+  "notes": "Preview model with experimental image generation capabilities",
+  "enabled": true
+}

@@ -1,0 +1,29 @@
+{
+  "id": "voyage-3.5",
+  "name": "Voyage 3.5",
+  "maker": "voyage",
+  "providers": [
+    {
+      "id": "voyage",
+      "litellm_model_name": "voyage/voyage-3.5",
+      "is_default": true
+    }
+  ],
+  "icon": "@/assets/icons/voyage.svg",
+  "description": "Balanced embedding model for general-purpose semantic search and retrieval",
+  "capabilities": [
+    "embeddings"
+  ],
+  "pricing": {
+    "input_per_1m": "$0.06",
+    "output_per_1m": "—",
+    "tier": "standard"
+  },
+  "use_cases": [
+    "General semantic search",
+    "RAG applications",
+    "Document similarity",
+    "Content recommendation"
+  ],
+  "enabled": true
+}

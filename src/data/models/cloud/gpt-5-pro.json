@@ -14,9 +14,11 @@
   "icon": "@/assets/icons/openai.svg",
   "description": "Scaled test-time compute for challenging reasoning tasks",
   "capabilities": [
+    "chat",
     "reasoning",
     "code",
-    "multimodal"
+    "multimodal",
+    "image"
   ],
   "pricing": {
     "input_per_1m": "Premium tier",
