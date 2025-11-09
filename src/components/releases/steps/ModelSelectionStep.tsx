@@ -11,6 +11,8 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { apiClient } from '@/lib/api-client';
+import { useModelStore } from '@/hooks/use-model-store';
+import { resolveIconPath } from '@/assets/icons';
 import type { CrystallizedConfig, ModelDefinition } from '@/types/release-wizard';
 
 interface ModelSelectionStepProps {
@@ -24,6 +26,7 @@ export function ModelSelectionStep({ config, onUpdate }: ModelSelectionStepProps
   const [enabledProviders, setEnabledProviders] = useState<string[]>([]);
   const [filterProvider, setFilterProvider] = useState<string>('all');
   const [isLoading, setIsLoading] = useState(true);
+  const { providers } = useModelStore();
 
   const selectedModelIds = useMemo(
     () => config.models?.selected?.map((m) => m.model_id) || [],
@@ -109,24 +112,35 @@ export function ModelSelectionStep({ config, onUpdate }: ModelSelectionStepProps
     });
   };
 
-  // Filter cloud models by provider
+  // Filter cloud models: ONLY show models where at least one provider is configured
+  const availableCloudModels = useMemo(() => {
+    return cloudModels.filter((model) =>
+      model.providers.some((p) => enabledProviders.includes(p.id))
+    );
+  }, [cloudModels, enabledProviders]);
+
+  // Filter by selected provider tab
   const filteredCloudModels = useMemo(() => {
     if (filterProvider === 'all') {
-      return cloudModels;
+      return availableCloudModels;
     }
-    return cloudModels.filter((model) =>
+    return availableCloudModels.filter((model) =>
       model.providers.some((p) => p.id === filterProvider)
     );
-  }, [cloudModels, filterProvider]);
+  }, [availableCloudModels, filterProvider]);
 
-  // Get unique provider IDs from cloud models
+  // Get unique enabled provider IDs from available cloud models
   const availableProviders = useMemo(() => {
     const providerSet = new Set<string>();
-    cloudModels.forEach((model) => {
-      model.providers.forEach((p) => providerSet.add(p.id));
+    availableCloudModels.forEach((model) => {
+      model.providers.forEach((p) => {
+        if (enabledProviders.includes(p.id)) {
+          providerSet.add(p.id);
+        }
+      });
     });
     return Array.from(providerSet);
-  }, [cloudModels]);
+  }, [availableCloudModels, enabledProviders]);
 
   if (isLoading) {
     return (
@@ -141,8 +155,8 @@ export function ModelSelectionStep({ config, onUpdate }: ModelSelectionStepProps
       <Alert>
         <AlertTitle>Model Selection</AlertTitle>
         <AlertDescription>
-          Choose which models to load. Cloud models require API keys configured in the Providers
-          page. Local models run on llama-swap and require no API keys.
+          Select models from providers you've configured with API keys. Only models from configured providers are shown below.
+          Local models run on llama-swap and require no API keys.
         </AlertDescription>
       </Alert>
 
@@ -155,81 +169,151 @@ export function ModelSelectionStep({ config, onUpdate }: ModelSelectionStepProps
           </CardDescription>
 
           {/* Provider Filter */}
-          <div className="flex flex-wrap gap-2 mt-4">
-            <Badge
-              variant={filterProvider === 'all' ? 'default' : 'outline'}
-              className="cursor-pointer"
-              onClick={() => setFilterProvider('all')}
-            >
-              All
-            </Badge>
-            {availableProviders.map((providerId) => {
-              const isEnabled = enabledProviders.includes(providerId);
-              return (
+          {availableProviders.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-4">
+              <Badge
+                variant={filterProvider === 'all' ? 'default' : 'outline'}
+                className="cursor-pointer"
+                onClick={() => setFilterProvider('all')}
+              >
+                All
+              </Badge>
+              {availableProviders.map((providerId) => (
                 <Badge
                   key={providerId}
                   variant={filterProvider === providerId ? 'default' : 'outline'}
-                  className={`cursor-pointer ${!isEnabled ? 'opacity-50' : ''}`}
+                  className="cursor-pointer"
                   onClick={() => setFilterProvider(providerId)}
                 >
                   {providerId}
-                  {!isEnabled && ' (disabled)'}
                 </Badge>
-              );
-            })}
-          </div>
+              ))}
+            </div>
+          )}
         </CardHeader>
-        <CardContent className="space-y-3">
+        <CardContent>
           {filteredCloudModels.length === 0 ? (
             <div className="text-center text-muted-foreground py-8">
-              No cloud models available for the selected provider
+              {availableCloudModels.length === 0
+                ? 'No cloud models available. Configure provider API keys first.'
+                : 'No cloud models available for the selected provider.'}
             </div>
           ) : (
-            filteredCloudModels.map((model) => {
-              const isSelected = selectedModelIds.includes(model.id);
-              const defaultProvider = model.providers.find((p) => p.is_default);
-              const isProviderEnabled = enabledProviders.some((ep) =>
-                model.providers.some((mp) => mp.id === ep)
-              );
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {filteredCloudModels.map((model) => {
+                const isSelected = selectedModelIds.includes(model.id);
+                const modelProviders = model.providers
+                  .filter((p) => enabledProviders.includes(p.id))
+                  .map((p) => providers.find((provider) => provider.id === p.id))
+                  .filter(Boolean);
 
-              return (
-                <div
-                  key={model.id}
-                  className={`flex items-start space-x-3 p-3 rounded-lg border ${
-                    isSelected ? 'border-primary bg-primary/5' : 'border-border'
-                  } ${!isProviderEnabled ? 'opacity-50' : ''}`}
-                >
-                  <Checkbox
-                    id={model.id}
-                    checked={isSelected}
-                    onCheckedChange={() => handleToggleModel(model, 'cloud')}
-                    disabled={!isProviderEnabled}
-                  />
-                  <div className="flex-1 space-y-1">
-                    <Label
-                      htmlFor={model.id}
-                      className="text-sm font-medium cursor-pointer"
-                    >
-                      {model.name}
-                    </Label>
-                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <span>Provider: {defaultProvider?.id || model.providers[0]?.id}</span>
-                      <Separator orientation="vertical" className="h-3" />
-                      <span>{(model.context_window / 1000).toFixed(0)}K context</span>
-                      {model.pricing && (
-                        <>
-                          <Separator orientation="vertical" className="h-3" />
-                          <span>{model.pricing.tier}</span>
-                        </>
+                return (
+                  <Card
+                    key={model.id}
+                    className={`cursor-pointer transition-all ${
+                      isSelected
+                        ? 'border-primary shadow-md'
+                        : 'hover:shadow-lg'
+                    }`}
+                    onClick={() => handleToggleModel(model, 'cloud')}
+                  >
+                    <CardContent className="p-4">
+                      {/* Checkbox in top-right corner */}
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex items-start gap-3 flex-1 min-w-0">
+                          {model.icon && (
+                            <img
+                              src={resolveIconPath(model.icon)}
+                              alt={model.name}
+                              className="h-8 w-8 rounded flex-shrink-0"
+                            />
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <h3 className="font-semibold text-sm truncate">{model.name}</h3>
+                            <p className="text-xs text-muted-foreground truncate font-mono">
+                              {model.maker}/{model.id}
+                            </p>
+                          </div>
+                        </div>
+                        <Checkbox
+                          id={model.id}
+                          checked={isSelected}
+                          onCheckedChange={() => handleToggleModel(model, 'cloud')}
+                          onClick={(e) => e.stopPropagation()}
+                          className="flex-shrink-0"
+                        />
+                      </div>
+
+                      {/* Description */}
+                      {model.description && (
+                        <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
+                          {model.description}
+                        </p>
                       )}
-                    </div>
-                    {model.description && (
-                      <p className="text-xs text-muted-foreground">{model.description}</p>
-                    )}
-                  </div>
-                </div>
-              );
-            })
+
+                      {/* Model Stats */}
+                      <div className="space-y-1.5 mb-3">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-muted-foreground">Context</span>
+                          <span className="font-medium">
+                            {(model.context_window / 1000).toFixed(0)}K
+                          </span>
+                        </div>
+
+                        {model.pricing && (
+                          <>
+                            <div className="flex items-center justify-between text-xs">
+                              <span className="text-muted-foreground">Input</span>
+                              <span className="font-medium">{model.pricing.input_per_1m}/1M</span>
+                            </div>
+                            <div className="flex items-center justify-between text-xs">
+                              <span className="text-muted-foreground">Output</span>
+                              <span className="font-medium">{model.pricing.output_per_1m}/1M</span>
+                            </div>
+                          </>
+                        )}
+                      </div>
+
+                      {/* Capabilities */}
+                      {model.capabilities && model.capabilities.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mb-3">
+                          {model.capabilities.slice(0, 3).map((cap) => (
+                            <Badge key={cap} variant="secondary" className="text-xs">
+                              {cap}
+                            </Badge>
+                          ))}
+                          {model.capabilities.length > 3 && (
+                            <Badge variant="secondary" className="text-xs">
+                              +{model.capabilities.length - 3}
+                            </Badge>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Provider Icons */}
+                      <div className="flex gap-1.5 items-center">
+                        {modelProviders.slice(0, 4).map((provider) => (
+                          provider && (
+                            <img
+                              key={provider.id}
+                              src={resolveIconPath(provider.icon)}
+                              alt={provider.name}
+                              className="h-5 w-5 rounded"
+                              title={provider.name}
+                            />
+                          )
+                        ))}
+                        {modelProviders.length > 4 && (
+                          <span className="text-xs text-muted-foreground">
+                            +{modelProviders.length - 4}
+                          </span>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
           )}
         </CardContent>
       </Card>
@@ -242,56 +326,111 @@ export function ModelSelectionStep({ config, onUpdate }: ModelSelectionStepProps
             Models run locally via llama-swap (no API keys needed)
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-3">
+        <CardContent>
           {localModels.length === 0 ? (
             <div className="text-center text-muted-foreground py-8">
               No local models available
             </div>
           ) : (
-            localModels.map((model) => {
-              const isSelected = selectedModelIds.includes(model.id);
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {localModels.map((model) => {
+                const isSelected = selectedModelIds.includes(model.id);
 
-              return (
-                <div
-                  key={model.id}
-                  className={`flex items-start space-x-3 p-3 rounded-lg border ${
-                    isSelected ? 'border-primary bg-primary/5' : 'border-border'
-                  }`}
-                >
-                  <Checkbox
-                    id={model.id}
-                    checked={isSelected}
-                    onCheckedChange={() => handleToggleModel(model, 'local')}
-                  />
-                  <div className="flex-1 space-y-1">
-                    <Label
-                      htmlFor={model.id}
-                      className="text-sm font-medium cursor-pointer"
-                    >
-                      {model.name}
-                    </Label>
-                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                      {model.ram_required_gb && (
-                        <>
-                          <span>~{model.ram_required_gb}GB RAM</span>
-                          <Separator orientation="vertical" className="h-3" />
-                        </>
+                return (
+                  <Card
+                    key={model.id}
+                    className={`cursor-pointer transition-all ${
+                      isSelected
+                        ? 'border-primary shadow-md'
+                        : 'hover:shadow-lg'
+                    }`}
+                    onClick={() => handleToggleModel(model, 'local')}
+                  >
+                    <CardContent className="p-4">
+                      {/* Checkbox in top-right corner */}
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex items-start gap-3 flex-1 min-w-0">
+                          {model.icon && (
+                            <img
+                              src={resolveIconPath(model.icon)}
+                              alt={model.name}
+                              className="h-8 w-8 rounded flex-shrink-0"
+                            />
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <h3 className="font-semibold text-sm truncate">{model.name}</h3>
+                            <p className="text-xs text-muted-foreground truncate font-mono">
+                              {model.maker}/{model.id}
+                            </p>
+                          </div>
+                        </div>
+                        <Checkbox
+                          id={model.id}
+                          checked={isSelected}
+                          onCheckedChange={() => handleToggleModel(model, 'local')}
+                          onClick={(e) => e.stopPropagation()}
+                          className="flex-shrink-0"
+                        />
+                      </div>
+
+                      {/* Description */}
+                      {model.description && (
+                        <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
+                          {model.description}
+                        </p>
                       )}
-                      <span>{(model.context_window / 1000).toFixed(0)}K context</span>
-                      {model.quantization && (
-                        <>
-                          <Separator orientation="vertical" className="h-3" />
-                          <span>{model.quantization}</span>
-                        </>
+
+                      {/* Model Stats */}
+                      <div className="space-y-1.5 mb-3">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-muted-foreground">Context</span>
+                          <span className="font-medium">
+                            {(model.context_window / 1000).toFixed(0)}K
+                          </span>
+                        </div>
+
+                        {model.ram_required_gb && (
+                          <div className="flex items-center justify-between text-xs">
+                            <span className="text-muted-foreground">RAM Required</span>
+                            <span className="font-medium">{model.ram_required_gb}GB</span>
+                          </div>
+                        )}
+
+                        {model.quantization && (
+                          <div className="flex items-center justify-between text-xs">
+                            <span className="text-muted-foreground">Quantization</span>
+                            <span className="font-medium">{model.quantization}</span>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Capabilities */}
+                      {model.capabilities && model.capabilities.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mb-3">
+                          {model.capabilities.slice(0, 3).map((cap) => (
+                            <Badge key={cap} variant="secondary" className="text-xs">
+                              {cap}
+                            </Badge>
+                          ))}
+                          {model.capabilities.length > 3 && (
+                            <Badge variant="secondary" className="text-xs">
+                              +{model.capabilities.length - 3}
+                            </Badge>
+                          )}
+                        </div>
                       )}
-                    </div>
-                    {model.description && (
-                      <p className="text-xs text-muted-foreground">{model.description}</p>
-                    )}
-                  </div>
-                </div>
-              );
-            })
+
+                      {/* Local badge */}
+                      <div className="flex gap-1.5 items-center">
+                        <Badge variant="outline" className="text-xs">
+                          Local
+                        </Badge>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
           )}
         </CardContent>
       </Card>

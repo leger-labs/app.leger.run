@@ -1,8 +1,8 @@
 {
-  "cloudModelCount": 122,
+  "cloudModelCount": 130,
   "localModelCount": 27,
-  "makerCount": 14,
-  "providerCount": 23,
+  "makerCount": 15,
+  "providerCount": 24,
   "cloudModels": [
     {
       "id": "claude-3-haiku",
@@ -1119,6 +1119,48 @@
       "max_output": 8250
     },
     {
+      "id": "gemini-2.5-flash-image-preview",
+      "name": "Gemini 2.5 Flash Image Preview",
+      "maker": "google",
+      "providers": [
+        {
+          "id": "gemini",
+          "litellm_model_name": "gemini/gemini-2.5-flash-image-preview",
+          "is_default": true
+        },
+        {
+          "id": "vertex-ai",
+          "litellm_model_name": "vertex_ai/gemini-2.5-flash-image-preview",
+          "is_default": false
+        }
+      ],
+      "context_window": 33000,
+      "max_output": 8250,
+      "icon": "@/assets/icons/google.svg",
+      "description": "Preview variant of Google's Gemini 2.5 Flash Image with experimental image generation features",
+      "capabilities": [
+        "chat",
+        "vision",
+        "multimodal",
+        "image",
+        "reasoning"
+      ],
+      "pricing": {
+        "input_per_1m": "$0.30",
+        "output_per_1m": "$2.50",
+        "tier": "standard"
+      },
+      "use_cases": [
+        "Experimental image generation",
+        "Multimodal content creation",
+        "Visual prototyping",
+        "Preview of upcoming features"
+      ],
+      "release_date": "2025",
+      "notes": "Preview model with experimental image generation capabilities",
+      "enabled": true
+    },
+    {
       "id": "gemini-2.5-flash-lite",
       "name": "Gemini 2.5 Flash Lite",
       "maker": "google",
@@ -1708,7 +1750,8 @@
         "vision",
         "code",
         "tool_calling",
-        "function_execution"
+        "function_execution",
+        "image"
       ],
       "pricing": {
         "input_per_1m": "$1.25",
@@ -1831,7 +1874,8 @@
       "description": "Fastest, most cost-efficient GPT-5 for everyday tasks",
       "capabilities": [
         "chat",
-        "reasoning"
+        "reasoning",
+        "image"
       ],
       "pricing": {
         "input_per_1m": "$0.05",
@@ -1865,9 +1909,11 @@
       "icon": "@/assets/icons/openai.svg",
       "description": "Scaled test-time compute for challenging reasoning tasks",
       "capabilities": [
+        "chat",
         "reasoning",
         "code",
-        "multimodal"
+        "multimodal",
+        "image"
       ],
       "pricing": {
         "input_per_1m": "Premium tier",
@@ -4587,6 +4633,215 @@
       ],
       "notes": "Pricing and availability aggregated from provider catalogs.",
       "enabled": true
+    },
+    {
+      "id": "voyage-3-large",
+      "name": "Voyage 3 Large",
+      "maker": "voyage",
+      "providers": [
+        {
+          "id": "voyage",
+          "litellm_model_name": "voyage/voyage-3-large",
+          "is_default": true
+        }
+      ],
+      "icon": "@/assets/icons/voyage.svg",
+      "description": "High-capacity embedding model with 10B parameters for premium retrieval tasks",
+      "capabilities": [
+        "embeddings"
+      ],
+      "pricing": {
+        "input_per_1m": "$0.18",
+        "output_per_1m": "—",
+        "tier": "standard"
+      },
+      "use_cases": [
+        "High fidelity semantic search",
+        "Enterprise RAG workloads",
+        "Large document indexing",
+        "Advanced similarity ranking"
+      ],
+      "enabled": true,
+      "embedding_dimension": 1536,
+      "notes": "Premium embedding quality for demanding retrieval tasks"
+    },
+    {
+      "id": "voyage-3.5",
+      "name": "Voyage 3.5",
+      "maker": "voyage",
+      "providers": [
+        {
+          "id": "voyage",
+          "litellm_model_name": "voyage/voyage-3.5",
+          "is_default": true
+        }
+      ],
+      "icon": "@/assets/icons/voyage.svg",
+      "description": "Balanced embedding model for general-purpose semantic search and retrieval",
+      "capabilities": [
+        "embeddings"
+      ],
+      "pricing": {
+        "input_per_1m": "$0.06",
+        "output_per_1m": "—",
+        "tier": "standard"
+      },
+      "use_cases": [
+        "General semantic search",
+        "RAG applications",
+        "Document similarity",
+        "Content recommendation"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "voyage-3.5-lite",
+      "name": "Voyage 3.5 Lite",
+      "maker": "voyage",
+      "providers": [
+        {
+          "id": "voyage",
+          "litellm_model_name": "voyage/voyage-3.5-lite",
+          "is_default": true
+        }
+      ],
+      "icon": "@/assets/icons/voyage.svg",
+      "description": "Lightweight embedding model optimized for speed and cost efficiency",
+      "capabilities": [
+        "embeddings"
+      ],
+      "pricing": {
+        "input_per_1m": "$0.02",
+        "output_per_1m": "—",
+        "tier": "budget"
+      },
+      "use_cases": [
+        "High-volume semantic search",
+        "Budget-conscious RAG pipelines",
+        "Real-time retrieval",
+        "Vector database indexing"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "voyage-code-2",
+      "name": "Voyage Code 2",
+      "maker": "voyage",
+      "providers": [
+        {
+          "id": "voyage",
+          "litellm_model_name": "voyage/voyage-code-2",
+          "is_default": true
+        }
+      ],
+      "icon": "@/assets/icons/voyage.svg",
+      "description": "Previous generation code embedding model with balanced performance and cost",
+      "capabilities": [
+        "embeddings"
+      ],
+      "pricing": {
+        "input_per_1m": "$0.12",
+        "output_per_1m": "—",
+        "tier": "standard"
+      },
+      "use_cases": [
+        "Code search",
+        "Codebase navigation",
+        "Function similarity",
+        "API documentation retrieval"
+      ],
+      "enabled": true,
+      "notes": "Predecessor to Voyage Code 3, still recommended for cost-sensitive applications"
+    },
+    {
+      "id": "voyage-code-3",
+      "name": "Voyage Code 3",
+      "maker": "voyage",
+      "providers": [
+        {
+          "id": "voyage",
+          "litellm_model_name": "voyage/voyage-code-3",
+          "is_default": true
+        }
+      ],
+      "icon": "@/assets/icons/voyage.svg",
+      "description": "Advanced code embedding model for semantic code search and repository analysis",
+      "capabilities": [
+        "embeddings"
+      ],
+      "pricing": {
+        "input_per_1m": "$0.18",
+        "output_per_1m": "—",
+        "tier": "standard"
+      },
+      "use_cases": [
+        "Code semantic search",
+        "Repository indexing",
+        "Code similarity detection",
+        "Developer copilot features"
+      ],
+      "enabled": true,
+      "notes": "Trained on code repositories with support for 100+ programming languages"
+    },
+    {
+      "id": "voyage-finance-2",
+      "name": "Voyage Finance 2",
+      "maker": "voyage",
+      "providers": [
+        {
+          "id": "voyage",
+          "litellm_model_name": "voyage/voyage-finance-2",
+          "is_default": true
+        }
+      ],
+      "icon": "@/assets/icons/voyage.svg",
+      "description": "Domain-specific embedding model optimized for financial documents and analysis",
+      "capabilities": [
+        "embeddings"
+      ],
+      "pricing": {
+        "input_per_1m": "$0.12",
+        "output_per_1m": "—",
+        "tier": "standard"
+      },
+      "use_cases": [
+        "Financial document retrieval",
+        "Earnings report analysis",
+        "Market research search",
+        "Regulatory compliance"
+      ],
+      "enabled": true,
+      "notes": "Fine-tuned on financial terminology, reports, and market data"
+    },
+    {
+      "id": "voyage-law-2",
+      "name": "Voyage Law 2",
+      "maker": "voyage",
+      "providers": [
+        {
+          "id": "voyage",
+          "litellm_model_name": "voyage/voyage-law-2",
+          "is_default": true
+        }
+      ],
+      "icon": "@/assets/icons/voyage.svg",
+      "description": "Specialized embedding model fine-tuned for legal document retrieval and analysis",
+      "capabilities": [
+        "embeddings"
+      ],
+      "pricing": {
+        "input_per_1m": "$0.12",
+        "output_per_1m": "—",
+        "tier": "standard"
+      },
+      "use_cases": [
+        "Legal document search",
+        "Case law retrieval",
+        "Contract analysis",
+        "Legal research assistants"
+      ],
+      "enabled": true,
+      "notes": "Optimized for legal domain terminology and document structures"
     }
   ],
   "localModels": [
@@ -7149,6 +7404,7 @@
         "google/gemini-2.0-flash-lite",
         "google/gemini-2.5-flash",
         "google/gemini-2.5-flash-image",
+        "google/gemini-2.5-flash-image-preview",
         "google/gemini-2.5-flash-lite",
         "google/gemini-2.5-pro",
         "google/gemini-embedding-001",
@@ -7284,6 +7540,22 @@
         "alibaba/qwen3-next-80b-a3b-thinking",
         "alibaba/qwen3-vl-instruct",
         "alibaba/qwen3-vl-thinking"
+      ]
+    },
+    {
+      "id": "voyage",
+      "name": "Voyage AI",
+      "icon": "@/assets/icons/voyage.svg",
+      "website": "https://www.voyageai.com/",
+      "description": "Specialized embedding models for domain-specific retrieval",
+      "models": [
+        "voyage/voyage-3.5-lite",
+        "voyage/voyage-3.5",
+        "voyage/voyage-3-large",
+        "voyage/voyage-law-2",
+        "voyage/voyage-code-3",
+        "voyage/voyage-code-2",
+        "voyage/voyage-finance-2"
       ]
     },
     {
@@ -8774,6 +9046,13 @@
           "output_cost_per_million": 2.5
         },
         {
+          "id": "google/gemini-2.5-flash-image-preview",
+          "maker": "google",
+          "context": 33000,
+          "input_cost_per_million": 0.3,
+          "output_cost_per_million": 2.5
+        },
+        {
           "id": "google/gemini-2.5-flash-lite",
           "maker": "google",
           "context": 1000000,
@@ -8821,6 +9100,67 @@
           "context": 128000,
           "input_cost_per_million": 0.08,
           "output_cost_per_million": 0.3
+        }
+      ]
+    },
+    {
+      "id": "voyage",
+      "name": "Voyage AI",
+      "icon": "@/assets/icons/voyage.svg",
+      "website": "https://www.voyageai.com/",
+      "requires_api_key": "VOYAGE_API_KEY",
+      "api_key_register_url": "https://dash.voyageai.com/",
+      "description": "Domain-specialized embedding APIs from Voyage AI",
+      "provider_type": "api",
+      "models": [
+        {
+          "id": "voyage/voyage-3.5-lite",
+          "maker": "voyage",
+          "context": null,
+          "input_cost_per_million": 0.02,
+          "output_cost_per_million": null
+        },
+        {
+          "id": "voyage/voyage-3.5",
+          "maker": "voyage",
+          "context": null,
+          "input_cost_per_million": 0.06,
+          "output_cost_per_million": null
+        },
+        {
+          "id": "voyage/voyage-3-large",
+          "maker": "voyage",
+          "context": null,
+          "input_cost_per_million": 0.18,
+          "output_cost_per_million": null
+        },
+        {
+          "id": "voyage/voyage-law-2",
+          "maker": "voyage",
+          "context": null,
+          "input_cost_per_million": 0.12,
+          "output_cost_per_million": null
+        },
+        {
+          "id": "voyage/voyage-code-3",
+          "maker": "voyage",
+          "context": null,
+          "input_cost_per_million": 0.18,
+          "output_cost_per_million": null
+        },
+        {
+          "id": "voyage/voyage-code-2",
+          "maker": "voyage",
+          "context": null,
+          "input_cost_per_million": 0.12,
+          "output_cost_per_million": null
+        },
+        {
+          "id": "voyage/voyage-finance-2",
+          "maker": "voyage",
+          "context": null,
+          "input_cost_per_million": 0.12,
+          "output_cost_per_million": null
         }
       ]
     },
