@@ -53,12 +53,13 @@ export function ModelsPage() {
     return filterModels(models, filters);
   }, [models, filters]);
 
-  // Get unique capabilities across all models with counts
-  const allCapabilities = useMemo(() => {
-    const caps = new Set<string>();
-    models.forEach((m) => m.capabilities.forEach((c) => caps.add(c)));
-    return Array.from(caps).sort();
-  }, [models]);
+  // Hardcoded capability filters for the UI
+  const displayCapabilities = ['chat', 'image', 'embeddings'];
+  const displayCapabilityLabels: Record<string, string> = {
+    chat: 'Chat',
+    image: 'Image',
+    embeddings: 'Embedding',
+  };
 
   // Count models per provider
   const providerCounts = useMemo(() => {
@@ -205,13 +206,13 @@ export function ModelsPage() {
                 >
                   All
                 </TabsTrigger>
-                {allCapabilities.map((cap) => (
+                {displayCapabilities.map((cap) => (
                   <TabsTrigger
                     key={cap}
                     value={cap}
                     className="rounded-sm px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
                   >
-                    {cap.charAt(0).toUpperCase() + cap.slice(1)}
+                    {displayCapabilityLabels[cap] ?? cap}
                   </TabsTrigger>
                 ))}
               </TabsList>
