@@ -329,7 +329,7 @@ export function ProvidersPage() {
               className="flex items-center justify-between px-4 py-3 border rounded-lg"
             >
               <div className="flex items-center gap-4 flex-1">
-                <Skeleton className="h-8 w-8 rounded flex-shrink-0" />
+                <Skeleton className="h-9 w-9 rounded-full flex-shrink-0" />
                 <Skeleton className="h-5 w-32" />
               </div>
               <Skeleton className="h-9 w-16" />
@@ -406,7 +406,7 @@ export function ProvidersPage() {
                   <img
                     src={resolveIconPath(provider.icon)}
                     alt={provider.name}
-                    className="h-8 w-8 rounded flex-shrink-0"
+                    className="h-9 w-9 rounded-full bg-white p-2 flex-shrink-0"
                   />
 
                   <div className="flex items-center gap-3 flex-1 min-w-0">
