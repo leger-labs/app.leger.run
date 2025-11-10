@@ -94,27 +94,28 @@ export function ServiceSelectionStep({ config, onUpdate }: ServiceSelectionStepP
       return true;
     }
 
-    // If service requires API key, check if it's configured
-    // The logic here is to match the service name to a provider
+    // If service requires API key, check if a matching provider is configured
     if (service.requires_api_key) {
-      // Try to find a matching provider by checking if any configured provider
-      // could provide this service based on naming
-      const serviceLower = service.name.toLowerCase();
+      // Dynamic matching: check if any configured provider could support this service
+      // Match by checking if the service id or name contains the provider id
+      const serviceIdLower = service.id.toLowerCase();
+      const serviceNameLower = service.name.toLowerCase();
 
-      // Check common provider matches
       for (const providerId in providerSelections) {
-        const providerLower = providerId.toLowerCase();
+        const providerIdLower = providerId.toLowerCase();
 
-        // Match based on provider name in service name
-        if (serviceLower.includes('openai') && providerLower.includes('openai')) return true;
-        if (serviceLower.includes('azure') && providerLower.includes('azure')) return true;
-        if (serviceLower.includes('anthropic') && providerLower.includes('anthropic')) return true;
-        if (serviceLower.includes('google') && (providerLower.includes('google') || providerLower.includes('gemini'))) return true;
-        if (serviceLower.includes('ollama') && providerLower.includes('ollama')) return true;
-        if (serviceLower.includes('elevenlabs') && providerLower.includes('elevenlabs')) return true;
-        if (serviceLower.includes('deepgram') && providerLower.includes('deepgram')) return true;
-        if (serviceLower.includes('tavily') && providerLower.includes('tavily')) return true;
-        if (serviceLower.includes('brave') && providerLower.includes('brave')) return true;
+        // Match if service id or name contains provider id (or vice versa)
+        // This handles cases like:
+        // - service: "openai-dalle", provider: "openai"
+        // - service: "tavily", provider: "tavily"
+        // - service: "azure-openai", provider: "azure-openai"
+        if (
+          serviceIdLower.includes(providerIdLower) ||
+          serviceNameLower.includes(providerIdLower) ||
+          providerIdLower.includes(serviceIdLower)
+        ) {
+          return true;
+        }
       }
 
       // If no matching provider found, service is not available
@@ -171,9 +172,18 @@ export function ServiceSelectionStep({ config, onUpdate }: ServiceSelectionStepP
   };
 
   const handleServiceSelect = (featureType: string, serviceId: string) => {
+    const currentServices = config.services || {
+      rag: null,
+      'web-search': null,
+      stt: null,
+      tts: null,
+      'image-generation': null,
+      'code-execution': null,
+    };
+
     onUpdate({
       services: {
-        ...config.services,
+        ...currentServices,
         [featureType]: serviceId || null,
       },
     });
