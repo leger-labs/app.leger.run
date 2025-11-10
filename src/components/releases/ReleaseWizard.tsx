@@ -3,10 +3,11 @@
  * 4-step wizard for configuring a release
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { toast } from 'sonner';
 import { WizardStepper } from './WizardStepper';
 import { WizardNavigation } from './WizardNavigation';
+import { ValidationSummary, type ValidationIssue } from './ValidationSummary';
 import { ModelSelectionStep } from './steps/ModelSelectionStep';
 import { ServiceSelectionStep } from './steps/ServiceSelectionStep';
 import { OpenWebUIConfigStep } from './steps/OpenWebUIConfigStep';
@@ -92,45 +93,87 @@ export function ReleaseWizard({ releaseId, onComplete }: ReleaseWizardProps) {
     setConfig((prev) => ({ ...prev, ...stepData }));
   }, []);
 
-  const validateStep = (step: number): boolean => {
+  // Get validation issues for the current step (returns issues, not boolean)
+  const getValidationIssues = (step: number): ValidationIssue[] => {
+    const issues: ValidationIssue[] = [];
+
     switch (step) {
       case 1: // Model Selection
         if (!config.models?.selected || config.models.selected.length === 0) {
-          toast.error('Please select at least one model');
-          return false;
+          issues.push({
+            field: 'Models',
+            message: 'Select at least one model to continue',
+            severity: 'error',
+          });
         }
-        return true;
+        break;
 
       case 2: // Service Selection
         // All features either disabled (null) or have a provider selected
         // No validation needed - null is valid
-        return true;
+        break;
 
       case 3: // OpenWebUI Config
-        const required = ['WEBUI_NAME', 'TASK_MODEL'];
-        for (const field of required) {
-          if (!config.openwebui?.[field]) {
-            toast.error(`${field} is required`);
-            return false;
-          }
+        if (!config.openwebui?.WEBUI_NAME || config.openwebui.WEBUI_NAME.trim() === '') {
+          issues.push({
+            field: 'WebUI Name',
+            message: 'A name for your OpenWebUI instance is required',
+            severity: 'error',
+          });
         }
-        return true;
+        break;
 
       case 4: // Caddy Routes
         const routes = config.caddy?.routes || [];
-        const subdomains = routes.filter((r) => r.enabled).map((r) => r.subdomain);
+        const enabledRoutes = routes.filter((r) => r.enabled);
+        const subdomains = enabledRoutes.map((r) => r.subdomain);
         const duplicates = subdomains.filter((s, i) => subdomains.indexOf(s) !== i);
 
         if (duplicates.length > 0) {
-          toast.error(`Duplicate subdomains: ${duplicates.join(', ')}`);
-          return false;
+          issues.push({
+            field: 'Subdomains',
+            message: `Duplicate subdomains detected: ${duplicates.join(', ')}`,
+            severity: 'error',
+          });
         }
-        return true;
 
-      default:
-        return true;
+        if (enabledRoutes.length === 0) {
+          issues.push({
+            field: 'Routes',
+            message: 'No routes are enabled. Enable at least one service route.',
+            severity: 'warning',
+          });
+        }
+        break;
     }
+
+    return issues;
   };
+
+  // Check if step can proceed (for backward compatibility with old code)
+  const validateStep = (step: number): boolean => {
+    const issues = getValidationIssues(step);
+    const errors = issues.filter((i) => i.severity === 'error');
+
+    if (errors.length > 0) {
+      // Show first error as toast (for now)
+      toast.error(errors[0].message);
+      return false;
+    }
+
+    return true;
+  };
+
+  // Check if we can proceed from current step (without showing toasts)
+  const canProceedFromStep = (step: number): boolean => {
+    const issues = getValidationIssues(step);
+    return issues.filter((i) => i.severity === 'error').length === 0;
+  };
+
+  // Get current step validation issues
+  const currentStepIssues = useMemo(() => {
+    return getValidationIssues(currentStep);
+  }, [currentStep, config]);
 
   const handleNext = () => {
     if (validateStep(currentStep)) {
@@ -154,8 +197,8 @@ export function ReleaseWizard({ releaseId, onComplete }: ReleaseWizardProps) {
       return;
     }
 
-    if (!config.openwebui?.WEBUI_NAME || !config.openwebui?.TASK_MODEL) {
-      toast.error('Required OpenWebUI configuration missing');
+    if (!config.openwebui?.WEBUI_NAME || config.openwebui.WEBUI_NAME.trim() === '') {
+      toast.error('WebUI Name is required');
       setCurrentStep(3);
       return;
     }
@@ -164,8 +207,9 @@ export function ReleaseWizard({ releaseId, onComplete }: ReleaseWizardProps) {
   };
 
   const canGoBack = currentStep > 1;
-  const canGoNext = validateStep(currentStep);
+  const canGoNext = canProceedFromStep(currentStep);
   const isLastStep = currentStep === WIZARD_STEPS.length;
+  const canProceed = canProceedFromStep(currentStep);
 
   return (
     <div className="space-y-6">
@@ -173,7 +217,7 @@ export function ReleaseWizard({ releaseId, onComplete }: ReleaseWizardProps) {
       <WizardStepper currentStep={currentStep} steps={WIZARD_STEPS} />
 
       {/* Step Content */}
-      <div className="min-h-[400px]">
+      <div className="min-h-[400px] space-y-6">
         {currentStep === 1 && (
           <ModelSelectionStep config={config} onUpdate={handleStepUpdate} />
         )}
@@ -189,6 +233,13 @@ export function ReleaseWizard({ releaseId, onComplete }: ReleaseWizardProps) {
         {currentStep === 4 && (
           <CaddyRoutesStep config={config} onUpdate={handleStepUpdate} />
         )}
+
+        {/* Validation Summary */}
+        <ValidationSummary
+          issues={currentStepIssues}
+          canProceed={canProceed}
+          stepName={WIZARD_STEPS[currentStep - 1].label}
+        />
       </div>
 
       {/* Navigation */}

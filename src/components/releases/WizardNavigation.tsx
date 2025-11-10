@@ -5,6 +5,7 @@
 
 import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 interface WizardNavigationProps {
   currentStep: number;
@@ -27,6 +28,33 @@ export function WizardNavigation({
   onNext,
   onComplete,
 }: WizardNavigationProps) {
+  const getDisabledTooltip = () => {
+    if (canGoNext) return null;
+
+    switch (currentStep) {
+      case 1:
+        return 'Select at least one model to continue';
+      case 3:
+        return 'WebUI Name is required to continue';
+      case 4:
+        return 'Fix duplicate subdomains before completing';
+      default:
+        return 'Complete required fields to continue';
+    }
+  };
+
+  const nextButton = isLastStep ? (
+    <Button onClick={onComplete} disabled={!canGoNext} type="button">
+      Complete Configuration
+      <Check className="h-4 w-4 ml-2" />
+    </Button>
+  ) : (
+    <Button onClick={onNext} disabled={!canGoNext} type="button">
+      Next
+      <ChevronRight className="h-4 w-4 ml-2" />
+    </Button>
+  );
+
   return (
     <div className="flex items-center justify-between pt-6 border-t">
       <Button
@@ -43,16 +71,17 @@ export function WizardNavigation({
         Step {currentStep} of {totalSteps}
       </div>
 
-      {isLastStep ? (
-        <Button onClick={onComplete} disabled={!canGoNext} type="button">
-          Complete Configuration
-          <Check className="h-4 w-4 ml-2" />
-        </Button>
+      {!canGoNext ? (
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>{nextButton}</TooltipTrigger>
+            <TooltipContent>
+              <p>{getDisabledTooltip()}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       ) : (
-        <Button onClick={onNext} disabled={!canGoNext} type="button">
-          Next
-          <ChevronRight className="h-4 w-4 ml-2" />
-        </Button>
+        nextButton
       )}
     </div>
   );
