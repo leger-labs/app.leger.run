@@ -54,6 +54,12 @@ export interface MarketplaceService {
   category: string; // e.g., "rag", "web-search", "stt", "tts", "image-generation", "code-execution"
   requires_api_key: boolean;
   logo?: string;
+  description?: string;
+  activation_condition?: {
+    type: 'provider_selected';
+    provider_path: string; // e.g., "providers.vector_db"
+    exclude_values: string[]; // e.g., [""]
+  };
   openwebui_variables: Array<{
     name: string;
     type: string;
