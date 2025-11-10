@@ -114,10 +114,10 @@ export interface OpenWebUIConfig {
   WEB_LOADER_ENGINE?: string;
   TASK_MODEL_SEARCH_QUERY?: string;
 
-  // Task models
-  TASK_MODEL?: string;
-  TASK_MODEL_TAGS?: string;
-  TASK_MODEL_AUTOCOMPLETE?: string;
+  // Task models (specialized models for specific tasks)
+  TASK_MODEL_TITLE?: string; // Ultra-lightweight model for title generation
+  TASK_MODEL_TAGS?: string; // Lightweight model for tag generation
+  TASK_MODEL_AUTOCOMPLETE?: string; // Ultra-lightweight model for autocomplete
 
   // Advanced
   LOG_LEVEL?: string;

@@ -25,6 +25,7 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
   const [formData, setFormData] = useState(config.openwebui || {});
   const [ragSharedGroup, setRagSharedGroup] = useState<FieldGroupType | null>(null);
   const [ragProviderGroup, setRagProviderGroup] = useState<FieldGroupType | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   // Get selected models for model-selector fields
   const selectedModels = useMemo(() => config.models?.selected || [], [config.models]);
@@ -301,6 +302,22 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
     };
     setFormData(newFormData);
     onUpdate({ openwebui: newFormData });
+
+    // Clear error for this field when user makes changes
+    if (fieldErrors[fieldName]) {
+      setFieldErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[fieldName];
+        return newErrors;
+      });
+    }
+
+    // Validate WEBUI_NAME on change
+    if (fieldName === 'WEBUI_NAME') {
+      if (!value || (typeof value === 'string' && value.trim() === '')) {
+        setFieldErrors((prev) => ({ ...prev, WEBUI_NAME: 'WebUI Name is required' }));
+      }
+    }
   };
 
   // Render a single field
@@ -308,11 +325,14 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
     const value = formData[field.name] ?? field.default;
 
     if (field.type === 'text') {
+      const hasError = fieldErrors[field.name];
+      const isRequired = field.required || field.name === 'WEBUI_NAME';
+
       return (
         <div key={field.name} className="space-y-2">
           <Label htmlFor={field.name}>
             {field.label || field.name}
-            {field.required && <span className="text-destructive ml-1">*</span>}
+            {isRequired && <span className="text-destructive ml-1">*</span>}
           </Label>
           <Input
             id={field.name}
@@ -320,8 +340,14 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
             value={value as string}
             onChange={(e) => handleFieldChange(field.name, e.target.value)}
             placeholder={field.default as string}
+            className={hasError ? 'border-destructive focus-visible:ring-destructive' : ''}
           />
-          {field.description && (
+          {hasError && (
+            <p className="text-xs text-destructive mt-1">
+              {hasError}
+            </p>
+          )}
+          {!hasError && field.description && (
             <p className="text-xs text-muted-foreground mt-1">
               {field.description}
             </p>
