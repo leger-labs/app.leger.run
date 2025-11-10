@@ -1,4 +1,31 @@
-# Status
+# Latest Status
+
+📋 Missing from Original TODO (Still Pending)
+These were in your TODO but marked "ignore" - confirm if you still want them:
+
+Custom model entry with HuggingFace logo (mentioned in your notes but not implemented)
+Models page: Add "Copy" button to models (from your TODO but not in these handoffs)
+Local models display issue - you mentioned "there are also more local models than gets rendered" but this wasn't addressed
+
+
+🎨 Ignored Items (Confirm if Needed)
+These were explicitly ignored per your instructions but may still be desired:
+
+Fix duplicate API key entry in Providers (issue #2 - ignored)
+Blue → Black color scheme change (issue #1 - ignored)
+Dark mode grey sections fix (issue #3 - ignored)
+Models UI circular logo containers on main Models page (was done in Release Wizard but not on main Models page)
+Settings page restructure (issue #6 - ignored)
+
+
+🔧 Technical Debt Notes
+From the Claude Code outputs:
+
+HANDOFF 4 created a new utility file src/lib/marketplace-loader.ts - ensure it's properly imported everywhere needed
+HANDOFF 5 created a new component src/components/releases/ValidationSummary.tsx - verify it's integrated correctly after merges
+All handoffs assume the marketplace JSON files structure remains consistent - document any changes to avoid breaking
+
+# Full context:
 
 app.leger.run is a cf workers hosted vite spa. It is in alpha stage, we are refining the front-end ui pages and finalizing the template application leading to deployments of fully configured quadlets. Conteptually: "vercel config ui for self hosted llm advanced funcionality"
 
