@@ -2,15 +2,17 @@
  * Step 3: OpenWebUI Configuration
  * Configure OpenWebUI environment variables
  * Fields shown dynamically based on selected services
+ * Comprehensive rendering of all schema.json fields
  */
 
 import { useMemo, useState } from 'react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { FieldGroup } from '@/components/releases/FieldGroup';
-import type { CrystallizedConfig, ConfigFieldGroup, ConfigField } from '@/types/release-wizard';
+import type { CrystallizedConfig } from '@/types/release-wizard';
 import type { FieldGroup as FieldGroupType } from '@/lib/field-grouping';
 
 interface OpenWebUIConfigStepProps {
@@ -23,6 +25,14 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
 
   // Get selected models for model-selector fields
   const selectedModels = useMemo(() => config.models?.selected || [], [config.models]);
+
+  // Determine selected services from Step 2
+  const selectedRAG = config.services?.rag;
+  const selectedSearch = config.services?.['web-search'];
+  const selectedSTT = config.services?.stt;
+  const selectedTTS = config.services?.tts;
+  const selectedImage = config.services?.['image-generation'];
+  const selectedCode = config.services?.['code-execution'];
 
   // Dynamically determine which field groups to show based on Step 2 selections
   const fieldGroups = useMemo((): FieldGroupType[] => {
@@ -38,7 +48,7 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
         {
           name: 'DEFAULT_LOCALE',
           type: 'select',
-          options: ['en', 'es', 'fr', 'de', 'ja', 'zh'],
+          options: ['en', 'es', 'fr', 'de', 'ja', 'zh', 'ko', 'pt', 'ru', 'ar'],
           default: 'en',
           label: 'Default Locale',
         },
@@ -48,8 +58,51 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
       defaultExpanded: true,
     });
 
+    // Task Models (always shown)
+    groups.push({
+      id: 'task-models',
+      label: 'AI Task Models',
+      description: 'Models for automated tasks (title generation, tags, autocomplete)',
+      fields: [
+        {
+          name: 'TASK_MODEL_TITLE',
+          type: 'model-selector',
+          filter: 'ultra-lightweight',
+          default: 'qwen3-0.6b',
+          label: 'Title Generation Model',
+          required: false,
+        },
+        {
+          name: 'TASK_MODEL_TAGS',
+          type: 'model-selector',
+          filter: 'lightweight',
+          default: 'qwen3-4b',
+          label: 'Tag Generation Model',
+          required: false,
+        },
+        {
+          name: 'TASK_MODEL_AUTOCOMPLETE',
+          type: 'model-selector',
+          filter: 'ultra-lightweight',
+          default: 'qwen3-0.6b',
+          label: 'Autocomplete Model',
+          required: false,
+        },
+        {
+          name: 'AUTOCOMPLETE_INPUT_MAX_LENGTH',
+          type: 'number',
+          default: -1,
+          min: -1,
+          max: 10000,
+          label: 'Autocomplete Max Input Length (-1 = unlimited)',
+        },
+      ],
+      collapsible: true,
+      defaultExpanded: true,
+    });
+
     // RAG Configuration (only if RAG service selected)
-    if (config.services?.rag) {
+    if (selectedRAG) {
       groups.push({
         id: 'rag',
         label: 'RAG Configuration',
@@ -86,6 +139,51 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
             default: 'qwen3-embedding-8b',
             label: 'Embedding Model',
           },
+          {
+            name: 'TASK_MODEL_QUERY',
+            type: 'model-selector',
+            filter: 'lightweight',
+            default: 'qwen3-4b',
+            label: 'Query Generation Model',
+          },
+          {
+            name: 'TASK_MODEL_RAG_TEMPLATE',
+            type: 'model-selector',
+            filter: 'lightweight',
+            default: 'qwen3-4b',
+            label: 'RAG Template Model',
+          },
+          {
+            name: 'RAG_TEXT_SPLITTER',
+            type: 'select',
+            options: ['character', 'recursive', 'token', 'markdown_header'],
+            default: 'recursive',
+            label: 'Text Splitter Algorithm',
+          },
+          {
+            name: 'RAG_EMBEDDING_TRUST_REMOTE_CODE',
+            type: 'checkbox',
+            default: false,
+            label: 'Trust Remote Code (Embeddings)',
+          },
+          {
+            name: 'RAG_RERANKING_TRUST_REMOTE_CODE',
+            type: 'checkbox',
+            default: false,
+            label: 'Trust Remote Code (Reranking)',
+          },
+          {
+            name: 'RAG_EMBEDDING_AUTO_UPDATE',
+            type: 'checkbox',
+            default: true,
+            label: 'Auto-Update Embedding Models',
+          },
+          {
+            name: 'RAG_RERANKING_AUTO_UPDATE',
+            type: 'checkbox',
+            default: true,
+            label: 'Auto-Update Reranking Models',
+          },
         ],
         collapsible: true,
         defaultExpanded: true,
@@ -93,7 +191,7 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
     }
 
     // Search Configuration (only if search service selected)
-    if (config.services?.['web-search']) {
+    if (selectedSearch) {
       groups.push({
         id: 'search',
         label: 'Web Search Configuration',
@@ -102,7 +200,7 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
           {
             name: 'WEB_LOADER_ENGINE',
             type: 'select',
-            options: ['requests', 'selenium', 'playwright'],
+            options: ['requests', 'selenium', 'playwright', 'safe_web'],
             default: 'requests',
             label: 'Web Loader Engine',
           },
@@ -113,43 +211,79 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
             default: 'qwen3-4b',
             label: 'Search Query Model',
           },
+          {
+            name: 'WEB_SEARCH_RESULT_COUNT',
+            type: 'number',
+            default: 3,
+            min: 1,
+            max: 20,
+            label: 'Max Search Results',
+          },
+          {
+            name: 'WEB_LOADER_CONCURRENT_REQUESTS',
+            type: 'number',
+            default: 10,
+            min: 1,
+            max: 50,
+            label: 'Concurrent Web Requests',
+          },
         ],
         collapsible: true,
         defaultExpanded: false,
       });
     }
 
-    // Task Models (always shown)
-    groups.push({
-      id: 'task-models',
-      label: 'AI Task Models',
-      description: 'Models for automated tasks (title generation, tags, autocomplete)',
-      fields: [
-        {
-          name: 'TASK_MODEL',
-          type: 'model-selector',
-          filter: 'ultra-lightweight',
-          default: 'qwen3-0.6b',
-          label: 'Title Generation Model',
-        },
-        {
-          name: 'TASK_MODEL_TAGS',
-          type: 'model-selector',
-          filter: 'lightweight',
-          default: 'qwen3-4b',
-          label: 'Tag Generation Model',
-        },
-        {
-          name: 'TASK_MODEL_AUTOCOMPLETE',
-          type: 'model-selector',
-          filter: 'ultra-lightweight',
-          default: 'qwen3-0.6b',
-          label: 'Autocomplete Model',
-        },
-      ],
-      collapsible: true,
-      defaultExpanded: true,
-    });
+    // Image Generation Configuration (only if image service selected)
+    if (selectedImage) {
+      groups.push({
+        id: 'image',
+        label: 'Image Generation Configuration',
+        description: 'Settings for image generation functionality',
+        fields: [
+          {
+            name: 'IMAGE_SIZE',
+            type: 'text',
+            default: '512x512',
+            label: 'Default Image Size (WIDTHxHEIGHT)',
+          },
+          {
+            name: 'IMAGE_STEPS',
+            type: 'number',
+            default: 50,
+            min: 1,
+            max: 150,
+            label: 'Diffusion Steps',
+          },
+          {
+            name: 'ENABLE_IMAGE_PROMPT_GENERATION',
+            type: 'checkbox',
+            default: true,
+            label: 'Enable AI Prompt Enhancement',
+          },
+        ],
+        collapsible: true,
+        defaultExpanded: false,
+      });
+    }
+
+    // Code Execution Configuration (only if code execution service selected)
+    if (selectedCode) {
+      groups.push({
+        id: 'code',
+        label: 'Code Execution Configuration',
+        description: 'Settings for code execution functionality',
+        fields: [
+          {
+            name: 'CODE_INTERPRETER_BLACKLISTED_MODULES',
+            type: 'text',
+            default: '',
+            label: 'Blacklisted Modules (comma-separated)',
+          },
+        ],
+        collapsible: true,
+        defaultExpanded: false,
+      });
+    }
 
     // Advanced Settings
     groups.push({
@@ -171,6 +305,12 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
           label: 'Redis Key Prefix',
         },
         {
+          name: 'CACHE_CONTROL',
+          type: 'text',
+          default: '',
+          label: 'HTTP Cache Control Header',
+        },
+        {
           name: 'OPENWEBUI_TIMEOUT_START',
           type: 'number',
           default: 900,
@@ -184,7 +324,7 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
     });
 
     return groups as FieldGroupType[];
-  }, [config.services]);
+  }, [selectedRAG, selectedSearch, selectedSTT, selectedTTS, selectedImage, selectedCode]);
 
   const handleFieldChange = (fieldName: string, value: string | number | boolean) => {
     const newFormData = {
@@ -202,7 +342,10 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
     if (field.type === 'text') {
       return (
         <div key={field.name} className="space-y-2">
-          <Label htmlFor={field.name}>{field.label || field.name}</Label>
+          <Label htmlFor={field.name}>
+            {field.label || field.name}
+            {field.required && <span className="text-destructive ml-1">*</span>}
+          </Label>
           <Input
             id={field.name}
             type="text"
@@ -217,7 +360,10 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
     if (field.type === 'number') {
       return (
         <div key={field.name} className="space-y-2">
-          <Label htmlFor={field.name}>{field.label || field.name}</Label>
+          <Label htmlFor={field.name}>
+            {field.label || field.name}
+            {field.required && <span className="text-destructive ml-1">*</span>}
+          </Label>
           <Input
             id={field.name}
             type="number"
@@ -231,10 +377,29 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
       );
     }
 
+    if (field.type === 'checkbox') {
+      return (
+        <div key={field.name} className="flex items-center space-x-2 py-2">
+          <Checkbox
+            id={field.name}
+            checked={value as boolean}
+            onCheckedChange={(checked) => handleFieldChange(field.name, checked)}
+          />
+          <Label htmlFor={field.name} className="cursor-pointer">
+            {field.label || field.name}
+            {field.required && <span className="text-destructive ml-1">*</span>}
+          </Label>
+        </div>
+      );
+    }
+
     if (field.type === 'select') {
       return (
         <div key={field.name} className="space-y-2">
-          <Label htmlFor={field.name}>{field.label || field.name}</Label>
+          <Label htmlFor={field.name}>
+            {field.label || field.name}
+            {field.required && <span className="text-destructive ml-1">*</span>}
+          </Label>
           <Select
             value={value as string}
             onValueChange={(val) => handleFieldChange(field.name, val)}
@@ -280,7 +445,10 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
 
       return (
         <div key={field.name} className="space-y-2">
-          <Label htmlFor={field.name}>{field.label || field.name}</Label>
+          <Label htmlFor={field.name}>
+            {field.label || field.name}
+            {field.required && <span className="text-destructive ml-1">*</span>}
+          </Label>
           <Select
             value={value as string}
             onValueChange={(val) => handleFieldChange(field.name, val)}
@@ -290,8 +458,8 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
             </SelectTrigger>
             <SelectContent>
               {filteredModels.length === 0 ? (
-                <SelectItem value={field.default as string} disabled>
-                  No suitable models selected in Step 1
+                <SelectItem value={field.default as string}>
+                  {field.default as string} (default)
                 </SelectItem>
               ) : (
                 filteredModels.map((model) => (
@@ -304,7 +472,7 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
           </Select>
           {filteredModels.length === 0 && (
             <p className="text-xs text-amber-600">
-              Please select a {field.filter} model in Step 1
+              Using default model. Select a {field.filter} model in Step 1 to customize.
             </p>
           )}
         </div>
