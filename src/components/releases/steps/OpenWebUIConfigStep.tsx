@@ -2,10 +2,10 @@
  * Step 3: OpenWebUI Configuration
  * Configure OpenWebUI environment variables
  * Fields shown dynamically based on selected services
- * Comprehensive rendering of all schema.json fields
+ * RAG settings are now loaded dynamically from marketplace JSON files
  */
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -14,6 +14,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { FieldGroup } from '@/components/releases/FieldGroup';
 import type { CrystallizedConfig } from '@/types/release-wizard';
 import type { FieldGroup as FieldGroupType } from '@/lib/field-grouping';
+import { loadMarketplaceService, marketplaceServiceToFieldGroup } from '@/lib/marketplace-loader';
 
 interface OpenWebUIConfigStepProps {
   config: Partial<CrystallizedConfig>;
@@ -22,6 +23,8 @@ interface OpenWebUIConfigStepProps {
 
 export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepProps) {
   const [formData, setFormData] = useState(config.openwebui || {});
+  const [ragSharedGroup, setRagSharedGroup] = useState<FieldGroupType | null>(null);
+  const [ragProviderGroup, setRagProviderGroup] = useState<FieldGroupType | null>(null);
 
   // Get selected models for model-selector fields
   const selectedModels = useMemo(() => config.models?.selected || [], [config.models]);
@@ -33,6 +36,39 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
   const selectedTTS = config.services?.tts;
   const selectedImage = config.services?.['image-generation'];
   const selectedCode = config.services?.['code-execution'];
+
+  // Load RAG shared settings dynamically from marketplace
+  useEffect(() => {
+    if (selectedRAG) {
+      loadMarketplaceService('rag-shared').then((service) => {
+        if (service) {
+          const group = marketplaceServiceToFieldGroup(service, true, true);
+          setRagSharedGroup(group);
+        }
+      });
+    } else {
+      setRagSharedGroup(null);
+    }
+  }, [selectedRAG]);
+
+  // Load RAG provider-specific settings dynamically from marketplace
+  useEffect(() => {
+    if (selectedRAG) {
+      loadMarketplaceService(selectedRAG).then((service) => {
+        if (service) {
+          const group = marketplaceServiceToFieldGroup(service, true, false);
+          // Update the label to indicate it's provider-specific
+          group.label = `${service.name} Settings`;
+          group.description = service.description || `Provider-specific configuration for ${service.name}`;
+          setRagProviderGroup(group);
+        } else {
+          setRagProviderGroup(null);
+        }
+      });
+    } else {
+      setRagProviderGroup(null);
+    }
+  }, [selectedRAG]);
 
   // Dynamically determine which field groups to show based on Step 2 selections
   const fieldGroups = useMemo((): FieldGroupType[] => {
@@ -101,93 +137,16 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
       defaultExpanded: true,
     });
 
-    // RAG Configuration (only if RAG service selected)
-    if (selectedRAG) {
-      groups.push({
-        id: 'rag',
-        label: 'RAG Configuration',
-        description: 'Settings for Retrieval-Augmented Generation',
-        fields: [
-          {
-            name: 'RAG_TOP_K',
-            type: 'number',
-            default: 5,
-            min: 1,
-            max: 50,
-            label: 'Top K Results',
-          },
-          {
-            name: 'CHUNK_SIZE',
-            type: 'number',
-            default: 1500,
-            min: 100,
-            max: 10000,
-            label: 'Chunk Size',
-          },
-          {
-            name: 'CHUNK_OVERLAP',
-            type: 'number',
-            default: 100,
-            min: 0,
-            max: 1000,
-            label: 'Chunk Overlap',
-          },
-          {
-            name: 'RAG_EMBEDDING_MODEL',
-            type: 'model-selector',
-            filter: 'embeddings',
-            default: 'qwen3-embedding-8b',
-            label: 'Embedding Model',
-          },
-          {
-            name: 'TASK_MODEL_QUERY',
-            type: 'model-selector',
-            filter: 'lightweight',
-            default: 'qwen3-4b',
-            label: 'Query Generation Model',
-          },
-          {
-            name: 'TASK_MODEL_RAG_TEMPLATE',
-            type: 'model-selector',
-            filter: 'lightweight',
-            default: 'qwen3-4b',
-            label: 'RAG Template Model',
-          },
-          {
-            name: 'RAG_TEXT_SPLITTER',
-            type: 'select',
-            options: ['character', 'recursive', 'token', 'markdown_header'],
-            default: 'recursive',
-            label: 'Text Splitter Algorithm',
-          },
-          {
-            name: 'RAG_EMBEDDING_TRUST_REMOTE_CODE',
-            type: 'checkbox',
-            default: false,
-            label: 'Trust Remote Code (Embeddings)',
-          },
-          {
-            name: 'RAG_RERANKING_TRUST_REMOTE_CODE',
-            type: 'checkbox',
-            default: false,
-            label: 'Trust Remote Code (Reranking)',
-          },
-          {
-            name: 'RAG_EMBEDDING_AUTO_UPDATE',
-            type: 'checkbox',
-            default: true,
-            label: 'Auto-Update Embedding Models',
-          },
-          {
-            name: 'RAG_RERANKING_AUTO_UPDATE',
-            type: 'checkbox',
-            default: true,
-            label: 'Auto-Update Reranking Models',
-          },
-        ],
-        collapsible: true,
-        defaultExpanded: true,
-      });
+    // RAG Shared Settings (dynamically loaded from rag-shared.json)
+    // Only shown when ANY RAG provider is selected
+    if (ragSharedGroup) {
+      groups.push(ragSharedGroup);
+    }
+
+    // RAG Provider-Specific Settings (dynamically loaded from provider's JSON)
+    // Only shown when a specific RAG provider is selected (e.g., qdrant, chroma)
+    if (ragProviderGroup) {
+      groups.push(ragProviderGroup);
     }
 
     // Search Configuration (only if search service selected)
@@ -324,7 +283,16 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
     });
 
     return groups as FieldGroupType[];
-  }, [selectedRAG, selectedSearch, selectedSTT, selectedTTS, selectedImage, selectedCode]);
+  }, [
+    ragSharedGroup,
+    ragProviderGroup,
+    selectedRAG,
+    selectedSearch,
+    selectedSTT,
+    selectedTTS,
+    selectedImage,
+    selectedCode,
+  ]);
 
   const handleFieldChange = (fieldName: string, value: string | number | boolean) => {
     const newFormData = {
@@ -353,6 +321,11 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
             onChange={(e) => handleFieldChange(field.name, e.target.value)}
             placeholder={field.default as string}
           />
+          {field.description && (
+            <p className="text-xs text-muted-foreground mt-1">
+              {field.description}
+            </p>
+          )}
         </div>
       );
     }
@@ -367,28 +340,46 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
           <Input
             id={field.name}
             type="number"
+            step={field.name.includes('THRESHOLD') || field.name.includes('WEIGHT') ? '0.1' : '1'}
             value={value as number}
-            onChange={(e) => handleFieldChange(field.name, parseInt(e.target.value) || 0)}
+            onChange={(e) => {
+              const numValue = field.name.includes('THRESHOLD') || field.name.includes('WEIGHT')
+                ? parseFloat(e.target.value) || 0
+                : parseInt(e.target.value) || 0;
+              handleFieldChange(field.name, numValue);
+            }}
             min={field.min}
             max={field.max}
             placeholder={String(field.default)}
           />
+          {field.description && (
+            <p className="text-xs text-muted-foreground mt-1">
+              {field.description}
+            </p>
+          )}
         </div>
       );
     }
 
     if (field.type === 'checkbox') {
       return (
-        <div key={field.name} className="flex items-center space-x-2 py-2">
-          <Checkbox
-            id={field.name}
-            checked={value as boolean}
-            onCheckedChange={(checked) => handleFieldChange(field.name, checked)}
-          />
-          <Label htmlFor={field.name} className="cursor-pointer">
-            {field.label || field.name}
-            {field.required && <span className="text-destructive ml-1">*</span>}
-          </Label>
+        <div key={field.name} className="space-y-2">
+          <div className="flex items-center space-x-2 py-2">
+            <Checkbox
+              id={field.name}
+              checked={value as boolean}
+              onCheckedChange={(checked) => handleFieldChange(field.name, checked)}
+            />
+            <Label htmlFor={field.name} className="cursor-pointer">
+              {field.label || field.name}
+              {field.required && <span className="text-destructive ml-1">*</span>}
+            </Label>
+          </div>
+          {field.description && (
+            <p className="text-xs text-muted-foreground">
+              {field.description}
+            </p>
+          )}
         </div>
       );
     }
@@ -415,6 +406,11 @@ export function OpenWebUIConfigStep({ config, onUpdate }: OpenWebUIConfigStepPro
               ))}
             </SelectContent>
           </Select>
+          {field.description && (
+            <p className="text-xs text-muted-foreground mt-1">
+              {field.description}
+            </p>
+          )}
         </div>
       );
     }
