@@ -7,6 +7,7 @@
  */
 
 import type { UserConfig } from '../models/configuration'
+import { getAllProviderDependencies } from '../config/defaults'
 
 /**
  * Rendered file output
@@ -556,80 +557,36 @@ export async function renderTemplates(
     type: 'network'
   })
 
-  // 2. Determine which services to deploy from infrastructure.services
+  // 2. Determine which services to deploy
   const servicesToDeploy = new Set<string>()
 
-  // Get services from UserConfig infrastructure.services
+  // Core services - always deployed
+  servicesToDeploy.add('caddy')
+  servicesToDeploy.add('cockpit')
+  servicesToDeploy.add('openwebui')
+  servicesToDeploy.add('openwebui-postgres')
+  servicesToDeploy.add('openwebui-redis')
+  servicesToDeploy.add('litellm')
+  servicesToDeploy.add('litellm-postgres')
+  servicesToDeploy.add('litellm-redis')
+  servicesToDeploy.add('llama-swap')
+
+  // Auto-deploy services based on provider selections (intelligent defaults)
+  if (userConfig.providers) {
+    const providerDependencies = getAllProviderDependencies(userConfig.providers)
+    providerDependencies.forEach(service => servicesToDeploy.add(service))
+  }
+
+  // Handle special cases based on infrastructure.services overrides
   if (userConfig.infrastructure?.services) {
-    // Add all services that are defined in the infrastructure
     for (const [serviceName, serviceConfig] of Object.entries(userConfig.infrastructure.services)) {
-      // Skip if service is explicitly disabled
+      // If service is explicitly disabled, remove it
       if (serviceConfig && typeof serviceConfig === 'object' && 'enabled' in serviceConfig && !serviceConfig.enabled) {
-        continue
+        servicesToDeploy.delete(serviceName)
       }
-      servicesToDeploy.add(serviceName)
-    }
-  } else {
-    // Fallback: Determine services from legacy features/providers
-    // Core services - always include
-    servicesToDeploy.add('caddy')
-    servicesToDeploy.add('cockpit')
-    servicesToDeploy.add('openwebui')
-    servicesToDeploy.add('openwebui-postgres')
-    servicesToDeploy.add('openwebui-redis')
-    servicesToDeploy.add('litellm')
-    servicesToDeploy.add('litellm-postgres')
-    servicesToDeploy.add('litellm-redis')
-    servicesToDeploy.add('llama-swap')
-
-    // Feature-based services
-    if (userConfig.features?.rag_enabled || userConfig.providers?.vector_db) {
-      const vectorDb = userConfig.providers?.vector_db
-      if (vectorDb === 'qdrant') {
-        servicesToDeploy.add('qdrant')
-      }
-    }
-
-    if (userConfig.features?.web_search_enabled || userConfig.providers?.web_search_engine) {
-      const searchEngine = userConfig.providers?.web_search_engine
-      if (searchEngine === 'searxng') {
-        servicesToDeploy.add('searxng')
-        servicesToDeploy.add('searxng-redis')
-      }
-    }
-
-    if (userConfig.features?.image_generation_enabled || userConfig.providers?.image_engine) {
-      const imageEngine = userConfig.providers?.image_engine
-      if (imageEngine === 'comfyui') {
-        servicesToDeploy.add('comfyui')
-      }
-    }
-
-    if (userConfig.features?.stt_enabled || userConfig.providers?.stt_engine) {
-      const sttEngine = userConfig.providers?.stt_engine
-      if (sttEngine === 'whisper' || sttEngine === 'whisper-local') {
-        servicesToDeploy.add('whisper')
-      }
-    }
-
-    if (userConfig.features?.tts_enabled || userConfig.providers?.tts_engine) {
-      const ttsEngine = userConfig.providers?.tts_engine
-      if (ttsEngine === 'edgetts') {
-        servicesToDeploy.add('edgetts')
-      }
-    }
-
-    if (userConfig.features?.code_execution_enabled || userConfig.providers?.code_execution_engine) {
-      const codeEngine = userConfig.providers?.code_execution_engine
-      if (codeEngine === 'jupyter') {
-        servicesToDeploy.add('jupyter')
-      }
-    }
-
-    if (userConfig.providers?.content_extraction) {
-      const extractionEngine = userConfig.providers.content_extraction
-      if (extractionEngine === 'tika') {
-        servicesToDeploy.add('tika')
+      // If service is explicitly enabled, add it
+      else if (serviceConfig && typeof serviceConfig === 'object' && 'enabled' in serviceConfig && serviceConfig.enabled) {
+        servicesToDeploy.add(serviceName)
       }
     }
   }

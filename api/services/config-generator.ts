@@ -16,6 +16,12 @@ import type { Env } from '../middleware/auth'
 import type { ReleaseConfig, UserConfig, TailscaleConfig } from '../models/release-config'
 import { getParsedConfiguration } from './configurations'
 import { listSecrets } from './secrets'
+import {
+  DEFAULT_PROVIDERS,
+  DEFAULT_PROVIDER_CONFIGS,
+  getDefaultPrimaryChatModels,
+  getDefaultEmbeddingModels,
+} from '../config/defaults'
 
 /**
  * Settings data (Tailscale configuration)
@@ -252,40 +258,60 @@ function buildInfrastructureServices(
 
 /**
  * Build features object based on release configuration
+ * Uses intelligent defaults and infers from provider selections
  */
-function buildFeatures(releaseConfig: ReleaseConfig): Record<string, boolean> {
+function buildFeatures(
+  releaseConfig: ReleaseConfig,
+  providers: Record<string, string>
+): Record<string, boolean> {
   const features: Record<string, boolean> = {
-    title_generation: !!releaseConfig.core_services.openwebui?.task_model_title,
-    autocomplete_generation: !!releaseConfig.core_services.openwebui?.task_model_autocomplete,
-    tags_generation: !!releaseConfig.core_services.openwebui?.task_model_tags,
+    // Task model features (enabled by default with default task models)
+    title_generation: true,
+    autocomplete_generation: true,
+    tags_generation: true,
     websocket_support: true,
   }
 
-  // Features are enabled based on service selections
-  const selections = releaseConfig.service_selections
+  // Features are auto-enabled based on provider selections
+  // This provides "zero-config" experience - if provider is set, feature works
 
-  if (selections.rag_provider) {
+  if (providers.vector_db) {
     features.rag_enabled = true
   }
 
-  if (selections.web_search_provider) {
+  if (providers.web_search_engine) {
     features.web_search_enabled = true
   }
 
-  if (selections.image_generation_provider) {
+  if (providers.image_engine) {
     features.image_generation_enabled = true
   }
 
-  if (selections.stt_provider) {
+  if (providers.stt_engine) {
     features.stt_enabled = true
   }
 
-  if (selections.tts_provider) {
+  if (providers.tts_engine) {
     features.tts_enabled = true
   }
 
-  if (selections.code_execution_provider) {
+  if (providers.code_execution_engine) {
     features.code_execution_enabled = true
+  }
+
+  // Allow explicit overrides from release config (if specified)
+  const openwebuiConfig = releaseConfig.core_services.openwebui || {}
+
+  if (openwebuiConfig.enable_rag !== undefined) {
+    features.rag_enabled = openwebuiConfig.enable_rag
+  }
+
+  if (openwebuiConfig.enable_web_search !== undefined) {
+    features.web_search_enabled = openwebuiConfig.enable_web_search
+  }
+
+  if (openwebuiConfig.enable_image_generation !== undefined) {
+    features.image_generation_enabled = openwebuiConfig.enable_image_generation
   }
 
   return features
@@ -293,19 +319,21 @@ function buildFeatures(releaseConfig: ReleaseConfig): Record<string, boolean> {
 
 /**
  * Build providers object mapping categories to selected provider IDs
+ * Uses intelligent defaults and allows user overrides
  */
 function buildProviders(releaseConfig: ReleaseConfig): Record<string, string> {
-  const providers: Record<string, string> = {}
+  // Start with intelligent defaults
+  const providers: Record<string, string> = { ...DEFAULT_PROVIDERS }
+
+  // Override with user selections (if provided)
   const selections = releaseConfig.service_selections
 
   if (selections.rag_provider) {
     providers.vector_db = selections.rag_provider
-    providers.rag_embedding = 'openai' // Default, could be configurable
   }
 
   if (selections.web_search_provider) {
     providers.web_search_engine = selections.web_search_provider
-    providers.web_loader = 'requests' // Default
   }
 
   if (selections.image_generation_provider) {
@@ -328,46 +356,89 @@ function buildProviders(releaseConfig: ReleaseConfig): Record<string, string> {
     providers.content_extraction = selections.extraction_provider
   }
 
-  return providers
+  if (selections.storage_provider) {
+    providers.storage_provider = selections.storage_provider
+  }
+
+  // Remove null values (features disabled by default)
+  return Object.fromEntries(
+    Object.entries(providers).filter(([_, value]) => value !== null)
+  )
 }
 
 /**
  * Build provider_config object with all provider-specific settings
+ * Uses comprehensive defaults and allows granular user overrides
  */
 function buildProviderConfig(releaseConfig: ReleaseConfig): Record<string, any> {
-  const providerConfig: Record<string, any> = {
-    // OpenWebUI core settings
-    webui_name: releaseConfig.core_services.openwebui?.webui_name || 'Leger AI',
-    custom_name: releaseConfig.core_services.openwebui?.custom_name || '',
+  // Start with comprehensive defaults
+  const providerConfig: Record<string, any> = { ...DEFAULT_PROVIDER_CONFIGS }
 
-    // RAG settings
-    rag_top_k: releaseConfig.core_services.openwebui?.rag_top_k || 5,
-    chunk_size: releaseConfig.core_services.openwebui?.chunk_size || 1500,
-    chunk_overlap: releaseConfig.core_services.openwebui?.chunk_overlap || 100,
+  // Override with user-specified OpenWebUI settings
+  const openwebuiConfig = releaseConfig.core_services.openwebui || {}
 
-    // Task models
-    task_model_title: releaseConfig.core_services.openwebui?.task_model_title || 'qwen3-0.6b',
-    task_model_tags: releaseConfig.core_services.openwebui?.task_model_tags || 'qwen3-4b',
-    task_model_autocomplete: releaseConfig.core_services.openwebui?.task_model_autocomplete || 'qwen3-0.6b',
-    task_model_query: releaseConfig.core_services.openwebui?.task_model_query || 'qwen3-4b',
-    task_model_search_query: releaseConfig.core_services.openwebui?.task_model_search_query || 'qwen3-4b',
-    task_model_rag_template: releaseConfig.core_services.openwebui?.task_model_rag_template || 'qwen3-4b',
-
-    // Logging
-    log_level: releaseConfig.core_services.openwebui?.log_level || 'INFO',
-    redis_key_prefix: releaseConfig.core_services.openwebui?.redis_key_prefix || 'open-webui',
-    openwebui_timeout_start: releaseConfig.core_services.openwebui?.timeout_start || 900,
+  if (openwebuiConfig.webui_name) {
+    providerConfig.webui_name = openwebuiConfig.webui_name
   }
 
-  // Add provider-specific configs based on selections
+  if (openwebuiConfig.custom_name) {
+    providerConfig.custom_name = openwebuiConfig.custom_name
+  }
+
+  if (openwebuiConfig.rag_top_k) {
+    providerConfig.rag_top_k = openwebuiConfig.rag_top_k
+  }
+
+  if (openwebuiConfig.chunk_size) {
+    providerConfig.chunk_size = openwebuiConfig.chunk_size
+  }
+
+  if (openwebuiConfig.chunk_overlap) {
+    providerConfig.chunk_overlap = openwebuiConfig.chunk_overlap
+  }
+
+  if (openwebuiConfig.task_model_title) {
+    providerConfig.task_model_title = openwebuiConfig.task_model_title
+  }
+
+  if (openwebuiConfig.task_model_tags) {
+    providerConfig.task_model_tags = openwebuiConfig.task_model_tags
+  }
+
+  if (openwebuiConfig.task_model_autocomplete) {
+    providerConfig.task_model_autocomplete = openwebuiConfig.task_model_autocomplete
+  }
+
+  if (openwebuiConfig.task_model_query) {
+    providerConfig.task_model_query = openwebuiConfig.task_model_query
+  }
+
+  if (openwebuiConfig.task_model_search_query) {
+    providerConfig.task_model_search_query = openwebuiConfig.task_model_search_query
+  }
+
+  if (openwebuiConfig.task_model_rag_template) {
+    providerConfig.task_model_rag_template = openwebuiConfig.task_model_rag_template
+  }
+
+  if (openwebuiConfig.log_level) {
+    providerConfig.log_level = openwebuiConfig.log_level
+  }
+
+  if (openwebuiConfig.redis_key_prefix) {
+    providerConfig.redis_key_prefix = openwebuiConfig.redis_key_prefix
+  }
+
+  if (openwebuiConfig.timeout_start) {
+    providerConfig.openwebui_timeout_start = openwebuiConfig.timeout_start
+  }
+
+  // Add provider-specific URLs (these are auto-generated based on infrastructure)
   const selections = releaseConfig.service_selections
 
   if (selections.rag_provider === 'qdrant') {
     providerConfig.qdrant_url = 'http://qdrant:6333'
     providerConfig.qdrant_api_key = ''
-    providerConfig.qdrant_grpc_port = 6334
-    providerConfig.qdrant_prefer_grpc = false
-    providerConfig.qdrant_on_disk = true
   }
 
   if (selections.web_search_provider === 'searxng') {
@@ -376,6 +447,8 @@ function buildProviderConfig(releaseConfig: ReleaseConfig): Record<string, any> 
 
   if (selections.extraction_provider === 'tika') {
     providerConfig.tika_server_url = 'http://tika:9998'
+  } else if (selections.extraction_provider === 'docling') {
+    providerConfig.docling_server_url = 'http://docling:5001'
   }
 
   return providerConfig
@@ -432,17 +505,35 @@ export async function generateUserConfig(
   // 4. Load secrets
   const secrets = await getUserSecrets(env, userUuid)
 
-  // 5. Combine everything into UserConfig
+  // 5. Build providers first (needed for features)
+  const providers = buildProviders(releaseConfig)
+
+  // 6. Add default models if none specified
+  const models = releaseConfig.model_assignments
+
+  // Use defaults if no models specified
+  const cloudModels = models?.primary_chat_models || []
+  const localModels = cloudModels.length === 0 ? getDefaultPrimaryChatModels() : []
+
+  const embeddingModels = models?.embedding_models?.length
+    ? models.embedding_models
+    : getDefaultEmbeddingModels()
+
+  // 7. Combine everything into UserConfig
   const userConfig: UserConfig = {
     tailscale: settings.tailscale,
     infrastructure: {
       network: releaseConfig.infrastructure.network,
       services: buildInfrastructureServices(releaseConfig, marketplaceConfigs),
     },
-    features: buildFeatures(releaseConfig),
-    providers: buildProviders(releaseConfig),
+    features: buildFeatures(releaseConfig, providers),
+    providers,
     provider_config: buildProviderConfig(releaseConfig),
     secrets,
+    models: {
+      cloud: cloudModels,
+      local: localModels,
+    },
   }
 
   return userConfig
@@ -466,17 +557,15 @@ export async function validateReleaseConfig(
     errors.push('Tailscale configuration not found. Please configure Tailscale in Settings first.')
   }
 
-  // Check that at least one primary chat model is selected
-  if (!releaseConfig.model_assignments.primary_chat_models ||
-      releaseConfig.model_assignments.primary_chat_models.length === 0) {
-    errors.push('At least one primary chat model must be selected')
-  }
+  // Models are now optional - defaults will be used if not specified
+  // This allows novice users to deploy with zero configuration
 
-  // Check RAG + embedding model dependency
+  // RAG dependency check - now just informational since we have defaults
   if (releaseConfig.service_selections.rag_provider) {
     if (!releaseConfig.model_assignments.embedding_models ||
         releaseConfig.model_assignments.embedding_models.length === 0) {
-      warnings.push('RAG is enabled but no embedding models selected. RAG may not work correctly.')
+      // Informational only - defaults will be used
+      console.log('RAG enabled with default embedding model (qwen3-embedding-8b)')
     }
   }
 

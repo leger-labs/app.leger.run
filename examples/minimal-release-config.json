@@ -1,0 +1,25 @@
+{
+  "$schema": "../api/schemas/release-schema.json",
+  "release_metadata": {
+    "name": "My First Release",
+    "version": "1.0.0",
+    "description": "Minimal configuration example - demonstrates zero-config deployment",
+    "tags": ["minimal", "default", "novice"]
+  },
+  "core_services": {},
+  "caddy_routes": {
+    "openwebui_subdomain": "ai",
+    "litellm_subdomain": "llm",
+    "llama_swap_subdomain": "local"
+  },
+  "service_selections": {},
+  "model_assignments": {
+    "primary_chat_models": []
+  },
+  "infrastructure": {
+    "network": {
+      "name": "llm",
+      "subnet": "10.89.0.0/24"
+    }
+  }
+}
