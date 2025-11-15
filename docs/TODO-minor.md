@@ -34,3 +34,5 @@ make on website the leger circle the same height as the slash.
 - [soon] flagged menu selection items: Promts; MCP; Utilities (owui specific items)
 
 ---
+
+- new functionality: i want to have a way to prioritize newest models; ie have gpt 5.1 and latest sonnet, but not the legacy models
