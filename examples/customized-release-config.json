@@ -1,0 +1,71 @@
+{
+  "$schema": "../api/schemas/release-schema.json",
+  "release_metadata": {
+    "name": "Production Release",
+    "version": "1.0.0",
+    "description": "Customized configuration example - demonstrates override capabilities",
+    "tags": ["production", "customized", "advanced"]
+  },
+  "core_services": {
+    "openwebui": {
+      "webui_name": "My Company AI",
+      "custom_name": "Enterprise LLM Platform",
+      "rag_top_k": 10,
+      "chunk_size": 2000,
+      "chunk_overlap": 200,
+      "task_model_title": "qwen3-4b",
+      "task_model_tags": "qwen3-8b",
+      "task_model_autocomplete": "qwen3-4b",
+      "task_model_query": "qwen3-8b",
+      "task_model_search_query": "qwen3-8b",
+      "task_model_rag_template": "qwen3-8b",
+      "log_level": "DEBUG",
+      "enable_community_sharing": true,
+      "enable_message_rating": true
+    },
+    "litellm": {
+      "enable_prometheus": true,
+      "enable_request_logging": true,
+      "cache_type": "redis"
+    },
+    "llama_swap": {
+      "auto_unload_enabled": true,
+      "auto_unload_timeout": 600,
+      "max_concurrent_models": 2,
+      "gpu_memory_fraction": 0.9
+    }
+  },
+  "caddy_routes": {
+    "openwebui_subdomain": "chat",
+    "litellm_subdomain": "api",
+    "llama_swap_subdomain": "models",
+    "cockpit_subdomain": "system",
+    "qdrant_subdomain": "vectors",
+    "searxng_subdomain": "search",
+    "jupyter_subdomain": "code"
+  },
+  "service_selections": {
+    "rag_provider": "qdrant",
+    "web_search_provider": "searxng",
+    "stt_provider": "whisper",
+    "tts_provider": "edgetts",
+    "code_execution_provider": "jupyter",
+    "extraction_provider": "tika"
+  },
+  "model_assignments": {
+    "primary_chat_models": [
+      "openai/gpt-5",
+      "anthropic/claude-sonnet-4-5",
+      "gemini/gemini-2.5-flash"
+    ],
+    "embedding_models": [
+      "qwen3-embedding-8b"
+    ]
+  },
+  "infrastructure": {
+    "network": {
+      "name": "llm",
+      "subnet": "10.89.0.0/24"
+    }
+  }
+}
