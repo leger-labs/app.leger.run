@@ -1,300 +1,274 @@
-# Default Configuration Guide
+# Infrastructure Default Configuration Guide
 
-This document describes the comprehensive default configuration system that enables **zero-configuration deployment** for novice users while allowing **full customization** for advanced users.
+This document describes the infrastructure-level default configuration system that reduces configuration burden while respecting user choice for model selection.
 
 ---
 
 ## Overview
 
-The Leger platform now provides intelligent defaults for:
-- **Models** (local & cloud)
-- **Providers** (vector DB, search, audio, code execution)
-- **Provider Configurations** (all environment variables & settings)
+The Leger platform provides sensible defaults for **infrastructure settings** (RAG parameters, timeouts, log levels) while requiring users to **explicitly select models** through the WebUI.
 
-This means **novice users can deploy without setting a single environment variable**, and the platform will "just work" with sensible defaults.
+### Key Principles
+
+1. **✅ Infrastructure Defaults** - Chunk sizes, timeouts, log levels pre-configured
+2. **❌ NO Model Defaults** - Users select all models through WebUI
+3. **✅ UI Pre-Population** - Forms pre-filled with suggested values
+4. **❌ NO Backend Injection** - Deployment uses only user's configuration
 
 ---
 
-## Default Models
+## What Has Defaults
 
-### Local Models (No API Keys Required)
+### Infrastructure Settings (Pre-Configured)
+
+**RAG Configuration:**
+```typescript
+{
+  rag_top_k: 5,                    // Number of chunks to retrieve
+  chunk_size: 1500,                // Characters per chunk
+  chunk_overlap: 100,              // Overlap between chunks
+  pdf_extract_images: true         // Extract images from PDFs
+}
+```
+
+**Security Settings:**
+```typescript
+{
+  rag_embedding_trust_remote_code: false,    // Don't execute untrusted code
+  rag_reranking_trust_remote_code: false,
+  rag_embedding_auto_update: false,          // Don't auto-update models
+  rag_reranking_auto_update: false
+}
+```
+
+**Performance Settings:**
+```typescript
+{
+  openwebui_timeout_start: 900,    // 15 minutes for first-time downloads
+  log_level: 'INFO',               // Default logging level
+  autocomplete_input_max_length: 200
+}
+```
+
+**Branding:**
+```typescript
+{
+  webui_name: 'Leger AI',
+  default_locale: 'en-US',
+  redis_key_prefix: 'open-webui'
+}
+```
+
+**Service-Specific (Qdrant, Chroma):**
+```typescript
+{
+  // Qdrant
+  qdrant_grpc_port: 6334,
+  qdrant_prefer_grpc: false,
+  qdrant_on_disk: true,
+
+  // Chroma
+  chroma_tenant: 'default_tenant',
+  chroma_database: 'default_database'
+}
+```
+
+### Alternative Presets
+
+**Performance-Optimized** (faster, less accurate):
+```typescript
+{
+  rag_top_k: 3,
+  chunk_size: 1000,
+  chunk_overlap: 50
+}
+```
+
+**Quality-Optimized** (slower, more accurate):
+```typescript
+{
+  rag_top_k: 10,
+  chunk_size: 2000,
+  chunk_overlap: 200
+}
+```
+
+---
+
+## What Does NOT Have Defaults
+
+###User Must Select Through WebUI
+
+**❌ NO Default Models:**
+- Chat models (GPT-5, Claude 4.5, local models, etc.)
+- Embedding models (for RAG)
+- Task models (for titles, tags, autocomplete)
+
+**❌ NO Default Providers:**
+- LLM API providers (OpenAI, Anthropic, Google, etc.)
+- Vector databases (pgvector, qdrant, chroma)
+- Search engines (searxng, tavily, brave, etc.)
+- Audio providers (whisper, edgetts, etc.)
+
+**❌ NO Default Features:**
+- RAG enablement
+- Web search enablement
+- Image generation enablement
+- Code execution enablement
+
+---
+
+## How Users Configure the System
+
+### Step 1: Model Selection (REQUIRED)
+
+User must select models through WebUI:
 
 **Chat Models:**
-- `gpt-oss-20b` - Fast general-purpose model (20B params, Q4_K_M)
-- `gpt-oss-120b` - Powerful reasoning model (120B params, Q4_K_M)
+- Browse model catalog
+- Select from: GPT-5, Claude 4.5, Gemini 2.5, local models, etc.
+- Multi-select allowed
+- At least ONE required
 
-**Embedding Models:**
-- `qwen3-embedding-8b` - High-quality embeddings (8B params, Q8_0)
+**Embedding Models (if RAG enabled):**
+- Select embedding model (e.g., qwen3-embedding-8b)
+- Required if vector database selected
 
-**Task Models:**
-- `qwen3-0.6b` - Ultra-fast for titles, autocomplete (0.6B params)
-- `qwen3-4b` - Balanced for tags, queries, analysis (4B params)
+**Task Models (optional but recommended):**
+- Title generation model (fast, small)
+- Tags generation model (balanced)
+- Autocomplete model (ultra-fast)
+- Query model (for RAG/search)
 
-### Cloud Models (Requires API Keys, Disabled by Default)
+### Step 2: Service Selection
 
-**OpenAI GPT-5 Family:**
-- `openai/gpt-5` - Flagship model (400K context)
-- `openai/gpt-5-mini` - Cost-efficient (80% cheaper)
-- `openai/gpt-5-nano` - Ultra-fast (96% cheaper)
+User selects services/providers:
 
-**Anthropic Claude 4.x:**
-- `anthropic/claude-sonnet-4-5` - Hybrid reasoning, 30+ hour autonomy
-- `anthropic/claude-opus-4-1` - Most powerful, 7-hour memory
-
-**Google Gemini 2.5:**
-- `gemini/gemini-2.5-flash` - Fast, 1M+ context
-- `gemini/gemini-2.5-pro` - Most powerful, 2M context
-
----
-
-## Default Providers
-
-The platform automatically selects providers optimized for:
-- ✅ Minimal resource usage
-- ✅ Maximum functionality
-- ✅ Privacy (local-first)
-- ✅ Cost (free/self-hosted)
-
-| Category | Default Provider | Rationale |
-|----------|-----------------|-----------|
-| **Vector DB** | `pgvector` | Uses existing Postgres, no extra service |
-| **RAG Embedding** | `openai` | Points to llama-swap (local) |
-| **Content Extraction** | `tika` | Lightweight, comprehensive |
-| **Text Splitter** | `recursive` | Better for varied content |
-| **Web Search** | `searxng` | Privacy-respecting metasearch |
-| **Web Loader** | `requests` | Lightweight, no browser |
-| **STT** | `openai` | Points to Whisper container |
-| **TTS** | `openai` | Points to EdgeTTS container |
-| **Code Execution** | `jupyter` | Full Python environment |
-| **Storage** | `local` | No cloud dependencies |
-| **Auth** | `local` | Tailscale provides network security |
-
-### Alternative Providers
-
-Advanced users can override defaults with:
-
-**Vector Database:**
-- `pgvector` (default) - PostgreSQL extension
-- `chroma` - Embedded, no extra service
-- `qdrant` - Dedicated vector DB (best performance)
-- `milvus` - Enterprise-grade
-- `opensearch` - Full-text + vector
+**Vector Database (for RAG):**
+- Options: pgvector, qdrant, chroma, milvus
+- If selected, RAG is automatically enabled
 
 **Web Search:**
-- `searxng` (default) - Privacy-focused
-- `tavily` - Cloud API (requires key)
-- `brave` - Cloud API (requires key)
-- `duckduckgo` - Free, no key
-- `google_pse` - Cloud API (requires key)
+- Options: searxng, tavily, brave, duckduckgo, google
+- If selected, web search is automatically enabled
 
-**Audio (STT):**
-- `openai` (default) - Local Whisper container
-- `azure` - Cloud (requires key)
-- `deepgram` - Cloud (requires key)
+**Audio:**
+- STT: whisper, azure, deepgram
+- TTS: edgetts, azure, elevenlabs
 
-**Audio (TTS):**
-- `openai` (default) - Local EdgeTTS container
-- `azure` - Cloud (requires key)
-- `elevenlabs` - Cloud (requires key)
-- `transformers` - Local (slower)
+**Code Execution:**
+- Options: jupyter, pyodide
 
 **Image Generation:**
-- `null` (default) - Disabled (resource intensive)
-- `openai` - Cloud DALL-E
-- `comfyui` - Local Stable Diffusion
-- `automatic1111` - Local SD (alternative)
+- Options: comfyui, openai (DALL-E), automatic1111
 
----
+### Step 3: Infrastructure Settings (Optional)
 
-## Default Provider Configurations
+Forms pre-populated with defaults from `api/config/default-provider-configs.ts`:
 
-All provider-specific settings have sensible defaults:
+**User can:**
+- Keep defaults (most common)
+- Override any value
+- Use preset profiles (performance, quality)
+- Reset to default
 
-### OpenWebUI Core
-
+**Example Overrides:**
 ```json
 {
-  "webui_name": "Leger AI",
-  "custom_name": "",
-  "default_locale": "en-US",
-  "log_level": "INFO"
-}
-```
-
-### RAG Settings
-
-```json
-{
-  "rag_top_k": 5,
-  "chunk_size": 1500,
-  "chunk_overlap": 100,
-  "pdf_extract_images": true,
-  "rag_embedding_model": "qwen3-embedding-8b"
-}
-```
-
-### Task Models
-
-```json
-{
-  "task_model_title": "qwen3-0.6b",
-  "task_model_autocomplete": "qwen3-0.6b",
-  "task_model_tags": "qwen3-4b",
-  "task_model_query": "qwen3-4b",
-  "task_model_search_query": "qwen3-4b",
-  "task_model_rag_template": "qwen3-4b"
-}
-```
-
-### Audio Settings
-
-```json
-{
-  "audio_stt_model": "whisper-1",
-  "audio_tts_model": "tts-1",
-  "audio_tts_voice": "alloy"
-}
-```
-
-### Security Settings
-
-```json
-{
-  "rag_embedding_trust_remote_code": false,
-  "rag_reranking_trust_remote_code": false,
-  "rag_embedding_auto_update": false,
-  "rag_reranking_auto_update": false
+  "core_services": {
+    "openwebui": {
+      "rag_top_k": 10,          // Override default (5)
+      "chunk_size": 2000,       // Override default (1500)
+      "log_level": "DEBUG"      // Override default ("INFO")
+    }
+  }
 }
 ```
 
 ---
 
-## Minimal Configuration Example
+## Configuration Examples
 
-For a **novice user**, this minimal configuration is sufficient:
+### Example 1: Minimal (Local Models, Full Features)
 
+**User selects:**
 ```json
 {
-  "release_metadata": {
-    "name": "My First Release",
-    "version": "1.0.0"
-  },
-  "core_services": {},
-  "caddy_routes": {
-    "openwebui_subdomain": "ai",
-    "litellm_subdomain": "llm",
-    "llama_swap_subdomain": "local"
-  },
-  "service_selections": {},
   "model_assignments": {
-    "primary_chat_models": []
+    "primary_chat_models": ["local/qwen3-4b", "local/qwen3-20b"],
+    "embedding_models": ["qwen3-embedding-8b"]
   },
-  "infrastructure": {
-    "network": {
-      "name": "llm",
-      "subnet": "10.89.0.0/24"
-    }
-  }
-}
-```
-
-**This will automatically deploy:**
-- ✅ OpenWebUI at `https://ai.tailnet.ts.net`
-- ✅ LiteLLM with local models (gpt-oss-20b, gpt-oss-120b)
-- ✅ RAG with pgvector + local embeddings + Tika
-- ✅ Web search with SearXNG
-- ✅ Speech-to-text with Whisper
-- ✅ Text-to-speech with EdgeTTS
-- ✅ Code execution with Jupyter
-- ✅ All infrastructure (Postgres, Redis, Caddy, Cockpit)
-
-**Total services deployed: 16**
-**Configuration fields required: 6** (minimal metadata + subdomains)
-**Environment variables set by user: 0**
-
----
-
-## Customization Examples
-
-### Override Task Models (Performance → Quality)
-
-```json
-{
-  "core_services": {
-    "openwebui": {
-      "task_model_title": "qwen3-4b",
-      "task_model_tags": "qwen3-8b",
-      "task_model_autocomplete": "qwen3-4b",
-      "task_model_query": "qwen3-8b"
-    }
-  }
-}
-```
-
-### Override RAG Settings (Default → Quality-Optimized)
-
-```json
-{
-  "core_services": {
-    "openwebui": {
-      "rag_top_k": 10,
-      "chunk_size": 2000,
-      "chunk_overlap": 200
-    }
-  }
-}
-```
-
-### Switch Vector DB (pgvector → Qdrant)
-
-```json
-{
   "service_selections": {
-    "rag_provider": "qdrant"
-  }
+    "rag_provider": "pgvector",          // Uses existing postgres
+    "web_search_provider": "searxng",    // Free, local
+    "stt_provider": "whisper",           // Free, local
+    "tts_provider": "edgetts",           // Free, local
+    "code_execution_provider": "jupyter" // Free, local
+  },
+  "core_services": {}  // All defaults used
 }
 ```
 
-This will:
-- ✅ Auto-deploy Qdrant container
-- ✅ Auto-configure OpenWebUI to use Qdrant
-- ✅ Auto-set QDRANT_URI, QDRANT_GRPC_PORT, etc.
+**Result:**
+- 16 services deployed
+- All local (no API keys needed)
+- Full functionality (RAG, search, audio, code)
+- All infrastructure settings use defaults
 
-### Add Cloud Models (Local → OpenAI GPT-5)
+### Example 2: Cloud Models with Custom Settings
 
+**User selects:**
 ```json
 {
   "model_assignments": {
     "primary_chat_models": [
       "openai/gpt-5",
-      "openai/gpt-5-mini"
-    ]
+      "anthropic/claude-sonnet-4-5",
+      "gemini/gemini-2.5-flash"
+    ],
+    "embedding_models": ["qwen3-embedding-8b"]  // Local for privacy
+  },
+  "service_selections": {
+    "rag_provider": "qdrant",           // Best performance
+    "web_search_provider": "tavily"     // Cloud API, better results
+  },
+  "core_services": {
+    "openwebui": {
+      "rag_top_k": 10,                 // Quality over speed
+      "chunk_size": 2000,
+      "chunk_overlap": 200,
+      "log_level": "DEBUG"             // Detailed logging
+    }
   }
 }
 ```
 
-Then add API key in Secrets:
-```bash
-# Via CLI
-leger secrets set OPENAI_API_KEY sk-...
+**User adds API keys in Secrets:**
+- OPENAI_API_KEY
+- ANTHROPIC_API_KEY
+- GEMINI_API_KEY
+- TAVILY_API_KEY
 
-# Via UI
-Settings → Secrets → Add Secret
-```
+**Result:**
+- Cloud models available
+- Qdrant deployed for best vector search
+- Custom RAG settings (quality-optimized)
+- Tavily for premium search
 
 ---
 
 ## Service Auto-Deployment
 
-Services are automatically deployed based on provider selections:
+Services are automatically deployed based on user's selections:
 
-| Provider | Auto-Deployed Services |
-|----------|----------------------|
-| `vector_db: qdrant` | qdrant.container |
-| `web_search_engine: searxng` | searxng.container, searxng-redis.container |
-| `stt_engine: openai` | whisper.container |
-| `tts_engine: openai` | edgetts.container |
-| `code_execution_engine: jupyter` | jupyter.container |
+| User Selects | Auto-Deployed Services |
+|--------------|------------------------|
+| `rag_provider: qdrant` | qdrant.container |
+| `rag_provider: pgvector` | (uses existing openwebui-postgres) |
+| `web_search_provider: searxng` | searxng.container, searxng-redis.container |
+| `stt_provider: whisper` | whisper.container |
+| `tts_provider: edgetts` | edgetts.container |
+| `code_execution_provider: jupyter` | jupyter.container |
 | `content_extraction: tika` | tika.container |
 | `image_engine: comfyui` | comfyui.container |
 
@@ -306,179 +280,152 @@ Services are automatically deployed based on provider selections:
 
 ---
 
-## Alternative Configuration Profiles
+## Validation
 
-For quick customization, use these alternative profiles:
+### Frontend Validation (Before Save)
+- ✅ At least one chat model selected
+- ✅ If RAG enabled, at least one embedding model selected
+- ✅ Subdomain uniqueness
+- ✅ Valid configuration values (ranges, types)
 
-### Minimal (Resource-Constrained)
-
-```json
-{
-  "core_services": {
-    "openwebui": {
-      "task_model_title": "qwen3-0.6b",
-      "task_model_tags": "qwen3-0.6b",
-      "task_model_autocomplete": "qwen3-0.6b",
-      "task_model_query": "qwen3-0.6b"
-    }
-  }
-}
-```
-
-### Power-User (Best Quality)
-
-```json
-{
-  "core_services": {
-    "openwebui": {
-      "task_model_title": "qwen3-4b",
-      "task_model_tags": "qwen3-8b",
-      "task_model_autocomplete": "qwen3-4b",
-      "task_model_query": "qwen3-8b",
-      "rag_top_k": 10,
-      "chunk_size": 2000,
-      "chunk_overlap": 200
-    }
-  },
-  "service_selections": {
-    "rag_provider": "qdrant"
-  }
-}
-```
-
-### Performance (Speed-Optimized)
-
-```json
-{
-  "core_services": {
-    "openwebui": {
-      "rag_top_k": 3,
-      "chunk_size": 1000,
-      "chunk_overlap": 50
-    }
-  }
-}
-```
+### Backend Validation (On Deployment)
+- ✅ Models must be selected
+- ✅ Tailscale configuration exists
+- ✅ Required dependencies met (RAG → embedding model)
+- ⚠️ Warnings for missing API keys (cloud models won't work)
 
 ---
 
-## Feature Inference
+## WebUI Integration
 
-Features are automatically enabled based on provider selections:
+### 1. Model Selection UI
 
-| Feature | Enabled When |
-|---------|-------------|
-| RAG | `providers.vector_db` is set |
-| Web Search | `providers.web_search_engine` is set |
-| Image Generation | `providers.image_engine` is set |
-| STT | `providers.stt_engine` is set |
-| TTS | `providers.tts_engine` is set |
-| Code Execution | `providers.code_execution_engine` is set |
-
-**Example:**
-```json
-{
-  "service_selections": {
-    "web_search_provider": "searxng"
-  }
-}
+```
+┌─────────────────────────────────────────────┐
+│ Select Chat Models (Required)              │
+├─────────────────────────────────────────────┤
+│ □ OpenAI GPT-5        [requires API key]    │
+│ □ Claude Sonnet 4.5   [requires API key]    │
+│ □ Gemini 2.5 Flash    [requires API key]    │
+│ ☑ Local Qwen3-4B      [no API key needed]   │
+│ ☑ Local Qwen3-20B     [no API key needed]   │
+└─────────────────────────────────────────────┘
 ```
 
-This automatically:
-1. Sets `providers.web_search_engine = "searxng"`
-2. Sets `features.web_search_enabled = true`
-3. Deploys `searxng.container` + `searxng-redis.container`
-4. Configures `SEARXNG_QUERY_URL` in OpenWebUI
+### 2. Infrastructure Settings UI
 
-**Zero additional configuration required!**
+```
+┌─────────────────────────────────────────────┐
+│ RAG Settings                                │
+├─────────────────────────────────────────────┤
+│ Top K:           [5     ] ← Default        │
+│ Chunk Size:      [1500  ] ← Default        │
+│ Chunk Overlap:   [100   ] ← Default        │
+│                                             │
+│ [Reset to Defaults] [Use Quality Preset]   │
+└─────────────────────────────────────────────┘
+```
+
+### 3. Presets
+
+```
+┌─────────────────────────────────────────────┐
+│ Configuration Presets                       │
+├─────────────────────────────────────────────┤
+│ ○ Default       (balanced)                  │
+│ ○ Performance   (faster, less accurate)     │
+│ ○ Quality       (slower, more accurate)     │
+│ ● Custom        (your overrides)            │
+└─────────────────────────────────────────────┘
+```
 
 ---
 
 ## Configuration Hierarchy
 
-The system follows this override hierarchy (lowest to highest priority):
+Settings are applied in this order (lowest to highest priority):
 
-1. **Hardcoded defaults** (in `api/config/default-*.ts`)
-2. **User release config** (in `ReleaseConfig.core_services`)
-3. **User infrastructure overrides** (in `ReleaseConfig.infrastructure.services`)
-4. **User secrets** (API keys, passwords)
+1. **Hardcoded defaults** (`api/config/default-provider-configs.ts`)
+2. **User overrides** (`ReleaseConfig.core_services`)
+3. **Infrastructure overrides** (`ReleaseConfig.infrastructure.services`)
 
 **Example:**
-```json
-{
-  "core_services": {
-    "openwebui": {
-      "webui_name": "My Company AI"  // Overrides default "Leger AI"
-    }
+```typescript
+// 1. Default (hardcoded)
+rag_top_k: 5
+
+// 2. User override in core_services
+"core_services": {
+  "openwebui": {
+    "rag_top_k": 10  // ← This wins
   }
 }
+
+// Result: rag_top_k = 10
 ```
-
----
-
-## Validation
-
-The system validates configurations and provides helpful feedback:
-
-**Errors** (prevent deployment):
-- Missing Tailscale configuration
-- Duplicate subdomains
-- Invalid configuration values
-
-**Warnings** (informational):
-- RAG enabled without custom embedding models (defaults will be used)
-- Missing API keys for cloud models (models will be unavailable)
-
-**Info** (helpful messages):
-- "Using default models: gpt-oss-20b, gpt-oss-120b"
-- "Using default embedding model: qwen3-embedding-8b"
-- "Auto-deploying services: tika, searxng, whisper, edgetts, jupyter"
 
 ---
 
 ## Summary
 
-### For Novice Users
+### For Users
 
-**Required configuration:**
-- ✅ Tailscale hostname (one-time setup)
-- ✅ Release metadata (name, version)
-- ✅ Caddy subdomains (3 values)
+**Required Steps:**
+1. ✅ Select chat models (at least one)
+2. ✅ Select services (RAG, search, etc.) - optional but recommended
+3. ✅ Select embedding models (if RAG enabled)
+4. ⚠️ Add API keys (if using cloud models)
 
-**Total: 5-6 fields**
-**Environment variables: 0**
-**Services deployed: 16**
-**Full functionality: ✅**
+**Optional Steps:**
+- Override infrastructure settings (most users keep defaults)
+- Select task models (defaults available in UI)
+- Use preset configurations (performance vs. quality)
 
-### For Advanced Users
+### For Developers
 
-**Full customization available:**
-- ✅ Override any default
-- ✅ Add cloud models
-- ✅ Switch providers
-- ✅ Fine-tune settings
-- ✅ Enable/disable features granularly
+**Backend provides:**
+- Infrastructure defaults for all settings
+- Service auto-deployment based on selections
+- Validation of user configuration
+- NO model defaults or injections
 
-**Customization path:**
-- Start with defaults
-- Override incrementally
-- Full control when needed
+**Frontend should:**
+- Present model catalog for selection
+- Pre-populate forms with defaults
+- Show "current vs. default" for settings
+- Validate before save
+- Suggest recommended configurations
 
 ---
 
 ## Next Steps
 
-1. **Create a minimal release** using `examples/minimal-release-config.json`
-2. **Deploy and test** - verify all services start correctly
-3. **Add customizations** incrementally as needed
-4. **Add cloud models** by providing API keys in Secrets
+1. **Implement WebUI:**
+   - Model catalog API and selection UI
+   - Service selection UI with provider options
+   - Infrastructure settings forms with defaults
+   - Validation and dependency checking
 
-For more examples, see:
-- `examples/minimal-release-config.json` - Zero-config deployment
-- `examples/customized-release-config.json` - Advanced customization
+2. **Add Presets:**
+   - "Quick Start" - local models, full features
+   - "Performance" - fast models, optimized settings
+   - "Quality" - best models, accuracy-first settings
+   - "Minimal" - local models, basic features
 
-For implementation details, see:
-- `QUADLET_INVESTIGATION.md` - Full architectural analysis
-- `api/config/default-models.ts` - Model catalog
-- `api/config/default-providers.ts` - Provider selections
-- `api/config/default-provider-configs.ts` - Provider configurations
+3. **Documentation:**
+   - User guide for Release Wizard
+   - Model selection best practices
+   - Troubleshooting common issues
+
+---
+
+## Conclusion
+
+This system provides the best user experience by:
+
+1. **Reducing configuration burden** - Infrastructure pre-configured
+2. **Respecting user choice** - All models selected by user
+3. **Maintaining flexibility** - Any default can be overridden
+4. **Future-proofing** - New models/providers added without code changes
+
+Users get a high-quality default experience while maintaining full control over their deployment.

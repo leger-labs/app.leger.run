@@ -1,14 +1,20 @@
 /**
  * Default Provider Configurations
  *
- * Provides sensible default values for all provider-specific settings.
- * These are the actual configuration values used by services (env vars, URLs, etc.)
+ * Provides sensible default values for infrastructure and service settings.
  *
- * Organized by:
- * 1. OpenWebUI Core Settings
- * 2. RAG Settings
- * 3. Task Model Assignments
- * 4. Provider-Specific Configs
+ * IMPORTANT: This file contains ONLY infrastructure-level defaults:
+ * - RAG settings (chunk size, overlap, top_k)
+ * - Timeouts and performance settings
+ * - Log levels
+ * - Service-specific URLs (auto-generated from infrastructure)
+ *
+ * This file does NOT contain:
+ * - Model selections (user chooses via UI)
+ * - Provider API choices (user chooses via UI)
+ *
+ * The WebUI should pre-populate forms with these values, but users must
+ * explicitly save their configuration. No values are injected at deployment time.
  */
 
 export interface ProviderConfig {
@@ -18,7 +24,6 @@ export interface ProviderConfig {
 
   // Branding
   webui_name: string
-  custom_name: string
   default_locale: string
 
   // Logging
@@ -31,7 +36,7 @@ export interface ProviderConfig {
   openwebui_timeout_start: number
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // RAG SETTINGS
+  // RAG SETTINGS (Infrastructure Configuration, NOT Model Selection)
   // ═══════════════════════════════════════════════════════════════════════════
 
   // Retrieval settings
@@ -40,9 +45,6 @@ export interface ProviderConfig {
   chunk_overlap: number
   pdf_extract_images: boolean
 
-  // Embedding model (resolved from model-store)
-  rag_embedding_model: string
-
   // Security settings
   rag_embedding_trust_remote_code: boolean
   rag_reranking_trust_remote_code: boolean
@@ -50,29 +52,14 @@ export interface ProviderConfig {
   rag_reranking_auto_update: boolean
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // TASK MODEL ASSIGNMENTS (Small, Fast Models for UI Operations)
+  // AUDIO SETTINGS (Infrastructure, NOT Model Selection)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  task_model_title: string
-  task_model_tags: string
-  task_model_autocomplete: string
-  task_model_query: string
-  task_model_search_query: string
-  task_model_rag_template: string
-
-  // Task model settings
-  autocomplete_input_max_length: number
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // AUDIO SETTINGS
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  audio_stt_model: string
-  audio_tts_model: string
+  // Default voice for TTS (infrastructure setting)
   audio_tts_voice: string
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // PROVIDER-SPECIFIC CONFIGS
+  // PROVIDER-SPECIFIC CONFIGS (Service Infrastructure)
   // ═══════════════════════════════════════════════════════════════════════════
 
   // Chroma (embedded vector DB)
@@ -84,6 +71,9 @@ export interface ProviderConfig {
   qdrant_prefer_grpc: boolean
   qdrant_on_disk: boolean
 
+  // Autocomplete
+  autocomplete_input_max_length: number
+
   // Other configs (extensible)
   [key: string]: unknown
 }
@@ -91,11 +81,9 @@ export interface ProviderConfig {
 /**
  * Default provider configuration values
  *
- * These are optimized for novice users with sensible defaults based on:
- * - OpenWebUI best practices
- * - Community recommendations
- * - Performance testing
- * - Resource constraints
+ * These are INFRASTRUCTURE settings only - no model selections.
+ * The WebUI should use these to pre-populate forms, but users must
+ * explicitly save their configuration.
  */
 export const DEFAULT_PROVIDER_CONFIGS: ProviderConfig = {
   // ═══════════════════════════════════════════════════════════════════════════
@@ -104,7 +92,6 @@ export const DEFAULT_PROVIDER_CONFIGS: ProviderConfig = {
 
   // Branding
   webui_name: 'Leger AI',
-  custom_name: '',
   default_locale: 'en-US',
 
   // Logging
@@ -126,9 +113,6 @@ export const DEFAULT_PROVIDER_CONFIGS: ProviderConfig = {
   chunk_overlap: 100,
   pdf_extract_images: true,
 
-  // Embedding model (local, privacy-preserving)
-  rag_embedding_model: 'qwen3-embedding-8b',
-
   // Security settings (conservative defaults)
   rag_embedding_trust_remote_code: false,
   rag_reranking_trust_remote_code: false,
@@ -136,32 +120,17 @@ export const DEFAULT_PROVIDER_CONFIGS: ProviderConfig = {
   rag_reranking_auto_update: false,
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // TASK MODEL ASSIGNMENTS
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  // Ultra-fast models (0.6B) for single-task operations
-  task_model_title: 'qwen3-0.6b',
-  task_model_autocomplete: 'qwen3-0.6b',
-
-  // Balanced models (4B) for multi-step operations
-  task_model_tags: 'qwen3-4b',
-  task_model_query: 'qwen3-4b',
-  task_model_search_query: 'qwen3-4b',
-  task_model_rag_template: 'qwen3-4b',
-
-  // Task model settings
-  autocomplete_input_max_length: 200,
-
-  // ═══════════════════════════════════════════════════════════════════════════
   // AUDIO SETTINGS
   // ═══════════════════════════════════════════════════════════════════════════
 
-  // Speech-to-text (OpenAI-compatible, points to whisper container)
-  audio_stt_model: 'whisper-1',
+  // Text-to-speech voice (OpenAI-compatible default)
+  audio_tts_voice: 'alloy',
 
-  // Text-to-speech (OpenAI-compatible, points to edgetts container)
-  audio_tts_model: 'tts-1',
-  audio_tts_voice: 'alloy',  // Default OpenAI voice
+  // ═══════════════════════════════════════════════════════════════════════════
+  // AUTOCOMPLETE
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  autocomplete_input_max_length: 200,
 
   // ═══════════════════════════════════════════════════════════════════════════
   // PROVIDER-SPECIFIC CONFIGS
@@ -179,6 +148,7 @@ export const DEFAULT_PROVIDER_CONFIGS: ProviderConfig = {
 
 /**
  * Alternative configurations for different use cases
+ * These can be used by the UI to offer preset configurations
  */
 export const ALTERNATIVE_CONFIGS = {
   // Performance-optimized (faster, less accurate)
@@ -193,26 +163,6 @@ export const ALTERNATIVE_CONFIGS = {
     rag_top_k: 10,
     chunk_size: 2000,
     chunk_overlap: 200,
-  },
-
-  // Resource-constrained (minimal memory)
-  minimal: {
-    task_model_title: 'qwen3-0.6b',
-    task_model_tags: 'qwen3-0.6b',
-    task_model_autocomplete: 'qwen3-0.6b',
-    task_model_query: 'qwen3-0.6b',
-    task_model_search_query: 'qwen3-0.6b',
-    task_model_rag_template: 'qwen3-0.6b',
-  },
-
-  // Power-user (best quality, more resources)
-  power: {
-    task_model_title: 'qwen3-4b',
-    task_model_tags: 'qwen3-8b',
-    task_model_autocomplete: 'qwen3-4b',
-    task_model_query: 'qwen3-8b',
-    task_model_search_query: 'qwen3-8b',
-    task_model_rag_template: 'qwen3-8b',
   },
 }
 

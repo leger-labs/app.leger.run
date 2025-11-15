@@ -7,7 +7,6 @@
  */
 
 import type { UserConfig } from '../models/configuration'
-import { getAllProviderDependencies } from '../config/defaults'
 
 /**
  * Rendered file output
@@ -571,10 +570,43 @@ export async function renderTemplates(
   servicesToDeploy.add('litellm-redis')
   servicesToDeploy.add('llama-swap')
 
-  // Auto-deploy services based on provider selections (intelligent defaults)
+  // Auto-deploy services based on provider selections
   if (userConfig.providers) {
-    const providerDependencies = getAllProviderDependencies(userConfig.providers)
-    providerDependencies.forEach(service => servicesToDeploy.add(service))
+    // Vector database services
+    if (userConfig.providers.vector_db === 'qdrant') {
+      servicesToDeploy.add('qdrant')
+    }
+
+    // Content extraction
+    if (userConfig.providers.content_extraction === 'tika') {
+      servicesToDeploy.add('tika')
+    }
+
+    // Web search
+    if (userConfig.providers.web_search_engine === 'searxng') {
+      servicesToDeploy.add('searxng')
+      servicesToDeploy.add('searxng-redis')
+    }
+
+    // Audio - STT
+    if (userConfig.providers.stt_engine === 'whisper' || userConfig.providers.stt_engine === 'openai') {
+      servicesToDeploy.add('whisper')
+    }
+
+    // Audio - TTS
+    if (userConfig.providers.tts_engine === 'edgetts' || userConfig.providers.tts_engine === 'openai') {
+      servicesToDeploy.add('edgetts')
+    }
+
+    // Code execution
+    if (userConfig.providers.code_execution_engine === 'jupyter') {
+      servicesToDeploy.add('jupyter')
+    }
+
+    // Image generation
+    if (userConfig.providers.image_engine === 'comfyui') {
+      servicesToDeploy.add('comfyui')
+    }
   }
 
   // Handle special cases based on infrastructure.services overrides

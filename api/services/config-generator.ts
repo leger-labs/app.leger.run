@@ -16,12 +16,7 @@ import type { Env } from '../middleware/auth'
 import type { ReleaseConfig, UserConfig, TailscaleConfig } from '../models/release-config'
 import { getParsedConfiguration } from './configurations'
 import { listSecrets } from './secrets'
-import {
-  DEFAULT_PROVIDERS,
-  DEFAULT_PROVIDER_CONFIGS,
-  getDefaultPrimaryChatModels,
-  getDefaultEmbeddingModels,
-} from '../config/defaults'
+import { DEFAULT_PROVIDER_CONFIGS } from '../config/defaults'
 
 /**
  * Settings data (Tailscale configuration)
@@ -258,23 +253,21 @@ function buildInfrastructureServices(
 
 /**
  * Build features object based on release configuration
- * Uses intelligent defaults and infers from provider selections
+ * Infers features from service selections and provider configurations
  */
 function buildFeatures(
   releaseConfig: ReleaseConfig,
   providers: Record<string, string>
 ): Record<string, boolean> {
   const features: Record<string, boolean> = {
-    // Task model features (enabled by default with default task models)
-    title_generation: true,
-    autocomplete_generation: true,
-    tags_generation: true,
+    // Task model features - enabled if task models are configured
+    title_generation: !!releaseConfig.core_services.openwebui?.task_model_title,
+    autocomplete_generation: !!releaseConfig.core_services.openwebui?.task_model_autocomplete,
+    tags_generation: !!releaseConfig.core_services.openwebui?.task_model_tags,
     websocket_support: true,
   }
 
   // Features are auto-enabled based on provider selections
-  // This provides "zero-config" experience - if provider is set, feature works
-
   if (providers.vector_db) {
     features.rag_enabled = true
   }
@@ -319,21 +312,24 @@ function buildFeatures(
 
 /**
  * Build providers object mapping categories to selected provider IDs
- * Uses intelligent defaults and allows user overrides
+ * Uses ONLY user selections - no defaults injected
  */
 function buildProviders(releaseConfig: ReleaseConfig): Record<string, string> {
-  // Start with intelligent defaults
-  const providers: Record<string, string> = { ...DEFAULT_PROVIDERS }
-
-  // Override with user selections (if provided)
+  const providers: Record<string, string> = {}
   const selections = releaseConfig.service_selections
 
   if (selections.rag_provider) {
     providers.vector_db = selections.rag_provider
+    // Infer rag_embedding from provider if not specified
+    // This is infrastructure inference, not hardcoding a model
+    if (!providers.rag_embedding) {
+      providers.rag_embedding = 'openai' // Points to OpenAI-compatible endpoint
+    }
   }
 
   if (selections.web_search_provider) {
     providers.web_search_engine = selections.web_search_provider
+    providers.web_loader = 'requests' // Infrastructure default
   }
 
   if (selections.image_generation_provider) {
@@ -360,10 +356,7 @@ function buildProviders(releaseConfig: ReleaseConfig): Record<string, string> {
     providers.storage_provider = selections.storage_provider
   }
 
-  // Remove null values (features disabled by default)
-  return Object.fromEntries(
-    Object.entries(providers).filter(([_, value]) => value !== null)
-  )
+  return providers
 }
 
 /**
@@ -505,21 +498,9 @@ export async function generateUserConfig(
   // 4. Load secrets
   const secrets = await getUserSecrets(env, userUuid)
 
-  // 5. Build providers first (needed for features)
+  // 5. Combine everything into UserConfig
   const providers = buildProviders(releaseConfig)
 
-  // 6. Add default models if none specified
-  const models = releaseConfig.model_assignments
-
-  // Use defaults if no models specified
-  const cloudModels = models?.primary_chat_models || []
-  const localModels = cloudModels.length === 0 ? getDefaultPrimaryChatModels() : []
-
-  const embeddingModels = models?.embedding_models?.length
-    ? models.embedding_models
-    : getDefaultEmbeddingModels()
-
-  // 7. Combine everything into UserConfig
   const userConfig: UserConfig = {
     tailscale: settings.tailscale,
     infrastructure: {
@@ -530,10 +511,6 @@ export async function generateUserConfig(
     providers,
     provider_config: buildProviderConfig(releaseConfig),
     secrets,
-    models: {
-      cloud: cloudModels,
-      local: localModels,
-    },
   }
 
   return userConfig
@@ -557,15 +534,17 @@ export async function validateReleaseConfig(
     errors.push('Tailscale configuration not found. Please configure Tailscale in Settings first.')
   }
 
-  // Models are now optional - defaults will be used if not specified
-  // This allows novice users to deploy with zero configuration
+  // Check that at least one primary chat model is selected
+  if (!releaseConfig.model_assignments.primary_chat_models ||
+      releaseConfig.model_assignments.primary_chat_models.length === 0) {
+    errors.push('At least one primary chat model must be selected')
+  }
 
-  // RAG dependency check - now just informational since we have defaults
+  // Check RAG + embedding model dependency
   if (releaseConfig.service_selections.rag_provider) {
     if (!releaseConfig.model_assignments.embedding_models ||
         releaseConfig.model_assignments.embedding_models.length === 0) {
-      // Informational only - defaults will be used
-      console.log('RAG enabled with default embedding model (qwen3-embedding-8b)')
+      warnings.push('RAG is enabled but no embedding models selected. RAG may not work correctly.')
     }
   }
 

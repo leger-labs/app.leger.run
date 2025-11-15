@@ -2,38 +2,19 @@
  * Default Configuration Barrel Export
  *
  * Centralized exports for all default configurations.
- * This makes it easy to import defaults throughout the codebase.
+ *
+ * IMPORTANT: These are INFRASTRUCTURE defaults only.
+ * - RAG settings, timeouts, log levels, etc.
+ * - Service URLs (auto-generated from infrastructure)
+ *
+ * NO model selections or provider API choices are hardcoded here.
+ * Users must select models/providers through the WebUI.
  *
  * Usage:
- *   import { DEFAULT_MODELS, DEFAULT_PROVIDERS, DEFAULT_PROVIDER_CONFIGS } from '../config/defaults'
+ *   import { DEFAULT_PROVIDER_CONFIGS } from '../config/defaults'
  */
 
-// Re-export models
-export {
-  DEFAULT_LOCAL_MODELS,
-  DEFAULT_EMBEDDING_MODELS,
-  DEFAULT_TASK_MODELS,
-  AVAILABLE_CLOUD_MODELS,
-  getDefaultPrimaryChatModels,
-  getDefaultEmbeddingModels,
-  getAllAvailableModels,
-  getModelById,
-  modelRequiresApiKey,
-  extractProvider,
-  getApiKeyForProvider,
-  type ModelDefinition,
-} from './default-models'
-
-// Re-export providers
-export {
-  DEFAULT_PROVIDERS,
-  ALTERNATIVE_PROVIDERS,
-  getProviderDependencies,
-  getAllProviderDependencies,
-  type ProviderDefaults,
-} from './default-providers'
-
-// Re-export provider configs
+// Re-export provider configs (infrastructure only)
 export {
   DEFAULT_PROVIDER_CONFIGS,
   ALTERNATIVE_CONFIGS,
